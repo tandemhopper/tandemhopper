@@ -1,3 +1,0 @@
-import Header from '../../components/Header';
-export const metadata={title:'Studio'};
-export default function Studio(){return <><Header/><main className="studio"><p className="eyebrow">TANDEMHOPPER REDAKTION</p><h1>STUDIO KOMMT ALS NÄCHSTES.</h1><p>Hier wird später die Redaktionsoberfläche eingebettet. Titel, Text, Kategorie, Spielinfos, Titelbild und Galerien werden dann ohne Programmierung gepflegt.</p><div className="studio-box"><strong>Vorbereitet sind bereits:</strong><ul><li>Artikel mit Titelbild und Metadaten</li><li>Galerie am Anfang oder Ende</li><li>Kategorien und Archiv</li><li>automatische Artikelseiten</li></ul></div></main></>}

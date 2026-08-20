@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer'
 import Gallery from '../../../components/Gallery'
 import ArticleBody from '../../../components/ArticleBody'
 import {getArticleBySlug} from '../../../lib/sanity'
+import {imageUrl} from '../../../lib/imageUrl'
 
 export const revalidate = 60
 
@@ -36,7 +37,7 @@ export default async function Article({params}){
       <div><span>ERGEBNIS</span><strong>{a.result||'–'}</strong></div>
     </div>}
 
-    <figure className="article-hero"><img src={a.hero} alt={a.heroAlt}/>{a.heroCaption&&<figcaption>{a.heroCaption}</figcaption>}</figure>
+    <figure className="article-hero"><img src={imageUrl(a.hero,2000,85)} alt={a.heroAlt} fetchPriority="high" decoding="async"/>{a.heroCaption&&<figcaption>{a.heroCaption}</figcaption>}</figure>
 
     {a.source==='sanity'
       ? <div className="article-layout"><div className="article-body"><ArticleBody blocks={a.body}/></div></div>

@@ -30,6 +30,7 @@ export default async function Article({params}){
     {a.competition&&<div className="match-grid">
       <div><span>SPIEL</span><strong>{a.shortTitle}</strong></div>
       <div><span>WETTBEWERB</span><strong>{a.competition}</strong></div>
+      <div><span>DATUM</span><strong>{a.matchDateDisplay || a.displayDate || '–'}</strong></div>
       <div><span>STADION</span><strong>{a.stadium||'–'}</strong></div>
       <div><span>ZUSCHAUER</span><strong>{a.attendance||'–'}</strong></div>
       <div><span>ERGEBNIS</span><strong>{a.result||'–'}</strong></div>
@@ -38,7 +39,7 @@ export default async function Article({params}){
     <figure className="article-hero"><img src={a.hero} alt={a.heroAlt}/>{a.heroCaption&&<figcaption>{a.heroCaption}</figcaption>}</figure>
 
     {a.source==='sanity'
-      ? <div className="article-layout"><aside><span>{a.dateDisplay}</span><strong>TANDEMHOPPER</strong></aside><div className="article-body"><ArticleBody blocks={a.body}/></div></div>
-      : <><div className="article-layout"><aside><span>{a.dateDisplay}</span><strong>TANDEMHOPPER</strong></aside><div className="article-body"><p className="lead">{a.lead}</p>{a.paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div></div>{a.galleryPlacement&&<Gallery images={a.gallery}/>}</>}
+      ? <div className="article-layout"><div className="article-body"><ArticleBody blocks={a.body}/></div></div>
+      : <><div className="article-layout"><div className="article-body"><p className="lead">{a.lead}</p>{a.paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div></div>{a.galleryPlacement&&<Gallery images={a.gallery}/>}</>}
   </article><Footer/></>
 }

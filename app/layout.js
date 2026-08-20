@@ -1,4 +1,5 @@
 import './globals.css';
+import './cms.css';
 
 export const metadata = {
   title: { default: 'Tandemhopper – Fußball dort, wo’s spannend wird.', template: '%s | Tandemhopper' },

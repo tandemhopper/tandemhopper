@@ -8,7 +8,8 @@ export const revalidate = 60
 export default async function Home(){
   const articles = await getArticles()
   const lead = articles.find(a => a.featured) || articles[0]
-  const metaParts = [lead.competition || lead.tag, lead.dateDisplay, lead.attendance ? `${lead.attendance} ZUSCHAUER` : '', lead.result].filter(Boolean)
+  const metaParts = [lead.competition || lead.tag, lead.displayDate || lead.dateDisplay, lead.attendance ? `${lead.attendance} ZUSCHAUER` : '', lead.result].filter(Boolean)
+  const latest = articles.filter(article => article.slug !== lead.slug).slice(0,4)
 
   return <><Header/><main>
     <section className="hero">
@@ -31,7 +32,7 @@ export default async function Home(){
 
     <section className="latest">
       <div className="section-head"><h2>NEUESTE GESCHICHTEN</h2><Link href="/geschichten">ALLE BERICHTE ANSEHEN →</Link></div>
-      <div className="story-grid">{articles.slice(0,6).map(a=><Link className="story-card" href={'/geschichten/'+a.slug} key={a.slug}><img src={a.hero} alt={a.heroAlt}/><div><span className="tag">{a.tag.toUpperCase()}</span><h3>{a.shortTitle.toUpperCase()}</h3><p>{a.teaser}</p><time>{a.dateDisplay}</time></div></Link>)}</div>
+      <div className="story-grid">{latest.map(a=><Link className="story-card" href={'/geschichten/'+a.slug} key={a.slug}><img src={a.hero} alt={a.heroAlt}/><div><span className="tag">{a.tag.toUpperCase()}</span><h3>{a.shortTitle.toUpperCase()}</h3><p>{a.teaser}</p><time>{a.displayDate || a.dateDisplay}</time></div></Link>)}</div>
     </section>
   </main><Footer/></>
 }

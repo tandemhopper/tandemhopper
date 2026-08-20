@@ -7,19 +7,26 @@ import {imageUrl} from '../../lib/imageUrl'
 export const metadata={title:'Geschichten'}
 export const revalidate = 60
 
+const filters=[
+  {key:'',label:'ALLE'},
+  {key:'spielbericht',label:'SPIELBERICHTE'},
+  {key:'fankultur',label:'FANKULTUR'},
+  {key:'grounds',label:'GROUNDS'},
+  {key:'reisen',label:'REISEN'}
+]
+
 export default async function Stories({searchParams}){
   const sp=await searchParams
   const filter=(sp?.filter||'').toLowerCase()
   const articles=await getArticles()
   const list=filter?articles.filter(a=>a.categoryKey===filter):articles
 
-  return <><Header/><main className="archive">
+  return <><Header/><main className="archive editorial-archive">
     <div className="archive-head">
-      <p className="eyebrow">TANDEMHOPPER ARCHIV</p>
-      <h1>GESCHICHTEN</h1>
+      <div className="archive-title-row"><div><p className="eyebrow">TANDEMHOPPER ARCHIV</p><h1>GESCHICHTEN</h1></div><span className="archive-count">{String(list.length).padStart(2,'0')}<small>BEITRÄGE</small></span></div>
       <p>Spielberichte, Fankultur, Grounds und Reisen. Nicht alles muss groß sein – nur interessant genug, um genauer hinzuschauen.</p>
-      <div className="filterbar"><Link href="/geschichten">ALLE</Link><Link href="/geschichten?filter=spielbericht">SPIELBERICHTE</Link><Link href="/geschichten?filter=fankultur">FANKULTUR</Link><Link href="/geschichten?filter=grounds">GROUNDS</Link><Link href="/geschichten?filter=reisen">REISEN</Link></div>
+      <div className="filterbar">{filters.map(item=><Link className={filter===item.key?'active':''} key={item.key||'all'} href={item.key?`/geschichten?filter=${item.key}`:'/geschichten'}>{item.label}</Link>)}</div>
     </div>
-    <div className="archive-grid">{list.map(a=><Link className="archive-card" href={'/geschichten/'+a.slug} key={a.slug}><img src={imageUrl(a.hero,900,80)} alt={a.heroAlt} loading="lazy" decoding="async"/><span className="tag">{a.tag.toUpperCase()}</span><h2>{a.title}</h2><p>{a.teaser}</p><time>{a.displayDate || a.dateDisplay}</time></Link>)}</div>
+    {list.length>0 ? <div className="archive-grid editorial-archive-grid">{list.map((a,i)=><Link className={`archive-card ${i===0?'archive-card-lead':''}`} href={'/geschichten/'+a.slug} key={a.slug}><div className="archive-image"><img src={imageUrl(a.hero,i===0?1400:900,80)} alt={a.heroAlt} loading={i===0?'eager':'lazy'} decoding="async"/></div><div className="archive-card-copy"><div className="archive-meta"><span className="tag">{a.tag.toUpperCase()}</span><time>{a.displayDate || a.dateDisplay}</time></div><h2>{a.title}</h2><p>{a.teaser}</p><span className="archive-read">LESEN →</span></div></Link>)}</div> : <div className="archive-empty">In diesem Bereich liegt gerade noch nichts. Das dürfte sich ändern.</div>}
   </main><Footer/></>
 }

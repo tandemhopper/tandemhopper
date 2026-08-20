@@ -4,11 +4,14 @@
 .single-lightbox{z-index:120}
 .single-lightbox img{max-width:92vw;max-height:90vh}
 
+.brand{gap:14px}
+.brand-mark{width:90px;height:72px}
+.brand-mark img{width:100%;height:100%;object-fit:contain}
+
 @media(max-width:760px){
  .site-header{position:relative;z-index:40;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:10px 16px;background:#fff}
- .brand{min-width:0;gap:10px}
- .brand-mark{flex:0 0 66px;width:66px;height:64px}
- .brand-mark img{width:100%;height:100%;object-fit:contain}
+ .brand{min-width:0;gap:9px}
+ .brand-mark{flex:0 0 58px;width:58px;height:54px}
  .brand-copy{min-width:0}
  .brand-copy strong{font-size:32px;white-space:nowrap}
  .brand-copy small{font-size:9px;white-space:nowrap}
@@ -33,7 +36,7 @@
 }
 
 @media(max-width:390px){
- .brand-mark{flex-basis:58px;width:58px;height:58px}
+ .brand-mark{flex-basis:52px;width:52px;height:50px}
  .brand-copy strong{font-size:29px}
  .brand-copy small{font-size:8px}
 }

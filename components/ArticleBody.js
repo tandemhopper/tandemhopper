@@ -1,5 +1,7 @@
 import React from 'react'
 import Gallery from './Gallery'
+import ZoomImage from './ZoomImage'
+import {imageUrl} from '../lib/imageUrl'
 
 function renderMarkedSpan(span, index) {
   let node = span.text
@@ -28,16 +30,17 @@ export default function ArticleBody({blocks = []}) {
       const key = block._key || index
       if (block._type === 'block') return <TextBlock key={key} block={block}/>
       if (block._type === 'image' && block.src) {
+        const width = block.width === 'text' ? 1100 : 1600
         return <figure key={key} className={`cms-image ${block.width === 'text' ? 'cms-image-text' : 'cms-image-wide'}`}>
-          <img src={block.src} alt={block.alt || ''}/>
+          <ZoomImage src={imageUrl(block.src, width)} fullSrc={block.src} alt={block.alt || ''}/>
           {block.caption && <figcaption>{block.caption}</figcaption>}
         </figure>
       }
       if (block._type === 'imagePair') {
         return <figure key={key} className="cms-image-pair">
           <div>
-            {block.left?.src && <img src={block.left.src} alt={block.left.alt || ''}/>}
-            {block.right?.src && <img src={block.right.src} alt={block.right.alt || ''}/>}
+            {block.left?.src && <ZoomImage src={imageUrl(block.left.src, 900)} fullSrc={block.left.src} alt={block.left.alt || ''}/>} 
+            {block.right?.src && <ZoomImage src={imageUrl(block.right.src, 900)} fullSrc={block.right.src} alt={block.right.alt || ''}/>} 
           </div>
           {block.caption && <figcaption>{block.caption}</figcaption>}
         </figure>

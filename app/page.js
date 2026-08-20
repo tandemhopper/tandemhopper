@@ -39,7 +39,7 @@ export default async function Home(){
     </section>
 
     <section className="latest editorial-latest">
-      <div className="section-head"><div><span className="section-kicker">ZUletzt VERÖFFENTLICHT</span><h2>NEUE GESCHICHTEN</h2></div><Link href="/geschichten">ZUM GESAMTEN ARCHIV →</Link></div>
+      <div className="section-head"><div><span className="section-kicker">ZULETZT VERÖFFENTLICHT</span><h2>NEUE GESCHICHTEN</h2></div><Link href="/geschichten">ZUM GESAMTEN ARCHIV →</Link></div>
       <div className="story-grid editorial-story-grid">{latest.map((a,i)=><Link className={`story-card ${i===0?'story-card-featured':''}`} href={'/geschichten/'+a.slug} key={a.slug}><img src={imageUrl(a.hero,i===0?1100:620,80)} alt={a.heroAlt} loading="lazy" decoding="async"/><div><span className="tag">{a.tag.toUpperCase()}</span><h3>{a.shortTitle.toUpperCase()}</h3><p>{a.teaser}</p><time>{a.displayDate || a.dateDisplay}</time></div></Link>)}</div>
     </section>
   </main><Footer/></>

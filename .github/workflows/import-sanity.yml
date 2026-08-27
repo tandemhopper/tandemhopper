@@ -1,0 +1,37 @@
+name: Import Tandemhopper content to Sanity
+
+on:
+  push:
+    paths:
+      - 'content/imports/**'
+      - 'content/import-assets/**'
+      - 'scripts/import-sanity.mjs'
+      - '.github/workflows/import-sanity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+      SANITY_PROJECT_ID: 90kx3kio
+      SANITY_DATASET: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Import drafts to Sanity
+        run: node scripts/import-sanity.mjs

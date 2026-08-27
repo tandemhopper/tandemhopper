@@ -59,3 +59,7 @@
  .simple-footer .footer-point{grid-template-columns:42px 1fr}.simple-footer .footer-icon{font-size:30px}
  .footer-meta{flex-direction:column;gap:10px}.footer-meta>div{gap:14px}
 }
+
+/* Nur für den Ausnahmefall eines Beitrags ohne Titelbild */
+.hero.hero-no-image{grid-template-columns:minmax(0,760px);justify-content:start}
+.hero.hero-no-image .hero-copy{max-width:760px}

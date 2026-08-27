@@ -14,7 +14,7 @@ export default async function Home(){
   const showMatch = lead.shortTitle && lead.shortTitle.trim().toLowerCase() !== lead.title.trim().toLowerCase()
 
   return <><Header/><main>
-    <section className="hero">
+    <section className={lead.hero ? "hero" : "hero hero-no-image"}>
       <div className="hero-copy">
         <p className="eyebrow">NEUESTER BERICHT</p>
         <h1>{lead.title.toUpperCase()}</h1>
@@ -23,7 +23,7 @@ export default async function Home(){
         <p className="meta">{metaParts.join('  ·  ')}</p>
         <Link className="text-link" href={'/geschichten/'+lead.slug}>BERICHT LESEN <span>→</span></Link>
       </div>
-      <Link className="hero-image" href={'/geschichten/'+lead.slug}><img src={imageUrl(lead.hero,1800,84)} alt={lead.heroAlt} fetchPriority="high" decoding="async"/></Link>
+      {lead.hero && <Link className="hero-image" href={'/geschichten/'+lead.slug}><img src={imageUrl(lead.hero,1800,84)} alt={lead.heroAlt} fetchPriority="high" decoding="async"/></Link>}
     </section>
 
     <section className="category-grid">
@@ -34,7 +34,7 @@ export default async function Home(){
 
     <section className="latest">
       <div className="section-head"><h2>NEUESTE GESCHICHTEN</h2><Link href="/geschichten">ALLE BERICHTE ANSEHEN →</Link></div>
-      <div className="story-grid">{latest.map(a=><Link className="story-card" href={'/geschichten/'+a.slug} key={a.slug}><img src={imageUrl(a.hero,720,80)} alt={a.heroAlt} loading="lazy" decoding="async"/><div><span className="tag">{a.tag.toUpperCase()}</span><h3>{a.shortTitle.toUpperCase()}</h3><p>{a.teaser}</p><time>{a.displayDate || a.dateDisplay}</time></div></Link>)}</div>
+      <div className="story-grid">{latest.map(a=><Link className="story-card" href={'/geschichten/'+a.slug} key={a.slug}>{a.hero && <img src={imageUrl(a.hero,720,80)} alt={a.heroAlt} loading="lazy" decoding="async"/>}<div><span className="tag">{a.tag.toUpperCase()}</span><h3>{a.shortTitle.toUpperCase()}</h3><p>{a.teaser}</p><time>{a.displayDate || a.dateDisplay}</time></div></Link>)}</div>
     </section>
   </main><Footer/></>
 }

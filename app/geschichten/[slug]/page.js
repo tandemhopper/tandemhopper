@@ -39,7 +39,7 @@ export default async function Article({params}){
 
     <figure className="article-hero"><img src={imageUrl(a.hero,2000,85)} alt={a.heroAlt} fetchPriority="high" decoding="async"/>{a.heroCaption&&<figcaption>{a.heroCaption}</figcaption>}</figure>
 
-    {a.source==='sanity'
+    {a.body?.length
       ? <div className="article-layout"><div className="article-body"><ArticleBody blocks={a.body}/></div></div>
       : <><div className="article-layout"><div className="article-body"><p className="lead">{a.lead}</p>{a.paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div></div>{a.galleryPlacement&&<Gallery images={a.gallery}/>}</>}
   </article><Footer/></>

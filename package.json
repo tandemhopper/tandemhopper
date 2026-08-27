@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "sanity": "sanity"
+    "sanity": "sanity",
+    "import:sanity": "node scripts/import-sanity.mjs"
   },
   "dependencies": {
     "next": "16.3.0",

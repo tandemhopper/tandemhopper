@@ -8,9 +8,9 @@
     "publishedAt": "2026-08-21T18:00:00.000Z",
     "featured": false,
     "heroImage": {
-      "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/hero.jpg",
-      "alt": "Ausverkauftes Carl-Benz-Stadion beim DFB-Pokal-Derby zwischen Waldhof Mannheim und dem 1. FC Kaiserslautern",
-      "caption": "Waldhof gegen Lautern im ausverkauften Carl-Benz-Stadion: ein Derby, das weit über die 120 Minuten auf dem Rasen hinausging."
+      "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/IMG_20260821_190642.jpg",
+      "alt": "Blick auf die Waldhof-Kurve im Carl-Benz-Stadion mit schwarzem Rauch während des DFB-Pokal-Derbys gegen Kaiserslautern",
+      "caption": "Viel Rauch, volles Haus und ein Derby auf hoher Temperatur: Waldhof gegen Lautern im Carl-Benz-Stadion."
     },
     "match": {
       "homeTeam": "SV Waldhof Mannheim",
@@ -27,93 +27,376 @@
       "country": "Deutschland"
     },
     "body": [
-      {"type":"p","text":"Ehrlich gesagt wusste ich lange nicht, wie ich diesen Text anfangen soll."},
-      {"type":"p","text":"Über dieses Spiel wurde schon fast alles irgendwo geschrieben. Bundesweit, teilweise international. Mit den immer gleichen Bildern: Pyro, Platz, Pferde, Polizei, Pfefferspray, Verletzte."},
-      {"type":"p","text":"Danach standen schnell die üblichen Lager. Für die einen war alles nur Randale, für die anderen nur Polizeigewalt. So einfach war dieser Abend aus meiner Sicht nicht."},
-      {"type":"p","text":"Ich kann hier keine vollständige Analyse liefern. Ich kann nur aufschreiben, was ich an diesem Tag gesehen habe – als neutraler Beobachter, Groundhopper und jemand, der sich für Fankultur interessiert. Das hier ist ein Vor-Ort-Bericht, kein Abschlussbericht des Innenministeriums."},
-      {"type":"p","text":"Der Derbytag begann für mich vormittags in Ludwigshafen."},
-      {"type":"p","text":"Also ziemlich genau in der Stadt, um die sich diese Rivalität geografisch mitdreht. Mannheim und Ludwigshafen trennt nur der Rhein. Trotzdem liegen hier fußballerisch Welten dazwischen: auf der einen Seite Waldhof, auf der anderen eine Stadt mitten im Lauterer Einzugsgebiet."},
-      {"type":"p","text":"Genau daraus entsteht ein Teil dieser Schärfe."},
-      {"type":"p","text":"Ludwigshafen selbst ist im deutschen Fußball nicht die große Nummer. Bei diesem Derby hängt die Stadt trotzdem ständig im Hintergrund. Zwei unmittelbar benachbarte Städte, zwei völlig unterschiedliche Vereinslandschaften und genug Reibung für mehrere Generationen."},
-      {"type":"p","text":"Als die Pokalauslosung kam, war dieses Spiel deshalb sofort mein Duell der ersten Runde."},
-      {"type":"p","text":"Gerade weil wieder einige kleinere Vereine für den Pokal in größere Stadien umzogen. Wirtschaftlich nachvollziehbar. Für mich nimmt das der ersten Runde trotzdem jedes Mal etwas. Sie lebt doch genau davon, dass größere Vereine an Orte müssen, an denen es unbequem wird."},
-      {"type":"p","text":"Mannheim gegen Lautern im Carl-Benz-Stadion war das Gegenteil davon."},
-      {"type":"p","text":"Also musste ich irgendwie rein."},
-      {"type":"p","text":"Für eine Karte wurde ich Mitglied bei Waldhof. Auf Risiko. In meiner Vorverkaufsphase gab es Tickets außerdem nur vor Ort. Auch diese Hürde genommen. Hat geklappt."},
-
-      {"type":"h2","text":"Zwei Kurven, zwei Stile"},
-      {"type":"p","text":"Von Mannheimer Seite gab es keinen großen Fanmarsch. Dafür wurden früh Mottoshirts verkauft und „Alle in Schwarz“ ausgegeben."},
-      {"type":"p","text":"Zum Einlaufen folgte eine großflächige schwarz-weiße Choreo unter dem Motto: „Waldhof Mannheim – Der SVW bestimmt unser Leben – Tod allen Feinden“. Dazu ein Teufelsmotiv und der Spruch: „Zurück in den Abgrund, aus dem ihr kommt“."},
-      {"type":"p","text":"Nicht subtil. Aber wir reden hier auch nicht über ein Benefizspiel zwischen Betriebsmannschaften."},
-      {"type":"p","text":"Auf der Gegenseite antwortete der FCK mit einer Zaunfahne aus Motiven seines Einzugsgebiets und ebenfalls eher begrenztem diplomatischem Interesse: „Der Teufel kennt kein Erbarmen, denn alles, was durch euch entsteht, ist wert, dass es zugrunde geht.“ Unter dem Dach ging das Motiv etwas unter. Kreativ war es trotzdem."},
-      {"type":"imagePair","left":{"path":"content/import-assets/waldhof-lautern-als-das-derby-kippte/01-waldhof-choreo.jpg","alt":"Schwarz-weiße Choreografie der Waldhof-Fans im Carl-Benz-Stadion vor dem Pokalderby gegen Kaiserslautern"},"right":{"path":"content/import-assets/waldhof-lautern-als-das-derby-kippte/02-fck-block.jpg","alt":"Gästeblock des 1. FC Kaiserslautern mit Zaunfahne und Fans im Carl-Benz-Stadion"},"caption":"Schon zum Einlaufen war klar, wie unterschiedlich beide Seiten diesen Abend inszenieren würden."},
-      {"type":"p","text":"Der Lauterer Gästeblock war ohnehin früh der auffälligere Block. Rund 3.500 Gäste, die aktive Szene breit auf der alleinstehenden Hintertortribüne, geschlossener Blockeinlauf, viele Vermummte und schon lange vor Anpfiff ordentlich Pyro."},
-      {"type":"p","text":"Von den Rennereien auf Waldhof-Seite vor dem Spiel und den späteren Polizeipositionen vor der Ost bekamen wir in dieser Phase wenig mit. Wir waren gerade damit beschäftigt, uns in einen besseren Sitzplatzbereich zu mogeln, um beide Seiten vernünftig fotografieren zu können. Nicht gerade der heldenhafteste Teil des Tages. Aus fotografischer Sicht aber hilfreich."},
-      {"type":"p","text":"Schon früh fiel auf, dass an diesem Abend sehr viel laufen gelassen wurde."},
-      {"type":"p","text":"Auf beiden Seiten wurde über die gesamte Spielzeit immer wieder gezündet. Becher und Choreomaterial flogen in Richtung Innenraum, später auch Dinge, bei denen die Grenze deutlich überschritten war."},
-      {"type":"p","text":"Ich habe in Deutschland selten ein Spiel erlebt, bei dem so viel auf dem Platz landete und trotzdem so lange weitergespielt wurde."},
-      {"type":"p","text":"Der Schiedsrichter schien möglichst wenig Bühne geben zu wollen. Erst einmal laufen lassen, nicht jede Fackel und jeden Becherwurf mit einer Unterbrechung belohnen."},
-      {"type":"p","text":"Grundsätzlich kann ich mit dieser Linie leben. Nicht jeder Becher braucht fünf Minuten Drama. Nicht jede Pyroaktion muss durch eine Unterbrechung noch größer gemacht werden."},
-      {"type":"p","text":"In Mannheim wurde diese Linie allerdings sehr weit gezogen."},
-      {"type":"p","text":"Vor dem Gästeblock stand der Rauch zeitweise so dicht, dass man sich fragte, wie lange der Torwart das noch mitmacht. Irgendwann wurde unterbrochen. Danach wurde trotzdem wieder vieles ignoriert."},
-      {"type":"p","text":"Das muss man erwähnen, weil es erklärt, warum dieser Abend später überhaupt so weit kommen konnte."},
-      {"type":"p","text":"Trotz eines riesigen Sicherheitsaufgebots mit laut den im Nachgang veröffentlichten Angaben mehr als 1.400 Einsatzkräften, Hubschrauber, Pferden, Hunden und Wasserwerfern wirkte die Linie im Stadion lange erstaunlich passiv."},
-      {"type":"p","text":"Vielleicht bewusst deeskalierend. Vielleicht aus Erfahrung. Vielleicht wollte niemand bei jeder Aktion sofort das ganze Ding hochfahren."},
-      {"type":"p","text":"Eine Zeit lang funktionierte das sogar. Und es machte das Spiel noch intensiver."},
-      {"type":"p","text":"Auf dem Rasen war es ein echtes Derby. Viele Zweikämpfe, kleine Reibereien, Gift in fast jeder Szene. Waldhof spielte mit viel Energie, Lautern reifer, aber ebenfalls nicht besonders sauber."},
-      {"type":"p","text":"Sportlich war das lange kein Feuerwerk. Musste es auch nicht sein. Ein 0:0 kann in so einem Spiel mehr Spannung tragen als manches frühe 2:0."},
-      {"type":"p","text":"Auch bei Ecken vor der Mannheimer Seite wurde die Temperatur nicht unbedingt heruntergeregelt. Marlon Ritter provozierte, aus dem Block kam zurück, was noch greifbar war. Nicht schön, aber ziemlich Derby."},
-      {"type":"p","text":"Auch die Kurven funktionierten unterschiedlich. Lautern mit Fahnen, Pyro und ständiger Aktivität. Mannheim dunkler, geschlossener und mit langsamen, brachialen Liedern. Dazu ständig Menschen am Zaun."},
-      {"type":"imagePair","left":{"path":"content/import-assets/waldhof-lautern-als-das-derby-kippte/03-waldhof-kurve.jpg","alt":"Dicht besetzte Waldhof-Kurve mit Fans am Zaun im Carl-Benz-Stadion"},"right":{"path":"content/import-assets/waldhof-lautern-als-das-derby-kippte/04-fck-pyro.jpg","alt":"Kaiserslauterer Gästeblock mit Fahnen und Pyrotechnik im Carl-Benz-Stadion"},"caption":"Mannheim dunkel und geschlossen am Zaun, Lautern mit Fahnen, Pyro und ständiger Bewegung im Gästeblock."},
-      {"type":"p","text":"Aus Hoppersicht sind solche Bilder natürlich interessant: volles Carl-Benz-Stadion, zwei verfeindete Kurven und Zuschauer direkt am Spielfeldrand, die sichtbar Einfluss auf die Atmosphäre des Spiels nehmen."},
-      {"type":"p","text":"Man muss dabei aber sauber trennen. Druck und rohe Atmosphäre sind das eine. Raketen, Fackeln oder Sitzschalen in Richtung anderer Menschen etwas völlig anderes. Da hilft auch kein romantischer Blick auf die „alte Fußballwelt“."},
-      {"type":"p","text":"Nach der Pause legte Mannheim noch einmal nach: schwarzer Rauch, anschließend präsentiertes Lauterer Material. Optisch stark inszeniert, auch wenn ich die Bedeutung der gezeigten Sachen von außen nicht größer machen würde, als ich sie beurteilen kann."},
-      {"type":"p","text":"Lautern verzichtete auf eine vergleichbare Antwort und zog sein Ding weiter durch."},
-
-      {"type":"h2","text":"Dann flog es in alle Richtungen"},
-      {"type":"p","text":"Nach 90 Minuten stand es 0:0. Eigentlich hätte jetzt einfach Verlängerung sein sollen."},
-      {"type":"p","text":"Stattdessen gerieten zunächst Spieler auf dem Platz aneinander. Eine Rudelbildung direkt vor der Haupttribüne."},
-      {"type":"p","text":"Von dort flog Wurfmaterial in Richtung FCK-Bank und Spieler. Nach Darstellung der Polizei reagierten Kaiserslauterer Anhänger darauf mit Pyrotechnik in Richtung Haupttribüne."},
-      {"type":"p","text":"Aus meiner Position wirkte es ebenfalls so, als nahm Lautern die Situation auf dem Platz und die Würfe von der Tribüne zum Anlass, selbst Pyro in diese Richtung zu schießen. Mannheim antwortete. Plötzlich flog aus mehreren Richtungen Material in den Innenraum."},
-      {"type":"p","text":"Spätestens als Raketen aus dem Lauterer Bereich in Richtung Haupttribüne gingen, war die Situation aus meiner Sicht nicht mehr irgendwie romantisierbar. Dort saßen keine gegnerischen Ultras in Kampfformation, sondern Medien, Funktionäre, Familien, neutrale Zuschauer und andere Menschen, die schlicht ein Fußballspiel sehen wollten."},
-      {"type":"p","text":"Warum ausgerechnet dorthin geschossen wurde, bleibt schwer nachvollziehbar."},
-      {"type":"p","text":"Danach verlegten einige Mannheimer ihre eigene „Verteidigungslinie“ ein paar Meter vor den Zaun. Aus meiner Entfernung vielleicht 15 Personen im Strafraum, insgesamt ungefähr 30 im Innenraum. Genau zählen konnte ich es nicht."},
-      {"type":"p","text":"Dann formierte sich die Polizei."},
-      {"type":"imagePair","left":{"path":"content/import-assets/waldhof-lautern-als-das-derby-kippte/05-polizei-innenraum.jpg","alt":"Polizeikräfte im Innenraum des Carl-Benz-Stadions während der Unterbrechung des Pokalderbys"},"right":{"path":"content/import-assets/waldhof-lautern-als-das-derby-kippte/06-eskalation-uebersicht.jpg","alt":"Übersichtsaufnahme des Innenraums und der Tribünen während der Eskalation beim Pokalderby in Mannheim"},"caption":"Nach 90 Minuten verlagerte sich das Geschehen für einige Minuten komplett vom Fußball auf den Innenraum."},
-      {"type":"p","text":"Was anschließend folgte, kennt man inzwischen aus den Videos: Polizeikräfte auf dem Feld, Pferde, Hunde, Beamte vor der Waldhof-Kurve, Menschen vor dem Zaun, Zurückdrängen und Pfefferspray."},
-      {"type":"p","text":"Nach Angaben der Polizei wurden Einsatzkräfte zuvor aus dem Heimblock mit Pyrotechnik beschossen. Später wurden 85 medizinisch betreute Personen und 35 leicht verletzte Einsatzkräfte gemeldet."},
-      {"type":"p","text":"Ich kann wiederum nur beschreiben, wie es bei uns auf der Gegengerade ankam."},
-      {"type":"p","text":"Selbst dort begannen plötzlich Menschen zu husten. Ältere Frauen in unserer Nähe mussten wegen des Reizstoffs versorgt werden. Wir standen nicht mitten im Geschehen und merkten trotzdem sofort, dass das weit über ein bisschen Pfefferspray direkt am Zaun hinausging."},
-      {"type":"p","text":"Auch über den Einsatz von Pferden und Hunden in einer ohnehin aufgeheizten und engen Stadionsituation kann man diskutieren. Für mich wirkte das in diesem Moment eher wie ein zusätzlicher Risikofaktor als wie etwas, das die Situation beruhigte."},
-      {"type":"p","text":"Kurz stand die Frage im Raum, ob dieses Spiel überhaupt noch weitergehen kann."},
-      {"type":"p","text":"Am Ende wurde weitergespielt. Rückblickend wahrscheinlich die bessere Entscheidung. Ein Abbruch hätte den Abend kaum kleiner gemacht."},
-
-      {"type":"h2","text":"120 Minuten bis zur Entscheidung"},
-      {"type":"p","text":"Als wieder Fußball gespielt wurde, wirkte Mannheim zunächst sichtbar mitgenommen."},
-      {"type":"p","text":"Der Zaun war beschädigt, Fahnen verschwunden, die ersten Reihen leerer als zuvor."},
-      {"type":"p","text":"Trotzdem rappelte sich die Heimkurve erstaunlich schnell wieder auf. Es entstand eine deutliche „Jetzt erst recht“-Stimmung, die auch auf dem Platz ankam."},
-      {"type":"p","text":"Waldhof blieb im Spiel."},
-      {"type":"p","text":"Lautern war klassenhöher, aber lange nicht so klar besser, wie man es vorher vielleicht erwartet hätte. Es wurde ein Kampf. Kein Glanzstück."},
-      {"type":"p","text":"Genau die Sorte Pokalspiel, bei der der Außenseiter mit jeder weiteren Minute etwas stärker daran glaubt, dass dieser Abend doch noch kippen könnte."},
-      {"type":"p","text":"Bis zur 120. Minute."},
-      {"type":"p","text":"Dann traf Ibrahim Kanaté mit einem starken Schlenzer zum 0:1."},
-      {"type":"p","text":"Aus dem Nichts, mitten ins Mannheimer Herz."},
-      {"type":"imagePair","left":{"path":"content/import-assets/waldhof-lautern-als-das-derby-kippte/07-verlaengerung.jpg","alt":"Spielsituation zwischen Waldhof Mannheim und Kaiserslautern in der Verlängerung des DFB-Pokal-Derbys"},"right":{"path":"content/import-assets/waldhof-lautern-als-das-derby-kippte/08-fck-jubel.jpg","alt":"Spieler des 1. FC Kaiserslautern feiern vor dem Gästeblock nach dem späten Siegtreffer in Mannheim"},"caption":"120 Minuten Kampf, dann die Entscheidung: Ibrahim Kanaté traf ganz spät zum 0:1 für Kaiserslautern."},
-      {"type":"p","text":"Der Jubel im Gästeblock war entsprechend heftig. Spieler vor der Kurve, Arme in der Luft, komplette Entladung nach einem Abend, der längst aus deutlich mehr bestanden hatte als nur Fußball."},
-      {"type":"p","text":"Solche Torjubel sieht man nicht oft. Vielleicht auch deshalb, weil viele Spiele gar nicht mehr die Temperatur erreichen, aus der so ein Moment entsteht."},
-      {"type":"p","text":"Nach Abpfiff baute Mannheim die eigene Mannschaft auf. Lautern feierte. Die Polizei trennte weiter."},
-      {"type":"p","text":"Und wir machten uns auf den Heimweg mit dem Gefühl, gerade etwas gesehen zu haben, das sich nicht besonders sauber in eine Schublade stecken lässt."},
-      {"type":"p","text":"War es ein großer Pokalabend? Ja."},
-      {"type":"p","text":"War es ein hässlicher Abend? Auch."},
-      {"type":"p","text":"Nur die Eskalation zu sehen, wäre mir zu billig. Nur die Atmosphäre zu feiern aber genauso."},
-      {"type":"p","text":"Ich verstehe jeden, der nach den Bildern nur den Kopf schüttelt. Ich verstehe aber auch, warum dieses Spiel für viele Menschen, die Fankultur nicht nur aus Hochglanzchoreos und Instagram-Clips kennen, so faszinierend war."},
-      {"type":"p","text":"Zwei Vereine, die sich wirklich nicht mögen. Ein ausverkauftes Carl-Benz-Stadion. Zwei komplett unterschiedliche Kurvenstile. Ein Spiel, das auf dem Rasen und daneben ständig kurz vorm Kippen war."},
-      {"type":"p","text":"An diesem Abend wurde diese Grenze an mehreren Stellen überschritten. Von verschiedenen Seiten."},
-      {"type":"p","text":"Mit einem einfachen Täter-Opfer-Satz bekommt man Mannheim gegen Lautern jedenfalls nicht sauber erklärt."},
-      {"type":"p","text":"Für mich bleibt deshalb vor allem ein merkwürdiger Eindruck."},
-      {"type":"p","text":"Ich habe eines der intensivsten Fußballspiele gesehen, die ich in Deutschland seit langer Zeit erlebt habe. Und ein Stadion, das nach Abpfiff aussah, als könnte es selbst erst einmal eine Pause gebrauchen."}
+      {
+        "type": "p",
+        "text": "Ehrlich gesagt wusste ich lange nicht, wie ich diesen Text anfangen soll."
+      },
+      {
+        "type": "p",
+        "text": "Über dieses Spiel wurde schon fast alles irgendwo geschrieben. Bundesweit, teilweise international. Mit den immer gleichen Bildern: Pyro, Platz, Pferde, Polizei, Pfefferspray, Verletzte."
+      },
+      {
+        "type": "p",
+        "text": "Danach standen schnell die üblichen Lager. Für die einen war alles nur Randale, für die anderen nur Polizeigewalt. So einfach war dieser Abend aus meiner Sicht nicht."
+      },
+      {
+        "type": "p",
+        "text": "Ich kann hier keine vollständige Analyse liefern. Ich kann nur aufschreiben, was ich an diesem Tag gesehen habe – als neutraler Beobachter, Groundhopper und jemand, der sich für Fankultur interessiert. Das hier ist ein Vor-Ort-Bericht, kein Abschlussbericht des Innenministeriums."
+      },
+      {
+        "type": "p",
+        "text": "Der Derbytag begann für mich vormittags in Ludwigshafen."
+      },
+      {
+        "type": "p",
+        "text": "Also ziemlich genau in der Stadt, um die sich diese Rivalität geografisch mitdreht. Mannheim und Ludwigshafen trennt nur der Rhein. Trotzdem liegen hier fußballerisch Welten dazwischen: auf der einen Seite Waldhof, auf der anderen eine Stadt mitten im Lauterer Einzugsgebiet."
+      },
+      {
+        "type": "p",
+        "text": "Genau daraus entsteht ein Teil dieser Schärfe."
+      },
+      {
+        "type": "p",
+        "text": "Ludwigshafen selbst ist im deutschen Fußball nicht die große Nummer. Bei diesem Derby hängt die Stadt trotzdem ständig im Hintergrund. Zwei unmittelbar benachbarte Städte, zwei völlig unterschiedliche Vereinslandschaften und genug Reibung für mehrere Generationen."
+      },
+      {
+        "type": "p",
+        "text": "Als die Pokalauslosung kam, war dieses Spiel deshalb sofort mein Duell der ersten Runde."
+      },
+      {
+        "type": "p",
+        "text": "Gerade weil wieder einige kleinere Vereine für den Pokal in größere Stadien umzogen. Wirtschaftlich nachvollziehbar. Für mich nimmt das der ersten Runde trotzdem jedes Mal etwas. Sie lebt doch genau davon, dass größere Vereine an Orte müssen, an denen es unbequem wird."
+      },
+      {
+        "type": "p",
+        "text": "Mannheim gegen Lautern im Carl-Benz-Stadion war das Gegenteil davon."
+      },
+      {
+        "type": "p",
+        "text": "Also musste ich irgendwie rein."
+      },
+      {
+        "type": "p",
+        "text": "Für eine Karte wurde ich Mitglied bei Waldhof. Auf Risiko. In meiner Vorverkaufsphase gab es Tickets außerdem nur vor Ort. Auch diese Hürde genommen. Hat geklappt."
+      },
+      {
+        "type": "h2",
+        "text": "Zwei Kurven, zwei Stile"
+      },
+      {
+        "type": "p",
+        "text": "Von Mannheimer Seite gab es keinen großen Fanmarsch. Dafür wurden früh Mottoshirts verkauft und „Alle in Schwarz“ ausgegeben."
+      },
+      {
+        "type": "p",
+        "text": "Zum Einlaufen folgte eine großflächige schwarz-weiße Choreo unter dem Motto: „Waldhof Mannheim – Der SVW bestimmt unser Leben – Tod allen Feinden“. Dazu ein Teufelsmotiv und der Spruch: „Zurück in den Abgrund, aus dem ihr kommt“."
+      },
+      {
+        "type": "p",
+        "text": "Nicht subtil. Aber wir reden hier auch nicht über ein Benefizspiel zwischen Betriebsmannschaften."
+      },
+      {
+        "type": "p",
+        "text": "Auf der Gegenseite antwortete der FCK mit einer Zaunfahne aus Motiven seines Einzugsgebiets und ebenfalls eher begrenztem diplomatischem Interesse: „Der Teufel kennt kein Erbarmen, denn alles, was durch euch entsteht, ist wert, dass es zugrunde geht.“ Unter dem Dach ging das Motiv etwas unter. Kreativ war es trotzdem."
+      },
+      {
+        "type": "imagePair",
+        "left": {
+          "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/IMG_20260821_175420.jpg",
+          "alt": "Großflächige Choreografie der Waldhof-Fans mit schwarzen und blauen Fahnen sowie zentralem Motiv im Carl-Benz-Stadion"
+        },
+        "right": {
+          "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/IMG_20260821_175601.jpg",
+          "alt": "Großflächige Choreografie im Kaiserslauterer Gästeblock unter der Anzeigetafel des Carl-Benz-Stadions"
+        },
+        "caption": "Zum Einlaufen setzten beide Kurven auf großflächige Motive – diplomatische Zurückhaltung gehörte an diesem Abend eher nicht zum Programm."
+      },
+      {
+        "type": "p",
+        "text": "Der Lauterer Gästeblock war ohnehin früh der auffälligere Block. Rund 3.500 Gäste, die aktive Szene breit auf der alleinstehenden Hintertortribüne, geschlossener Blockeinlauf, viele Vermummte und schon lange vor Anpfiff ordentlich Pyro."
+      },
+      {
+        "type": "p",
+        "text": "Von den Rennereien auf Waldhof-Seite vor dem Spiel und den späteren Polizeipositionen vor der Ost bekamen wir in dieser Phase wenig mit. Wir waren gerade damit beschäftigt, uns in einen besseren Sitzplatzbereich zu mogeln, um beide Seiten vernünftig fotografieren zu können. Nicht gerade der heldenhafteste Teil des Tages. Aus fotografischer Sicht aber hilfreich."
+      },
+      {
+        "type": "p",
+        "text": "Schon früh fiel auf, dass an diesem Abend sehr viel laufen gelassen wurde."
+      },
+      {
+        "type": "p",
+        "text": "Auf beiden Seiten wurde über die gesamte Spielzeit immer wieder gezündet. Becher und Choreomaterial flogen in Richtung Innenraum, später auch Dinge, bei denen die Grenze deutlich überschritten war."
+      },
+      {
+        "type": "p",
+        "text": "Ich habe in Deutschland selten ein Spiel erlebt, bei dem so viel auf dem Platz landete und trotzdem so lange weitergespielt wurde."
+      },
+      {
+        "type": "p",
+        "text": "Der Schiedsrichter schien möglichst wenig Bühne geben zu wollen. Erst einmal laufen lassen, nicht jede Fackel und jeden Becherwurf mit einer Unterbrechung belohnen."
+      },
+      {
+        "type": "p",
+        "text": "Grundsätzlich kann ich mit dieser Linie leben. Nicht jeder Becher braucht fünf Minuten Drama. Nicht jede Pyroaktion muss durch eine Unterbrechung noch größer gemacht werden."
+      },
+      {
+        "type": "p",
+        "text": "In Mannheim wurde diese Linie allerdings sehr weit gezogen."
+      },
+      {
+        "type": "p",
+        "text": "Vor dem Gästeblock stand der Rauch zeitweise so dicht, dass man sich fragte, wie lange der Torwart das noch mitmacht. Irgendwann wurde unterbrochen. Danach wurde trotzdem wieder vieles ignoriert."
+      },
+      {
+        "type": "p",
+        "text": "Das muss man erwähnen, weil es erklärt, warum dieser Abend später überhaupt so weit kommen konnte."
+      },
+      {
+        "type": "p",
+        "text": "Trotz eines riesigen Sicherheitsaufgebots mit laut den im Nachgang veröffentlichten Angaben mehr als 1.400 Einsatzkräften, Hubschrauber, Pferden, Hunden und Wasserwerfern wirkte die Linie im Stadion lange erstaunlich passiv."
+      },
+      {
+        "type": "p",
+        "text": "Vielleicht bewusst deeskalierend. Vielleicht aus Erfahrung. Vielleicht wollte niemand bei jeder Aktion sofort das ganze Ding hochfahren."
+      },
+      {
+        "type": "p",
+        "text": "Eine Zeit lang funktionierte das sogar. Und es machte das Spiel noch intensiver."
+      },
+      {
+        "type": "p",
+        "text": "Auf dem Rasen war es ein echtes Derby. Viele Zweikämpfe, kleine Reibereien, Gift in fast jeder Szene. Waldhof spielte mit viel Energie, Lautern reifer, aber ebenfalls nicht besonders sauber."
+      },
+      {
+        "type": "p",
+        "text": "Sportlich war das lange kein Feuerwerk. Musste es auch nicht sein. Ein 0:0 kann in so einem Spiel mehr Spannung tragen als manches frühe 2:0."
+      },
+      {
+        "type": "p",
+        "text": "Auch bei Ecken vor der Mannheimer Seite wurde die Temperatur nicht unbedingt heruntergeregelt. Marlon Ritter provozierte, aus dem Block kam zurück, was noch greifbar war. Nicht schön, aber ziemlich Derby."
+      },
+      {
+        "type": "p",
+        "text": "Auch die Kurven funktionierten unterschiedlich. Lautern mit Fahnen, Pyro und ständiger Aktivität. Mannheim dunkler, geschlossener und mit langsamen, brachialen Liedern. Dazu ständig Menschen am Zaun."
+      },
+      {
+        "type": "p",
+        "text": "Aus Hoppersicht sind solche Bilder natürlich interessant: volles Carl-Benz-Stadion, zwei verfeindete Kurven und Zuschauer direkt am Spielfeldrand, die sichtbar Einfluss auf die Atmosphäre des Spiels nehmen."
+      },
+      {
+        "type": "imagePair",
+        "left": {
+          "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/IMG_20260821_132037.jpg",
+          "alt": "Dichte Menschenmenge und Einsatzkräfte in einem Stadionzugang vor dem DFB-Pokal-Derby in Mannheim"
+        },
+        "right": {
+          "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/IMG_20260821_194020.jpg",
+          "alt": "Waldhof-Fan steht am Zaun zum Innenraum des Carl-Benz-Stadions und hält einen Becher hoch"
+        },
+        "caption": "Schon vor Anpfiff war rund um das Stadion viel Betrieb. Später wurde der Zaun auf Waldhof-Seite selbst zu einer Bühne des Derbys."
+      },
+      {
+        "type": "p",
+        "text": "Man muss dabei aber sauber trennen. Druck und rohe Atmosphäre sind das eine. Raketen, Fackeln oder Sitzschalen in Richtung anderer Menschen etwas völlig anderes. Da hilft auch kein romantischer Blick auf die „alte Fußballwelt“."
+      },
+      {
+        "type": "p",
+        "text": "Nach der Pause legte Mannheim noch einmal nach: schwarzer Rauch, anschließend präsentiertes Lauterer Material. Optisch stark inszeniert, auch wenn ich die Bedeutung der gezeigten Sachen von außen nicht größer machen würde, als ich sie beurteilen kann."
+      },
+      {
+        "type": "p",
+        "text": "Lautern verzichtete auf eine vergleichbare Antwort und zog sein Ding weiter durch."
+      },
+      {
+        "type": "h2",
+        "text": "Dann flog es in alle Richtungen"
+      },
+      {
+        "type": "p",
+        "text": "Nach 90 Minuten stand es 0:0. Eigentlich hätte jetzt einfach Verlängerung sein sollen."
+      },
+      {
+        "type": "p",
+        "text": "Stattdessen gerieten zunächst Spieler auf dem Platz aneinander. Eine Rudelbildung direkt vor der Haupttribüne."
+      },
+      {
+        "type": "p",
+        "text": "Von dort flog Wurfmaterial in Richtung FCK-Bank und Spieler. Nach Darstellung der Polizei reagierten Kaiserslauterer Anhänger darauf mit Pyrotechnik in Richtung Haupttribüne."
+      },
+      {
+        "type": "p",
+        "text": "Aus meiner Position wirkte es ebenfalls so, als nahm Lautern die Situation auf dem Platz und die Würfe von der Tribüne zum Anlass, selbst Pyro in diese Richtung zu schießen. Mannheim antwortete. Plötzlich flog aus mehreren Richtungen Material in den Innenraum."
+      },
+      {
+        "type": "p",
+        "text": "Spätestens als Raketen aus dem Lauterer Bereich in Richtung Haupttribüne gingen, war die Situation aus meiner Sicht nicht mehr irgendwie romantisierbar. Dort saßen keine gegnerischen Ultras in Kampfformation, sondern Medien, Funktionäre, Familien, neutrale Zuschauer und andere Menschen, die schlicht ein Fußballspiel sehen wollten."
+      },
+      {
+        "type": "p",
+        "text": "Warum ausgerechnet dorthin geschossen wurde, bleibt schwer nachvollziehbar."
+      },
+      {
+        "type": "p",
+        "text": "Danach verlegten einige Mannheimer ihre eigene „Verteidigungslinie“ ein paar Meter vor den Zaun. Aus meiner Entfernung vielleicht 15 Personen im Strafraum, insgesamt ungefähr 30 im Innenraum. Genau zählen konnte ich es nicht."
+      },
+      {
+        "type": "p",
+        "text": "Dann formierte sich die Polizei."
+      },
+      {
+        "type": "imagePair",
+        "left": {
+          "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/IMG_20260821_200826.jpg",
+          "alt": "Polizeikräfte und berittene Polizei im Innenraum vor der Waldhof-Kurve, während Rauch von Pyrotechnik über den Platz zieht"
+        },
+        "right": {
+          "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/IMG_20260821_201038.jpg",
+          "alt": "Dichte Polizeikette vor dem beschädigten Zaun der Waldhof-Kurve im stark verrauchten Carl-Benz-Stadion"
+        },
+        "caption": "Nach 90 Minuten verlagerte sich das Geschehen für einige Minuten komplett vom Fußball auf den Innenraum."
+      },
+      {
+        "type": "p",
+        "text": "Was anschließend folgte, kennt man inzwischen aus den Videos: Polizeikräfte auf dem Feld, Pferde, Hunde, Beamte vor der Waldhof-Kurve, Menschen vor dem Zaun, Zurückdrängen und Pfefferspray."
+      },
+      {
+        "type": "p",
+        "text": "Nach Angaben der Polizei wurden Einsatzkräfte zuvor aus dem Heimblock mit Pyrotechnik beschossen. Später wurden 85 medizinisch betreute Personen und 35 leicht verletzte Einsatzkräfte gemeldet."
+      },
+      {
+        "type": "p",
+        "text": "Ich kann wiederum nur beschreiben, wie es bei uns auf der Gegengerade ankam."
+      },
+      {
+        "type": "p",
+        "text": "Selbst dort begannen plötzlich Menschen zu husten. Ältere Frauen in unserer Nähe mussten wegen des Reizstoffs versorgt werden. Wir standen nicht mitten im Geschehen und merkten trotzdem sofort, dass das weit über ein bisschen Pfefferspray direkt am Zaun hinausging."
+      },
+      {
+        "type": "p",
+        "text": "Auch über den Einsatz von Pferden und Hunden in einer ohnehin aufgeheizten und engen Stadionsituation kann man diskutieren. Für mich wirkte das in diesem Moment eher wie ein zusätzlicher Risikofaktor als wie etwas, das die Situation beruhigte."
+      },
+      {
+        "type": "p",
+        "text": "Kurz stand die Frage im Raum, ob dieses Spiel überhaupt noch weitergehen kann."
+      },
+      {
+        "type": "p",
+        "text": "Am Ende wurde weitergespielt. Rückblickend wahrscheinlich die bessere Entscheidung. Ein Abbruch hätte den Abend kaum kleiner gemacht."
+      },
+      {
+        "type": "h2",
+        "text": "120 Minuten bis zur Entscheidung"
+      },
+      {
+        "type": "p",
+        "text": "Als wieder Fußball gespielt wurde, wirkte Mannheim zunächst sichtbar mitgenommen."
+      },
+      {
+        "type": "p",
+        "text": "Der Zaun war beschädigt, Fahnen verschwunden, die ersten Reihen leerer als zuvor."
+      },
+      {
+        "type": "p",
+        "text": "Trotzdem rappelte sich die Heimkurve erstaunlich schnell wieder auf. Es entstand eine deutliche „Jetzt erst recht“-Stimmung, die auch auf dem Platz ankam."
+      },
+      {
+        "type": "p",
+        "text": "Waldhof blieb im Spiel."
+      },
+      {
+        "type": "p",
+        "text": "Lautern war klassenhöher, aber lange nicht so klar besser, wie man es vorher vielleicht erwartet hätte. Es wurde ein Kampf. Kein Glanzstück."
+      },
+      {
+        "type": "p",
+        "text": "Genau die Sorte Pokalspiel, bei der der Außenseiter mit jeder weiteren Minute etwas stärker daran glaubt, dass dieser Abend doch noch kippen könnte."
+      },
+      {
+        "type": "p",
+        "text": "Bis zur 120. Minute."
+      },
+      {
+        "type": "p",
+        "text": "Dann traf Ibrahim Kanaté mit einem starken Schlenzer zum 0:1."
+      },
+      {
+        "type": "p",
+        "text": "Aus dem Nichts, mitten ins Mannheimer Herz."
+      },
+      {
+        "type": "p",
+        "text": "Der Jubel im Gästeblock war entsprechend heftig. Spieler vor der Kurve, Arme in der Luft, komplette Entladung nach einem Abend, der längst aus deutlich mehr bestanden hatte als nur Fußball."
+      },
+      {
+        "type": "p",
+        "text": "Solche Torjubel sieht man nicht oft. Vielleicht auch deshalb, weil viele Spiele gar nicht mehr die Temperatur erreichen, aus der so ein Moment entsteht."
+      },
+      {
+        "type": "p",
+        "text": "Nach Abpfiff baute Mannheim die eigene Mannschaft auf. Lautern feierte. Die Polizei trennte weiter."
+      },
+      {
+        "type": "imagePair",
+        "left": {
+          "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/IMG_20260821_202057.jpg",
+          "alt": "Beschädigte Sitze, Zäune und Choreomaterial im Innenraum vor der Waldhof-Kurve nach der Eskalation"
+        },
+        "right": {
+          "path": "content/import-assets/waldhof-lautern-als-das-derby-kippte/IMG_20260821_211706.jpg",
+          "alt": "Spieler des 1. FC Kaiserslautern feiern vor dem rot leuchtenden Gästeblock nach dem späten Pokalsieg in Mannheim"
+        },
+        "caption": "Nach dem Abpfiff lagen die Gegensätze direkt nebeneinander: beschädigter Innenraum auf der einen, Lauterer Siegesjubel auf der anderen Seite."
+      },
+      {
+        "type": "p",
+        "text": "Und wir machten uns auf den Heimweg mit dem Gefühl, gerade etwas gesehen zu haben, das sich nicht besonders sauber in eine Schublade stecken lässt."
+      },
+      {
+        "type": "p",
+        "text": "War es ein großer Pokalabend? Ja."
+      },
+      {
+        "type": "p",
+        "text": "War es ein hässlicher Abend? Auch."
+      },
+      {
+        "type": "p",
+        "text": "Nur die Eskalation zu sehen, wäre mir zu billig. Nur die Atmosphäre zu feiern aber genauso."
+      },
+      {
+        "type": "p",
+        "text": "Ich verstehe jeden, der nach den Bildern nur den Kopf schüttelt. Ich verstehe aber auch, warum dieses Spiel für viele Menschen, die Fankultur nicht nur aus Hochglanzchoreos und Instagram-Clips kennen, so faszinierend war."
+      },
+      {
+        "type": "p",
+        "text": "Zwei Vereine, die sich wirklich nicht mögen. Ein ausverkauftes Carl-Benz-Stadion. Zwei komplett unterschiedliche Kurvenstile. Ein Spiel, das auf dem Rasen und daneben ständig kurz vorm Kippen war."
+      },
+      {
+        "type": "p",
+        "text": "An diesem Abend wurde diese Grenze an mehreren Stellen überschritten. Von verschiedenen Seiten."
+      },
+      {
+        "type": "p",
+        "text": "Mit einem einfachen Täter-Opfer-Satz bekommt man Mannheim gegen Lautern jedenfalls nicht sauber erklärt."
+      },
+      {
+        "type": "p",
+        "text": "Für mich bleibt deshalb vor allem ein merkwürdiger Eindruck."
+      },
+      {
+        "type": "p",
+        "text": "Ich habe eines der intensivsten Fußballspiele gesehen, die ich in Deutschland seit langer Zeit erlebt habe. Und ein Stadion, das nach Abpfiff aussah, als könnte es selbst erst einmal eine Pause gebrauchen."
+      }
     ],
-    "tags": ["DFB-Pokal","SV Waldhof Mannheim","1. FC Kaiserslautern","Carl-Benz-Stadion","Fankultur","Pyro","Groundhopping"],
+    "tags": [
+      "DFB-Pokal",
+      "SV Waldhof Mannheim",
+      "1. FC Kaiserslautern",
+      "Carl-Benz-Stadion",
+      "Fankultur",
+      "Pyro",
+      "Groundhopping"
+    ],
     "seoDescription": "Vor-Ort-Bericht zu Waldhof Mannheim gegen Kaiserslautern im DFB-Pokal: Choreos, Pyro, Derbyspannung, Polizeieinsatz und das späte 0:1."
   }
 }

@@ -1,0 +1,82 @@
+name: One-off Krieschow cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-krieschow.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.event.head_commit.message == 'Run one-off Krieschow cleanup'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Apply focused cleanup
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          articles = Path('lib/articles.js')
+          text = articles.read_text()
+          start_marker = "  {\n    slug: 'krieschow-machts-selbst',"
+          next_marker = "  {\n    slug: 'wann-kippt-die-stimmung',"
+          start = text.index(start_marker)
+          end = text.index(next_marker, start)
+          articles.write_text(text[:start] + text[end:])
+
+          page = Path('app/page.js')
+          text = page.read_text()
+          text = text.replace('<section className="hero">', '<section className={lead.hero ? "hero" : "hero hero-no-image"}>', 1)
+          old_hero = '<Link className="hero-image" href={\'/geschichten/\'+lead.slug}><img src={imageUrl(lead.hero,1800,84)} alt={lead.heroAlt} fetchPriority="high" decoding="async"/></Link>'
+          new_hero = '{lead.hero && <Link className="hero-image" href={\'/geschichten/\'+lead.slug}><img src={imageUrl(lead.hero,1800,84)} alt={lead.heroAlt} fetchPriority="high" decoding="async"/></Link>}'
+          if old_hero not in text:
+              raise SystemExit('Hero markup not found; aborting focused patch')
+          text = text.replace(old_hero, new_hero, 1)
+          old_card = '<img src={imageUrl(a.hero,720,80)} alt={a.heroAlt} loading="lazy" decoding="async"/>'
+          new_card = '{a.hero && <img src={imageUrl(a.hero,720,80)} alt={a.heroAlt} loading="lazy" decoding="async"/>}'
+          if old_card not in text:
+              raise SystemExit('Story-card image markup not found; aborting focused patch')
+          text = text.replace(old_card, new_card)
+          page.write_text(text)
+
+          css = Path('app/editorial.css')
+          text = css.read_text()
+          fallback = "\n/* Nur für den Ausnahmefall eines Beitrags ohne Titelbild */\n.hero.hero-no-image{grid-template-columns:minmax(0,760px);justify-content:start}\n.hero.hero-no-image .hero-copy{max-width:760px}\n"
+          if '.hero.hero-no-image' not in text:
+              text += fallback
+          css.write_text(text)
+          PY
+
+          rm -rf public/articles/krieschow
+
+          grep -F '"hero": heroImage.asset->url' lib/sanity.js
+          grep -F 'auto=format' lib/imageUrl.js
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build
+        run: npm run build
+
+      - name: Commit cleanup
+        shell: bash
+        run: |
+          git config user.name "tandemhopper"
+          git config user.email "maximilian.dahlke@web.de"
+          git add lib/articles.js app/page.js app/editorial.css public/articles/krieschow
+          git commit -m "Remove Krieschow fallback and harden image rendering"
+          git push origin HEAD:main

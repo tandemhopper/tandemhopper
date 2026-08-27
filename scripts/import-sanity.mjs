@@ -40,14 +40,12 @@ function textBlock(style, text, seed) {
     _key: key(seed),
     style,
     markDefs: [],
-    children: [
-      {
-        _type: 'span',
-        _key: key(`${seed}:span`),
-        text: String(text || ''),
-        marks: [],
-      },
-    ],
+    children: [{
+      _type: 'span',
+      _key: key(`${seed}:span`),
+      text: String(text || ''),
+      marks: [],
+    }],
   }
 }
 
@@ -79,50 +77,66 @@ async function uploadImage(spec, seed, includePresentation = true) {
   return image
 }
 
+async function safeUploadImage(spec, seed, includePresentation = true) {
+  try {
+    return await uploadImage(spec, seed, includePresentation)
+  } catch (error) {
+    console.warn(`⚠ ${seed}: Bild übersprungen (${error.message})`)
+    return null
+  }
+}
+
 async function convertBody(nodes = [], slug) {
   const body = []
 
   for (let index = 0; index < nodes.length; index += 1) {
     const node = nodes[index]
     const seed = `${slug}:body:${index}`
-
     if (!node?.type) continue
 
     if (['p', 'h2', 'h3', 'blockquote'].includes(node.type)) {
-      const style = node.type === 'p' ? 'normal' : node.type
-      body.push(textBlock(style, node.text, seed))
+      body.push(textBlock(node.type === 'p' ? 'normal' : node.type, node.text, seed))
       continue
     }
 
     if (node.type === 'image') {
-      body.push(await uploadImage(node, seed, true))
+      const image = await safeUploadImage(node, seed, true)
+      if (image) body.push(image)
       continue
     }
 
     if (node.type === 'imagePair') {
-      const left = await uploadImage(node.left, `${seed}:left`, false)
-      const right = await uploadImage(node.right, `${seed}:right`, false)
-      body.push({
-        _type: 'imagePair',
-        _key: key(seed),
-        left: {_type: 'image', asset: left.asset},
-        right: {_type: 'image', asset: right.asset},
-        ...(node.caption ? {caption: node.caption} : {}),
-      })
+      const left = await safeUploadImage(node.left, `${seed}:left`, false)
+      const right = await safeUploadImage(node.right, `${seed}:right`, false)
+
+      if (left && right) {
+        body.push({
+          _type: 'imagePair',
+          _key: key(seed),
+          left: {_type: 'image', asset: left.asset},
+          right: {_type: 'image', asset: right.asset},
+          ...(node.caption ? {caption: node.caption} : {}),
+        })
+      } else if (left || right) {
+        body.push(left || right)
+      }
       continue
     }
 
     if (node.type === 'gallery') {
       const images = []
       for (let imageIndex = 0; imageIndex < (node.images || []).length; imageIndex += 1) {
-        images.push(await uploadImage(node.images[imageIndex], `${seed}:gallery:${imageIndex}`, false))
+        const image = await safeUploadImage(node.images[imageIndex], `${seed}:gallery:${imageIndex}`, false)
+        if (image) images.push(image)
       }
-      body.push({
-        _type: 'gallery',
-        _key: key(seed),
-        title: node.title || 'Fotostrecke',
-        images,
-      })
+      if (images.length) {
+        body.push({
+          _type: 'gallery',
+          _key: key(seed),
+          title: node.title || 'Fotostrecke',
+          images,
+        })
+      }
       continue
     }
 
@@ -156,10 +170,6 @@ async function importFile(filePath) {
     throw new Error(`${path.basename(filePath)}: title, slug, category und teaser sind Pflicht.`)
   }
 
-  if (!article.heroImage?.path) {
-    throw new Error(`${path.basename(filePath)}: heroImage.path fehlt.`)
-  }
-
   const importHash = hash(raw)
   const baseId = safeId(article.slug)
   const draftId = `drafts.${baseId}`
@@ -173,9 +183,11 @@ async function importFile(filePath) {
     return
   }
 
-  console.log(`→ ${article.slug}: Bilder hochladen und Entwurf bauen …`)
+  console.log(`→ ${article.slug}: Entwurf bauen …`)
 
-  const heroImage = await uploadImage(article.heroImage, `${article.slug}:hero`, false)
+  const heroImage = article.heroImage?.path
+    ? await safeUploadImage(article.heroImage, `${article.slug}:hero`, false)
+    : null
   const body = await convertBody(article.body || [], article.slug)
 
   const document = {
@@ -188,12 +200,12 @@ async function importFile(filePath) {
     teaser: article.teaser,
     publishedAt: article.publishedAt || new Date().toISOString(),
     featured: Boolean(article.featured),
-    heroImage,
     body,
     tags: Array.isArray(article.tags) ? article.tags : [],
     seoDescription: article.seoDescription || '',
   }
 
+  if (heroImage) document.heroImage = heroImage
   if (article.match) document.match = article.match
   if (article.place) document.place = article.place
 

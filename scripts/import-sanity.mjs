@@ -58,12 +58,33 @@ function resolveImportPath(relativePath) {
   return absolute
 }
 
+function getImageSource(spec, seed) {
+  if (spec?.base64Path) {
+    const absolute = resolveImportPath(spec.base64Path)
+    const encoded = fs.readFileSync(absolute, 'utf8').replace(/\s+/g, '')
+    if (!encoded) throw new Error(`Leere Base64-Datei bei ${seed}`)
+
+    const filename = spec.filename || path.basename(absolute, '.b64')
+    return {
+      source: Buffer.from(encoded, 'base64'),
+      filename,
+    }
+  }
+
+  if (spec?.path) {
+    const absolute = resolveImportPath(spec.path)
+    return {
+      source: fs.createReadStream(absolute),
+      filename: spec.filename || path.basename(absolute),
+    }
+  }
+
+  throw new Error(`Bildquelle fehlt bei ${seed}`)
+}
+
 async function uploadImage(spec, seed, includePresentation = true) {
-  if (!spec?.path) throw new Error(`Bildpfad fehlt bei ${seed}`)
-  const absolute = resolveImportPath(spec.path)
-  const asset = await client.assets.upload('image', fs.createReadStream(absolute), {
-    filename: spec.filename || path.basename(absolute),
-  })
+  const {source, filename} = getImageSource(spec, seed)
+  const asset = await client.assets.upload('image', source, {filename})
 
   const image = {
     _type: 'image',
@@ -83,6 +104,34 @@ async function safeUploadImage(spec, seed, includePresentation = true) {
   } catch (error) {
     console.warn(`⚠ ${seed}: Bild übersprungen (${error.message})`)
     return null
+  }
+}
+
+function collectImageSpecs(article) {
+  const specs = []
+  if (article.heroImage) specs.push(article.heroImage)
+
+  for (const node of article.body || []) {
+    if (!node?.type) continue
+    if (node.type === 'image') specs.push(node)
+    if (node.type === 'imagePair') {
+      if (node.left) specs.push(node.left)
+      if (node.right) specs.push(node.right)
+    }
+    if (node.type === 'gallery') specs.push(...(node.images || []))
+  }
+
+  return specs
+}
+
+function sourceFingerprint(spec) {
+  const relativePath = spec?.base64Path || spec?.path
+  if (!relativePath) return 'missing-source'
+  try {
+    const absolute = resolveImportPath(relativePath)
+    return `${relativePath}:${hash(fs.readFileSync(absolute))}`
+  } catch (error) {
+    return `${relativePath}:missing`
   }
 }
 
@@ -113,8 +162,8 @@ async function convertBody(nodes = [], slug) {
         body.push({
           _type: 'imagePair',
           _key: key(seed),
-          left: {_type: 'image', asset: left.asset},
-          right: {_type: 'image', asset: right.asset},
+          left: {_type: 'image', asset: left.asset, ...(node.left?.alt ? {alt: node.left.alt} : {})},
+          right: {_type: 'image', asset: right.asset, ...(node.right?.alt ? {alt: node.right.alt} : {})},
           ...(node.caption ? {caption: node.caption} : {}),
         })
       } else if (left || right) {
@@ -170,7 +219,8 @@ async function importFile(filePath) {
     throw new Error(`${path.basename(filePath)}: title, slug, category und teaser sind Pflicht.`)
   }
 
-  const importHash = hash(raw)
+  const assetFingerprint = collectImageSpecs(article).map(sourceFingerprint).join('\n')
+  const importHash = hash(`${raw}\n${assetFingerprint}`)
   const baseId = safeId(article.slug)
   const draftId = `drafts.${baseId}`
   const markerId = `import-marker-${baseId}`
@@ -185,7 +235,8 @@ async function importFile(filePath) {
 
   console.log(`→ ${article.slug}: Entwurf bauen …`)
 
-  const heroImage = article.heroImage?.path
+  const hasHeroSource = article.heroImage?.path || article.heroImage?.base64Path
+  const heroImage = hasHeroSource
     ? await safeUploadImage(article.heroImage, `${article.slug}:hero`, false)
     : null
   const body = await convertBody(article.body || [], article.slug)

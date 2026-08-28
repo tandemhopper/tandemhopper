@@ -4,7 +4,26 @@ import Footer from '../../components/Footer'
 import {getArticles} from '../../lib/sanity'
 import {imageUrl} from '../../lib/imageUrl'
 
-export const metadata={title:'Geschichten'}
+export const metadata={
+  title:'Geschichten',
+  description:'Spielberichte, Fankultur, Grounds und Fußballreisen von Tandemhopper.',
+  alternates:{canonical:'/geschichten'},
+  openGraph:{
+    type:'website',
+    locale:'de_DE',
+    url:'/geschichten',
+    siteName:'Tandemhopper',
+    title:'Geschichten | Tandemhopper',
+    description:'Spielberichte, Fankultur, Grounds und Fußballreisen von Tandemhopper.',
+    images:[{url:'/assets/fankultur-pyro.jpg',alt:'Fankultur bei Tandemhopper'}],
+  },
+  twitter:{
+    card:'summary_large_image',
+    title:'Geschichten | Tandemhopper',
+    description:'Spielberichte, Fankultur, Grounds und Fußballreisen von Tandemhopper.',
+    images:['/assets/fankultur-pyro.jpg'],
+  },
+}
 export const revalidate = 60
 
 const filters=[
@@ -28,6 +47,6 @@ export default async function Stories({searchParams}){
       <p>Spielberichte, Fankultur, Grounds und Reisen. Nicht alles muss groß sein – nur interessant genug, um genauer hinzuschauen.</p>
       <div className="filterbar">{filters.map(item=><Link className={filter===item.key?'active':''} key={item.key||'all'} href={item.key?`/geschichten?filter=${item.key}`:'/geschichten'}>{item.label}</Link>)}</div>
     </div>
-    {list.length>0 ? <div className="archive-grid">{list.map(a=><Link className="archive-card" href={'/geschichten/'+a.slug} key={a.slug}><img src={imageUrl(a.hero,900,80)} alt={a.heroAlt} loading="lazy" decoding="async"/><span className="tag">{a.tag.toUpperCase()}</span><h2>{a.title}</h2><p>{a.teaser}</p><time>{a.displayDate || a.dateDisplay}</time></Link>)}</div> : <div className="archive-empty">In diesem Bereich liegt gerade noch nichts. Das dürfte sich ändern.</div>}
+    {list.length>0 ? <div className="archive-grid">{list.map(a=><Link className="archive-card" href={'/geschichten/'+a.slug} key={a.slug}>{a.hero&&<img src={imageUrl(a.hero,900,80)} alt={a.heroAlt} loading="lazy" decoding="async"/>}<span className="tag">{a.tag.toUpperCase()}</span><h2>{a.title}</h2><p>{a.teaser}</p><time>{a.displayDate || a.dateDisplay}</time></Link>)}</div> : <div className="archive-empty">In diesem Bereich liegt gerade noch nichts. Das dürfte sich ändern.</div>}
   </main><Footer/></>
 }

@@ -48,7 +48,7 @@ export default function Datenschutz(){
 
     <section>
       <h2>6. Social Media</h2>
-      <p>Auf Tandemhopper befinden sich Links zu unseren Profilen bei Instagram, Facebook und YouTube. Es sind derzeit keine eingebetteten Social-Media-Plugins oder Feeds eingebaut. Eine Verbindung zum jeweiligen Anbieter entsteht erst, wenn du einen solchen externen Link aufrufst. Für die anschließende Datenverarbeitung gelten die Datenschutzbestimmungen des jeweiligen Netzwerks.</p>
+      <p>Auf Tandemhopper befinden sich Links zu unseren Profilen bzw. Kanälen bei Instagram, Facebook, YouTube und WhatsApp. Es sind derzeit keine eingebetteten Social-Media-Plugins oder Feeds eingebaut. Eine Verbindung zum jeweiligen Anbieter entsteht erst, wenn du einen solchen externen Link aufrufst. Für die anschließende Datenverarbeitung gelten die Datenschutzbestimmungen des jeweiligen Netzwerks.</p>
     </section>
 
     <section>

@@ -28,6 +28,13 @@
   object-fit:cover;
   object-position:center;
 }
+.hero-rotator{position:relative}
+.hero-swap{animation:heroFade .4s ease}
+@keyframes heroFade{from{opacity:.35}to{opacity:1}}
+.hero-controls{display:flex;align-items:center;gap:9px;margin-top:24px;color:#777;font:700 10px/1 var(--cond);letter-spacing:.04em}
+.hero-controls button{width:31px;height:29px;border:1px solid var(--line);background:#fff;color:var(--ink);font:700 14px/1 var(--cond);cursor:pointer;padding:0}
+.hero-controls button:hover,.hero-controls button:focus-visible{border-color:var(--ink);color:var(--red)}
+.hero-controls span{min-width:38px;text-align:center}
 
 .filterbar a.active{color:var(--red)}
 .archive-empty{max-width:var(--max);margin:auto;padding:35px 48px 80px;color:var(--muted)}
@@ -37,10 +44,16 @@
 .simple-footer .footer-icon{font-size:36px;line-height:1;text-align:center}
 .simple-footer .footer-point strong{font:800 18px/1 var(--cond)}
 .simple-footer .footer-point small{display:block;color:var(--muted);font-size:11px;margin-top:5px;line-height:1.4}
+.footer-whatsapp{grid-column:1/-1;border-top:1px solid var(--line);padding:19px 0 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center}
+.footer-whatsapp strong{display:block;font:800 22px/1 var(--cond)}
+.footer-whatsapp small{display:block;color:var(--muted);font-size:12px;line-height:1.45;margin-top:5px}
+.footer-whatsapp a{font:700 13px/1 var(--cond);color:var(--red);white-space:nowrap}
+.footer-whatsapp a:hover{text-decoration:underline;text-underline-offset:3px}
 .footer-meta{grid-column:1/-1;border-top:1px solid var(--line);padding-top:16px;margin-top:4px;display:flex;justify-content:space-between;gap:20px;color:#777;font:700 10px/1 var(--cond);letter-spacing:.04em}
-.footer-meta>div{display:flex;gap:18px}.footer-meta a:hover{color:var(--red)}
+.footer-meta>div{display:flex;gap:18px;flex-wrap:wrap}.footer-meta a:hover{color:var(--red)}
 
 @media(max-width:1100px) and (min-width:761px){
+  .site-header{grid-template-columns:300px 1fr 150px}
   .hero{
     grid-template-columns:minmax(330px,40%) minmax(0,1fr);
     column-gap:32px;
@@ -49,17 +62,27 @@
   .hero h1{font-size:clamp(44px,5vw,56px)}
 }
 
+@media(max-width:900px) and (min-width:761px){
+ .site-header{grid-template-columns:280px 1fr}
+ .social-nav{display:none}
+ .main-nav{gap:13px;font-size:14px}
+}
+
 @media(max-width:760px){
  .hero{grid-template-columns:1fr;column-gap:0;align-items:stretch}
  .hero-image{order:1;width:100%;height:auto;aspect-ratio:4/3}
  .hero-copy{order:2;padding:34px 8px 36px}
  .hero h1{font-size:48px}
+ .hero-controls{margin-top:20px}
  .archive-empty{padding:30px 20px 60px}
  .site-footer.simple-footer{grid-template-columns:1fr;padding:26px 20px 18px;gap:20px}
  .simple-footer .footer-point{grid-template-columns:42px 1fr}.simple-footer .footer-icon{font-size:30px}
+ .footer-whatsapp{grid-template-columns:1fr;gap:12px;padding-top:18px}.footer-whatsapp strong{font-size:21px}.footer-whatsapp a{white-space:normal}
  .footer-meta{flex-direction:column;gap:10px}.footer-meta>div{gap:14px}
 }
 
 /* Nur für den Ausnahmefall eines Beitrags ohne Titelbild */
 .hero.hero-no-image{grid-template-columns:minmax(0,760px);justify-content:start}
 .hero.hero-no-image .hero-copy{max-width:760px}
+
+@media(prefers-reduced-motion:reduce){.hero-swap{animation:none}}

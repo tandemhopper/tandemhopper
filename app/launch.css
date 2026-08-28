@@ -6,10 +6,28 @@
 .not-found-image img{width:100%;height:100%;object-fit:cover;object-position:center}
 .not-found-links{display:flex;gap:30px;flex-wrap:wrap;margin-top:34px}
 .not-found-links a{font:700 15px/1 var(--cond);color:var(--red)}
+
+.legal-page{max-width:920px;margin:auto;padding:72px 48px 100px}
+.legal-page h1{font:800 clamp(62px,7vw,96px)/.88 var(--cond);margin:10px 0 22px}
+.legal-intro{max-width:720px;font-size:18px;line-height:1.65;color:#444;margin:0 0 48px}
+.legal-page section{padding:28px 0;border-top:1px solid var(--line)}
+.legal-page section:first-of-type{border-top:1px solid var(--ink)}
+.legal-page h2{font:800 30px/1 var(--cond);margin:0 0 15px}
+.legal-page p{font-size:16px;line-height:1.7;margin:0 0 13px}
+.legal-page p:last-child{margin-bottom:0}
+.legal-page a{color:var(--red);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.legal-note{background:#f6f4f0;padding:16px 18px;border-left:3px solid var(--red);font-size:14px!important}
+
 @media(max-width:760px){
   .not-found{padding:34px 20px 70px;grid-template-columns:1fr;gap:30px}
   .not-found-image{order:-1;aspect-ratio:4/3}
   .not-found-image img{object-position:center 56%}
   .not-found h1{font-size:54px}
   .not-found-copy>p:not(.eyebrow){font-size:17px}
+  .legal-page{padding:46px 20px 70px}
+  .legal-page h1{font-size:56px}
+  .legal-intro{font-size:17px;margin-bottom:36px}
+  .legal-page section{padding:24px 0}
+  .legal-page h2{font-size:27px}
+  .legal-page p{font-size:15.5px;line-height:1.68}
 }

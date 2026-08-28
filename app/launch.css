@@ -18,6 +18,25 @@
 .legal-page a{color:var(--red);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .legal-note{background:#f6f4f0;padding:16px 18px;border-left:3px solid var(--red);font-size:14px!important}
 
+.article-whatsapp{max-width:860px;margin:-28px auto 64px;padding:22px 24px;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:center}
+.article-whatsapp strong{font:800 25px/1 var(--cond)}
+.article-whatsapp p{font-size:14px;line-height:1.55;color:#555;margin:7px 0 0;max-width:610px}
+.article-whatsapp a{font:700 13px/1 var(--cond);color:var(--red);white-space:nowrap}
+.article-whatsapp a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.calendar-page{max-width:1180px;margin:auto;padding:72px 48px 100px}
+.calendar-head{max-width:800px}
+.calendar-head h1{font:800 clamp(70px,8vw,112px)/.85 var(--cond);margin:10px 0 24px}
+.calendar-head>p:not(.eyebrow){font-size:19px;line-height:1.65;color:#444;max-width:760px}
+.calendar-foundation{margin-top:58px;border-top:1px solid var(--ink);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.calendar-foundation>div{padding:24px 28px 24px 0;border-right:1px solid var(--line);margin-right:28px}
+.calendar-foundation>div:last-child{border-right:0;margin-right:0}
+.calendar-foundation span{display:block;color:var(--red);font:700 12px/1 var(--cond);letter-spacing:.04em;margin-bottom:10px}
+.calendar-foundation strong{display:block;font:800 29px/1 var(--cond);margin-bottom:12px}
+.calendar-foundation p{font-size:14px;line-height:1.55;color:#555;margin:0}
+.calendar-note{margin:38px 0 0;padding-top:20px;border-top:1px solid var(--line);font-size:14px;line-height:1.55;color:#555}
+.calendar-note strong{color:var(--ink)}
+
 @media(max-width:760px){
   .not-found{padding:34px 20px 70px;grid-template-columns:1fr;gap:30px}
   .not-found-image{order:-1;aspect-ratio:4/3}
@@ -30,4 +49,6 @@
   .legal-page section{padding:24px 0}
   .legal-page h2{font-size:27px}
   .legal-page p{font-size:15.5px;line-height:1.68}
+  .article-whatsapp{margin:-16px 18px 48px;padding:20px 0;grid-template-columns:1fr;gap:12px}.article-whatsapp strong{font-size:23px}.article-whatsapp a{white-space:normal}
+  .calendar-page{padding:46px 20px 72px}.calendar-head h1{font-size:60px}.calendar-head>p:not(.eyebrow){font-size:17px}.calendar-foundation{grid-template-columns:1fr;margin-top:42px}.calendar-foundation>div{border-right:0;border-bottom:1px solid var(--line);margin:0;padding:22px 0}.calendar-foundation>div:last-child{border-bottom:0}.calendar-foundation strong{font-size:27px}.calendar-note{margin-top:24px}
 }

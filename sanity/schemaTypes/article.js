@@ -25,7 +25,7 @@ export const article = defineType({
       options: {
         list: [
           {title: 'Spielbericht', value: 'spielbericht'},
-          {title: 'Fankultur', value: 'fankultur'},
+          {title: 'Fankultur / Kurzmeldung', value: 'fankultur'},
           {title: 'Ground', value: 'grounds'},
           {title: 'Reise', value: 'reisen'},
           {title: 'Verein', value: 'verein'},
@@ -58,9 +58,18 @@ export const article = defineType({
     }),
     defineField({
       name: 'featured',
-      title: 'Als neuesten / großen Beitrag hervorheben',
+      title: 'Im Startseiten-Hero anzeigen',
+      description: 'Ausgewählte Beiträge laufen im großen Aufmacher der Startseite durch. Bis zu sechs sind sinnvoll.',
       type: 'boolean',
       initialValue: false,
+    }),
+    defineField({
+      name: 'featuredOrder',
+      title: 'Position im Startseiten-Hero',
+      description: '1 steht zuerst. Bei gleicher Position entscheidet das Veröffentlichungsdatum.',
+      type: 'number',
+      hidden: ({document}) => !document?.featured,
+      validation: (rule) => rule.integer().min(1).max(6),
     }),
     defineField({
       name: 'heroImage',

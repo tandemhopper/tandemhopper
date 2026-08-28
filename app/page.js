@@ -1,15 +1,39 @@
 import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import HeroRotator from '../components/HeroRotator'
 import {getArticles} from '../lib/sanity'
 import {imageUrl} from '../lib/imageUrl'
 import {absoluteUrl} from '../lib/site'
 
 export const revalidate = 60
 
+function selectHeroArticles(articles){
+  const featured=articles
+    .filter(article=>article.featured)
+    .sort((a,b)=>{
+      const orderA=Number.isFinite(a.featuredOrder)?a.featuredOrder:99
+      const orderB=Number.isFinite(b.featuredOrder)?b.featuredOrder:99
+      if(orderA!==orderB) return orderA-orderB
+      return new Date(b.date||0).getTime()-new Date(a.date||0).getTime()
+    })
+    .slice(0,6)
+
+  const selected=[...featured]
+  const selectedSlugs=new Set(selected.map(article=>article.slug))
+  for(const article of articles){
+    if(selected.length>=5) break
+    if(!selectedSlugs.has(article.slug)){
+      selected.push(article)
+      selectedSlugs.add(article.slug)
+    }
+  }
+  return selected.slice(0,6)
+}
+
 export async function generateMetadata(){
   const articles = await getArticles()
-  const lead = articles.find(a => a.featured) || articles[0]
+  const lead = selectHeroArticles(articles)[0] || articles[0]
   const image = lead?.hero ? absoluteUrl(imageUrl(lead.hero,1600,84)) : null
   const description = 'Groundhopping, Fankultur, Stadien, Fanszenen und Fußballreisen – mit Berichten direkt aus den Kurven und von den Plätzen.'
 
@@ -37,28 +61,29 @@ export async function generateMetadata(){
 
 export default async function Home(){
   const articles = await getArticles()
-  const lead = articles.find(a => a.featured) || articles[0]
-  const metaParts = [lead.competition || lead.tag, lead.displayDate || lead.dateDisplay, lead.attendance ? `${lead.attendance} ZUSCHAUER` : '', lead.result].filter(Boolean)
-  const latest = articles.filter(article => article.slug !== lead.slug).slice(0,4)
-  const showMatch = lead.shortTitle && lead.shortTitle.trim().toLowerCase() !== lead.title.trim().toLowerCase()
+  const heroArticles = selectHeroArticles(articles)
+  const heroSlugs = new Set(heroArticles.map(article=>article.slug))
+  const latest = articles.filter(article => !heroSlugs.has(article.slug)).slice(0,4)
+  const heroItems = heroArticles.map(article=>{
+    const metaParts=[article.competition||article.tag,article.displayDate||article.dateDisplay,article.attendance?`${article.attendance} ZUSCHAUER`:'',article.result].filter(Boolean)
+    return {
+      slug:article.slug,
+      title:article.title,
+      shortTitle:article.shortTitle,
+      meta:metaParts.join('  ·  '),
+      href:'/geschichten/'+article.slug,
+      image:article.hero?imageUrl(article.hero,1800,84):null,
+      alt:article.heroAlt,
+    }
+  })
 
   return <><Header/><main>
-    <section className={lead.hero ? "hero" : "hero hero-no-image"}>
-      <div className="hero-copy">
-        <p className="eyebrow">NEUESTER BERICHT</p>
-        <h1>{lead.title.toUpperCase()}</h1>
-        {showMatch && <p className="match">{lead.shortTitle.toUpperCase()}</p>}
-        <div className="red-rule"></div>
-        <p className="meta">{metaParts.join('  ·  ')}</p>
-        <Link className="text-link" href={'/geschichten/'+lead.slug}>BERICHT LESEN <span>→</span></Link>
-      </div>
-      {lead.hero && <Link className="hero-image" href={'/geschichten/'+lead.slug}><img src={imageUrl(lead.hero,1800,84)} alt={lead.heroAlt} fetchPriority="high" decoding="async"/></Link>}
-    </section>
+    <HeroRotator items={heroItems}/>
 
     <section className="category-grid">
-      <Link className="category-card" href="/geschichten?filter=fankultur"><img src="/assets/fankultur-pyro.jpg" alt="Fankultur" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>FANKULTUR</h2><p>Ultras, Fanszenen,<br/>Choreos &amp; Pyro.</p><strong>→</strong></div></Link>
-      <Link className="category-card" href="/geschichten?filter=grounds"><img src="/assets/grounds-oldschool.jpg" alt="Grounds" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>GROUNDS</h2><p>Stadien, Sportplätze<br/>&amp; ihre Geschichten.</p><strong>→</strong></div></Link>
-      <Link className="category-card" href="/geschichten?filter=reisen"><img src="/assets/unterwegs.jpg" alt="Unterwegs" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>UNTERWEGS</h2><p>Fußballreisen in Europa<br/>&amp; darüber hinaus.</p><strong>→</strong></div></Link>
+      <Link className="category-card" href="/geschichten?filter=fankultur"><img src="/assets/fankultur-pyro.jpg" alt="Kurzmeldungen aus Fankultur und Groundhopping" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>KURZMELDUNGEN</h2><p>Fanszenen, Groundhopping<br/>&amp; aktuelle Entwicklungen.</p><strong>→</strong></div></Link>
+      <Link className="category-card" href="/kalender"><img src="/assets/grounds-oldschool.jpg" alt="Groundhopper-Kalender" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>KALENDER</h2><p>Derbys, Jubiläen, Europa<br/>&amp; besondere Termine.</p><strong>→</strong></div></Link>
+      <Link className="category-card" href="/geschichten?filter=reisen"><img src="/assets/unterwegs.jpg" alt="Fußballreisen" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>REISEN</h2><p>Länder, Wege &amp; Fußball<br/>aus Groundhoppersicht.</p><strong>→</strong></div></Link>
     </section>
 
     <section className="latest">

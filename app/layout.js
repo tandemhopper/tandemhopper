@@ -2,6 +2,7 @@ import './globals.css';
 import './cms.css';
 import './enhancements.css';
 import './editorial.css';
+import { Analytics } from '@vercel/analytics/next';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tandemhopper.vercel.app';
 
@@ -34,7 +35,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="de">
-      <body>{children}</body>
+      <body>{children}<Analytics /></body>
     </html>
   );
 }

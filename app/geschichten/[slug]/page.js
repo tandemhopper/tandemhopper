@@ -4,6 +4,7 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import Gallery from '../../../components/Gallery'
 import ArticleBody from '../../../components/ArticleBody'
+import WhatsAppCTA from '../../../components/WhatsAppCTA'
 import {getArticleBySlug, getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
 import {absoluteUrl, siteUrl} from '../../../lib/site'
@@ -107,6 +108,8 @@ export default async function Article({params}){
     {a.body?.length
       ? <div className="article-layout"><div className="article-body"><ArticleBody blocks={a.body}/></div></div>
       : <><div className="article-layout"><div className="article-body"><p className="lead">{a.lead}</p>{a.paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div></div>{a.galleryPlacement&&<Gallery images={a.gallery}/>}</>}
+
+    <WhatsAppCTA/>
 
     {related.length>0&&<section className="related-stories">
       <div className="related-head"><h2>WEITERE GESCHICHTEN</h2><Link href="/geschichten">ALLE GESCHICHTEN →</Link></div>

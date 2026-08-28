@@ -21,7 +21,7 @@ export default function NotFound(){
       </div>
     </div>
     <figure className="not-found-image">
-      <img src={photo} alt="Zuschauer schauen durch und über einen Stadionzaun auf das Spielfeld." />
+      <img src={photo} alt="Zuschauer schauen durch und über einen Stadionzaun auf das Spielfeld." loading="lazy" decoding="async" />
     </figure>
   </main><Footer/></>
 }

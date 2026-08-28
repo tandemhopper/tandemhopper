@@ -13,13 +13,9 @@ export const metadata = {
   },
   description: 'Groundhopping, Fankultur, Stadien, Fanszenen und Fußballreisen – mit Berichten direkt aus den Kurven und von den Plätzen.',
   applicationName: 'Tandemhopper',
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     type: 'website',
     locale: 'de_DE',
-    url: '/',
     siteName: 'Tandemhopper',
     title: 'Tandemhopper – Groundhopping & Fankultur',
     description: 'Groundhopping, Fankultur, Stadien, Fanszenen und Fußballreisen – mit Berichten direkt aus den Kurven und von den Plätzen.',

@@ -3,8 +3,37 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import {getArticles} from '../lib/sanity'
 import {imageUrl} from '../lib/imageUrl'
+import {absoluteUrl} from '../lib/site'
 
 export const revalidate = 60
+
+export async function generateMetadata(){
+  const articles = await getArticles()
+  const lead = articles.find(a => a.featured) || articles[0]
+  const image = lead?.hero ? absoluteUrl(imageUrl(lead.hero,1600,84)) : null
+  const description = 'Groundhopping, Fankultur, Stadien, Fanszenen und Fußballreisen – mit Berichten direkt aus den Kurven und von den Plätzen.'
+
+  return {
+    title: 'Tandemhopper – Groundhopping & Fankultur',
+    description,
+    alternates:{canonical:'/'},
+    openGraph:{
+      type:'website',
+      locale:'de_DE',
+      url:'/',
+      siteName:'Tandemhopper',
+      title:'Tandemhopper – Groundhopping & Fankultur',
+      description,
+      images:image?[{url:image,alt:lead?.heroAlt||lead?.title||'Tandemhopper'}]:undefined,
+    },
+    twitter:{
+      card:'summary_large_image',
+      title:'Tandemhopper – Groundhopping & Fankultur',
+      description,
+      images:image?[image]:undefined,
+    },
+  }
+}
 
 export default async function Home(){
   const articles = await getArticles()

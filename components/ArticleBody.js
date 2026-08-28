@@ -14,6 +14,11 @@ function renderMarkedSpan(span, index) {
   return <React.Fragment key={span._key || index}>{node}</React.Fragment>
 }
 
+function isEmptyTextBlock(block) {
+  if (block?._type !== 'block') return false
+  return !(block.children || []).some(child => typeof child?.text === 'string' && child.text.trim().length > 0)
+}
+
 function TextBlock({block}) {
   const children = (block.children || []).map(renderMarkedSpan)
   if (block.listItem === 'bullet') return <ul><li>{children}</li></ul>
@@ -25,8 +30,10 @@ function TextBlock({block}) {
 }
 
 export default function ArticleBody({blocks = []}) {
+  const visibleBlocks = blocks.filter(block => !isEmptyTextBlock(block))
+
   return <div className="cms-body">
-    {blocks.map((block, index) => {
+    {visibleBlocks.map((block, index) => {
       const key = block._key || index
       if (block._type === 'block') return <TextBlock key={key} block={block}/>
       if (block._type === 'image' && block.src) {

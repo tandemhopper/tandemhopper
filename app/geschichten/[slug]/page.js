@@ -6,13 +6,40 @@ import Gallery from '../../../components/Gallery'
 import ArticleBody from '../../../components/ArticleBody'
 import {getArticleBySlug} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
+import {absoluteUrl, siteUrl} from '../../../lib/site'
 
 export const revalidate = 60
 
 export async function generateMetadata({params}){
   const {slug}=await params
   const a=await getArticleBySlug(slug)
-  return a?{title:a.title,description:a.seoDescription||a.teaser}:{}
+  if(!a) return {}
+
+  const description=a.seoDescription||a.teaser
+  const canonical=`/geschichten/${slug}`
+  const socialImage=a.hero ? absoluteUrl(imageUrl(a.hero,1600,84)) : null
+
+  return {
+    title:a.title,
+    description,
+    alternates:{canonical},
+    openGraph:{
+      type:'article',
+      locale:'de_DE',
+      url:canonical,
+      siteName:'Tandemhopper',
+      title:a.title,
+      description,
+      publishedTime:a.date||undefined,
+      images:socialImage?[{url:socialImage,alt:a.heroAlt||a.title}]:undefined,
+    },
+    twitter:{
+      card:'summary_large_image',
+      title:a.title,
+      description,
+      images:socialImage?[socialImage]:undefined,
+    },
+  }
 }
 
 export default async function Article({params}){
@@ -20,7 +47,21 @@ export default async function Article({params}){
   const a=await getArticleBySlug(slug)
   if(!a) notFound()
 
+  const canonical=`${siteUrl}/geschichten/${slug}`
+  const jsonLd={
+    '@context':'https://schema.org',
+    '@type':'Article',
+    headline:a.title,
+    description:a.seoDescription||a.teaser,
+    datePublished:a.date||undefined,
+    mainEntityOfPage:canonical,
+    image:a.hero?[absoluteUrl(a.hero)]:undefined,
+    author:{'@type':'Organization',name:'Tandemhopper',url:siteUrl},
+    publisher:{'@type':'Organization',name:'Tandemhopper',url:siteUrl},
+  }
+
   return <><Header/><article>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(jsonLd)}}/>
     <header className="article-head">
       <Link href="/geschichten" className="back">← ALLE GESCHICHTEN</Link>
       <p className="eyebrow">{a.tag.toUpperCase()}</p>
@@ -37,7 +78,7 @@ export default async function Article({params}){
       <div><span>ERGEBNIS</span><strong>{a.result||'–'}</strong></div>
     </div>}
 
-    <figure className="article-hero"><img src={imageUrl(a.hero,2000,85)} alt={a.heroAlt} fetchPriority="high" decoding="async"/>{a.heroCaption&&<figcaption>{a.heroCaption}</figcaption>}</figure>
+    {a.hero&&<figure className="article-hero"><img src={imageUrl(a.hero,2000,85)} alt={a.heroAlt} fetchPriority="high" decoding="async"/>{a.heroCaption&&<figcaption>{a.heroCaption}</figcaption>}</figure>}
 
     {a.body?.length
       ? <div className="article-layout"><div className="article-body"><ArticleBody blocks={a.body}/></div></div>

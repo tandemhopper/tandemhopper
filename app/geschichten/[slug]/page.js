@@ -4,11 +4,24 @@ import Header from '../../../components/Header'
 import Footer from '../../../components/Footer'
 import Gallery from '../../../components/Gallery'
 import ArticleBody from '../../../components/ArticleBody'
-import {getArticleBySlug} from '../../../lib/sanity'
+import {getArticleBySlug, getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
 import {absoluteUrl, siteUrl} from '../../../lib/site'
 
 export const revalidate = 60
+
+function relatedScore(article, current) {
+  let score = 0
+  if (article.categoryKey && article.categoryKey === current.categoryKey) score += 5
+  if (article.competition && current.competition && article.competition === current.competition) score += 3
+  if (article.tag && current.tag && article.tag === current.tag) score += 2
+
+  const articleTags = new Set(article.tags || [])
+  const sharedTags = (current.tags || []).filter(tag => articleTags.has(tag)).length
+  score += sharedTags * 3
+
+  return score
+}
 
 export async function generateMetadata({params}){
   const {slug}=await params
@@ -47,6 +60,17 @@ export default async function Article({params}){
   const a=await getArticleBySlug(slug)
   if(!a) notFound()
 
+  const allArticles = await getArticles()
+  const related = allArticles
+    .filter(article => article.slug !== a.slug)
+    .map(article => ({article, score: relatedScore(article, a)}))
+    .sort((left, right) => {
+      if (right.score !== left.score) return right.score - left.score
+      return new Date(right.article.date || 0).getTime() - new Date(left.article.date || 0).getTime()
+    })
+    .slice(0, 3)
+    .map(item => item.article)
+
   const canonical=`${siteUrl}/geschichten/${slug}`
   const jsonLd={
     '@context':'https://schema.org',
@@ -83,5 +107,15 @@ export default async function Article({params}){
     {a.body?.length
       ? <div className="article-layout"><div className="article-body"><ArticleBody blocks={a.body}/></div></div>
       : <><div className="article-layout"><div className="article-body"><p className="lead">{a.lead}</p>{a.paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div></div>{a.galleryPlacement&&<Gallery images={a.gallery}/>}</>}
+
+    {related.length>0&&<section className="related-stories">
+      <div className="related-head"><h2>WEITERE GESCHICHTEN</h2><Link href="/geschichten">ALLE GESCHICHTEN →</Link></div>
+      <div className="related-grid">{related.map(item=><Link className="related-card" href={'/geschichten/'+item.slug} key={item.slug}>
+        {item.hero&&<img src={imageUrl(item.hero,760,80)} alt={item.heroAlt} loading="lazy" decoding="async"/>}
+        <span className="tag">{item.tag.toUpperCase()}</span>
+        <h3>{item.title}</h3>
+        <time>{item.displayDate || item.dateDisplay}</time>
+      </Link>)}</div>
+    </section>}
   </article><Footer/></>
 }

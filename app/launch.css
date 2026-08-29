@@ -21,8 +21,8 @@
 .article-whatsapp{max-width:860px;margin:-28px auto 64px;padding:22px 24px;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:center}
 .article-whatsapp strong{font:800 25px/1 var(--cond)}
 .article-whatsapp p{font-size:14px;line-height:1.55;color:#555;margin:7px 0 0;max-width:610px}
-.article-whatsapp a{font:700 13px/1 var(--cond);color:var(--red);white-space:nowrap}
-.article-whatsapp a:hover{text-decoration:underline;text-underline-offset:3px}
+.article-whatsapp a{display:inline-flex;align-items:center;min-height:42px;padding:0 4px;font:800 16px/1 var(--cond);color:var(--red);white-space:nowrap;letter-spacing:.01em}
+.article-whatsapp a:hover{text-decoration:underline;text-underline-offset:4px}
 
 .calendar-page{max-width:1180px;margin:auto;padding:72px 48px 100px}
 .calendar-head{max-width:800px}
@@ -49,6 +49,6 @@
   .legal-page section{padding:24px 0}
   .legal-page h2{font-size:27px}
   .legal-page p{font-size:15.5px;line-height:1.68}
-  .article-whatsapp{margin:-16px 18px 48px;padding:20px 0;grid-template-columns:1fr;gap:12px}.article-whatsapp strong{font-size:23px}.article-whatsapp a{white-space:normal}
+  .article-whatsapp{margin:-16px 18px 48px;padding:20px 0;grid-template-columns:1fr;gap:12px}.article-whatsapp strong{font-size:23px}.article-whatsapp a{font-size:16px;min-height:40px;padding:0;white-space:normal}
   .calendar-page{padding:46px 20px 72px}.calendar-head h1{font-size:60px}.calendar-head>p:not(.eyebrow){font-size:17px}.calendar-foundation{grid-template-columns:1fr;margin-top:42px}.calendar-foundation>div{border-right:0;border-bottom:1px solid var(--line);margin:0;padding:22px 0}.calendar-foundation>div:last-child{border-bottom:0}.calendar-foundation strong{font-size:27px}.calendar-note{margin-top:24px}
 }

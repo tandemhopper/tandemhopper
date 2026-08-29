@@ -64,18 +64,15 @@ export default async function Home(){
   const heroArticles = selectHeroArticles(articles)
   const heroSlugs = new Set(heroArticles.map(article=>article.slug))
   const latest = articles.filter(article => !heroSlugs.has(article.slug)).slice(0,4)
-  const heroItems = heroArticles.map(article=>{
-    const metaParts=[article.competition||article.tag,article.displayDate||article.dateDisplay,article.attendance?`${article.attendance} ZUSCHAUER`:'',article.result].filter(Boolean)
-    return {
-      slug:article.slug,
-      title:article.title,
-      shortTitle:article.shortTitle,
-      meta:metaParts.join('  ·  '),
-      href:'/geschichten/'+article.slug,
-      image:article.hero?imageUrl(article.hero,1800,84):null,
-      alt:article.heroAlt,
-    }
-  })
+  const heroItems = heroArticles.map(article=>({
+    slug:article.slug,
+    title:article.title,
+    shortTitle:article.shortTitle,
+    teaser:article.teaser,
+    href:'/geschichten/'+article.slug,
+    image:article.hero?imageUrl(article.hero,1800,84):null,
+    alt:article.heroAlt,
+  }))
 
   return <><Header/><main>
     <HeroRotator items={heroItems}/>

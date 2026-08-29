@@ -18,7 +18,7 @@ const barlowCondensed = Barlow_Condensed({
   display: 'swap',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tandemhopper.vercel.app';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tandemhopper.de';
 
 export const metadata = {
   metadataBase: new URL(siteUrl),

@@ -83,6 +83,31 @@
 .hero-controls button:hover,.hero-controls button:focus-visible{border-color:var(--ink);color:var(--red)}
 .hero-controls span{min-width:51px;text-align:center}
 
+/* Neueste Geschichten: Bild sprechen lassen, Text auf das Nötigste reduzieren */
+.story-card>div{display:flex;flex-direction:column;min-width:0}
+.story-card .tag{
+  display:block;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.story-card h3{
+  font-size:22px;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+}
+.story-card .story-facts{
+  margin:4px 0 0;
+  color:#555;
+  font:600 12px/1.35 var(--cond);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.story-card time{display:block;margin-top:auto;padding-top:10px}
+
 .filterbar a.active{color:var(--red)}
 .archive-empty{max-width:var(--max);margin:auto;padding:35px 48px 80px;color:var(--muted)}
 

@@ -85,7 +85,10 @@ export default async function Home(){
 
     <section className="latest">
       <div className="section-head"><h2>NEUESTE GESCHICHTEN</h2><Link href="/geschichten">ALLE BERICHTE ANSEHEN →</Link></div>
-      <div className="story-grid">{latest.map(a=><Link className="story-card" href={'/geschichten/'+a.slug} key={a.slug}>{a.hero && <img src={imageUrl(a.hero,720,80)} alt={a.heroAlt} loading="lazy" decoding="async"/>}<div><span className="tag">{a.tag.toUpperCase()}</span><h3>{a.shortTitle.toUpperCase()}</h3><p>{a.teaser}</p><time>{a.displayDate || a.dateDisplay}</time></div></Link>)}</div>
+      <div className="story-grid">{latest.map(a=>{
+        const facts=[a.result,a.attendance?`${a.attendance} ZUSCHAUER`:null].filter(Boolean).join(' · ')
+        return <Link className="story-card" href={'/geschichten/'+a.slug} key={a.slug}>{a.hero && <img src={imageUrl(a.hero,720,80)} alt={a.heroAlt} loading="lazy" decoding="async"/>}<div><span className="tag">{a.tag.toUpperCase()}</span><h3>{a.shortTitle.toUpperCase()}</h3>{facts&&<p className="story-facts">{facts}</p>}<time>{a.displayDate || a.dateDisplay}</time></div></Link>
+      })}</div>
     </section>
   </main><Footer/></>
 }

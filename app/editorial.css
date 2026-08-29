@@ -4,7 +4,7 @@
 .hero{
   grid-template-columns:minmax(390px,34%) minmax(0,1fr);
   column-gap:clamp(40px,3.2vw,54px);
-  max-width:calc(min(var(--max),100%) - 64px);
+  max-width:calc(min(var(--max),100%) - 96px);
   min-height:0;
   align-items:center;
 }
@@ -126,7 +126,7 @@
   .hero{
     grid-template-columns:minmax(320px,37%) minmax(0,1fr);
     column-gap:34px;
-    max-width:calc(100% - 42px);
+    max-width:calc(100% - 96px);
   }
   .hero-copy{padding:34px 0 34px 6px}
   .hero h1{font-size:clamp(43px,4.8vw,55px)}

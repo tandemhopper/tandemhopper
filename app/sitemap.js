@@ -1,6 +1,6 @@
 import {getArticles} from '../lib/sanity';
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://tandemhopper.vercel.app').replace(/\/$/, '');
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://tandemhopper.de').replace(/\/$/, '');
 
 export default async function sitemap() {
   const articles = await getArticles();

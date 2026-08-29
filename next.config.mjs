@@ -14,6 +14,17 @@ const nextConfig = {
         ],
         destination: 'https://tandemhopper.de/:path*',
         permanent: true
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'tandemhopper.vercel.app'
+          }
+        ],
+        destination: 'https://tandemhopper.de/:path*',
+        permanent: true
       }
     ];
   }

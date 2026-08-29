@@ -9,7 +9,10 @@ export default function HeroRotator({items}){
   const initialLoaded=useMemo(()=>{
     const values=new Set()
     if(count>0) values.add(0)
-    if(count>1) values.add(1)
+    if(count>1){
+      values.add(1)
+      values.add(count-1)
+    }
     return values
   },[count])
   const [loadedImages,setLoadedImages]=useState(initialLoaded)
@@ -18,7 +21,10 @@ export default function HeroRotator({items}){
     setLoadedImages(previous=>{
       const next=new Set(previous)
       if(count>0) next.add(index)
-      if(count>1) next.add((index+1)%count)
+      if(count>1){
+        next.add((index+1)%count)
+        next.add((index-1+count)%count)
+      }
       return next
     })
   },[index,count])

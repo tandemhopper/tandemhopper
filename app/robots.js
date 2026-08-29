@@ -1,4 +1,4 @@
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://tandemhopper.vercel.app').replace(/\/$/, '');
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://tandemhopper.de').replace(/\/$/, '');
 
 export default function robots() {
   return {

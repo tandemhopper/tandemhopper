@@ -23,6 +23,23 @@ export const calendarMatch = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: 'region',
+      title: 'Region',
+      description: 'Wird für den öffentlichen Kalenderfilter verwendet.',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Europa', value: 'europe'},
+          {title: 'Afrika', value: 'africa'},
+          {title: 'Asien', value: 'asia'},
+          {title: 'Südamerika', value: 'south_america'},
+          {title: 'Nord- & Mittelamerika', value: 'north_central_america'},
+        ],
+        layout: 'dropdown',
+      },
+      validation: (rule) => rule.required(),
+    }),
     defineField({name: 'city', title: 'Stadt / Ort', type: 'string'}),
     defineField({name: 'stadium', title: 'Stadion', type: 'string'}),
     defineField({

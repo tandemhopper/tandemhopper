@@ -1,3 +1,3 @@
 # Tandemhopper
 
-Groundhopping, Fankultur und Fußballreisen.
+Website für Tandemhopper – Fußball dort, wo’s spannend wird.

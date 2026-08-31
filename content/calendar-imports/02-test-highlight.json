@@ -1,0 +1,23 @@
+{
+  "id": "calendar-match-test-highlight",
+  "type": "calendarMatch",
+  "data": {
+    "homeTeam": "[TEST] Heimteam",
+    "awayTeam": "[TEST] Auswärtsteam",
+    "country": "Niederlande",
+    "city": "Teststadt",
+    "stadium": "Teststadion",
+    "dateStatus": "confirmed",
+    "matchDate": "2026-09-19",
+    "kickoffTime": "20:00",
+    "categories": ["fanszene", "rivalitaet"],
+    "priority": 3,
+    "shortDescription": "Testeintrag für ein fix terminiertes Highlight. Hier soll später in maximal zwei Sätzen stehen, warum sich die Reise wirklich lohnt.",
+    "confirmedInfo": "Nur Testdaten – keine reale Aussage.",
+    "editorialAssessment": "Dieses Feld testet die Trennung zwischen belegbaren Fakten und unserer redaktionellen Einschätzung.",
+    "awayFans": "allowed",
+    "ticketSituation": "tight",
+    "tags": ["Test", "Highlight"],
+    "lastChecked": "2026-08-31"
+  }
+}

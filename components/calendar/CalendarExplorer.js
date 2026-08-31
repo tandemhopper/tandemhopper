@@ -163,6 +163,8 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
     ? `Dieses Wochenende · ${formatShortDate(toISODate(viewDates[0]))}–${formatShortDate(toISODate(viewDates[2]))}`
     : formatDayHeading(selectedDate)
 
+  const isTodaySelected = !weekendMode && toISODate(selectedDate) === toISODate(today)
+
   function selectDay(date) {
     setSelectedDate(date)
     setWeekendMode(false)
@@ -181,7 +183,7 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
     <section className="calendar-explorer">
       <div className="calendar-actions">
         <div>
-          <button type="button" className={!weekendMode ? 'is-active' : ''} onClick={goToday}>HEUTE</button>
+          <button type="button" className={isTodaySelected ? 'is-active' : ''} onClick={goToday}>HEUTE</button>
           <button type="button" className={weekendMode ? 'is-active' : ''} onClick={() => setWeekendMode(true)}>WOCHENENDE</button>
         </div>
         <span className="calendar-legend"><i className="competition-mark" /> Wettbewerb <i className="tip-mark" /> Tipp</span>
@@ -229,7 +231,7 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
 
           {visibleMatches.length ? visibleMatches.map((match) => <MatchCard key={match._id} match={match} />) : (
             <div className="calendar-empty">
-              <h3>Heute nichts erzwungen.</h3>
+              <h3>Hier nichts erzwungen.</h3>
               <p>Für diesen Zeitraum haben wir aktuell keinen besonderen Tipp. Genau so soll der Kalender funktionieren: lieber eine Lücke als irgendein Spiel, nur damit hier etwas steht.</p>
               {nextMatch ? <button type="button" onClick={() => selectDay(parseDate(matchSortValue(nextMatch)))}>Nächster Tipp: {formatShortDate(matchSortValue(nextMatch))} →</button> : null}
             </div>

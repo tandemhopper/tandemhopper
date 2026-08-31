@@ -3,6 +3,7 @@ import './cms.css';
 import './enhancements.css';
 import './editorial.css';
 import './launch.css';
+import './calendar.css';
 import { Analytics } from '@vercel/analytics/next';
 import { Inter, Barlow_Condensed } from 'next/font/google';
 

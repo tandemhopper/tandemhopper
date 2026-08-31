@@ -1,0 +1,15 @@
+{
+  "id": "calendar-competition-test-champions-league",
+  "type": "calendarCompetition",
+  "data": {
+    "name": "[TEST] UEFA Champions League",
+    "shortName": "[TEST] Champions League",
+    "region": "europe",
+    "competitionType": "continental_club",
+    "phase": "Ligaphase · Spieltag 1",
+    "startDate": "2026-09-15",
+    "endDate": "2026-09-17",
+    "status": "confirmed",
+    "note": "Testeintrag für die Kalenderpflege – nicht veröffentlichen."
+  }
+}

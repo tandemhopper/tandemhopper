@@ -1,6 +1,6 @@
 'use client'
 
-import {useEffect} from 'react'
+import {useEffect, useRef} from 'react'
 import Link from 'next/link'
 
 const categoryLabels = {
@@ -13,13 +13,13 @@ const categoryLabels = {
 
 const awayFanLabels = {
   allowed: 'Gästefans zugelassen',
-  excluded: 'Keine Gästefans',
+  banned: 'Gästefans ausgeschlossen',
   unclear: 'Gästefan-Regelung noch unklar',
 }
 
 const ticketLabels = {
   normal: 'Normale Ticketlage',
-  tense: 'Angespannte Ticketlage',
+  tight: 'Angespannte Ticketlage',
   difficult: 'Schwierige Ticketlage',
 }
 
@@ -39,8 +39,12 @@ function formatSchedule(match) {
 }
 
 export default function MatchDetails({match, onClose}) {
+  const closeButtonRef = useRef(null)
+
   useEffect(() => {
     if (!match) return undefined
+
+    const previousFocus = document.activeElement
 
     function onKeyDown(event) {
       if (event.key === 'Escape') onClose()
@@ -49,10 +53,12 @@ export default function MatchDetails({match, onClose}) {
     document.addEventListener('keydown', onKeyDown)
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
+    closeButtonRef.current?.focus()
 
     return () => {
       document.removeEventListener('keydown', onKeyDown)
       document.body.style.overflow = previousOverflow
+      previousFocus?.focus?.()
     }
   }, [match, onClose])
 
@@ -71,7 +77,7 @@ export default function MatchDetails({match, onClose}) {
     }}>
       <aside className="calendar-detail" role="dialog" aria-modal="true" aria-labelledby="calendar-detail-title">
         <div className="calendar-detail-handle" aria-hidden="true" />
-        <button className="calendar-detail-close" type="button" aria-label="Details schließen" onClick={onClose}>×</button>
+        <button ref={closeButtonRef} className="calendar-detail-close" type="button" aria-label="Details schließen" onClick={onClose}>×</button>
 
         <div className="calendar-detail-head">
           {match.priority === 3 ? <p className="calendar-tip-label">TANDEMHOPPER-TIPP</p> : null}

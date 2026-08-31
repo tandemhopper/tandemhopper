@@ -61,6 +61,24 @@
 .calendar-empty button{margin-top:22px;font-size:14px;font-weight:700;color:var(--red)}
 .calendar-note{margin-top:56px}
 
+.calendar-filter-layer{border-bottom:1px solid var(--line)}
+.calendar-filters{position:relative;display:grid;grid-template-columns:1.1fr 1.15fr .9fr auto;gap:28px;align-items:end;padding:19px 0 21px}
+.calendar-filter-handle,.calendar-filter-head{display:none}
+.calendar-filter-group{border:0;padding:0;margin:0;min-width:0}
+.calendar-filter-group legend{font:800 10px/1 var(--cond);letter-spacing:.05em;color:var(--muted);padding:0;margin-bottom:10px}
+.calendar-filter-options{display:flex;flex-wrap:wrap;gap:7px}
+.calendar-filter-options button{appearance:none;border:1px solid var(--line);background:var(--white);color:var(--ink);min-height:32px;padding:0 10px;cursor:pointer;font:700 11px/1 var(--cond)}
+.calendar-filter-options button:hover{border-color:var(--ink)}
+.calendar-filter-options button.is-active{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.calendar-filter-confirmed label{display:flex;align-items:center;gap:9px;min-height:32px;font:700 12px/1.2 var(--cond);cursor:pointer}
+.calendar-filter-confirmed input{width:16px;height:16px;margin:0;accent-color:var(--red)}
+.calendar-filter-foot{display:flex;align-items:center;justify-content:flex-end;gap:16px}
+.calendar-filter-foot button{appearance:none;border:0;background:none;padding:0;cursor:pointer;font:800 12px/1 var(--cond)}
+.calendar-filter-reset{color:var(--muted)}
+.calendar-filter-reset:disabled{opacity:.35;cursor:default}
+.calendar-filter-apply{color:var(--red)}
+.calendar-filter-close{display:none}
+
 .calendar-detail-layer{position:fixed;inset:0;z-index:90;background:rgba(17,17,17,.38);display:flex;justify-content:flex-end;align-items:stretch}
 .calendar-detail{position:relative;width:min(470px,100%);height:100dvh;overflow-y:auto;background:var(--white);border-left:1px solid var(--ink);padding:42px 38px 46px}
 .calendar-detail-handle{display:none}
@@ -90,6 +108,8 @@
   .calendar-competitions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--ink)}
   .calendar-competition:nth-child(odd){padding-right:18px;border-right:1px solid var(--line)}
   .calendar-competition:nth-child(even){padding-left:18px}
+  .calendar-filters{grid-template-columns:1fr 1fr;align-items:start}
+  .calendar-filter-foot{justify-content:flex-start}
 }
 
 @media(max-width:760px){
@@ -100,6 +120,21 @@
   .calendar-legend{font-size:9px;gap:5px}
   .calendar-legend .tip-mark{margin-left:5px}
   .competition-mark{width:12px}
+  .calendar-filter-layer{position:fixed;inset:0;z-index:95;border:0;background:rgba(17,17,17,.38);display:flex;align-items:flex-end}
+  .calendar-filters{width:100%;max-height:86dvh;overflow-y:auto;display:block;background:var(--white);border-top:1px solid var(--ink);border-radius:20px 20px 0 0;padding:26px 20px calc(20px + env(safe-area-inset-bottom))}
+  .calendar-filter-handle{display:block;width:36px;height:4px;background:#c8c8c8;border-radius:99px;margin:-11px auto 14px}
+  .calendar-filter-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:5px 36px 20px 0;border-bottom:1px solid var(--ink)}
+  .calendar-filter-head .eyebrow{margin:0 0 4px}
+  .calendar-filter-head h3{font:800 31px/1 var(--cond);margin:0}
+  .calendar-filter-close{display:flex;position:absolute;top:14px;right:10px;width:44px;height:44px;align-items:center;justify-content:center;appearance:none;border:0;background:none;color:var(--ink);font:300 34px/1 var(--body);cursor:pointer}
+  .calendar-filter-group{padding:22px 0;border-bottom:1px solid var(--line)}
+  .calendar-filter-group legend{margin-bottom:12px}
+  .calendar-filter-options{gap:8px}
+  .calendar-filter-options button{min-height:36px;padding:0 12px;font-size:12px}
+  .calendar-filter-confirmed label{min-height:36px;font-size:13px}
+  .calendar-filter-foot{position:sticky;bottom:calc(-20px - env(safe-area-inset-bottom));background:var(--white);display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;margin-top:18px;padding:17px 0 calc(20px + env(safe-area-inset-bottom));border-top:1px solid var(--ink)}
+  .calendar-filter-reset{text-align:left}
+  .calendar-filter-apply{text-align:right}
   .calendar-month-row{height:58px;grid-template-columns:38px 1fr 38px}
   .calendar-month-row strong{font-size:16px}
   .calendar-month-row button{font-size:30px}
@@ -132,6 +167,7 @@
 @media(max-width:420px){
   .calendar-legend{display:none}
   .calendar-actions{justify-content:flex-start}
+  .calendar-actions>div{gap:14px}
   .calendar-week button>strong{font-size:21px}
   .calendar-week button{min-height:78px}
   .calendar-match-links{gap:13px}

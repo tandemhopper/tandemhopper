@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "sanity": "sanity",
-    "import:sanity": "node scripts/import-sanity.mjs"
+    "import:sanity": "node scripts/import-sanity.mjs",
+    "import:calendar": "node scripts/import-calendar.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "2.0.1",

@@ -250,7 +250,7 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
         onToggleRegion={(value) => toggleListValue(setRegionFilters, value)}
         onToggleConfirmed={() => setOnlyConfirmed((current) => !current)}
         onReset={resetFilters}
-        resultCount={visibleMatches.length}
+        resultCount={filteredMatches.length}
         activeCount={activeFilterCount}
       />
 
@@ -285,7 +285,9 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
           <p className="eyebrow">{weekendMode ? 'WOCHENENDE' : 'AUSGEWÄHLTER TAG'}</p>
           <h2>{heading}</h2>
           <CompetitionList items={visibleCompetitions} />
-          {!visibleCompetitions.length ? <p className="calendar-context-empty">Keine größere Wettbewerbsphase für diesen Zeitraum eingetragen.</p> : null}
+          {!visibleCompetitions.length ? (
+            <p className="calendar-context-empty">{regionFilters.length ? 'Keine größere Wettbewerbsphase für die gewählte Region in diesem Zeitraum.' : 'Keine größere Wettbewerbsphase für diesen Zeitraum eingetragen.'}</p>
+          ) : null}
         </aside>
 
         <div className="calendar-recommendations">

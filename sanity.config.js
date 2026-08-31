@@ -10,6 +10,26 @@ export default defineConfig({
   basePath: '/studio',
   projectId: '90kx3kio',
   dataset: 'production',
-  plugins: [structureTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title('Tandemhopper Redaktion')
+          .items([
+            S.documentTypeListItem('article').title('Geschichten'),
+            S.divider(),
+            S.listItem()
+              .title('Kalender')
+              .child(
+                S.list()
+                  .title('Kalender')
+                  .items([
+                    S.documentTypeListItem('calendarMatch').title('Spieltipps'),
+                    S.documentTypeListItem('calendarCompetition').title('Wettbewerbsphasen'),
+                  ]),
+              ),
+          ]),
+    }),
+  ],
   schema: {types: schemaTypes},
 })

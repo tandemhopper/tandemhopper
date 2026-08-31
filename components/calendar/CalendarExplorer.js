@@ -2,6 +2,7 @@
 
 import {useCallback, useMemo, useState} from 'react'
 import Link from 'next/link'
+import CalendarFilters from './CalendarFilters'
 import MatchDetails from './MatchDetails'
 
 const weekdayShort = ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA']
@@ -142,7 +143,12 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
   const [selectedDate, setSelectedDate] = useState(today)
   const [weekendMode, setWeekendMode] = useState(false)
   const [activeMatch, setActiveMatch] = useState(null)
+  const [filtersOpen, setFiltersOpen] = useState(false)
+  const [categoryFilters, setCategoryFilters] = useState([])
+  const [regionFilters, setRegionFilters] = useState([])
+  const [onlyConfirmed, setOnlyConfirmed] = useState(false)
   const closeDetails = useCallback(() => setActiveMatch(null), [])
+  const closeFilters = useCallback(() => setFiltersOpen(false), [])
 
   const weekStart = startOfWeek(selectedDate)
   const weekDays = Array.from({length: 7}, (_, index) => addDays(weekStart, index))
@@ -153,15 +159,27 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
 
   const viewDateStrings = viewDates.map(toISODate)
 
-  const visibleCompetitions = competitions.filter((competition) =>
+  const filteredCompetitions = competitions.filter((competition) => {
+    if (!regionFilters.length) return true
+    return competition.region === 'global' || regionFilters.includes(competition.region)
+  })
+
+  const filteredMatches = matches.filter((match) => {
+    const categoryMatch = !categoryFilters.length || categoryFilters.some((category) => (match.categories || []).includes(category))
+    const regionMatch = !regionFilters.length || regionFilters.includes(match.region)
+    const dateMatch = !onlyConfirmed || match.dateStatus === 'confirmed'
+    return categoryMatch && regionMatch && dateMatch
+  })
+
+  const visibleCompetitions = filteredCompetitions.filter((competition) =>
     viewDateStrings.some((date) => competitionActiveOn(competition, date))
   )
 
-  const visibleMatches = matches
+  const visibleMatches = filteredMatches
     .filter((match) => viewDateStrings.some((date) => matchActiveOn(match, date)))
     .sort((a, b) => (b.priority || 0) - (a.priority || 0) || matchSortValue(a).localeCompare(matchSortValue(b)))
 
-  const nextMatch = matches
+  const nextMatch = filteredMatches
     .filter((match) => matchSortValue(match) > toISODate(selectedDate))
     .sort((a, b) => matchSortValue(a).localeCompare(matchSortValue(b)))[0]
 
@@ -170,6 +188,17 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
     : formatDayHeading(selectedDate)
 
   const isTodaySelected = !weekendMode && toISODate(selectedDate) === toISODate(today)
+  const activeFilterCount = categoryFilters.length + regionFilters.length + (onlyConfirmed ? 1 : 0)
+
+  function toggleListValue(setter, value) {
+    setter((current) => current.includes(value) ? current.filter((item) => item !== value) : [...current, value])
+  }
+
+  function resetFilters() {
+    setCategoryFilters([])
+    setRegionFilters([])
+    setOnlyConfirmed(false)
+  }
 
   function selectDay(date) {
     setSelectedDate(date)
@@ -199,9 +228,31 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
         <div>
           <button type="button" className={isTodaySelected ? 'is-active' : ''} onClick={goToday}>HEUTE</button>
           <button type="button" className={weekendMode ? 'is-active' : ''} onClick={showWeekend}>WOCHENENDE</button>
+          <button
+            type="button"
+            className={`calendar-filter-trigger${activeFilterCount ? ' is-active' : ''}`}
+            aria-expanded={filtersOpen}
+            onClick={() => setFiltersOpen((current) => !current)}
+          >
+            FILTER{activeFilterCount ? ` · ${activeFilterCount}` : ''}
+          </button>
         </div>
         <span className="calendar-legend"><i className="competition-mark" /> Wettbewerb <i className="tip-mark" /> Tipp</span>
       </div>
+
+      <CalendarFilters
+        open={filtersOpen}
+        onClose={closeFilters}
+        categories={categoryFilters}
+        regions={regionFilters}
+        onlyConfirmed={onlyConfirmed}
+        onToggleCategory={(value) => toggleListValue(setCategoryFilters, value)}
+        onToggleRegion={(value) => toggleListValue(setRegionFilters, value)}
+        onToggleConfirmed={() => setOnlyConfirmed((current) => !current)}
+        onReset={resetFilters}
+        resultCount={visibleMatches.length}
+        activeCount={activeFilterCount}
+      />
 
       <div className="calendar-month-row">
         <button type="button" aria-label="Vorherige Woche" onClick={() => moveWeek(-1)}>‹</button>
@@ -212,8 +263,8 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
       <div className="calendar-week" role="list" aria-label="Wochenauswahl">
         {weekDays.map((date) => {
           const iso = toISODate(date)
-          const hasCompetition = competitions.some((competition) => competitionActiveOn(competition, iso))
-          const hasTip = matches.some((match) => matchActiveOn(match, iso))
+          const hasCompetition = filteredCompetitions.some((competition) => competitionActiveOn(competition, iso))
+          const hasTip = filteredMatches.some((match) => matchActiveOn(match, iso))
           const selected = !weekendMode && iso === toISODate(selectedDate)
 
           return (
@@ -243,7 +294,13 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
             <span>{visibleMatches.length ? `${visibleMatches.length} ${visibleMatches.length === 1 ? 'TIPP' : 'TIPPS'}` : 'KEIN TIPP'}</span>
           </div>
 
-          {visibleMatches.length ? visibleMatches.map((match) => <MatchCard key={match._id} match={match} onOpen={setActiveMatch} />) : (
+          {visibleMatches.length ? visibleMatches.map((match) => <MatchCard key={match._id} match={match} onOpen={setActiveMatch} />) : activeFilterCount ? (
+            <div className="calendar-empty">
+              <h3>Kein Treffer für diese Auswahl.</h3>
+              <p>Für diesen Zeitraum passt aktuell kein Tipp zu deinen Filtern. Das heißt nicht, dass dort nichts los ist – nur dass gerade nichts durch deine Auswahl kommt.</p>
+              <button type="button" onClick={resetFilters}>Filter zurücksetzen →</button>
+            </div>
+          ) : (
             <div className="calendar-empty">
               <h3>Hier nichts erzwungen.</h3>
               <p>Für diesen Zeitraum haben wir aktuell keinen besonderen Tipp. Genau so soll der Kalender funktionieren: lieber eine Lücke als irgendein Spiel, nur damit hier etwas steht.</p>

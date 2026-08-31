@@ -1,7 +1,8 @@
 'use client'
 
-import {useMemo, useState} from 'react'
+import {useCallback, useMemo, useState} from 'react'
 import Link from 'next/link'
+import MatchDetails from './MatchDetails'
 
 const weekdayShort = ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA']
 const categoryLabels = {
@@ -103,7 +104,7 @@ function CompetitionList({items}) {
   )
 }
 
-function MatchCard({match}) {
+function MatchCard({match, onOpen}) {
   const categories = (match.categories || []).map((key) => categoryLabels[key] || key.toUpperCase())
 
   return (
@@ -127,7 +128,10 @@ function MatchCard({match}) {
 
       <div className="calendar-match-foot">
         {match.stadium ? <span>{match.stadium}</span> : <span />}
-        {match.article?.slug ? <Link href={`/geschichten/${match.article.slug}`}>Hintergrund →</Link> : null}
+        <div className="calendar-match-links">
+          {match.article?.slug ? <Link href={`/geschichten/${match.article.slug}`}>Artikel →</Link> : null}
+          <button type="button" onClick={() => onOpen(match)}>Details →</button>
+        </div>
       </div>
     </article>
   )
@@ -137,6 +141,8 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
   const today = useMemo(() => new Date(), [])
   const [selectedDate, setSelectedDate] = useState(today)
   const [weekendMode, setWeekendMode] = useState(false)
+  const [activeMatch, setActiveMatch] = useState(null)
+  const closeDetails = useCallback(() => setActiveMatch(null), [])
 
   const weekStart = startOfWeek(selectedDate)
   const weekDays = Array.from({length: 7}, (_, index) => addDays(weekStart, index))
@@ -168,15 +174,23 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
   function selectDay(date) {
     setSelectedDate(date)
     setWeekendMode(false)
+    setActiveMatch(null)
   }
 
   function moveWeek(direction) {
     setSelectedDate((current) => addDays(current, direction * 7))
+    setActiveMatch(null)
   }
 
   function goToday() {
     setSelectedDate(new Date())
     setWeekendMode(false)
+    setActiveMatch(null)
+  }
+
+  function showWeekend() {
+    setWeekendMode(true)
+    setActiveMatch(null)
   }
 
   return (
@@ -184,7 +198,7 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
       <div className="calendar-actions">
         <div>
           <button type="button" className={isTodaySelected ? 'is-active' : ''} onClick={goToday}>HEUTE</button>
-          <button type="button" className={weekendMode ? 'is-active' : ''} onClick={() => setWeekendMode(true)}>WOCHENENDE</button>
+          <button type="button" className={weekendMode ? 'is-active' : ''} onClick={showWeekend}>WOCHENENDE</button>
         </div>
         <span className="calendar-legend"><i className="competition-mark" /> Wettbewerb <i className="tip-mark" /> Tipp</span>
       </div>
@@ -229,7 +243,7 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
             <span>{visibleMatches.length ? `${visibleMatches.length} ${visibleMatches.length === 1 ? 'TIPP' : 'TIPPS'}` : 'KEIN TIPP'}</span>
           </div>
 
-          {visibleMatches.length ? visibleMatches.map((match) => <MatchCard key={match._id} match={match} />) : (
+          {visibleMatches.length ? visibleMatches.map((match) => <MatchCard key={match._id} match={match} onOpen={setActiveMatch} />) : (
             <div className="calendar-empty">
               <h3>Hier nichts erzwungen.</h3>
               <p>Für diesen Zeitraum haben wir aktuell keinen besonderen Tipp. Genau so soll der Kalender funktionieren: lieber eine Lücke als irgendein Spiel, nur damit hier etwas steht.</p>
@@ -238,6 +252,8 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
           )}
         </div>
       </div>
+
+      <MatchDetails match={activeMatch} onClose={closeDetails} />
     </section>
   )
 }

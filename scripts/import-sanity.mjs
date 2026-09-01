@@ -138,8 +138,13 @@ async function importFile(filePath) {
   if(article.match) document.match=article.match
   if(article.place) document.place=article.place
   await client.createOrReplace(document)
+  if(article.publish===true){
+    await client.transaction().createOrReplace({...document,_id:baseId}).delete(draftId).commit()
+    console.log(`✓ ${article.slug}: in Sanity veröffentlicht.`)
+  }else{
+    console.log(`✓ ${article.slug}: Sanity-Entwurf erstellt/aktualisiert.`)
+  }
   await client.createOrReplace({_id:markerId,_type:'tandemhopperImportMarker',articleId:baseId,slug:article.slug,hash:importHash,sourceFile:path.relative(process.cwd(),filePath),updatedAt:new Date().toISOString()})
-  console.log(`✓ ${article.slug}: Sanity-Entwurf erstellt/aktualisiert.`)
 }
 
 function findJsonFiles(directory){if(!fs.existsSync(directory))return[];return fs.readdirSync(directory,{withFileTypes:true}).flatMap(entry=>{const full=path.join(directory,entry.name);if(entry.isDirectory())return findJsonFiles(full);return entry.isFile()&&entry.name.endsWith('.json')?[full]:[]}).sort()}

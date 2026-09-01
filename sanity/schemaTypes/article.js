@@ -80,7 +80,10 @@ export const article = defineType({
         defineField({name: 'alt', title: 'Alternativtext', type: 'string'}),
         defineField({name: 'caption', title: 'Bildunterschrift', type: 'string'}),
       ],
-      validation: (rule) => rule.required(),
+      validation: (rule) => rule.custom((value, context) => {
+        if (context.document?.category === 'fankultur') return true
+        return value ? true : 'Titelbild ist erforderlich.'
+      }),
     }),
     defineField({
       name: 'match',
@@ -93,7 +96,7 @@ export const article = defineType({
         defineField({name: 'competition', title: 'Wettbewerb / Liga', type: 'string'}),
         defineField({name: 'matchday', title: 'Spieltag / Runde', type: 'string'}),
         defineField({name: 'matchDate', title: 'Spieldatum', type: 'date'}),
-        defineField({name: 'stadium', title: 'Stadion', type: 'string'}),
+        defineField({name: 'stadium', title: 'Stadionname', type: 'string'}),
         defineField({name: 'attendance', title: 'Zuschauer', type: 'string'}),
         defineField({name: 'result', title: 'Ergebnis', type: 'string'}),
       ],

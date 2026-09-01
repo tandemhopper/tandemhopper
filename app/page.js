@@ -10,7 +10,7 @@ export const revalidate = 60
 
 function selectHeroArticles(articles){
   const featured=articles
-    .filter(article=>article.featured)
+    .filter(article=>article.featured && article.hero)
     .sort((a,b)=>{
       const orderA=Number.isFinite(a.featuredOrder)?a.featuredOrder:99
       const orderB=Number.isFinite(b.featuredOrder)?b.featuredOrder:99
@@ -23,7 +23,7 @@ function selectHeroArticles(articles){
   const selectedSlugs=new Set(selected.map(article=>article.slug))
   for(const article of articles){
     if(selected.length>=5) break
-    if(!selectedSlugs.has(article.slug)){
+    if(article.hero && !selectedSlugs.has(article.slug)){
       selected.push(article)
       selectedSlugs.add(article.slug)
     }

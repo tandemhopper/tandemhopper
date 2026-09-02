@@ -1,5 +1,10 @@
 const REVALIDATE_SECONDS = 60 * 60 * 24 * 30
 
+const TEAM_IDS = {
+  'paris saint germain': '133714',
+  'fenerbahce': '133807',
+}
+
 const TEAM_ALIASES = {
   'slavia prag': 'Slavia Praha',
   'dinamo bucuresti': 'Dinamo Bucuresti',
@@ -58,14 +63,34 @@ function fallbackSvg(team) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img"><rect x="4" y="4" width="88" height="88" rx="18" fill="#fff" stroke="#d8d8d8" stroke-width="4"/><text x="48" y="55" text-anchor="middle" dominant-baseline="middle" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="800" fill="#111">${label}</text></svg>`
 }
 
-async function fetchBadge(team) {
+async function fetchTeamData(team) {
+  const normalized = normalize(team)
+  const teamId = TEAM_IDS[normalized]
+
+  if (teamId) {
+    const response = await fetch(`https://www.thesportsdb.com/api/v1/json/123/lookupteam.php?id=${teamId}`, {
+      next: {revalidate: REVALIDATE_SECONDS},
+    })
+    if (response.ok) {
+      const data = await response.json()
+      const teams = Array.isArray(data?.teams) ? data.teams : []
+      if (teams.length) return teams
+    }
+  }
+
   const query = searchName(team)
-  const endpoint = `https://www.thesportsdb.com/api/v1/json/123/searchteams.php?t=${encodeURIComponent(query)}`
-  const response = await fetch(endpoint, {next: {revalidate: REVALIDATE_SECONDS}})
-  if (!response.ok) return null
+  const response = await fetch(`https://www.thesportsdb.com/api/v1/json/123/searchteams.php?t=${encodeURIComponent(query)}`, {
+    next: {revalidate: REVALIDATE_SECONDS},
+  })
+  if (!response.ok) return []
 
   const data = await response.json()
-  const teams = Array.isArray(data?.teams) ? data.teams : []
+  return Array.isArray(data?.teams) ? data.teams : []
+}
+
+async function fetchBadge(team) {
+  const query = searchName(team)
+  const teams = await fetchTeamData(team)
   if (!teams.length) return null
 
   const wanted = normalize(query)

@@ -15,6 +15,18 @@ const TEAM_ALIASES = {
   'fcsb': 'FCSB',
 }
 
+const SUCCESS_CACHE_HEADERS = {
+  'Cache-Control': 'public, max-age=2592000, immutable',
+  'CDN-Cache-Control': 'public, max-age=31536000, stale-while-revalidate=604800',
+  'Vercel-CDN-Cache-Control': 'public, max-age=31536000, stale-while-revalidate=604800',
+}
+
+const FALLBACK_CACHE_HEADERS = {
+  'Cache-Control': 'public, max-age=86400',
+  'CDN-Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800',
+  'Vercel-CDN-Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800',
+}
+
 function normalize(value = '') {
   return value
     .normalize('NFD')
@@ -82,7 +94,7 @@ export async function GET(request) {
     return new Response(fallbackSvg('TH'), {
       headers: {
         'Content-Type': 'image/svg+xml; charset=utf-8',
-        'Cache-Control': 'public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800',
+        ...FALLBACK_CACHE_HEADERS,
       },
     })
   }
@@ -93,7 +105,7 @@ export async function GET(request) {
       return new Response(badge.body, {
         headers: {
           'Content-Type': badge.contentType,
-          'Cache-Control': 'public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800',
+          ...SUCCESS_CACHE_HEADERS,
         },
       })
     }
@@ -104,7 +116,7 @@ export async function GET(request) {
   return new Response(fallbackSvg(team), {
     headers: {
       'Content-Type': 'image/svg+xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800',
+      ...FALLBACK_CACHE_HEADERS,
     },
   })
 }

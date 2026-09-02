@@ -53,6 +53,17 @@ function formatMonth(date) {
   return new Intl.DateTimeFormat('de-DE', {month: 'long', year: 'numeric'}).format(date)
 }
 
+function formatMonthShort(date) {
+  return new Intl.DateTimeFormat('de-DE', {month: 'short'}).format(date).replace('.', '')
+}
+
+function formatPeriodMonth(start, end) {
+  if (start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()) {
+    return formatMonth(start).toUpperCase()
+  }
+  return `${formatMonthShort(start)}–${formatMonthShort(end)} ${end.getFullYear()}`.toUpperCase()
+}
+
 function formatShortDate(value) {
   const date = parseDate(value)
   if (!date) return ''
@@ -191,6 +202,16 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
     ? `Dieses Wochenende · ${formatShortDate(toISODate(viewDates[0]))}–${formatShortDate(toISODate(viewDates[2]))}`
     : formatDayHeading(selectedDate)
 
+  const contextWeekday = weekendMode
+    ? 'WOCHENENDE'
+    : new Intl.DateTimeFormat('de-DE', {weekday: 'long'}).format(selectedDate).toUpperCase()
+  const contextDay = weekendMode
+    ? `${pad(viewDates[0].getDate())}–${pad(viewDates[2].getDate())}`
+    : pad(selectedDate.getDate())
+  const contextMonth = weekendMode
+    ? formatPeriodMonth(viewDates[0], viewDates[2])
+    : formatMonth(selectedDate).toUpperCase()
+
   const isTodaySelected = !weekendMode && toISODate(selectedDate) === toISODate(today)
   const activeFilterCount = categoryFilters.length + regionFilters.length + (onlyConfirmed ? 1 : 0)
 
@@ -285,9 +306,19 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
       </div>
 
       <div className="calendar-view">
-        <aside className="calendar-context">
-          <p className="eyebrow">{weekendMode ? 'WOCHENENDE' : 'AUSGEWÄHLTER TAG'}</p>
-          <h2>{heading}</h2>
+        <aside className="calendar-context" aria-label={heading}>
+          <div className="calendar-context-date">
+            <span>{contextWeekday}</span>
+            <strong>{contextDay}</strong>
+            <small>{contextMonth}</small>
+          </div>
+
+          <div className="calendar-context-counts" aria-label="Auswahl im Zeitraum">
+            <span><strong>{visibleMatches.length}</strong><small>{visibleMatches.length === 1 ? 'TIPP' : 'TIPPS'}</small></span>
+            <span><strong>{visibleCompetitions.length}</strong><small>{visibleCompetitions.length === 1 ? 'WETTBEWERB' : 'WETTBEWERBE'}</small></span>
+          </div>
+
+          <p className="calendar-context-section-label">WETTBEWERBE IM ZEITRAUM</p>
           <CompetitionList items={visibleCompetitions} />
           {!visibleCompetitions.length ? (
             <p className="calendar-context-empty">{regionFilters.length ? 'Keine größere Wettbewerbsphase für die gewählte Region in diesem Zeitraum.' : 'Keine größere Wettbewerbsphase für diesen Zeitraum eingetragen.'}</p>

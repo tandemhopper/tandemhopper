@@ -313,11 +313,6 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
             <small>{contextMonth}</small>
           </div>
 
-          <div className="calendar-context-counts" aria-label="Auswahl im Zeitraum">
-            <span><strong>{visibleMatches.length}</strong><small>{visibleMatches.length === 1 ? 'TIPP' : 'TIPPS'}</small></span>
-            <span><strong>{visibleCompetitions.length}</strong><small>{visibleCompetitions.length === 1 ? 'WETTBEWERB' : 'WETTBEWERBE'}</small></span>
-          </div>
-
           <p className="calendar-context-section-label">WETTBEWERBE IM ZEITRAUM</p>
           <CompetitionList items={visibleCompetitions} />
           {!visibleCompetitions.length ? (

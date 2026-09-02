@@ -1,6 +1,7 @@
 import React from 'react'
 import Gallery from './Gallery'
 import ZoomImage from './ZoomImage'
+import ClubMarks from './ClubMarks'
 import {imageUrl} from '../lib/imageUrl'
 
 function renderMarkedSpan(span, index) {
@@ -19,11 +20,36 @@ function isEmptyTextBlock(block) {
   return !(block.children || []).some(child => typeof child?.text === 'string' && child.text.trim().length > 0)
 }
 
+function blockText(block) {
+  return (block?.children || []).map((child) => child?.text || '').join('').trim()
+}
+
+function rankedMatch(block) {
+  if (block?.style !== 'h2') return null
+  const match = blockText(block).match(/^\s*(\d+)\.\s+(.+?)\s+[–—]\s+(.+?)\s*$/)
+  if (!match) return null
+  return {rank: Number(match[1]), homeTeam: match[2].trim(), awayTeam: match[3].trim()}
+}
+
 function TextBlock({block}) {
   const children = (block.children || []).map(renderMarkedSpan)
   if (block.listItem === 'bullet') return <ul><li>{children}</li></ul>
   if (block.listItem === 'number') return <ol><li>{children}</li></ol>
-  if (block.style === 'h2') return <h2>{children}</h2>
+  if (block.style === 'h2') {
+    const fixture = rankedMatch(block)
+    if (fixture) {
+      return <div className="cms-ranked-match-heading">
+        <h2>{children}</h2>
+        <ClubMarks
+          homeTeam={fixture.homeTeam}
+          awayTeam={fixture.awayTeam}
+          variant="article"
+          priority={fixture.rank <= 5}
+        />
+      </div>
+    }
+    return <h2>{children}</h2>
+  }
   if (block.style === 'h3') return <h3>{children}</h3>
   if (block.style === 'blockquote') return <blockquote>{children}</blockquote>
   return <p>{children}</p>

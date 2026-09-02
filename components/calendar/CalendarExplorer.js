@@ -2,6 +2,7 @@
 
 import {useCallback, useMemo, useState} from 'react'
 import Link from 'next/link'
+import ClubMarks from '../ClubMarks'
 import CalendarFilters from './CalendarFilters'
 import MatchDetails from './MatchDetails'
 
@@ -50,6 +51,17 @@ function formatDayHeading(date) {
 
 function formatMonth(date) {
   return new Intl.DateTimeFormat('de-DE', {month: 'long', year: 'numeric'}).format(date)
+}
+
+function formatMonthShort(date) {
+  return new Intl.DateTimeFormat('de-DE', {month: 'short'}).format(date).replace('.', '')
+}
+
+function formatPeriodMonth(start, end) {
+  if (start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()) {
+    return formatMonth(start).toUpperCase()
+  }
+  return `${formatMonthShort(start)}–${formatMonthShort(end)} ${end.getFullYear()}`.toUpperCase()
 }
 
 function formatShortDate(value) {
@@ -116,7 +128,10 @@ function MatchCard({match, onOpen}) {
           <h3>{match.homeTeam} – {match.awayTeam}</h3>
           <p>{[match.city || match.country, formatMatchDate(match)].filter(Boolean).join(' · ')}</p>
         </div>
-        <span className={`calendar-status calendar-status-${match.dateStatus}`}>{match.dateStatus === 'confirmed' ? 'FIX' : 'TBC'}</span>
+        <div className="calendar-match-visual">
+          <ClubMarks homeTeam={match.homeTeam} awayTeam={match.awayTeam} variant="calendar" />
+          <span className={`calendar-status calendar-status-${match.dateStatus}`}>{match.dateStatus === 'confirmed' ? 'FIX' : 'TBC'}</span>
+        </div>
       </div>
 
       {categories.length ? (
@@ -186,6 +201,16 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
   const heading = weekendMode
     ? `Dieses Wochenende · ${formatShortDate(toISODate(viewDates[0]))}–${formatShortDate(toISODate(viewDates[2]))}`
     : formatDayHeading(selectedDate)
+
+  const contextWeekday = weekendMode
+    ? 'WOCHENENDE'
+    : new Intl.DateTimeFormat('de-DE', {weekday: 'long'}).format(selectedDate).toUpperCase()
+  const contextDay = weekendMode
+    ? `${pad(viewDates[0].getDate())}–${pad(viewDates[2].getDate())}`
+    : pad(selectedDate.getDate())
+  const contextMonth = weekendMode
+    ? formatPeriodMonth(viewDates[0], viewDates[2])
+    : formatMonth(selectedDate).toUpperCase()
 
   const isTodaySelected = !weekendMode && toISODate(selectedDate) === toISODate(today)
   const activeFilterCount = categoryFilters.length + regionFilters.length + (onlyConfirmed ? 1 : 0)
@@ -281,9 +306,14 @@ export default function CalendarExplorer({competitions = [], matches = []}) {
       </div>
 
       <div className="calendar-view">
-        <aside className="calendar-context">
-          <p className="eyebrow">{weekendMode ? 'WOCHENENDE' : 'AUSGEWÄHLTER TAG'}</p>
-          <h2>{heading}</h2>
+        <aside className="calendar-context" aria-label={heading}>
+          <div className="calendar-context-date">
+            <span>{contextWeekday}</span>
+            <strong>{contextDay}</strong>
+            <small>{contextMonth}</small>
+          </div>
+
+          <p className="calendar-context-section-label">WETTBEWERBE IM ZEITRAUM</p>
           <CompetitionList items={visibleCompetitions} />
           {!visibleCompetitions.length ? (
             <p className="calendar-context-empty">{regionFilters.length ? 'Keine größere Wettbewerbsphase für die gewählte Region in diesem Zeitraum.' : 'Keine größere Wettbewerbsphase für diesen Zeitraum eingetragen.'}</p>

@@ -4,6 +4,7 @@ import './enhancements.css';
 import './editorial.css';
 import './launch.css';
 import './calendar.css';
+import './club-marks.css';
 import { Analytics } from '@vercel/analytics/next';
 import { Inter, Barlow_Condensed } from 'next/font/google';
 

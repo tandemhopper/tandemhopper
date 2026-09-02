@@ -9,7 +9,7 @@ export default function ClubMarks({homeTeam, awayTeam, variant = 'default', prio
       {teams.map((team) => (
         <span className="club-mark" key={team} title={team}>
           <img
-            src={`/api/club-mark?team=${encodeURIComponent(team)}`}
+            src={`/api/club-mark?team=${encodeURIComponent(team)}&v=2`}
             alt=""
             loading={eager ? 'eager' : 'lazy'}
             fetchPriority={priority ? 'high' : 'auto'}

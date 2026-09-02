@@ -5,7 +5,7 @@ import './editorial.css';
 import './launch.css';
 import './calendar.css';
 import './club-marks.css';
-import { Analytics } from '@vercel/analytics/next';
+import SiteAnalytics from '../components/SiteAnalytics';
 import { Inter, Barlow_Condensed } from 'next/font/google';
 
 const inter = Inter({
@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="de">
       <body style={{ '--body': inter.style.fontFamily, '--cond': barlowCondensed.style.fontFamily }}>
-        {children}<Analytics />
+        {children}<SiteAnalytics />
       </body>
     </html>
   );

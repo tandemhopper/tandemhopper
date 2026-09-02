@@ -46,7 +46,7 @@ export default function About(){
             <p className={styles.eyebrow}>MEHR ALS EIN WEITERER GROUND</p>
             <h2>NICHT NUR ABHAKEN, WO ICH WAR.</h2>
             <p>Ich fahre zu großen Europapokalabenden genauso wie in Ligen, Regionen und Wettbewerbe, die in der üblichen Fußballberichterstattung kaum auftauchen.</p>
-            <p>Mich interessiert nicht nur, <strong>dass</strong> irgendwo gespielt wird, sondern warum ein Spiel, ein Stadion oder eine Fanszene gerade interessant ist. Deshalb darf ein Bericht hier auch mal deutlich tiefer gehen als Groundnummer, Bierpreis und ein kurzer Satz zur Stimmung.</p>
+            <p>Mich interessiert nicht nur, dass irgendwo gespielt wird, sondern warum ein Spiel, ein Stadion oder eine Fanszene gerade interessant ist. Deshalb darf ein Bericht hier auch mal deutlich tiefer gehen als Groundnummer, Bierpreis und ein kurzer Satz zur Stimmung.</p>
           </div>
           <div className={styles.copyBlock}>
             <p className={styles.eyebrow}>WENN AM ANFANG EINE FRAGE STEHT</p>
@@ -147,7 +147,7 @@ export default function About(){
           <div className={styles.closingGrid}>
             <div>
               <p className={styles.eyebrow}>NICHT FERTIG. SOLL ES AUCH NICHT SEIN.</p>
-              <h2>TANDEMHOPPER SOLL SICH WEITERENTWICKELN.</h2>
+              <h2>TANDEMHOPPER<br/>SOLL SICH<br/>WEITERENTWICKELN.</h2>
               <p>Ich probiere neue Formate aus, möchte bei manchen Themen noch tiefer recherchieren und bewusst auch in Teile der Fußballwelt reisen, die sonst wenig Beachtung bekommen.</p>
             </div>
             <div className={styles.feedback}>

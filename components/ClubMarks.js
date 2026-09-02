@@ -1,7 +1,8 @@
-export default function ClubMarks({homeTeam, awayTeam, variant = 'default'}) {
+export default function ClubMarks({homeTeam, awayTeam, variant = 'default', priority = false}) {
   if (!homeTeam || !awayTeam) return null
 
   const teams = [homeTeam, awayTeam]
+  const eager = priority || variant === 'calendar'
 
   return (
     <div className={`club-marks club-marks-${variant}`} aria-hidden="true">
@@ -10,7 +11,8 @@ export default function ClubMarks({homeTeam, awayTeam, variant = 'default'}) {
           <img
             src={`/api/club-mark?team=${encodeURIComponent(team)}`}
             alt=""
-            loading="lazy"
+            loading={eager ? 'eager' : 'lazy'}
+            fetchPriority={priority ? 'high' : 'auto'}
             decoding="async"
           />
         </span>

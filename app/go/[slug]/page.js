@@ -32,6 +32,7 @@ export async function generateMetadata({ params }) {
 
   const description = article.seoDescription || article.teaser;
   const socialImage = article.hero ? absoluteUrl(imageUrl(article.hero, 1600, 84)) : null;
+  const trackingUrl = `/go/${slug}`;
 
   return {
     title: article.title,
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       type: 'article',
       locale: 'de_DE',
-      url: trackingLink.destination,
+      url: trackingUrl,
       siteName: 'Tandemhopper',
       title: article.title,
       description,

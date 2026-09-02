@@ -26,9 +26,9 @@ function blockText(block) {
 
 function rankedMatch(block) {
   if (block?.style !== 'h2') return null
-  const match = blockText(block).match(/^\s*\d+\.\s+(.+?)\s+[–—]\s+(.+?)\s*$/)
+  const match = blockText(block).match(/^\s*(\d+)\.\s+(.+?)\s+[–—]\s+(.+?)\s*$/)
   if (!match) return null
-  return {homeTeam: match[1].trim(), awayTeam: match[2].trim()}
+  return {rank: Number(match[1]), homeTeam: match[2].trim(), awayTeam: match[3].trim()}
 }
 
 function TextBlock({block}) {
@@ -40,7 +40,12 @@ function TextBlock({block}) {
     if (fixture) {
       return <div className="cms-ranked-match-heading">
         <h2>{children}</h2>
-        <ClubMarks homeTeam={fixture.homeTeam} awayTeam={fixture.awayTeam} variant="article" />
+        <ClubMarks
+          homeTeam={fixture.homeTeam}
+          awayTeam={fixture.awayTeam}
+          variant="article"
+          priority={fixture.rank <= 5}
+        />
       </div>
     }
     return <h2>{children}</h2>

@@ -2,6 +2,7 @@
 
 import {useCallback, useMemo, useState} from 'react'
 import Link from 'next/link'
+import ClubMarks from '../ClubMarks'
 import CalendarFilters from './CalendarFilters'
 import MatchDetails from './MatchDetails'
 
@@ -116,7 +117,10 @@ function MatchCard({match, onOpen}) {
           <h3>{match.homeTeam} – {match.awayTeam}</h3>
           <p>{[match.city || match.country, formatMatchDate(match)].filter(Boolean).join(' · ')}</p>
         </div>
-        <span className={`calendar-status calendar-status-${match.dateStatus}`}>{match.dateStatus === 'confirmed' ? 'FIX' : 'TBC'}</span>
+        <div className="calendar-match-visual">
+          <ClubMarks homeTeam={match.homeTeam} awayTeam={match.awayTeam} variant="calendar" />
+          <span className={`calendar-status calendar-status-${match.dateStatus}`}>{match.dateStatus === 'confirmed' ? 'FIX' : 'TBC'}</span>
+        </div>
       </div>
 
       {categories.length ? (

@@ -12,11 +12,12 @@ export default function Datenschutz(){
   return <><Header/><main className="legal-page">
     <p className="eyebrow">RECHTLICHES</p>
     <h1>DATENSCHUTZ</h1>
-    <p className="legal-intro">Hier erklären wir möglichst verständlich, welche technischen Daten beim Besuch von Tandemhopper anfallen und wofür sie genutzt werden. Stand: 29. August 2026.</p>
+    <p className="legal-intro">Hier erklären wir möglichst verständlich, welche technischen Daten beim Besuch von Tandemhopper anfallen und wofür sie genutzt werden. Stand: 2. September 2026.</p>
 
     <section>
       <h2>1. Verantwortlicher</h2>
-      <p><strong>Tandemhopper</strong><br/>Niederlande</p>
+      <p><strong>Tandemhopper</strong><br/>Rappardstraat 30-8<br/>6822 CX Arnhem<br/>Niederlande</p>
+      <p>E-Mail: <a href="mailto:kontakt@tandemhopper.de">kontakt@tandemhopper.de</a><br/>Datenschutzanfragen: <a href="mailto:datenschutz@tandemhopper.de">datenschutz@tandemhopper.de</a></p>
       <p className="legal-note">Tandemhopper wird derzeit als nicht-kommerzielles redaktionelles Hobbyprojekt betrieben. Eine KVK- oder Umsatzsteuerangabe besteht derzeit nicht.</p>
     </section>
 
@@ -45,35 +46,43 @@ export default function Datenschutz(){
     </section>
 
     <section>
-      <h2>5. Redaktionelle und journalistische Inhalte</h2>
-      <p>Tandemhopper veröffentlicht redaktionelle Berichte, Fotos und Informationen über Fußball, Stadien und Fankultur. Soweit dabei personenbezogene Daten ausschließlich zu journalistischen Zwecken verarbeitet werden, können nach Art. 43 der niederländischen Uitvoeringswet AVG besondere Ausnahmen von einzelnen Vorschriften der DSGVO gelten. Sie dienen dem Ausgleich zwischen Datenschutz und Meinungs- und Informationsfreiheit.</p>
-      <p>Diese journalistischen Ausnahmen gelten nicht automatisch für jede technische Verarbeitung auf der Website. Hosting- und Reichweitendaten behandeln wir deshalb gesondert in diesen Datenschutzhinweisen.</p>
+      <h2>5. Kontakt per E-Mail</h2>
+      <p>Wenn du uns per E-Mail kontaktierst, verarbeiten wir die von dir übermittelten Angaben – insbesondere deine E-Mail-Adresse, den Inhalt der Nachricht und gegebenenfalls deinen Namen sowie weitere von dir mitgeteilte Informationen – zur Bearbeitung deiner Anfrage.</p>
+      <p>Die Adressen unter <strong>@tandemhopper.de</strong> werden über die E-Mail-Weiterleitung unseres Domainanbieters domainssaubillig.de (fXmedia) an das für Tandemhopper genutzte WEB.DE-Postfach weitergeleitet. Für die Bereitstellung des Postfachs wird WEB.DE, ein Dienst der 1&amp;1 Mail &amp; Media GmbH, genutzt.</p>
+      <p>Rechtsgrundlage ist unser berechtigtes Interesse, eingehende Anfragen beantworten und die Kommunikation zu Tandemhopper führen zu können (Art. 6 Abs. 1 lit. f DSGVO). Nachrichten werden nur so lange gespeichert, wie dies für die Bearbeitung und eine gegebenenfalls erforderliche Dokumentation nötig ist.</p>
+      <p>Weitere Informationen: <a href="https://www.domainssaubillig.de/unternehmen/datenschutz.html" target="_blank" rel="noreferrer">Datenschutz bei domainssaubillig.de</a> und <a href="https://agb-server.web.de/datenschutz/" target="_blank" rel="noreferrer">Datenschutz bei WEB.DE</a>.</p>
     </section>
 
     <section>
-      <h2>6. Schriftarten</h2>
+      <h2>6. Redaktionelle und journalistische Inhalte</h2>
+      <p>Tandemhopper veröffentlicht redaktionelle Berichte, Fotos und Informationen über Fußball, Stadien und Fankultur. Soweit dabei personenbezogene Daten ausschließlich zu journalistischen Zwecken verarbeitet werden, können nach Art. 43 der niederländischen Uitvoeringswet AVG besondere Ausnahmen von einzelnen Vorschriften der DSGVO gelten. Sie dienen dem Ausgleich zwischen Datenschutz und Meinungs- und Informationsfreiheit.</p>
+      <p>Diese journalistischen Ausnahmen gelten nicht automatisch für jede technische Verarbeitung auf der Website. Hosting-, Reichweiten- und Kontaktdaten behandeln wir deshalb gesondert in diesen Datenschutzhinweisen.</p>
+    </section>
+
+    <section>
+      <h2>7. Schriftarten</h2>
       <p>Die auf Tandemhopper verwendeten Schriftarten werden über die Website selbst ausgeliefert. Beim normalen Seitenaufruf wird dafür keine Verbindung zu Google Fonts hergestellt.</p>
     </section>
 
     <section>
-      <h2>7. Social Media</h2>
+      <h2>8. Social Media</h2>
       <p>Auf Tandemhopper befinden sich Links zu unseren Profilen bzw. Kanälen bei Instagram, Facebook, YouTube und WhatsApp. Es sind derzeit keine eingebetteten Social-Media-Plugins oder Feeds eingebaut. Eine Verbindung zum jeweiligen Anbieter entsteht erst, wenn du einen solchen externen Link aufrufst. Für die anschließende Datenverarbeitung gelten die Datenschutzbestimmungen des jeweiligen Netzwerks.</p>
     </section>
 
     <section>
-      <h2>8. Speicherdauer</h2>
+      <h2>9. Speicherdauer</h2>
       <p>Wir speichern personenbezogene Daten nur so lange, wie sie für den jeweiligen Zweck erforderlich sind oder gesetzliche Pflichten dies verlangen. Für technische Protokoll- und Servicedaten gelten zusätzlich die jeweiligen Aufbewahrungs- und Löschregeln der eingesetzten Dienstleister. Der von Vercel Web Analytics zur Besucherunterscheidung verwendete Hash wird nach Angaben von Vercel täglich zurückgesetzt.</p>
     </section>
 
     <section>
-      <h2>9. Deine Rechte</h2>
+      <h2>10. Deine Rechte</h2>
       <p>Nach der DSGVO kannst du – soweit die jeweiligen Voraussetzungen vorliegen – Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung verlangen. Außerdem kannst du einer Verarbeitung auf Grundlage berechtigter Interessen widersprechen und dich bei einer zuständigen Datenschutzaufsichtsbehörde beschweren.</p>
       <p>Für ausschließlich journalistische Verarbeitungen können aufgrund von Art. 43 Uitvoeringswet AVG Einschränkungen dieser Rechte gelten.</p>
-      <p>Da Tandemhopper aus den Niederlanden betrieben wird, kommt insbesondere die niederländische Datenschutzaufsicht Autoriteit Persoonsgegevens als zuständige Aufsichtsbehörde in Betracht.</p>
+      <p>Da Tandemhopper aus den Niederlanden betrieben wird, kommt insbesondere die niederländische Datenschutzaufsicht Autoriteit Persoonsgegevens als zuständige Aufsichtsbehörde in Betracht. Datenschutzanfragen kannst du an <a href="mailto:datenschutz@tandemhopper.de">datenschutz@tandemhopper.de</a> richten.</p>
     </section>
 
     <section>
-      <h2>10. Änderungen</h2>
+      <h2>11. Änderungen</h2>
       <p>Wenn sich die Website technisch oder organisatorisch verändert – zum Beispiel durch neue Analyse-, Werbe-, Kontakt-, Newsletter- oder Einbettungsdienste – passen wir diese Datenschutzhinweise entsprechend an.</p>
     </section>
   </main><Footer/></>

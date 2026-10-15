@@ -266,3 +266,6 @@
   .spieltipps-toolbar{grid-template-columns:1fr}
   .spieltipps-toolbar-end{justify-content:space-between}
 }
+
+.calendar-detail-sources a{display:inline-block;margin:0 16px 10px 0;color:var(--red);font:800 12px/1.3 var(--cond)}
+.calendar-detail-sources a:hover{text-decoration:underline;text-underline-offset:3px}

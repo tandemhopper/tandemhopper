@@ -2,14 +2,7 @@
 
 import {useEffect, useRef} from 'react'
 import Link from 'next/link'
-
-const categoryLabels = {
-  fanszene: 'FANSZENE',
-  rivalitaet: 'RIVALITÄT',
-  auswaertsfahrt: 'GROSSE AUSWÄRTSFAHRT',
-  anlass: 'BESONDERER ANLASS',
-  unter_dem_radar: 'UNTER DEM RADAR',
-}
+import {categoryLabels} from '../../lib/calendarTaxonomy'
 
 const awayFanLabels = {
   allowed: 'Gästefans zugelassen',
@@ -65,6 +58,7 @@ export default function MatchDetails({match, onClose}) {
   if (!match) return null
 
   const categories = (match.categories || []).map((key) => categoryLabels[key] || key.toUpperCase())
+  const editorialAssessment = (match.editorialAssessment || '').replace(/Hopper-Empfehlung:\\s*[\\d,.]+\\/10\\.?/gi, '').trim()
   const usefulFacts = []
 
   if (match.awayFans && match.awayFans !== 'not_relevant' && awayFanLabels[match.awayFans]) usefulFacts.push(awayFanLabels[match.awayFans])
@@ -80,7 +74,7 @@ export default function MatchDetails({match, onClose}) {
         <button ref={closeButtonRef} className="calendar-detail-close" type="button" aria-label="Details schließen" onClick={onClose}>×</button>
 
         <div className="calendar-detail-head">
-          {match.priority === 3 ? <p className="calendar-tip-label">TANDEMHOPPER-TIPP</p> : null}
+          {match.priority === 3 ? <p className="calendar-tip-label">TANDEMHOPPER-HIGHLIGHT</p> : null}
           <h2 id="calendar-detail-title">{match.homeTeam} – {match.awayTeam}</h2>
           <p>{[match.city || match.country, match.stadium].filter(Boolean).join(' · ')}</p>
           <div className="calendar-detail-schedule">
@@ -94,7 +88,7 @@ export default function MatchDetails({match, onClose}) {
         <section className="calendar-detail-section">
           <p className="eyebrow">WARUM INTERESSANT?</p>
           <p>{match.background || match.shortDescription}</p>
-          {match.editorialAssessment ? <p>{match.editorialAssessment}</p> : null}
+          {editorialAssessment ? <p>{editorialAssessment}</p> : null}
         </section>
 
         {usefulFacts.length ? (

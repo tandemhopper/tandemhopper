@@ -4,27 +4,25 @@ import CalendarExplorer from '../../components/calendar/CalendarExplorer'
 import {getCalendarData} from '../../lib/calendar'
 
 export const metadata = {
-  title: 'Groundhopper-Kalender',
-  description: 'Kuratierte Wettbewerbsphasen und besondere Spiele für Groundhopper, Fanszenen und Fußballreisen.',
+  title: 'Groundhopping-Spieltipps',
+  description: 'Ausgewählte Derbys, Fanszenen, besondere Stadien und seltene Spiele: Tandemhoppers Spieltipps in einer chronologischen Übersicht.',
   alternates: {canonical: '/kalender'},
   robots: {index: false, follow: true},
 }
 
 export default async function Kalender() {
-  const {competitions, matches} = await getCalendarData()
+  const {matches} = await getCalendarData()
 
   return <>
     <Header />
     <main className="calendar-page">
       <section className="calendar-head">
-        <p className="eyebrow">GROUNDHOPPER-SERVICE</p>
-        <h1>KALENDER</h1>
-        <p>Wettbewerbsphasen und Spiele, die einen genaueren Blick wert sind. Keine vollständige Spielplandatenbank, sondern eine redaktionelle Auswahl für Leute, die ihre Fußballreisen nicht nach Tabellenplatz planen.</p>
+        <p className="eyebrow">TANDEMHOPPER · GROUNDHOPPING-RADAR</p>
+        <h1>SPIELTIPPS</h1>
+        <p>Derbys, besondere Stadien und aktive Fanszenen. Unsere Auswahl statt eines vollständigen Spielplans – chronologisch sortiert, mit kurzen Gründen und Details für die Reiseplanung.</p>
       </section>
-
-      <CalendarExplorer competitions={competitions} matches={matches} />
-
-      <p className="calendar-note"><strong>Bewusst unvollständig.</strong> Ein fehlendes Derby ist kein Datenfehler. Wir nehmen nur Termine auf, bei denen wir aus Hopper- oder Fansicht einen konkreten Grund sehen, genauer hinzuschauen.</p>
+      <CalendarExplorer matches={matches} />
+      <p className="calendar-note"><strong>Bewusst unvollständig.</strong> Fehlt ein Derby, ist das kein Datenfehler. Wir nehmen nur Spiele auf, bei denen wir einen konkreten Grund sehen, genauer hinzuschauen. Termine und Gästefanregeln vor der Reise bitte nochmals prüfen.</p>
     </main>
     <Footer />
   </>

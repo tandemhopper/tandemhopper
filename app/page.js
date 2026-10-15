@@ -79,7 +79,7 @@ export default async function Home(){
 
     <section className="category-grid">
       <Link className="category-card" href="/geschichten?filter=fankultur"><img src="/assets/fankultur-pyro.jpg" alt="Kurzmeldungen aus Fankultur und Groundhopping" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>KURZMELDUNGEN</h2><p>Fanszenen, Groundhopping<br/>&amp; aktuelle Entwicklungen.</p><strong>→</strong></div></Link>
-      <Link className="category-card" href="/kalender"><img src="/assets/grounds-oldschool.jpg" alt="Groundhopper-Kalender" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>KALENDER</h2><p>Derbys, Jubiläen, Europa<br/>&amp; besondere Termine.</p><strong>→</strong></div></Link>
+      <Link className="category-card" href="/kalender"><img src="/assets/grounds-oldschool.jpg" alt="Tandemhopper-Spieltipps" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>SPIELTIPPS</h2><p>Derbys, Fanszenen, Stadien<br/>&amp; seltene Termine.</p><strong>→</strong></div></Link>
       <Link className="category-card" href="/geschichten?filter=reisen"><img src="/assets/unterwegs.jpg" alt="Fußballreisen" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>REISEN</h2><p>Länder, Wege &amp; Fußball<br/>aus Groundhoppersicht.</p><strong>→</strong></div></Link>
     </section>
 

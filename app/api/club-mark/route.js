@@ -20,49 +20,6 @@ const TEAM_ALIASES = {
   'fcsb': 'FCSB',
 }
 
-
-// Geprüfte Vereinszuordnungen. Keine Bildersuche nach bloß ähnlich benannten Vereinen.
-// Die Commons-Dateinamen sind auf Vereinsidentität und aktuelle Wappenversion geprüft.
-const VERIFIED_BADGES = {
-  'raec mons': 'https://ilcalcio.net/assets/2e/cf/2ecf377b46c5d53ffc7e0b4374b87f46.png',
-  'ksk heist': 'https://primary.jwwb.nl/public/u/p/j/temp-bpazrmsmlmyifrylaudz/k-sk_-heist-transparant-high.png?enable=upscale&enable-io=true&fit=bounds&width=1200',
-  'as saint etienne': 'https://www.asse.fr/img/mediakit/Logo_ASSE_Quadri_RVB.png',
-  'germania ratingen 04 19': 'https://upload.wikimedia.org/wikipedia/commons/4/44/Ratingen_04-19_logo.svg',
-  'bsc sud 05': 'https://images.ebcdn.de/club-5461/logo.png?format=webp&height=400&mode=max&v=6&width=400',
-  'bsg stahl brandenburg': 'https://upload.wikimedia.org/wikipedia/commons/3/3f/BSG_Stahl_Brandenburg_Logo_2022.svg',
-  'apoel nikosia': 'https://upload.wikimedia.org/wikipedia/commons/9/93/APOEL_%28logo_with_stars%29.svg',
-  'als omonia 29m': 'https://images.seeklogo.com/logo-png/55/1/als-omonia-29-mayou-nicosia-logo-png_seeklogo-552906.png',
-  '1 sc gottingen 05': 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Offizielles_Wappen_des_1._SC_G%C3%B6ttingen_05.svg',
-  'svg gottingen': 'https://upload.wikimedia.org/wikipedia/commons/d/dd/SVG_G%C3%B6ttingen_Logo.png',
-  'calcio foggia 1920': 'https://upload.wikimedia.org/wikipedia/commons/4/49/Logo_Calcio_Foggia_1920_-_20212022.png',
-  'bsg chemie leipzig': 'https://upload.wikimedia.org/wikipedia/commons/e/e3/BSG_Chemie_Leipzig_Logo.svg',
-  'ssv ulm 1846 fu ball': 'https://upload.wikimedia.org/wikipedia/commons/6/6c/SSV_Ulm_1846_Fussball.svg',
-  'omonia nikosia': 'https://sportsbouts.com/img/teams%2F133986%2Fbadge.png',
-  'sint truidense vv': 'https://commons.wikimedia.org/wiki/Special:Redirect/file/K._Sint-Truidense_V.V._logo.png',
-  'rot weiss essen': 'https://upload.wikimedia.org/wikipedia/commons/c/c7/Logo_of_Rot-Weiss_Essen.svg',
-  'dvs 33 ermelo': 'https://www.hollandsevelden.nl/images/club_logo_van_voetbalvereniging_dvs33-ermelo_uit_ermelo.png',
-  // Bon Boys: statt eines ähnlich klingenden Fremdwappens nur exakte Suche/Fallback.
-}
-
-const VERIFIED_ALIASES = {
-  'bon boys': 'SV Bon Boys Haaksbergen',
-  '1 sc gottingen 05': '1. SC Göttingen 05',
-  'ssv ulm 1846 fussball': 'SSV Ulm 1846 Fußball',
-}
-
-async function fetchVerifiedBadge(url) {
-  const response = await fetch(url, {
-    next: {revalidate: REVALIDATE_SECONDS},
-    headers: url.includes('upload.wikimedia.org') ? {'User-Agent': 'Tandemhopper/1.0 (https://tandemhopper.de)'} : {},
-  })
-  if (!response.ok) return null
-  const contentType = (response.headers.get('content-type') || '').toLowerCase().split(';')[0]
-  if (!contentType.startsWith('image/')) return null
-  const body = await response.arrayBuffer()
-  if (!body.byteLength || body.byteLength > 5 * 1024 * 1024) return null
-  return {body, contentType}
-}
-
 const SUCCESS_CACHE_HEADERS = {
   'Cache-Control': 'public, max-age=2592000, immutable',
   'CDN-Cache-Control': 'public, max-age=31536000, stale-while-revalidate=604800',
@@ -86,7 +43,7 @@ function normalize(value = '') {
 
 function searchName(team) {
   const normalized = normalize(team)
-  return VERIFIED_ALIASES[normalized] || TEAM_ALIASES[normalized] || team
+  return TEAM_ALIASES[normalized] || team
 }
 
 function initials(team) {
@@ -132,29 +89,26 @@ async function fetchTeamData(team) {
 }
 
 async function fetchBadge(team) {
-  const normalized = normalize(team)
-
-  // Niemals irgendein Team aus einer unscharfen API-Suche als korrekt anzeigen.
-  // Zuerst die redaktionell überprüfte Bildquelle, danach nur exakte Treffer.
-  const verifiedUrl = VERIFIED_BADGES[normalized]
-  if (verifiedUrl) {
-    try {
-      const verified = await fetchVerifiedBadge(verifiedUrl)
-      if (verified) return verified
-    } catch (error) {
-      console.warn('Verified club crest currently unavailable:', team, error)
-    }
-  }
-
   const query = searchName(team)
-  const wanted = normalize(query)
   const teams = await fetchTeamData(team)
+  if (!teams.length) return null
+
+  const wanted = normalize(query)
   const soccerTeams = teams.filter((item) => item?.strSport === 'Soccer')
   const candidate = soccerTeams.find((item) => normalize(item?.strTeam) === wanted)
     || soccerTeams.find((item) => normalize(item?.strTeamShort) === wanted)
+    || soccerTeams[0]
+    || teams[0]
 
   if (!candidate?.strBadge) return null
-  return fetchVerifiedBadge(candidate.strBadge)
+
+  const badgeResponse = await fetch(candidate.strBadge, {next: {revalidate: REVALIDATE_SECONDS}})
+  if (!badgeResponse.ok) return null
+
+  return {
+    body: await badgeResponse.arrayBuffer(),
+    contentType: badgeResponse.headers.get('content-type') || 'image/png',
+  }
 }
 
 export async function GET(request) {

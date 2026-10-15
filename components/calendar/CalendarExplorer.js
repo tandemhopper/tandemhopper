@@ -1,347 +1,195 @@
 'use client'
 
-import {useCallback, useMemo, useState} from 'react'
+import {useCallback, useEffect, useMemo, useState} from 'react'
 import Link from 'next/link'
 import ClubMarks from '../ClubMarks'
 import CalendarFilters from './CalendarFilters'
 import MatchDetails from './MatchDetails'
+import {categoryLabels, regionsForMatch} from '../../lib/calendarTaxonomy'
 
-const weekdayShort = ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA']
-const categoryLabels = {
-  fanszene: 'FANSZENE',
-  rivalitaet: 'RIVALITÄT',
-  auswaertsfahrt: 'GROSSE AUSWÄRTSFAHRT',
-  anlass: 'BESONDERER ANLASS',
-  unter_dem_radar: 'UNTER DEM RADAR',
-}
+const dateFormatter = new Intl.DateTimeFormat('de-DE', {month: 'long', year: 'numeric'})
+const weekdayFormatter = new Intl.DateTimeFormat('de-DE', {weekday: 'long'})
 
-function pad(value) {
-  return String(value).padStart(2, '0')
-}
-
-function toISODate(date) {
+function isoToday() {
+  const date = new Date()
+  const pad = (value) => String(value).padStart(2, '0')
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
 }
 
-function parseDate(value) {
-  return value ? new Date(`${value}T12:00:00`) : null
+function dateFromISO(value) {
+  return new Date(`${value}T12:00:00`)
 }
 
-function addDays(date, amount) {
-  const next = new Date(date)
-  next.setDate(next.getDate() + amount)
-  return next
+function shortDate(value) {
+  if (!value) return ''
+  return new Intl.DateTimeFormat('de-DE', {day: '2-digit', month: '2-digit'}).format(dateFromISO(value))
 }
 
-function startOfWeek(date) {
-  const result = new Date(date)
-  const day = result.getDay()
-  const distance = day === 0 ? -6 : 1 - day
-  result.setDate(result.getDate() + distance)
-  return result
-}
-
-function formatDayHeading(date) {
-  return new Intl.DateTimeFormat('de-DE', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-  }).format(date)
-}
-
-function formatMonth(date) {
-  return new Intl.DateTimeFormat('de-DE', {month: 'long', year: 'numeric'}).format(date)
-}
-
-function formatMonthShort(date) {
-  return new Intl.DateTimeFormat('de-DE', {month: 'short'}).format(date).replace('.', '')
-}
-
-function formatPeriodMonth(start, end) {
-  if (start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()) {
-    return formatMonth(start).toUpperCase()
-  }
-  return `${formatMonthShort(start)}–${formatMonthShort(end)} ${end.getFullYear()}`.toUpperCase()
-}
-
-function formatShortDate(value) {
-  const date = parseDate(value)
-  if (!date) return ''
-  return new Intl.DateTimeFormat('de-DE', {day: '2-digit', month: '2-digit'}).format(date)
-}
-
-function competitionActiveOn(competition, isoDate) {
-  if (!competition?.startDate) return false
-  const end = competition.endDate || competition.startDate
-  return competition.startDate <= isoDate && end >= isoDate
-}
-
-function matchActiveOn(match, isoDate) {
+function displayDate(match, today) {
   if (match.dateStatus === 'window') {
-    return Boolean(match.dateFrom && match.dateTo && match.dateFrom <= isoDate && match.dateTo >= isoDate)
+    // Ein noch offenes Terminfenster erscheint nur einmal, nicht an jedem möglichen Spieltag.
+    return match.dateFrom < today ? today : match.dateFrom
   }
-  return match.matchDate === isoDate
+  return match.matchDate
 }
 
-function matchSortValue(match) {
-  return match.matchDate || match.dateFrom || '9999-12-31'
-}
-
-function formatMatchDate(match) {
+function scheduleLabel(match) {
   if (match.dateStatus === 'window') {
-    const from = formatShortDate(match.dateFrom)
-    const to = formatShortDate(match.dateTo)
-    return from && to ? `${from}–${to} · TBC` : 'Terminfenster · TBC'
+    return `${shortDate(match.dateFrom)}–${shortDate(match.dateTo)} · TBC`
   }
-
-  const date = formatShortDate(match.matchDate)
-  const time = match.kickoffTime ? ` · ${match.kickoffTime}` : ''
-  const status = match.dateStatus === 'confirmed' ? '' : ' · TBC'
-  return `${date}${time}${status}`
-}
-
-function CompetitionList({items}) {
-  if (!items.length) return null
-
-  return (
-    <div className="calendar-competitions" aria-label="Wettbewerbsphasen">
-      {items.map((competition) => (
-        <article className="calendar-competition" key={competition._id}>
-          <span>{competition.shortName || competition.name}</span>
-          <strong>{competition.phase}</strong>
-          {competition.note ? <p>{competition.note}</p> : null}
-          {competition.status === 'preliminary' ? <small>VORLÄUFIG</small> : null}
-        </article>
-      ))}
-    </div>
-  )
+  return [shortDate(match.matchDate), match.kickoffTime, match.dateStatus === 'confirmed' ? null : 'TBC'].filter(Boolean).join(' · ')
 }
 
 function MatchCard({match, onOpen}) {
   const categories = (match.categories || []).map((key) => categoryLabels[key] || key.toUpperCase())
 
+  function openDetails(event) {
+    // Mittelklick/Strg-Klick soll den Deep-Link regulär in einem neuen Tab öffnen können.
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    onOpen(match)
+  }
+
   return (
     <article className={`calendar-match${match.priority === 3 ? ' calendar-match-featured' : ''}`}>
-      {match.priority === 3 ? <p className="calendar-tip-label">TANDEMHOPPER-TIPP</p> : null}
+      {match.priority === 3 ? <p className="calendar-tip-label">TANDEMHOPPER-HIGHLIGHT</p> : null}
       <div className="calendar-match-head">
         <div>
           <h3>{match.homeTeam} – {match.awayTeam}</h3>
-          <p>{[match.city || match.country, formatMatchDate(match)].filter(Boolean).join(' · ')}</p>
+          <p>{[match.city || match.country, scheduleLabel(match)].filter(Boolean).join(' · ')}</p>
         </div>
         <div className="calendar-match-visual">
           <ClubMarks homeTeam={match.homeTeam} awayTeam={match.awayTeam} variant="calendar" />
           <span className={`calendar-status calendar-status-${match.dateStatus}`}>{match.dateStatus === 'confirmed' ? 'FIX' : 'TBC'}</span>
         </div>
       </div>
-
-      {categories.length ? (
-        <div className="calendar-tags">
-          {categories.map((category) => <span key={category}>{category}</span>)}
-        </div>
-      ) : null}
-
+      {categories.length ? <div className="calendar-tags">{categories.map((category) => <span key={category}>{category}</span>)}</div> : null}
       <p className="calendar-match-copy">{match.shortDescription}</p>
-
       <div className="calendar-match-foot">
         {match.stadium ? <span>{match.stadium}</span> : <span />}
         <div className="calendar-match-links">
           {match.article?.slug ? <Link href={`/geschichten/${match.article.slug}`}>Artikel →</Link> : null}
-          <button type="button" onClick={() => onOpen(match)}>Details →</button>
+          <Link href={`/kalender?spiel=${encodeURIComponent(match._id)}`} onClick={openDetails}>Details →</Link>
         </div>
       </div>
     </article>
   )
 }
 
-export default function CalendarExplorer({competitions = [], matches = []}) {
-  const today = useMemo(() => new Date(), [])
-  const [selectedDate, setSelectedDate] = useState(today)
-  const [weekendMode, setWeekendMode] = useState(false)
+export default function CalendarExplorer({matches = []}) {
+  const [today] = useState(isoToday)
+  const [category, setCategory] = useState('')
+  const [region, setRegion] = useState('')
+  const [onlyHighlights, setOnlyHighlights] = useState(false)
   const [activeMatch, setActiveMatch] = useState(null)
-  const [filtersOpen, setFiltersOpen] = useState(false)
-  const [categoryFilters, setCategoryFilters] = useState([])
-  const [regionFilters, setRegionFilters] = useState([])
-  const [onlyConfirmed, setOnlyConfirmed] = useState(false)
-  const closeDetails = useCallback(() => setActiveMatch(null), [])
-  const closeFilters = useCallback(() => setFiltersOpen(false), [])
 
-  const weekStart = startOfWeek(selectedDate)
-  const weekDays = Array.from({length: 7}, (_, index) => addDays(weekStart, index))
+  useEffect(() => {
+    function syncFromUrl() {
+      const id = new URLSearchParams(window.location.search).get('spiel')
+      setActiveMatch(matches.find((match) => match._id === id) || null)
+    }
+    syncFromUrl()
+    window.addEventListener('popstate', syncFromUrl)
+    return () => window.removeEventListener('popstate', syncFromUrl)
+  }, [matches])
 
-  const viewDates = weekendMode
-    ? [addDays(weekStart, 4), addDays(weekStart, 5), addDays(weekStart, 6)]
-    : [selectedDate]
+  const openDetails = useCallback((match) => {
+    const url = new URL(window.location.href)
+    url.searchParams.set('spiel', match._id)
+    window.history.pushState({}, '', url)
+    setActiveMatch(match)
+  }, [])
 
-  const viewDateStrings = viewDates.map(toISODate)
+  const closeDetails = useCallback(() => {
+    const url = new URL(window.location.href)
+    url.searchParams.delete('spiel')
+    window.history.replaceState({}, '', url)
+    setActiveMatch(null)
+  }, [])
 
-  const filteredCompetitions = competitions.filter((competition) => {
-    if (!regionFilters.length) return true
-    return competition.region === 'global' || regionFilters.includes(competition.region)
-  })
+  const filtered = useMemo(() => matches.filter((match) => {
+    if (!match.matchDate && !match.dateFrom) return false
+    if (match.dateStatus === 'window' && (!match.dateFrom || !match.dateTo || match.dateTo < today)) return false
+    if (match.dateStatus !== 'window' && match.matchDate < today) return false
+    if (category && !(match.categories || []).includes(category)) return false
+    if (region && !regionsForMatch(match).includes(region)) return false
+    if (onlyHighlights && match.priority !== 3) return false
+    return true
+  }).sort((a, b) => {
+    const dateCompare = displayDate(a, today).localeCompare(displayDate(b, today))
+    if (dateCompare) return dateCompare
+    const timeCompare = (a.kickoffTime || '99:99').localeCompare(b.kickoffTime || '99:99')
+    return timeCompare || (b.priority || 0) - (a.priority || 0)
+  }), [matches, today, category, region, onlyHighlights])
 
-  const filteredMatches = matches.filter((match) => {
-    const categoryMatch = !categoryFilters.length || categoryFilters.some((category) => (match.categories || []).includes(category))
-    const regionMatch = !regionFilters.length || regionFilters.includes(match.region)
-    const dateMatch = !onlyConfirmed || match.dateStatus === 'confirmed'
-    return categoryMatch && regionMatch && dateMatch
-  })
-
-  const visibleCompetitions = filteredCompetitions.filter((competition) =>
-    viewDateStrings.some((date) => competitionActiveOn(competition, date))
-  )
-
-  const visibleMatches = filteredMatches
-    .filter((match) => viewDateStrings.some((date) => matchActiveOn(match, date)))
-    .sort((a, b) => (b.priority || 0) - (a.priority || 0) || matchSortValue(a).localeCompare(matchSortValue(b)))
-
-  const nextMatch = filteredMatches
-    .filter((match) => matchSortValue(match) > toISODate(selectedDate))
-    .sort((a, b) => matchSortValue(a).localeCompare(matchSortValue(b)))[0]
-
-  const heading = weekendMode
-    ? `Dieses Wochenende · ${formatShortDate(toISODate(viewDates[0]))}–${formatShortDate(toISODate(viewDates[2]))}`
-    : formatDayHeading(selectedDate)
-
-  const contextWeekday = weekendMode
-    ? 'WOCHENENDE'
-    : new Intl.DateTimeFormat('de-DE', {weekday: 'long'}).format(selectedDate).toUpperCase()
-  const contextDay = weekendMode
-    ? `${pad(viewDates[0].getDate())}–${pad(viewDates[2].getDate())}`
-    : pad(selectedDate.getDate())
-  const contextMonth = weekendMode
-    ? formatPeriodMonth(viewDates[0], viewDates[2])
-    : formatMonth(selectedDate).toUpperCase()
-
-  const isTodaySelected = !weekendMode && toISODate(selectedDate) === toISODate(today)
-  const activeFilterCount = categoryFilters.length + regionFilters.length + (onlyConfirmed ? 1 : 0)
-
-  function toggleListValue(setter, value) {
-    setter((current) => current.includes(value) ? current.filter((item) => item !== value) : [...current, value])
-  }
+  const monthGroups = useMemo(() => {
+    const months = []
+    for (const match of filtered) {
+      const iso = displayDate(match, today)
+      const monthKey = iso.slice(0, 7)
+      let month = months[months.length - 1]
+      if (!month || month.key !== monthKey) {
+        month = {key: monthKey, label: dateFormatter.format(dateFromISO(iso)), days: []}
+        months.push(month)
+      }
+      let day = month.days[month.days.length - 1]
+      if (!day || day.date !== iso) {
+        const date = dateFromISO(iso)
+        day = {
+          date: iso,
+          weekday: weekdayFormatter.format(date),
+          day: date.getDate(),
+          matches: [],
+        }
+        month.days.push(day)
+      }
+      day.matches.push(match)
+    }
+    return months
+  }, [filtered, today])
 
   function resetFilters() {
-    setCategoryFilters([])
-    setRegionFilters([])
-    setOnlyConfirmed(false)
-  }
-
-  function selectDay(date) {
-    setSelectedDate(date)
-    setWeekendMode(false)
-    setActiveMatch(null)
-  }
-
-  function moveWeek(direction) {
-    setSelectedDate((current) => addDays(current, direction * 7))
-    setActiveMatch(null)
-  }
-
-  function goToday() {
-    setSelectedDate(new Date())
-    setWeekendMode(false)
-    setActiveMatch(null)
-  }
-
-  function showWeekend() {
-    setWeekendMode(true)
-    setActiveMatch(null)
+    setCategory('')
+    setRegion('')
+    setOnlyHighlights(false)
   }
 
   return (
     <section className="calendar-explorer">
-      <div className="calendar-actions">
-        <div>
-          <button type="button" className={isTodaySelected ? 'is-active' : ''} onClick={goToday}>HEUTE</button>
-          <button type="button" className={weekendMode ? 'is-active' : ''} onClick={showWeekend}>WOCHENENDE</button>
-          <button
-            type="button"
-            className={`calendar-filter-trigger${activeFilterCount ? ' is-active' : ''}`}
-            aria-expanded={filtersOpen}
-            onClick={() => setFiltersOpen((current) => !current)}
-          >
-            FILTER{activeFilterCount ? ` · ${activeFilterCount}` : ''}
-          </button>
-        </div>
-        <span className="calendar-legend"><i className="competition-mark" /> Wettbewerb <i className="tip-mark" /> Tipp</span>
-      </div>
-
       <CalendarFilters
-        open={filtersOpen}
-        onClose={closeFilters}
-        categories={categoryFilters}
-        regions={regionFilters}
-        onlyConfirmed={onlyConfirmed}
-        onToggleCategory={(value) => toggleListValue(setCategoryFilters, value)}
-        onToggleRegion={(value) => toggleListValue(setRegionFilters, value)}
-        onToggleConfirmed={() => setOnlyConfirmed((current) => !current)}
+        category={category}
+        region={region}
+        onlyHighlights={onlyHighlights}
+        onCategoryChange={setCategory}
+        onRegionChange={setRegion}
+        onHighlightsChange={setOnlyHighlights}
         onReset={resetFilters}
-        resultCount={filteredMatches.length}
-        activeCount={activeFilterCount}
+        resultCount={filtered.length}
       />
 
-      <div className="calendar-month-row">
-        <button type="button" aria-label="Vorherige Woche" onClick={() => moveWeek(-1)}>‹</button>
-        <strong>{formatMonth(selectedDate).toUpperCase()}</strong>
-        <button type="button" aria-label="Nächste Woche" onClick={() => moveWeek(1)}>›</button>
-      </div>
-
-      <div className="calendar-week" role="list" aria-label="Wochenauswahl">
-        {weekDays.map((date) => {
-          const iso = toISODate(date)
-          const hasCompetition = filteredCompetitions.some((competition) => competitionActiveOn(competition, iso))
-          const hasTip = filteredMatches.some((match) => matchActiveOn(match, iso))
-          const selected = !weekendMode && iso === toISODate(selectedDate)
-
-          return (
-            <button type="button" key={iso} className={selected ? 'is-selected' : ''} onClick={() => selectDay(date)}>
-              <span>{weekdayShort[date.getDay()]}</span>
-              <strong>{date.getDate()}</strong>
-              <div className="calendar-day-signals" aria-hidden="true">
-                {hasCompetition ? <i className="competition-mark" /> : <i />}
-                {hasTip ? <i className="tip-mark" /> : <i />}
+      {monthGroups.length ? monthGroups.map((month) => (
+        <section className="spieltipps-month" key={month.key} aria-label={month.label}>
+          <h2 className="spieltipps-month-title">{month.label}</h2>
+          {month.days.map((day) => (
+            <div className="spieltipps-day" key={day.date}>
+              <aside className="spieltipps-date" aria-label={`${day.weekday}, ${day.day}. ${month.label}`}>
+                <span>{day.weekday}</span>
+                <strong>{day.day}</strong>
+                <small>{month.label}</small>
+              </aside>
+              <div className="spieltipps-day-matches">
+                {day.matches.map((match) => <MatchCard key={match._id} match={match} onOpen={openDetails} />)}
               </div>
-            </button>
-          )
-        })}
-      </div>
-
-      <div className="calendar-view">
-        <aside className="calendar-context" aria-label={heading}>
-          <div className="calendar-context-date">
-            <span>{contextWeekday}</span>
-            <strong>{contextDay}</strong>
-            <small>{contextMonth}</small>
-          </div>
-
-          <p className="calendar-context-section-label">WETTBEWERBE IM ZEITRAUM</p>
-          <CompetitionList items={visibleCompetitions} />
-          {!visibleCompetitions.length ? (
-            <p className="calendar-context-empty">{regionFilters.length ? 'Keine größere Wettbewerbsphase für die gewählte Region in diesem Zeitraum.' : 'Keine größere Wettbewerbsphase für diesen Zeitraum eingetragen.'}</p>
-          ) : null}
-        </aside>
-
-        <div className="calendar-recommendations">
-          <div className="calendar-section-head">
-            <p className="eyebrow">UNSERE TIPPS</p>
-            <span>{visibleMatches.length ? `${visibleMatches.length} ${visibleMatches.length === 1 ? 'TIPP' : 'TIPPS'}` : 'KEIN TIPP'}</span>
-          </div>
-
-          {visibleMatches.length ? visibleMatches.map((match) => <MatchCard key={match._id} match={match} onOpen={setActiveMatch} />) : activeFilterCount ? (
-            <div className="calendar-empty">
-              <h3>Kein Treffer für diese Auswahl.</h3>
-              <p>Für diesen Zeitraum passt aktuell kein Tipp zu deinen Filtern. Das heißt nicht, dass dort nichts los ist – nur dass gerade nichts durch deine Auswahl kommt.</p>
-              <button type="button" onClick={resetFilters}>Filter zurücksetzen →</button>
             </div>
-          ) : (
-            <div className="calendar-empty">
-              <h3>Hier nichts erzwungen.</h3>
-              <p>Für diesen Zeitraum haben wir aktuell keinen besonderen Tipp. Genau so soll der Kalender funktionieren: lieber eine Lücke als irgendein Spiel, nur damit hier etwas steht.</p>
-              {nextMatch ? <button type="button" onClick={() => selectDay(parseDate(matchSortValue(nextMatch)))}>Nächster Tipp: {formatShortDate(matchSortValue(nextMatch))} →</button> : null}
-            </div>
-          )}
+          ))}
+        </section>
+      )) : (
+        <div className="calendar-empty" role="status">
+          <h3>Aktuell keine passenden Spieltipps.</h3>
+          <p>Hier wird kein Spiel ergänzt, nur um eine Lücke zu füllen. Probiere eine andere Region oder Kategorie.</p>
+          {(category || region || onlyHighlights) && <button type="button" onClick={resetFilters}>Alle Spieltipps anzeigen →</button>}
         </div>
-      </div>
-
+      )}
       <MatchDetails match={activeMatch} onClose={closeDetails} />
     </section>
   )

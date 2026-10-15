@@ -43,9 +43,11 @@ const PINNED_BADGES = {
     'https://upload.wikimedia.org/wikipedia/commons/9/93/APOEL_%28logo_with_stars%29.svg',
   ],
   'omonia nikosia': [
+    'https://www.footylogos.com/dls/logo/ac-omonia-nicosia.png',
     'https://sportsbouts.com/img/teams%2F133986%2Fbadge.png',
   ],
   'omonia nicosia': [
+    'https://www.footylogos.com/dls/logo/ac-omonia-nicosia.png',
     'https://sportsbouts.com/img/teams%2F133986%2Fbadge.png',
   ],
   'als omonia 29m': [

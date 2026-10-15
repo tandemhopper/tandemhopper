@@ -58,7 +58,7 @@ export default function MatchDetails({match, onClose}) {
   if (!match) return null
 
   const categories = (match.categories || []).map((key) => categoryLabels[key] || key.toUpperCase())
-  const editorialAssessment = (match.editorialAssessment || '').replace(/Hopper-Empfehlung:\\s*[\\d,.]+\\/10\\.?/gi, '').trim()
+  const editorialAssessment = (match.editorialAssessment || '').replace(/Hopper-Empfehlung:\s*[\d,.]+\/10\.?/gi, '').trim()
   const usefulFacts = []
 
   if (match.awayFans && match.awayFans !== 'not_relevant' && awayFanLabels[match.awayFans]) usefulFacts.push(awayFanLabels[match.awayFans])

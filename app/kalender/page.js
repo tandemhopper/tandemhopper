@@ -7,7 +7,7 @@ export const metadata = {
   title: 'Groundhopping-Spieltipps',
   description: 'Ausgewählte Derbys, Fanszenen, besondere Stadien und seltene Spiele: Tandemhoppers Spieltipps in einer chronologischen Übersicht.',
   alternates: {canonical: '/kalender'},
-  robots: {index: false, follow: true},
+  robots: {index: true, follow: true},
 }
 
 export default async function Kalender() {

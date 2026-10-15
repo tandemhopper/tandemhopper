@@ -59,6 +59,10 @@ export default function MatchDetails({match, onClose}) {
 
   const categories = (match.categories || []).map((key) => categoryLabels[key] || key.toUpperCase())
   const editorialAssessment = (match.editorialAssessment || '').replace(/Hopper-Empfehlung:\s*[\d,.]+\/10\.?/gi, '').trim()
+  const sourceLinks = [...new Set([
+    ...(match.sourceUrls || []),
+    ...(match.sources || []).map((source) => source?.url).filter(Boolean),
+  ])].filter((url) => /^https?:\/\//.test(url)).slice(0, 3)
   const usefulFacts = []
 
   if (match.awayFans && match.awayFans !== 'not_relevant' && awayFanLabels[match.awayFans]) usefulFacts.push(awayFanLabels[match.awayFans])
@@ -95,6 +99,13 @@ export default function MatchDetails({match, onClose}) {
           <section className="calendar-detail-section calendar-detail-facts">
             <p className="eyebrow">GUT ZU WISSEN</p>
             <ul>{usefulFacts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
+          </section>
+        ) : null}
+
+        {sourceLinks.length ? (
+          <section className="calendar-detail-section calendar-detail-sources">
+            <p className="eyebrow">QUELLEN & WEITERLESEN</p>
+            {sourceLinks.map((url, index) => <a href={url} key={url} target="_blank" rel="noreferrer">Quelle {index + 1} ↗</a>)}
           </section>
         ) : null}
 

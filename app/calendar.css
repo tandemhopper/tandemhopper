@@ -172,3 +172,100 @@
   .calendar-week button{min-height:78px}
   .calendar-match-links{gap:13px}
 }
+
+
+/* Spieltipps 2026: keine Wochen-/Tagesauswahl mehr, sondern chronologischer Stream. */
+.calendar-explorer{margin-top:38px}
+.spieltipps-toolbar{
+  display:grid;
+  grid-template-columns:minmax(170px,1fr) minmax(170px,1fr) minmax(200px,1.3fr) auto;
+  gap:16px;
+  align-items:end;
+  padding:18px 0 22px;
+  border-bottom:1px solid var(--ink);
+}
+.spieltipps-filter{display:grid;gap:8px;min-width:0}
+.spieltipps-filter>span{font:800 11px/1 var(--cond);color:var(--red);letter-spacing:.04em}
+.spieltipps-filter select{
+  appearance:none;
+  width:100%;
+  min-height:42px;
+  border:1px solid var(--line);
+  border-radius:0;
+  color:var(--ink);
+  background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23111' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 13px center;
+  font:700 13px/1 var(--cond);
+  padding:0 34px 0 12px;
+  cursor:pointer;
+}
+.spieltipps-filter select:focus-visible,.spieltipps-highlight-filter input:focus-visible,.spieltipps-toolbar-end button:focus-visible{
+  outline:2px solid var(--red);outline-offset:2px;
+}
+.spieltipps-highlight-filter{display:flex;align-items:center;gap:9px;min-height:42px;font:700 13px/1.3 var(--cond);cursor:pointer}
+.spieltipps-highlight-filter input{width:17px;height:17px;accent-color:var(--red);flex:none}
+.spieltipps-toolbar-end{min-height:42px;display:flex;align-items:center;gap:13px;justify-content:flex-end;white-space:nowrap;font:700 12px/1 var(--cond);color:var(--muted)}
+.spieltipps-toolbar-end button{appearance:none;border:0;background:none;color:var(--red);font:800 12px/1 var(--cond);cursor:pointer}
+.spieltipps-month{margin-top:34px}
+.spieltipps-month+.spieltipps-month{margin-top:52px}
+.spieltipps-month-title{
+  font:800 24px/1 var(--cond);
+  text-transform:uppercase;
+  letter-spacing:.02em;
+  margin:0;
+  padding:0 0 16px;
+  border-bottom:1px solid var(--ink);
+}
+.spieltipps-day{
+  display:grid;
+  grid-template-columns:minmax(115px,190px) minmax(0,1fr);
+  gap:36px;
+  border-bottom:1px solid var(--line);
+}
+.spieltipps-date{
+  padding:28px 26px 18px 0;
+  border-right:1px solid var(--line);
+  display:flex;
+  align-items:flex-start;
+  flex-direction:column;
+  gap:3px;
+}
+.spieltipps-date>span{font:800 12px/1 var(--cond);color:var(--red);text-transform:uppercase}
+.spieltipps-date>strong{font:800 68px/.98 var(--cond);color:var(--ink)}
+.spieltipps-date>small{font:700 12px/1.25 var(--cond);color:var(--muted);text-transform:uppercase}
+.spieltipps-day-matches{min-width:0}
+.spieltipps-day-matches .calendar-match:last-child{border-bottom:0}
+.spieltipps-day-matches .calendar-match:first-child{padding-top:28px}
+.spieltipps-day-matches .calendar-match{padding-bottom:28px}
+.spieltipps-month+.spieltipps-month .spieltipps-month-title{border-color:var(--ink)}
+@media(max-width:1050px){
+  .spieltipps-toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .spieltipps-toolbar-end{justify-content:flex-start}
+}
+@media(max-width:760px){
+  .calendar-explorer{margin-top:26px}
+  .spieltipps-toolbar{gap:13px;padding:16px 0 20px}
+  .spieltipps-filter select{font-size:12px}
+  .spieltipps-day{display:block;border-bottom:1px solid var(--line)}
+  .spieltipps-date{
+    border-right:0;
+    padding:21px 0 0;
+    flex-direction:row;
+    align-items:baseline;
+    gap:9px;
+  }
+  .spieltipps-date>strong{order:-1;font-size:36px}
+  .spieltipps-date>span{font-size:12px}
+  .spieltipps-date>small{font-size:11px}
+  .spieltipps-month{margin-top:27px}
+  .spieltipps-month-title{font-size:21px;padding-bottom:12px}
+  .spieltipps-day-matches .calendar-match:first-child{padding-top:18px}
+  .spieltipps-day-matches .calendar-match{padding:20px 0}
+  .spieltipps-highlight-filter{font-size:12px}
+}
+@media(max-width:410px){
+  .spieltipps-toolbar{grid-template-columns:1fr}
+  .spieltipps-toolbar-end{justify-content:space-between}
+}
+
+.calendar-detail-sources a{display:inline-block;margin:0 16px 10px 0;color:var(--red);font:800 12px/1.3 var(--cond)}
+.calendar-detail-sources a:hover{text-decoration:underline;text-underline-offset:3px}

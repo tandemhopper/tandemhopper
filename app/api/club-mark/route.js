@@ -20,6 +20,64 @@ const TEAM_ALIASES = {
   'fcsb': 'FCSB',
 }
 
+// Nur gezielte Korrekturen für nachweislich falsche/fehlende Vereinswappen.
+// Alle anderen Vereine behalten die bisherige TheSportsDB-Suche unverändert.
+const PINNED_BADGES = {
+  'red star fc': [
+    'https://upload.wikimedia.org/wikipedia/commons/a/ac/Logo_Red_Star_FC_2014.svg',
+  ],
+  'as saint etienne': [
+    'https://www.asse.fr/img/mediakit/Logo_ASSE_Quadri_RVB.png',
+  ],
+  'raec mons': [
+    'https://fanshop.raecmons44.be/cdn/shop/files/Mons-logo.png?v=1768412580',
+  ],
+  'ksk heist': [
+    'https://cdn-img.zerozero.pt/img/logos/equipas/43577_imgbank_1687789932.png',
+    'https://primary.jwwb.nl/public/u/p/j/temp-bpazrmsmlmyifrylaudz/k-sk_-heist-transparant-high.png?enable=upscale&enable-io=true&fit=bounds&width=1200',
+  ],
+  'apoel nikosia': [
+    'https://upload.wikimedia.org/wikipedia/commons/9/93/APOEL_%28logo_with_stars%29.svg',
+  ],
+  'apoel nicosia': [
+    'https://upload.wikimedia.org/wikipedia/commons/9/93/APOEL_%28logo_with_stars%29.svg',
+  ],
+  'omonia nikosia': [
+    'https://www.footylogos.com/dls/logo/ac-omonia-nicosia.png',
+    'https://sportsbouts.com/img/teams%2F133986%2Fbadge.png',
+  ],
+  'omonia nicosia': [
+    'https://www.footylogos.com/dls/logo/ac-omonia-nicosia.png',
+    'https://sportsbouts.com/img/teams%2F133986%2Fbadge.png',
+  ],
+  'als omonia 29m': [
+    'https://www.footylogos.com/dls/logo/omonia-29m.png',
+  ],
+  'omonia 29m': [
+    'https://www.footylogos.com/dls/logo/omonia-29m.png',
+  ],
+  'omonia 29is maiou': [
+    'https://www.footylogos.com/dls/logo/omonia-29m.png',
+  ],
+}
+
+async function fetchPinnedBadge(url) {
+  const response = await fetch(url, {
+    next: {revalidate: REVALIDATE_SECONDS},
+    headers: url.includes('upload.wikimedia.org')
+      ? {'User-Agent': 'Tandemhopper/1.0 (https://tandemhopper.de)'}
+      : {},
+  })
+  if (!response.ok) return null
+
+  const contentType = (response.headers.get('content-type') || '').split(';')[0].toLowerCase()
+  if (!['image/svg+xml', 'image/png', 'image/jpeg', 'image/webp'].includes(contentType)) return null
+
+  const body = await response.arrayBuffer()
+  if (!body.byteLength || body.byteLength > 5 * 1024 * 1024) return null
+  return {body, contentType}
+}
+
 const SUCCESS_CACHE_HEADERS = {
   'Cache-Control': 'public, max-age=2592000, immutable',
   'CDN-Cache-Control': 'public, max-age=31536000, stale-while-revalidate=604800',
@@ -89,6 +147,21 @@ async function fetchTeamData(team) {
 }
 
 async function fetchBadge(team) {
+  const pinned = PINNED_BADGES[normalize(team)]
+  if (pinned) {
+    // Bei diesen Vereinen keinesfalls das erste ähnlich benannte API-Ergebnis
+    // anzeigen (Red Star FC wurde sonst fälschlich SK Beveren zugeordnet).
+    for (const url of pinned) {
+      try {
+        const badge = await fetchPinnedBadge(url)
+        if (badge) return badge
+      } catch (error) {
+        console.warn('Pinned badge unavailable:', team, error)
+      }
+    }
+    return null
+  }
+
   const query = searchName(team)
   const teams = await fetchTeamData(team)
   if (!teams.length) return null

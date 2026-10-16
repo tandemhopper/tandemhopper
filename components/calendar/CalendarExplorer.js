@@ -34,6 +34,7 @@ function displayDate(match, today) {
 }
 
 function scheduleLabel(match) {
+  if (match.dateStatus === 'unscheduled') return 'Termin noch nicht angesetzt'
   if (match.dateStatus === 'window') {
     return `${shortDate(match.dateFrom)}–${shortDate(match.dateTo)} · TBC`
   }
@@ -53,14 +54,19 @@ function MatchCard({match, onOpen}) {
   return (
     <article className={`calendar-match${match.priority === 3 ? ' calendar-match-featured' : ''}`}>
       {match.priority === 3 ? <p className="calendar-tip-label">TANDEMHOPPER-HIGHLIGHT</p> : null}
+      {match.sport === 'speedway' ? <p className="calendar-other-sport-label">SPEEDWAY · KEIN FUSSBALL</p> : null}
       <div className="calendar-match-head">
         <div>
           <h3>{match.homeTeam} – {match.awayTeam}</h3>
           <p>{[match.city || match.country, scheduleLabel(match)].filter(Boolean).join(' · ')}</p>
         </div>
         <div className="calendar-match-visual">
-          <ClubMarks homeTeam={match.homeTeam} awayTeam={match.awayTeam} variant="calendar" />
-          <span className={`calendar-status calendar-status-${match.dateStatus}`}>{match.dateStatus === 'confirmed' ? 'FIX' : 'TBC'}</span>
+          {match.sport === 'speedway'
+            ? <span className="calendar-other-sport-icon" aria-label="Speedway">🏁</span>
+            : <ClubMarks homeTeam={match.homeTeam} awayTeam={match.awayTeam} variant="calendar" />}
+          <span className={`calendar-status calendar-status-${match.dateStatus}`}>
+            {match.dateStatus === 'confirmed' ? 'FIX' : match.dateStatus === 'unscheduled' ? 'TERMIN OFFEN' : 'TBC'}
+          </span>
         </div>
       </div>
       {categories.length ? <div className="calendar-tags">{categories.map((category) => <span key={category}>{category}</span>)}</div> : null}
@@ -122,6 +128,14 @@ export default function CalendarExplorer({matches = []}) {
     return timeCompare || (b.priority || 0) - (a.priority || 0)
   }), [matches, today, category, region, onlyHighlights])
 
+  const watchlist = useMemo(() => matches.filter((match) => {
+    if (match.dateStatus !== 'unscheduled' || match.matchDate || match.dateFrom) return false
+    if (category && !(match.categories || []).includes(category)) return false
+    if (region && !regionsForMatch(match).includes(region)) return false
+    if (onlyHighlights && match.priority !== 3) return false
+    return true
+  }), [matches, category, region, onlyHighlights])
+
   const monthGroups = useMemo(() => {
     const months = []
     for (const match of filtered) {
@@ -164,10 +178,10 @@ export default function CalendarExplorer({matches = []}) {
         onRegionChange={setRegion}
         onHighlightsChange={setOnlyHighlights}
         onReset={resetFilters}
-        resultCount={filtered.length}
+        resultCount={filtered.length + watchlist.length}
       />
 
-      {monthGroups.length ? monthGroups.map((month) => (
+      {monthGroups.map((month) => (
         <section className="spieltipps-month" key={month.key} aria-label={month.label}>
           <h2 className="spieltipps-month-title">{month.label}</h2>
           {month.days.map((day) => (
@@ -183,7 +197,17 @@ export default function CalendarExplorer({matches = []}) {
             </div>
           ))}
         </section>
-      )) : (
+      ))}
+      {watchlist.length > 0 && (
+        <section className="spieltipps-undated" aria-label="Vorgemerkte Begegnungen ohne Termin">
+          <h2 className="spieltipps-month-title">Vorgemerkt · Termin offen</h2>
+          <p className="spieltipps-watchlist-note">Interessante Begegnungen ohne belastbare Ansetzung. Kein bestätigter Reisetermin.</p>
+          <div className="spieltipps-undated-items">
+            {watchlist.map((match) => <MatchCard key={match._id} match={match} onOpen={openDetails} />)}
+          </div>
+        </section>
+      )}
+      {!monthGroups.length && !watchlist.length && (
         <div className="calendar-empty" role="status">
           <h3>Aktuell keine passenden Spieltipps.</h3>
           <p>Hier wird kein Spiel ergänzt, nur um eine Lücke zu füllen. Probiere eine andere Region oder Kategorie.</p>

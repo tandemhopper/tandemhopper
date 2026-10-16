@@ -59,6 +59,16 @@ export const calendarMatch = defineType({
     defineField({name: 'city', title: 'Stadt / Ort', type: 'string'}),
     defineField({name: 'stadium', title: 'Stadion', type: 'string'}),
     defineField({
+      name: 'sport',
+      title: 'Sportart',
+      type: 'string',
+      initialValue: 'football',
+      options: {list: [
+        {title: 'Fußball', value: 'football'},
+        {title: 'Speedway (kein Fußball)', value: 'speedway'},
+      ]},
+    }),
+    defineField({
       name: 'dateStatus',
       title: 'Terminstatus',
       type: 'string',
@@ -68,6 +78,7 @@ export const calendarMatch = defineType({
           {title: 'Fix terminiert', value: 'confirmed'},
           {title: 'Datum / Uhrzeit noch TBC', value: 'tbc'},
           {title: 'Nur Zeitraum bekannt', value: 'window'},
+          {title: 'Nur vormerken, noch kein Datum', value: 'unscheduled'},
         ],
         layout: 'radio',
       },
@@ -77,9 +88,9 @@ export const calendarMatch = defineType({
       name: 'matchDate',
       title: 'Spieldatum',
       type: 'date',
-      hidden: ({document}) => document?.dateStatus === 'window',
+      hidden: ({document}) => ['window', 'unscheduled'].includes(document?.dateStatus),
       validation: (rule) => rule.custom((value, context) => {
-        if (context.document?.dateStatus !== 'window' && !value) return 'Bitte ein Datum eintragen.'
+        if (!['window', 'unscheduled'].includes(context.document?.dateStatus) && !value) return 'Bitte ein Datum eintragen.'
         return true
       }),
     }),
@@ -88,7 +99,7 @@ export const calendarMatch = defineType({
       title: 'Anstoßzeit',
       description: 'Format zum Beispiel 20:45. Leer lassen, wenn noch nicht bekannt.',
       type: 'string',
-      hidden: ({document}) => document?.dateStatus === 'window',
+      hidden: ({document}) => ['window', 'unscheduled'].includes(document?.dateStatus),
       validation: (rule) => rule.regex(/^([01]\d|2[0-3]):[0-5]\d$/, {name: 'Uhrzeit', invert: false}).warning('Bitte möglichst im Format HH:MM eintragen.'),
     }),
     defineField({
@@ -125,6 +136,7 @@ export const calendarMatch = defineType({
           {title: 'Seltenes Spiel', value: 'seltenes_spiel'},
           {title: 'Abschiedsspiel', value: 'abschiedsspiel'},
           {title: 'Dorfderby', value: 'dorfderby'},
+          {title: 'Andere Sportart', value: 'andere_sportart'},
           {title: 'Große Auswärtsfahrt', value: 'auswaertsfahrt'},
           {title: 'Besonderer Anlass (Altbestand)', value: 'anlass'},
           {title: 'Unter dem Radar (Altbestand)', value: 'unter_dem_radar'},
@@ -286,7 +298,7 @@ export const calendarMatch = defineType({
     prepare({homeTeam, awayTeam, country, matchDate, dateFrom, dateStatus, priority}) {
       const dateValue = matchDate || dateFrom
       const date = dateValue ? new Date(`${dateValue}T12:00:00`).toLocaleDateString('de-DE') : 'Termin offen'
-      const status = dateStatus === 'confirmed' ? 'fix' : dateStatus === 'window' ? 'Zeitraum' : 'TBC'
+      const status = dateStatus === 'confirmed' ? 'fix' : dateStatus === 'window' ? 'Zeitraum' : dateStatus === 'unscheduled' ? 'Vormerker' : 'TBC'
 
       return {
         title: `${homeTeam || '?'} – ${awayTeam || '?'}`,

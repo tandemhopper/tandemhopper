@@ -22,6 +22,7 @@ function formatDate(value) {
 }
 
 function formatSchedule(match) {
+  if (match.dateStatus === 'unscheduled') return 'Termin noch nicht angesetzt'
   if (match.dateStatus === 'window') {
     const from = formatDate(match.dateFrom)
     const to = formatDate(match.dateTo)
@@ -79,11 +80,12 @@ export default function MatchDetails({match, onClose}) {
 
         <div className="calendar-detail-head">
           {match.priority === 3 ? <p className="calendar-tip-label">TANDEMHOPPER-HIGHLIGHT</p> : null}
+          {match.sport === 'speedway' ? <p className="calendar-other-sport-label">SPEEDWAY · KEIN FUSSBALL</p> : null}
           <h2 id="calendar-detail-title">{match.homeTeam} – {match.awayTeam}</h2>
           <p>{[match.city || match.country, match.stadium].filter(Boolean).join(' · ')}</p>
           <div className="calendar-detail-schedule">
             <strong>{formatSchedule(match)}</strong>
-            <span className={`calendar-status calendar-status-${match.dateStatus}`}>{match.dateStatus === 'confirmed' ? 'FIX' : 'TBC'}</span>
+            <span className={`calendar-status calendar-status-${match.dateStatus}`}>{match.dateStatus === 'confirmed' ? 'FIX' : match.dateStatus === 'unscheduled' ? 'TERMIN OFFEN' : 'TBC'}</span>
           </div>
         </div>
 

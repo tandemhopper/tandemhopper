@@ -269,3 +269,12 @@
 
 .calendar-detail-sources a{display:inline-block;margin:0 16px 10px 0;color:var(--red);font:800 12px/1.3 var(--cond)}
 .calendar-detail-sources a:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Eindeutiger Sonderfall für Fankultur außerhalb des Fußballs. */
+.calendar-other-sport-label{display:inline-block;margin:0 0 10px;font:800 11px/1 var(--cond);letter-spacing:.06em;color:var(--red)}
+.calendar-other-sport-icon{font-size:31px;line-height:1;display:block;text-align:right;margin-bottom:10px}
+.calendar-status-unscheduled{color:var(--red);border-color:var(--red);white-space:nowrap}
+.spieltipps-undated{margin-top:65px}
+.spieltipps-watchlist-note{margin:14px 0 5px;font-size:13px;line-height:1.5;color:var(--muted)}
+.spieltipps-undated-items{max-width:860px}
+.spieltipps-undated-items .calendar-match{border-bottom:1px solid var(--line)}

@@ -73,7 +73,8 @@ export const article = defineType({
     }),
     defineField({
       name: 'heroImage',
-      title: 'Titelbild',
+      title: 'Titelbild – eigenes Foto',
+      description: 'Hier ein eigenes Foto hochladen. Das ersetzt automatisch das bisherige externe Titelbild mitsamt dessen Bildunterschrift und Lizenzangaben.',
       type: 'image',
       options: {hotspot: true},
       fields: [

@@ -4,7 +4,7 @@
     "slug": "fa-cup-auslosung-2026-groundhopper",
     "category": "fankultur",
     "tag": "Kurzmeldungen · England",
-    "teaser": "Kleine Grounds, große Gäste und 40 Pokalspiele: Diese Lose der ersten FA-Cup-Hauptrunde sind für Groundhopper besonders interessant.",
+    "teaser": "Premier-League-Klubs fehlen noch. Dafür warten kleine Grounds, zwei Cup-Debütanten und ein paar ziemlich gute Lose für Groundhopper.",
     "publishedAt": "2026-10-19T19:00:00.000Z",
     "featured": false,
     "publish": true,
@@ -19,125 +19,111 @@
     "body": [
       {
         "type": "p",
-        "text": "Die erste Hauptrunde des FA Cups ist ausgelost! Am Wochenende rund um Samstag, den 7. November 2026, stehen 40 Partien an. Nach vier Qualifikationsrunden steigen nun auch die Vereine aus der dritten und vierten englischen Liga ein. Für einige Non-League-Klubs wird es damit plötzlich ziemlich voll auf dem eigenen Ground."
+        "text": "40 Partien, einige ziemlich kleine Grounds und ein paar Vereine, die sich noch nie auf diesem Niveau im Pokal wiedergefunden haben: Die erste FA-Cup-Hauptrunde ist ausgelost. Gespielt wird am Wochenende rund um den 7. November 2026. Nach vier Qualifikationsrunden kommen jetzt die Klubs aus der dritten und vierten englischen Liga dazu."
       },
       {
         "type": "p",
-        "text": "Genau deshalb lohnt sich der FA Cup für Groundhopper: ungewohnte Gegner, größere Gästeblöcke, ausverkaufte kleine Stadien und manchmal die beste Gelegenheit, einen Ground mit richtig Betrieb zu besuchen. Die TV-Auswahl verteilt die Spiele erfahrungsgemäß auf verschiedene Tage und Anstoßzeiten. Mit etwas Planung lässt sich also mehr als eine Partie mitnehmen – sobald die Terminierungen feststehen."
+        "text": "Für Groundhopper ist das oft die interessantere Phase als die Runden mit den ganz großen Namen. Ein Siebtligist bekommt plötzlich Besuch aus dem Profifußball, ein Gästeblock wird größer als die übliche Heimkulisse und der Ground ist vielleicht so voll wie seit Jahren nicht. Dazu verteilen die TV-Ansetzungen die Spiele auf unterschiedliche Tage und Anstoßzeiten. Wer geschickt kombiniert, bekommt mehr als ein Stadion an einem Wochenende zusammen – die konkreten Zeiten fehlen allerdings noch."
       },
       {
         "type": "h2",
-        "text": "Welche Lose stechen heraus?"
+        "text": "Diese Lose würde ich markieren"
       },
       {
         "type": "p",
-        "text": "Oxford City – Leicester City: Der Sechstligist empfängt den Meister von 2016. Im kleinen Marsh Lane dürfte der normale Ligaalltag für einen Tag ziemlich weit weg sein.",
+        "text": "Oxford City – Leicester City: Der englische Meister von 2016 ist mittlerweile in der dritten Liga gelandet und muss zum Sechstligisten nach Marsh Lane. Das kleine Stadion dürfte einen ziemlich anderen Tag erleben als sonst.",
         "segments": [
           {
             "text": "Oxford City – Leicester City: ",
             "strong": true
           },
           {
-            "text": "Der Sechstligist empfängt den Meister von 2016. Im kleinen Marsh Lane dürfte der normale Ligaalltag für einen Tag ziemlich weit weg sein.",
+            "text": "Der englische Meister von 2016 ist mittlerweile in der dritten Liga gelandet und muss zum Sechstligisten nach Marsh Lane. Das kleine Stadion dürfte einen ziemlich anderen Tag erleben als sonst.",
             "strong": false
           }
         ]
       },
       {
         "type": "p",
-        "text": "Hornchurch – Blackpool: Erstmals seit 2008 wieder in der Hauptrunde – und für den Hornchurch-Ground stehen umfangreiche Umbaupläne im Raum. Auch deshalb ein interessanter Stadionbesuch.",
+        "text": "Hornchurch – Blackpool: Hornchurch steht erstmals seit 2008 wieder in Runde eins. Am Stadion mit Laufbahn sind außerdem größere Umbauten geplant. Hübsch ist nicht alles daran, interessant für Hopper aber schon.",
         "segments": [
           {
             "text": "Hornchurch – Blackpool: ",
             "strong": true
           },
           {
-            "text": "Erstmals seit 2008 wieder in der Hauptrunde – und für den Hornchurch-Ground stehen umfangreiche Umbaupläne im Raum. Auch deshalb ein interessanter Stadionbesuch.",
+            "text": "Hornchurch steht erstmals seit 2008 wieder in Runde eins. Am Stadion mit Laufbahn sind außerdem größere Umbauten geplant. Hübsch ist nicht alles daran, interessant für Hopper aber schon.",
             "strong": false
           }
         ]
       },
       {
         "type": "p",
-        "text": "Plymouth Parkway – Berkhamsted: Beide Siebtligisten stehen erstmals in der ersten Hauptrunde. Berkhamsted hat dafür auswärts Southend United ausgeschaltet. Einer der beiden Debütanten kommt sicher weiter.",
+        "text": "Plymouth Parkway – Berkhamsted: Ausgerechnet die beiden Siebtligisten, die erstmals die Hauptrunde erreicht haben, wurden gegeneinander gelost. Berkhamsted hat auf dem Weg dorthin Southend United rausgeworfen. Einer der beiden Debütanten steht garantiert in Runde zwei.",
         "segments": [
           {
             "text": "Plymouth Parkway – Berkhamsted: ",
             "strong": true
           },
           {
-            "text": "Beide Siebtligisten stehen erstmals in der ersten Hauptrunde. Berkhamsted hat dafür auswärts Southend United ausgeschaltet. Einer der beiden Debütanten kommt sicher weiter.",
+            "text": "Ausgerechnet die beiden Siebtligisten, die erstmals die Hauptrunde erreicht haben, wurden gegeneinander gelost. Berkhamsted hat auf dem Weg dorthin Southend United rausgeworfen. Einer der beiden Debütanten steht garantiert in Runde zwei.",
             "strong": false
           }
         ]
       },
       {
         "type": "p",
-        "text": "Bury oder Harrogate Town – AFC Fylde: Gewinnt Bury sein Wiederholungsspiel, steht der ehemalige Profiverein erstmals seit 2018 wieder in Runde eins. Ein Pokaltag an der Gigg Lane hätte einiges.",
+        "text": "Bury oder Harrogate Town – AFC Fylde: Bury muss erst das Wiederholungsspiel gewinnen. Gelingt das, ist der ehemalige Football-League-Klub erstmals seit 2018 wieder in der Hauptrunde. Die Gigg Lane wäre dafür der passende Rahmen.",
         "segments": [
           {
             "text": "Bury oder Harrogate Town – AFC Fylde: ",
             "strong": true
           },
           {
-            "text": "Gewinnt Bury sein Wiederholungsspiel, steht der ehemalige Profiverein erstmals seit 2018 wieder in Runde eins. Ein Pokaltag an der Gigg Lane hätte einiges.",
+            "text": "Bury muss erst das Wiederholungsspiel gewinnen. Gelingt das, ist der ehemalige Football-League-Klub erstmals seit 2018 wieder in der Hauptrunde. Die Gigg Lane wäre dafür der passende Rahmen.",
             "strong": false
           }
         ]
       },
       {
         "type": "p",
-        "text": "Altrincham oder FC United of Manchester – Notts County: Sollte FC United weiterkommen, wartet im fanfinanzierten Broadhurst Park ein spannendes Duell mit einem traditionsreichen League-Klub.",
+        "text": "Altrincham oder FC United of Manchester – Notts County: Auch hier hängt alles am Wiederholungsspiel. Setzt sich der von Manchester-United-Fans gegründete FC United durch, empfängt er Notts County im eigenen Broadhurst Park. Das wäre eine ziemlich gute Paarung.",
         "segments": [
           {
             "text": "Altrincham oder FC United of Manchester – Notts County: ",
             "strong": true
           },
           {
-            "text": "Sollte FC United weiterkommen, wartet im fanfinanzierten Broadhurst Park ein spannendes Duell mit einem traditionsreichen League-Klub.",
+            "text": "Auch hier hängt alles am Wiederholungsspiel. Setzt sich der von Manchester-United-Fans gegründete FC United durch, empfängt er Notts County im eigenen Broadhurst Park. Das wäre eine ziemlich gute Paarung.",
             "strong": false
           }
         ]
       },
       {
         "type": "p",
-        "text": "Salisbury – Sholing: Salisbury steht erstmals seit der Neugründung 2015 in der Hauptrunde, Sholing überhaupt zum ersten Mal. Dazu ein regionales Duell.",
+        "text": "Salisbury – Sholing: Regionalduell mit zwei Pokalgeschichten: Salisbury steht nach der Neugründung 2015 erstmals in der Hauptrunde, Sholing sogar zum ersten Mal überhaupt.",
         "segments": [
           {
             "text": "Salisbury – Sholing: ",
             "strong": true
           },
           {
-            "text": "Salisbury steht erstmals seit der Neugründung 2015 in der Hauptrunde, Sholing überhaupt zum ersten Mal. Dazu ein regionales Duell.",
+            "text": "Regionalduell mit zwei Pokalgeschichten: Salisbury steht nach der Neugründung 2015 erstmals in der Hauptrunde, Sholing sogar zum ersten Mal überhaupt.",
             "strong": false
           }
         ]
       },
       {
         "type": "p",
-        "text": "Oldham Athletic – Sheffield Wednesday: Weniger Pokalromantik, dafür Boundary Park und ein Gegner, der einen ordentlichen Gästeanhang mitbringen könnte.",
-        "segments": [
-          {
-            "text": "Oldham Athletic – Sheffield Wednesday: ",
-            "strong": true
-          },
-          {
-            "text": "Weniger Pokalromantik, dafür Boundary Park und ein Gegner, der einen ordentlichen Gästeanhang mitbringen könnte.",
-            "strong": false
-          }
-        ]
-      },
-      {
-        "type": "p",
-        "text": "Die Premier League und die Championship greifen erst in der dritten Hauptrunde ins Geschehen ein. Diese ist für das Wochenende um den 9. Januar 2027 angesetzt. Vorher folgt am 5. Dezember die zweite Runde. Die genauen Anstoßzeiten der ersten Runde und mögliche TV-Verlegungen stehen noch aus."
+        "text": "Und die großen Vereine? Die komplette Premier League und die Championship steigen erst in der dritten Hauptrunde am Wochenende rund um den 9. Januar 2027 ein. Die zweite Runde ist für das Wochenende um den 5. Dezember angesetzt."
       },
       {
         "type": "h2",
-        "text": "Alle 40 Partien der ersten Hauptrunde"
+        "text": "Alle 40 Spiele der ersten Hauptrunde"
       },
       {
         "type": "p",
-        "text": "Auslosung vom 19. Oktober 2026. Bei den mit „oder“ gekennzeichneten Paarungen stehen noch Wiederholungsspiele der Qualifikation aus."
+        "text": "Bei einigen Paarungen stehen noch Wiederholungsspiele aus. Die Anstoßzeiten werden erst nach den TV-Entscheidungen endgültig festgelegt."
       },
       {
         "type": "fixtureList",
@@ -186,7 +172,7 @@
       },
       {
         "type": "p",
-        "text": "Quelle: The Football Association (FA), offizielle Auslosung vom 19. Oktober 2026."
+        "text": "Quelle: The Football Association, Auslosung vom 19. Oktober 2026."
       }
     ],
     "tags": [
@@ -196,6 +182,6 @@
       "1. Hauptrunde",
       "Auslosung"
     ],
-    "seoDescription": "FA Cup 2026/27: Die spannendsten Spiele für Groundhopper, Termine, Premier-League-Einstieg und alle 40 Paarungen der ersten Hauptrunde."
+    "seoDescription": "FA Cup 2026/27: Spannende Pokallose für Groundhopper, kleine Grounds, Januar-Einstieg der Premier League und alle 40 Paarungen."
   }
 }

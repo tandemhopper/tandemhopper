@@ -138,7 +138,10 @@ async function importFile(filePath) {
   const heroImage=hasHeroSource?await safeUploadImage(article.heroImage,`${article.slug}:hero`,false):null
   const body=await convertBody(article.body||[],article.slug)
   const document={_id:draftId,_type:'article',title:article.title,slug:{_type:'slug',current:article.slug},category:article.category,tag:article.tag||'',teaser:article.teaser,publishedAt:article.publishedAt||new Date().toISOString(),featured:Boolean(article.featured),body,tags:Array.isArray(article.tags)?article.tags:[],seoDescription:article.seoDescription||''}
+  // Preserve a photo uploaded by the editor in Sanity when updating text from an import file.
+  // A newly supplied import image still explicitly replaces it.
   if(heroImage) document.heroImage=heroImage
+  else if(existingDraft?.heroImage || existingPublished?.heroImage) document.heroImage=existingDraft?.heroImage || existingPublished?.heroImage
   if(article.heroExternal?.url) document.heroExternal=article.heroExternal
   if(article.match) document.match=article.match
   if(article.place) document.place=article.place

@@ -103,7 +103,7 @@ export default async function Article({params}){
       <div><span>ERGEBNIS</span><strong>{a.result||'–'}</strong></div>
     </div>}
 
-    {a.hero&&<figure className="article-hero"><img src={imageUrl(a.hero,2000,85)} alt={a.heroAlt} fetchPriority="high" decoding="async"/>{a.heroCaption&&<figcaption>{a.heroCaption}</figcaption>}</figure>}
+    {a.hero&&<figure className="article-hero"><img src={imageUrl(a.hero,2000,85)} alt={a.heroAlt} fetchPriority="high" decoding="async"/>{a.heroCaption&&<figcaption>{a.heroCaption}{a.heroCredit?.sourceUrl&&<> · <a href={a.heroCredit.sourceUrl} target="_blank" rel="noopener noreferrer">Bildquelle</a></>}{a.heroCredit?.licenseUrl&&<> · <a href={a.heroCredit.licenseUrl} target="_blank" rel="noopener noreferrer">{a.heroCredit.licenseLabel||'Lizenz'}</a></>}</figcaption>}</figure>}
 
     {a.body?.length
       ? <div className="article-layout"><div className="article-body"><ArticleBody blocks={a.body}/></div></div>

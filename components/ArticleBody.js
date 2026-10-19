@@ -82,6 +82,13 @@ export default function ArticleBody({blocks = []}) {
         const images = (block.images || []).filter(image => image.src).map(image => ({src: image.src, alt: image.alt || ''}))
         return <div key={key} className="cms-gallery"><Gallery images={images}/></div>
       }
+      if (block._type === 'fixtureList') {
+        return <div key={key} className="cms-fixture-list">
+          <ol>{(block.matches || []).map((fixture, fixtureIndex) =>
+            <li key={fixtureIndex}>{fixture}</li>
+          )}</ol>
+        </div>
+      }
       if (block._type === 'factBox') {
         return <aside key={key} className="cms-factbox">
           {block.title && <h3>{block.title}</h3>}

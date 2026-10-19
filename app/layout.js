@@ -6,20 +6,6 @@ import './launch.css';
 import './calendar.css';
 import './club-marks.css';
 import SiteAnalytics from '../components/SiteAnalytics';
-import { Inter, Barlow_Condensed } from 'next/font/google';
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-});
-
-const barlowCondensed = Barlow_Condensed({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  display: 'swap',
-});
-
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tandemhopper.de';
 
 export const metadata = {
@@ -51,7 +37,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="de">
-      <body style={{ '--body': inter.style.fontFamily, '--cond': barlowCondensed.style.fontFamily }}>
+      <body>
         {children}<SiteAnalytics />
       </body>
     </html>

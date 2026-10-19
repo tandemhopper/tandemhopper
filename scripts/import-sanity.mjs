@@ -19,8 +19,11 @@ function hash(value) { return crypto.createHash('sha256').update(value).digest('
 function key(seed) { return crypto.createHash('sha1').update(seed).digest('hex').slice(0, 12) }
 function safeId(slug) { return `article-${slug}`.replace(/[^a-zA-Z0-9_.-]/g, '-') }
 
-function textBlock(style, text, seed) {
-  return {_type:'block', _key:key(seed), style, markDefs:[], children:[{_type:'span', _key:key(`${seed}:span`), text:String(text||''), marks:[]}]}
+function textBlock(style, text, seed, segments) {
+  const children = Array.isArray(segments) && segments.length
+    ? segments.map((part,index) => ({_type:'span',_key:key(`${seed}:span:${index}`),text:String(part.text||''),marks:part.strong?['strong']:[]}))
+    : [{_type:'span',_key:key(`${seed}:span`),text:String(text||''),marks:[]}]
+  return {_type:'block', _key:key(seed), style, markDefs:[], children}
 }
 
 function resolveImportPath(relativePath) {
@@ -99,7 +102,8 @@ async function convertBody(nodes=[], slug) {
   for (let index=0;index<nodes.length;index+=1) {
     const node=nodes[index], seed=`${slug}:body:${index}`
     if (!node?.type) continue
-    if (['p','h2','h3','blockquote'].includes(node.type)) { body.push(textBlock(node.type==='p'?'normal':node.type,node.text,seed)); continue }
+    if (['p','h2','h3','blockquote'].includes(node.type)) { body.push(textBlock(node.type==='p'?'normal':node.type,node.text,seed,node.segments)); continue }
+    if (node.type==='fixtureList') { body.push({_type:'fixtureList',_key:key(seed),matches:(node.matches||[]).map(String)}); continue }
     if (node.type==='image') { const image=await safeUploadImage(node,seed,true); if(image) body.push(image); continue }
     if (node.type==='imagePair') {
       const left=await safeUploadImage(node.left,`${seed}:left`,false)
@@ -135,6 +139,7 @@ async function importFile(filePath) {
   const body=await convertBody(article.body||[],article.slug)
   const document={_id:draftId,_type:'article',title:article.title,slug:{_type:'slug',current:article.slug},category:article.category,tag:article.tag||'',teaser:article.teaser,publishedAt:article.publishedAt||new Date().toISOString(),featured:Boolean(article.featured),body,tags:Array.isArray(article.tags)?article.tags:[],seoDescription:article.seoDescription||''}
   if(heroImage) document.heroImage=heroImage
+  if(article.heroExternal?.url) document.heroExternal=article.heroExternal
   if(article.match) document.match=article.match
   if(article.place) document.place=article.place
   await client.createOrReplace(document)

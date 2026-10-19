@@ -86,6 +86,21 @@ export const article = defineType({
       }),
     }),
     defineField({
+      name: 'heroExternal',
+      title: 'Externes Titelbild (mit Lizenznachweis)',
+      type: 'object',
+      description: 'Für korrekt lizenzierte Presse- oder Commons-Bilder. Eigenes Foto bevorzugt über Titelbild hochladen.',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({name:'url',title:'Bild-URL',type:'url'}),
+        defineField({name:'alt',title:'Alternativtext',type:'string'}),
+        defineField({name:'caption',title:'Bildunterschrift',type:'string'}),
+        defineField({name:'creditUrl',title:'Bildquelle (URL)',type:'url'}),
+        defineField({name:'licenseUrl',title:'Lizenz (URL)',type:'url'}),
+        defineField({name:'licenseLabel',title:'Lizenzbezeichnung',type:'string'}),
+      ],
+    }),
+    defineField({
       name: 'match',
       title: 'Spielinformationen',
       type: 'object',
@@ -183,6 +198,19 @@ export const article = defineType({
                 }),
               ],
               validation: (rule) => rule.min(2),
+            }),
+          ],
+        }),
+        defineArrayMember({
+          type:'object',
+          name:'fixtureList',
+          title:'Auslosung / Paarungsliste',
+          fields:[
+            defineField({
+              name:'matches',
+              title:'Spiele in Auslosungsreihenfolge',
+              type:'array',
+              of:[defineArrayMember({type:'string'})],
             }),
           ],
         }),

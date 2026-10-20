@@ -1,0 +1,25 @@
+name: KNVB-Pokal Boykottupdate (einmalig)
+
+on:
+  push:
+    paths:
+      - 'scripts/update-knvb-boycott.mjs'
+      - '.github/workflows/update-knvb-boycott.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: node scripts/update-knvb-boycott.mjs

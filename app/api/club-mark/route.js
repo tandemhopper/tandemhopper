@@ -23,6 +23,21 @@ const TEAM_ALIASES = {
 // Nur gezielte Korrekturen für nachweislich falsche/fehlende Vereinswappen.
 // Alle anderen Vereine behalten die bisherige TheSportsDB-Suche unverändert.
 const PINNED_BADGES = {
+  // Vereinswappen vom Stadtsportbund und offizieller BSC-Website, kein historisches Emblem.
+  'bsc sud 05': [
+    'https://www.ssb-brandenburg.de/verein/club/files/content/Vereine/Logos/neu%202025_BSC%20S%C3%BCd%2005.png',
+    'https://www.ssb-brandenburg.de/files/content/Vereine/Logos/neu%202025_BSC%20S%C3%BCd%2005.png',
+    'https://www.bsc-sued-05.de/File/WhatsApp%20Image%202024-01-26%20at%2010.28.27.jpeg',
+  ],
+  // Die aktuelle Wappenversion stammt direkt von der BSG und ist seit 2022 im Einsatz.
+  'bsg stahl brandenburg': [
+    'https://upload.wikimedia.org/wikipedia/commons/3/3f/BSG_Stahl_Brandenburg_Logo_2022.svg',
+  ],
+  // Niederländisches Vereinsverzeichnis mit eigener Vereinswappen-Datei (nicht HBS aus anderem Ort).
+  'hbs': [
+    'https://www.hollandsevelden.nl/images/icon/club_logo_van_voetbalvereniging_hbs_uit_den-haag.webp?v=20200928131742',
+    'https://www.hollandsevelden.nl/images/club_logo_van_voetbalvereniging_hbs_uit_den-haag.png',
+  ],
   'red star fc': [
     'https://upload.wikimedia.org/wikipedia/commons/a/ac/Logo_Red_Star_FC_2014.svg',
   ],

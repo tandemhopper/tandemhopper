@@ -1,0 +1,58 @@
+{
+  "article": {
+    "title": "De Topper in de Kuip: Weer een nachtmerrie voor Ajax",
+    "slug": "de-topper-in-de-kuip-ajax-psv-pokalfinale-2023",
+    "category": "spielbericht",
+    "tag": "Niederlande · KNVB-Pokalfinale",
+    "teaser": "Ajax gegen PSV im Pokalfinale 2023: zwei Choreos, jede Menge Pyro, reichlich Rudelbildungen und ein Elfmeterschießen zum Vergessen.",
+    "publishedAt": "2023-04-30T21:00:00.000Z",
+    "featured": false,
+    "publish": true,
+    "match": {
+      "homeTeam": "Ajax Amsterdam",
+      "awayTeam": "PSV Eindhoven",
+      "competition": "TOTO KNVB Beker",
+      "matchday": "Finale",
+      "matchDate": "2023-04-30",
+      "stadium": "De Kuip",
+      "attendance": "40.650",
+      "result": "1:1 (2:3 i. E.)"
+    },
+    "place": {
+      "city": "Rotterdam",
+      "country": "Niederlande"
+    },
+    "body": [
+      {
+        "type": "p",
+        "text": "Die Albtraumsaison von Ajax geht weiter. Bei unglaublichem Wetter in Rotterdam trafen erneut Ajax und PSV im TOTO-KNVB-Beker-Finale aufeinander. Auf beiden Seiten wurde sich ab 15 Uhr vor den Tribünen mit feinstem Techno aufgewärmt, ehe es dann ins Stadion ging."
+      },
+      {
+        "type": "p",
+        "text": "Beim Einlaufen folgten zwei Choreos mit unglaublich geilen Pyroaktionen. Auch die Atmosphäre stimmte in der ersten Phase des Spiels. Nach dem etwas unverdienten 1:0 für Ajax lebte vor allem die Ajax-Kurve auf, doch ab dem 1:1 kam kaum noch etwas von 020. PSV überzeugte deshalb mit guten Pyroaktionen, einfachen Liedern und einer hohen Mitmachquote."
+      },
+      {
+        "type": "p",
+        "text": "Das Spiel wurde anschließend von den Medien als eines der schlechtesten Finals aller Zeiten beschrieben. Fußballerisch war das wirklich unterirdisch, aber der Fakt, dass es alle fünf Minuten eine Rudelbildung auf dem Platz gab, war für die geile Stimmung sicherlich nicht unerheblich."
+      },
+      {
+        "type": "p",
+        "text": "Glücklicherweise gewann PSV – nach dem schlechtesten Elfmeterschießen, das ich je gesehen habe."
+      }
+    ],
+    "tags": [
+      "Ajax Amsterdam",
+      "PSV Eindhoven",
+      "KNVB Beker",
+      "Pokalfinale 2023",
+      "De Kuip",
+      "Rotterdam",
+      "Fankultur",
+      "Ultras",
+      "Choreografie",
+      "Pyrotechnik",
+      "Groundhopping"
+    ],
+    "seoDescription": "Ajax – PSV 1:1 (2:3 i. E.) im KNVB-Pokalfinale 2023: Choreos, Pyro und Rudelbildungen in De Kuip. Spielbericht aus Rotterdam."
+  }
+}

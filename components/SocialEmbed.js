@@ -63,7 +63,10 @@ export default function SocialEmbed({provider, url, title, id, start = 0}) {
   if (!source || !/^https:\/\//.test(url)) return null
 
   let embedUrl
-  if (provider === 'instagram') embedUrl = `https://www.instagram.com/p/${encodeURIComponent(id)}/embed/`
+  if (provider === 'instagram') {
+    const type = /^https:\/\/(?:www\.)?instagram\.com\/(reel|tv)\//.test(url) ? new URL(url).pathname.split('/')[1] : 'p'
+    embedUrl = `https://www.instagram.com/${type}/${encodeURIComponent(id)}/embed/`
+  }
   if (provider === 'facebook') embedUrl = `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=false&width=560`
   if (provider === 'youtube') embedUrl = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?start=${Number(start) || 0}&rel=0`
 

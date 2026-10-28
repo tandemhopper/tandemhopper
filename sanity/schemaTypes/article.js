@@ -169,6 +169,33 @@ export const article = defineType({
         }),
         defineArrayMember({
           type: 'object',
+          name: 'socialEmbed',
+          title: 'Social-Media-Beitrag',
+          fields: [
+            defineField({
+              name: 'url',
+              title: 'Beitrags-URL (Instagram, Facebook oder YouTube)',
+              description: 'Öffentlichen Beitrag verlinken – das Bild oder Video wird auf der Website erst nach Zustimmung geladen. YouTube-Zeitstempel wie &t=854s werden übernommen.',
+              type: 'url',
+              validation: (rule) => rule.required().uri({scheme:['https']}).custom(value => {
+                if (!value) return true
+                try {
+                  const parsed = new URL(value)
+                  const host = parsed.hostname.replace(/^www\./, '').replace(/^m\./, '').toLowerCase()
+                  if (['instagram.com','facebook.com','fb.watch','youtube.com','youtu.be'].includes(host)) return true
+                } catch {}
+                return 'Bitte eine Instagram-, Facebook- oder YouTube-URL eintragen.'
+              }),
+            }),
+            defineField({name:'title',title:'Kurzer Titel / Hinweis für Leser',type:'string',description:'Wird vor der Zustimmung angezeigt.',validation:(rule)=>rule.max(150)}),
+          ],
+          preview: {
+            select: {title:'title',subtitle:'url'},
+            prepare({title,subtitle}) {return {title:title || 'Social-Media-Beitrag',subtitle:subtitle || 'Noch keine URL'}}
+          },
+        }),
+        defineArrayMember({
+          type: 'object',
           name: 'imagePair',
           title: 'Zwei Bilder nebeneinander',
           fields: [

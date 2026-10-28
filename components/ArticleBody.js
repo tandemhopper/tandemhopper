@@ -62,7 +62,7 @@ const cafEmbeds = [
   {match:'Bei MC Alger bleibt es allerdings nicht',provider:'facebook',id:'',title:'Mouloudia-Fans im Kabinentrakt',url:'https://www.facebook.com/reel/1918690009502489/'},
   {match:'Schon vor Espérance Tunis gegen',provider:'instagram',id:'De4cTgINeps',title:'Ärger beim Aufwärmen vor Espérance Tunis',url:'https://www.instagram.com/p/De4cTgINeps/'},
   {match:'Auf Videos ist zu sehen, wie ein Mitglied',provider:'instagram',id:'De7JbB3NGtw',title:'Zwischenfall vor Club Africain gegen TP Mazembe',url:'https://www.instagram.com/p/De7JbB3NGtw/'},
-  {match:'Kaizer Chiefs scheitert im Confederation Cup',provider:'youtube',id:'b-4X-o4KidI',start:854,title:'Der deutsche Groundhopper „Professor“ bei Scottland FC (ab 14:14)',url:'https://www.youtube.com/watch?v=b-4X-o4KidI&t=854s'},
+  {match:'Große Namen, ungewöhnliche Gruppenphase',provider:'youtube',id:'b-4X-o4KidI',start:854,title:'Der deutsche Groundhopper „Professor“ bei Scottland FC (ab 14:14)',url:'https://www.youtube.com/watch?v=b-4X-o4KidI&t=854s'},
 ]
 
 export default function ArticleBody({blocks = [], slug}) {

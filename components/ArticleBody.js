@@ -62,7 +62,6 @@ const cafEmbeds = [
   {match:'Bei MC Alger bleibt es allerdings nicht',provider:'facebook',id:'',title:'Mouloudia-Fans im Kabinentrakt',url:'https://www.facebook.com/reel/1918690009502489/'},
   {match:'Schon vor Espérance Tunis gegen',provider:'instagram',id:'De4cTgINeps',title:'Ärger beim Aufwärmen vor Espérance Tunis',url:'https://www.instagram.com/p/De4cTgINeps/'},
   {match:'Auf Videos ist zu sehen, wie ein Mitglied',provider:'instagram',id:'De7JbB3NGtw',title:'Zwischenfall vor Club Africain gegen TP Mazembe',url:'https://www.instagram.com/p/De7JbB3NGtw/'},
-  {match:'Große Namen, ungewöhnliche Gruppenphase',provider:'youtube',id:'b-4X-o4KidI',start:854,title:'Der deutsche Groundhopper „Professor“ bei Scottland FC (ab 14:14)',url:'https://www.youtube.com/watch?v=b-4X-o4KidI&t=854s'},
 ]
 
 export default function ArticleBody({blocks = [], slug}) {
@@ -70,6 +69,14 @@ export default function ArticleBody({blocks = [], slug}) {
 
   return <div className="cms-body">
     {visibleBlocks.flatMap((block, index) => {
+      if (slug === 'so-verrueckt-war-die-qualifikation-fuer-afrikas-klubwettbewerbe' && block._type === 'block' && blockText(block) === 'Große Namen, ungewöhnliche Gruppenphase') {
+        return [
+          {_type:'block',_key:'professor-heading',style:'h2',children:[{_key:'professor-heading-text',_type:'span',marks:[],text:'Groundhopper schafft es ins Fernsehen'}]},
+          {_type:'block',_key:'professor-intro',style:'normal',children:[{_key:'professor-intro-text',_type:'span',marks:[],text:'Auch bei Scottland FC in Simbabwe gab es eine kuriose Randnotiz: Der deutsche Groundhopper „Professor“ war im Studio zu Gast. Im Video ist er ab Minute 14:14 zu sehen.'}]},
+          {_type:'socialEmbed',_key:'professor-video',provider:'youtube',id:'b-4X-o4KidI',start:854,title:'Der deutsche Groundhopper „Professor“ bei Scottland FC (ab 14:14)',url:'https://www.youtube.com/watch?v=b-4X-o4KidI&t=854s'},
+          block,
+        ]
+      }
       const matched = slug === 'so-verrueckt-war-die-qualifikation-fuer-afrikas-klubwettbewerbe'
         ? cafEmbeds.find(entry => block._type === 'block' && blockText(block).startsWith(entry.match))
         : null

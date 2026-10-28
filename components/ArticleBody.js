@@ -64,18 +64,34 @@ const cafEmbeds = [
   {match:'Auf Videos ist zu sehen, wie ein Mitglied',provider:'instagram',id:'De7JbB3NGtw',title:'Zwischenfall vor Club Africain gegen TP Mazembe',url:'https://www.instagram.com/p/De7JbB3NGtw/'},
 ]
 
+function extractSocialMedia(url) {
+  try {
+    const parsed = new URL(url)
+    const host = parsed.hostname.toLowerCase().replace(/^www\./, '').replace(/^m\./, '')
+    if (parsed.protocol !== 'https:') return null
+    if (host === 'instagram.com') {
+      const match = parsed.pathname.match(/^\/(p|reel|tv)\/([A-Za-z0-9_-]+)/)
+      return match ? {provider:'instagram',id:match[2]} : null
+    }
+    if (host === 'facebook.com' || host === 'fb.watch') return {provider:'facebook'}
+    if (host === 'youtube.com' || host === 'youtu.be') {
+      const id = host === 'youtu.be' ? parsed.pathname.split('/')[1] : parsed.pathname.startsWith('/shorts/') ? parsed.pathname.split('/')[2] : parsed.searchParams.get('v')
+      if (!id || !/^[A-Za-z0-9_-]{11}$/.test(id)) return null
+      const time = parsed.searchParams.get('t') || parsed.searchParams.get('start') || '0'
+      const start = /^\d+$/.test(time) ? Number(time) : (/^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/.test(time) ? (Number(time.match(/(\d+)h/)?.[1] || 0)*3600 + Number(time.match(/(\d+)m/)?.[1] || 0)*60 + Number(time.match(/(\d+)s/)?.[1] || 0)) : 0)
+      return {provider:'youtube',id,start}
+    }
+  } catch {}
+  return null
+}
+
 export default function ArticleBody({blocks = [], slug}) {
   const visibleBlocks = blocks.filter(block => !isEmptyTextBlock(block))
 
   return <div className="cms-body">
     {visibleBlocks.flatMap((block, index) => {
-      if (slug === 'so-verrueckt-war-die-qualifikation-fuer-afrikas-klubwettbewerbe' && block._type === 'block' && blockText(block) === 'Große Namen, ungewöhnliche Gruppenphase') {
-        return [
-          {_type:'block',_key:'professor-heading',style:'h2',children:[{_key:'professor-heading-text',_type:'span',marks:[],text:'Groundhopper schafft es ins Fernsehen'}]},
-          {_type:'block',_key:'professor-intro',style:'normal',children:[{_key:'professor-intro-text',_type:'span',marks:[],text:'Auch bei Scottland FC in Simbabwe gab es eine kuriose Randnotiz: Der deutsche Groundhopper „Professor“ war im Studio zu Gast. Im Video ist er ab Minute 14:14 zu sehen.'}]},
-          {_type:'socialEmbed',_key:'professor-video',provider:'youtube',id:'b-4X-o4KidI',start:854,title:'Der deutsche Groundhopper „Professor“ bei Scottland FC (ab 14:14)',url:'https://www.youtube.com/watch?v=b-4X-o4KidI&t=854s'},
-          block,
-        ]
+      if (slug === 'so-verrueckt-war-die-qualifikation-fuer-afrikas-klubwettbewerbe' && block._type === 'block' && blockText(block).startsWith('Für die Gruppenphase musste Scottland')) {
+        return [block, {_type:'socialEmbed',_key:'professor-video',provider:'youtube',id:'b-4X-o4KidI',start:854,title:'Der deutsche Groundhopper „Professor“ bei Scottland FC (ab 14:14)',url:'https://www.youtube.com/watch?v=b-4X-o4KidI&t=854s'}]
       }
       const matched = slug === 'so-verrueckt-war-die-qualifikation-fuer-afrikas-klubwettbewerbe'
         ? cafEmbeds.find(entry => block._type === 'block' && blockText(block).startsWith(entry.match))
@@ -84,7 +100,10 @@ export default function ArticleBody({blocks = [], slug}) {
     }).map((block, index) => {
       const key = block._key || index
       if (block._type === 'block') return <TextBlock key={key} block={block}/>
-      if (block._type === 'socialEmbed') return <SocialEmbed key={key} {...block}/>
+      if (block._type === 'socialEmbed') {
+        const details = block.provider ? {provider:block.provider,id:block.id,start:block.start} : extractSocialMedia(block.url)
+        return details ? <SocialEmbed key={key} {...block} {...details} title={block.title || 'Social-Media-Beitrag'}/> : null
+      }
       if (block._type === 'image' && block.src) {
         const width = block.width === 'text' ? 1100 : 1600
         return <figure key={key} className={`cms-image ${block.width === 'text' ? 'cms-image-text' : 'cms-image-wide'}`}>

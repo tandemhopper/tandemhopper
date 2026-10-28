@@ -106,7 +106,7 @@ export default async function Article({params}){
     {a.hero&&<figure className="article-hero"><img src={imageUrl(a.hero,2000,85)} alt={a.heroAlt} fetchPriority="high" decoding="async"/>{a.heroCaption&&<figcaption>{a.heroCaption}{a.heroCredit?.sourceUrl&&<> · <a href={a.heroCredit.sourceUrl} target="_blank" rel="noopener noreferrer">Bildquelle</a></>}{a.heroCredit?.licenseUrl&&<> · <a href={a.heroCredit.licenseUrl} target="_blank" rel="noopener noreferrer">{a.heroCredit.licenseLabel||'Lizenz'}</a></>}</figcaption>}</figure>}
 
     {a.body?.length
-      ? <div className="article-layout"><div className="article-body"><ArticleBody blocks={a.body}/></div></div>
+      ? <div className="article-layout"><div className="article-body"><ArticleBody blocks={a.body} slug={slug}/></div></div>
       : <><div className="article-layout"><div className="article-body"><p className="lead">{a.lead}</p>{a.paragraphs.map((p,i)=><p key={i}>{p}</p>)}</div></div>{a.galleryPlacement&&<Gallery images={a.gallery}/>}</>}
 
     <WhatsAppCTA/>

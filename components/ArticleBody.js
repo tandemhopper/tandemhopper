@@ -2,6 +2,7 @@ import React from 'react'
 import Gallery from './Gallery'
 import ZoomImage from './ZoomImage'
 import ClubMarks from './ClubMarks'
+import SocialEmbed from './SocialEmbed'
 import {imageUrl} from '../lib/imageUrl'
 
 function renderMarkedSpan(span, index) {
@@ -55,13 +56,28 @@ function TextBlock({block}) {
   return <p>{children}</p>
 }
 
-export default function ArticleBody({blocks = []}) {
+const cafEmbeds = [
+  {match:'Für ein algerisch-marokkanisches Fantreffen',provider:'instagram',id:'DemvWdTu9Ia',title:'Raja- und Mouloudia-Fans treffen sich in Nigeria',url:'https://www.instagram.com/p/DemvWdTu9Ia/'},
+  {match:'Rund hundert MCA-Fans machen die Reise',provider:'facebook',id:'',title:'Raja-Fans in Nigeria',url:'https://www.facebook.com/reel/1691906612658112/'},
+  {match:'Bei MC Alger bleibt es allerdings nicht',provider:'facebook',id:'',title:'Mouloudia-Fans im Kabinentrakt',url:'https://www.facebook.com/reel/1918690009502489/'},
+  {match:'Schon vor Espérance Tunis gegen',provider:'instagram',id:'De4cTgINeps',title:'Ärger beim Aufwärmen vor Espérance Tunis',url:'https://www.instagram.com/p/De4cTgINeps/'},
+  {match:'Auf Videos ist zu sehen, wie ein Mitglied',provider:'instagram',id:'De7JbB3NGtw',title:'Zwischenfall vor Club Africain gegen TP Mazembe',url:'https://www.instagram.com/p/De7JbB3NGtw/'},
+  {match:'Kaizer Chiefs scheitert im Confederation Cup',provider:'youtube',id:'b-4X-o4KidI',start:854,title:'Der deutsche Groundhopper „Professor“ bei Scottland FC (ab 14:14)',url:'https://www.youtube.com/watch?v=b-4X-o4KidI&t=854s'},
+]
+
+export default function ArticleBody({blocks = [], slug}) {
   const visibleBlocks = blocks.filter(block => !isEmptyTextBlock(block))
 
   return <div className="cms-body">
-    {visibleBlocks.map((block, index) => {
+    {visibleBlocks.flatMap((block, index) => {
+      const matched = slug === 'so-verrueckt-war-die-qualifikation-fuer-afrikas-klubwettbewerbe'
+        ? cafEmbeds.find(entry => block._type === 'block' && blockText(block).startsWith(entry.match))
+        : null
+      return matched ? [block, {...matched, _type:'socialEmbed', _key:`social-${index}`}] : [block]
+    }).map((block, index) => {
       const key = block._key || index
       if (block._type === 'block') return <TextBlock key={key} block={block}/>
+      if (block._type === 'socialEmbed') return <SocialEmbed key={key} {...block}/>
       if (block._type === 'image' && block.src) {
         const width = block.width === 'text' ? 1100 : 1600
         return <figure key={key} className={`cms-image ${block.width === 'text' ? 'cms-image-text' : 'cms-image-wide'}`}>

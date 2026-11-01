@@ -2,11 +2,13 @@ import Link from 'next/link'
 import {notFound} from 'next/navigation'
 import {PortableText} from '@portabletext/react'
 import Header from '../../../components/Header'
+import MacauEditorialPage from '../../../components/MacauEditorialPage'
 import Footer from '../../../components/Footer'
 import {getCountryGuide} from '../../../lib/countryGuides'
 import {getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
 import '../../laenderkompass.css'
+import '../../macau-editorial.css'
 
 export const revalidate = 300
 const topics = {tickets:['🎟️','Fußball & Tickets'],fanszenen:['🔥','Fanszenen & Spiele'],einreise:['✈️','Anreise & Einreise'],verkehr:['🚆','Verkehr vor Ort'],tipps:['💡','Tipps & Tricks'],weiteres:['📌','Weitere Informationen']}
@@ -23,6 +25,7 @@ export default async function CountryPage({params}) {
   const {slug}=await params
   const country=await getCountryGuide(slug)
   if(!country) notFound()
+  if(slug==='macau' && country._id==='editorial-macau') return <MacauEditorialPage/>
   const articles=await getArticles()
   const related=articles.filter(a=>a.place?.country?.toLocaleLowerCase('de')===country.title.toLocaleLowerCase('de')).slice(0,6)
   const sections=(country.sections||[]).filter(s=>s.topic&&(s.content?.length||s.tip||s.sources?.length||s.notice?.text))

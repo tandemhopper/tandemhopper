@@ -1,5 +1,6 @@
-import {imageUrl} from '../lib/imageUrl'
 'use client'
+
+import {imageUrl} from '../lib/imageUrl'
 
 import {useEffect, useState} from 'react'
 

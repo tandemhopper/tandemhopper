@@ -43,7 +43,7 @@ export default async function Stories({searchParams}){
   const page=Number.isSafeInteger(requestedPage)&&requestedPage>0?requestedPage:1
   const totalPages=Math.max(1,Math.ceil(list.length/pageSize))
   const visible=list.slice((page-1)*pageSize,page*pageSize)
-  const pageHref=(number)=>`/geschichten?${new URLSearchParams({...filter?{filter}:{},page:String(number)}).toString()}`
+  const pageHref=(number)=>`/geschichten?${new URLSearchParams({...(filter ? {filter} : {}),page:String(number)}).toString()}`
 
   return <><Header/><main className="archive">
     <div className="archive-head">

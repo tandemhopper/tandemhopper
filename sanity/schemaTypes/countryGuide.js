@@ -21,6 +21,8 @@ export const countryGuide = defineType({
     ]}, validation: r => r.required()}),
     defineField({name: 'region', title: 'Region (für spätere Filter)', type: 'string', description: 'Zum Beispiel Balkan, Westeuropa oder Nordeuropa.'}),
     defineField({name: 'flag', title: 'Flaggen-Emoji', type: 'string'}),
+    defineField({name:'fifaRanking',title:'FIFA-Weltranglistenplatz (Männer)',type:'number',validation:r=>r.min(1).max(250)}),
+    defineField({name:'fifaRankingDate',title:'Stand der FIFA-Weltrangliste',type:'date'}),
     defineField({name: 'teaser', title: 'Text auf der Länder-Kachel', type: 'text', rows: 2, validation: r => r.max(160)}),
     defineField({name: 'heroImage', title: 'Titelbild', type: 'image', options: {hotspot: true}, fields: [
       defineField({name:'alt',title:'Alternativtext',type:'string'}),

@@ -39,6 +39,12 @@ export const countryGuide = defineType({
         defineField({name:'heading',title:'Optionale eigene Überschrift',type:'string'}),
         defineField({name:'content',title:'Text und Bilder',type:'array',of:richText}),
         defineField({name:'tip',title:'Tandemhopper-Tipp (optional)',type:'text',rows:3}),
+        defineField({name:'presentation',title:'Darstellung',type:'string',initialValue:'standard',options:{layout:'radio',list:[{title:'Normaler Abschnitt',value:'standard'},{title:'Aufklappbarer Abschnitt',value:'accordion'},{title:'Kompakte Karte (zwei nebeneinander)',value:'card'}]}}),
+        defineField({name:'notice',title:'Hinweisbox (optional)',type:'object',fields:[
+          defineField({name:'level',title:'Art',type:'string',options:{list:[{title:'Wichtig',value:'important'},{title:'Aktueller Stand',value:'update'},{title:'Gut zu wissen',value:'info'}]}}),
+          defineField({name:'title',title:'Titel',type:'string'}),
+          defineField({name:'text',title:'Hinweistext',type:'text',rows:3}),
+        ]}),
         defineField({name:'sources',title:'Quellen und nützliche Links',type:'array',of:[
           defineArrayMember({type:'object',fields:[
             defineField({name:'label',title:'Bezeichnung',type:'string'}),

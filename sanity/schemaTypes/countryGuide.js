@@ -21,6 +21,8 @@ export const countryGuide = defineType({
     ]}, validation: r => r.required()}),
     defineField({name: 'region', title: 'Region (für spätere Filter)', type: 'string', description: 'Zum Beispiel Balkan, Westeuropa oder Nordeuropa.'}),
     defineField({name: 'flag', title: 'Flaggen-Emoji', type: 'string'}),
+    defineField({name:'fifaRanking',title:'FIFA-Weltranglistenplatz (Männer)',type:'number',validation:r=>r.min(1).max(250)}),
+    defineField({name:'fifaRankingDate',title:'Stand der FIFA-Weltrangliste',type:'date'}),
     defineField({name: 'teaser', title: 'Text auf der Länder-Kachel', type: 'text', rows: 2, validation: r => r.max(160)}),
     defineField({name: 'heroImage', title: 'Titelbild', type: 'image', options: {hotspot: true}, fields: [
       defineField({name:'alt',title:'Alternativtext',type:'string'}),
@@ -39,6 +41,12 @@ export const countryGuide = defineType({
         defineField({name:'heading',title:'Optionale eigene Überschrift',type:'string'}),
         defineField({name:'content',title:'Text und Bilder',type:'array',of:richText}),
         defineField({name:'tip',title:'Tandemhopper-Tipp (optional)',type:'text',rows:3}),
+        defineField({name:'presentation',title:'Darstellung',type:'string',initialValue:'standard',options:{layout:'radio',list:[{title:'Normaler Abschnitt',value:'standard'},{title:'Aufklappbarer Abschnitt',value:'accordion'},{title:'Kompakte Karte (zwei nebeneinander)',value:'card'}]}}),
+        defineField({name:'notice',title:'Hinweisbox (optional)',type:'object',fields:[
+          defineField({name:'level',title:'Art',type:'string',options:{list:[{title:'Wichtig',value:'important'},{title:'Aktueller Stand',value:'update'},{title:'Gut zu wissen',value:'info'}]}}),
+          defineField({name:'title',title:'Titel',type:'string'}),
+          defineField({name:'text',title:'Hinweistext',type:'text',rows:3}),
+        ]}),
         defineField({name:'sources',title:'Quellen und nützliche Links',type:'array',of:[
           defineArrayMember({type:'object',fields:[
             defineField({name:'label',title:'Bezeichnung',type:'string'}),

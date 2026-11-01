@@ -88,6 +88,8 @@ async function fetchPinnedBadge(url) {
   const contentType = (response.headers.get('content-type') || '').split(';')[0].toLowerCase()
   if (!['image/svg+xml', 'image/png', 'image/jpeg', 'image/webp'].includes(contentType)) return null
 
+  const length = Number(response.headers.get('content-length') || 0)
+  if (length > 5 * 1024 * 1024) return null
   const body = await response.arrayBuffer()
   if (!body.byteLength || body.byteLength > 5 * 1024 * 1024) return null
   return {body, contentType}
@@ -193,10 +195,13 @@ async function fetchBadge(team) {
   const badgeResponse = await fetch(candidate.strBadge, {next: {revalidate: REVALIDATE_SECONDS}})
   if (!badgeResponse.ok) return null
 
-  return {
-    body: await badgeResponse.arrayBuffer(),
-    contentType: badgeResponse.headers.get('content-type') || 'image/png',
-  }
+  const contentType = (badgeResponse.headers.get('content-type') || '').split(';')[0].toLowerCase()
+  if (!['image/svg+xml', 'image/png', 'image/jpeg', 'image/webp'].includes(contentType)) return null
+  const length = Number(badgeResponse.headers.get('content-length') || 0)
+  if (length > 5 * 1024 * 1024) return null
+  const body = await badgeResponse.arrayBuffer()
+  if (!body.byteLength || body.byteLength > 5 * 1024 * 1024) return null
+  return {body, contentType}
 }
 
 export async function GET(request) {

@@ -20,7 +20,8 @@ export default function ClubMarks({homeTeam, awayTeam, variant = 'default', prio
   if (!homeTeam || !awayTeam) return null
 
   const teams = [homeTeam, awayTeam]
-  const eager = priority || variant === 'calendar'
+  // Calendar lists can contain hundreds of fixtures; only priority images load eagerly.
+  const eager = priority
 
   return (
     <div className={`club-marks club-marks-${variant}`} aria-hidden="true">

@@ -3,40 +3,40 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import {getCountryGuides} from '../../lib/countryGuides'
 import {imageUrl} from '../../lib/imageUrl'
-import '../laenderkompass.css'
+import '../macau-editorial.css'
 
 export const revalidate = 300
 export const metadata = {
-  title: 'Länderkompass – Groundhopping weltweit',
-  description: 'Tickets, Fanszenen, Anreise und praktische Tipps für deinen nächsten Länderpunkt. Der Tandemhopper Länderkompass.',
-  alternates: {canonical:'/laender'},
+  title:'Länderkompass – Fußballreisen & Groundhopping',
+  description:'Groundhopping weltweit: Stadien, Fußballspiele, Einreise, Tickets und Tipps aus eigener Erfahrung. Der Tandemhopper Länderkompass.',
+  alternates:{canonical:'/laender'},
 }
 
-const continents = [
-  ['europa','Europa'],['asien','Asien'],['afrika','Afrika'],
-  ['nordamerika','Nordamerika'],['suedamerika','Südamerika'],['ozeanien','Ozeanien'],
-]
+const continents=[['europa','Europa'],['asien','Asien'],['afrika','Afrika'],['nordamerika','Nordamerika'],['suedamerika','Südamerika'],['ozeanien','Ozeanien']]
 
-export default async function Countries() {
-  const guides = await getCountryGuides()
-  return <><Header/><main className="country-index">
-    <div className="country-intro">
-      <p className="eyebrow">TANDEMHOPPER · DIE FUSSBALLWELT ENTDECKEN</p>
-      <h1>LÄNDERKOMPASS</h1>
-      <p>Von der Ticketbeschaffung über Fanszenen bis zur Anreise: Hier findest du praktische Informationen für deinen nächsten Länderpunkt. Mit eigenen Erfahrungen, hilfreichen Quellen und Tipps aus der Groundhopping-Szene.</p>
-    </div>
-    {continents.map(([key,label]) => {
-      const countries = guides.filter(g=>g.continent===key)
-      if (!countries.length) return null
-      return <section className="country-continent" key={key} aria-labelledby={key}>
-        <h2 id={key}>{label}</h2>
-        <div className="country-grid">{countries.map(country=><Link href={'/laender/'+country.slug} className="country-tile" key={country._id}>
-          {country.tile&&<img src={imageUrl(country.tile,900,80)} alt="" loading="lazy" decoding="async"/>}
-          <span className="country-tile-shade"/>
-          <span className="country-tile-content"><strong>{country.flag&&<span aria-hidden="true">{country.flag} </span>}{country.title}</strong><small>{country.teaser||'Groundhopping-Guide entdecken'}</small><span className="country-arrow" aria-hidden="true">→</span></span>
-        </Link>)}</div>
+export default async function CountriesPage(){
+  const guides=await getCountryGuides()
+  return <><Header/><main className="th-countries">
+    <header className="th-countries-head">
+      <div><p className="th-eyebrow">TANDEMHOPPER · LÄNDERKOMPASS</p><h1>FUSSBALL.<br/>WELTWEIT<span>.</span></h1></div>
+      <p>Welche Stadien lohnen sich? Wie kommt man an Tickets? Und welche Stolperfallen sollte man vor dem Länderpunkt kennen? Ein Reiseführer für Fußballfans – mit konkreten Tipps statt austauschbarer Länderporträts.</p>
+    </header>
+    {continents.map(([key,label],ci)=>{
+      const countries=guides.filter(g=>g.continent===key)
+      if(!countries.length)return null
+      const featured=countries.length===1?countries[0]:null
+      return <section className="th-continent" key={key} aria-labelledby={'continent-'+key}>
+        <div className="th-continent-head"><span>{String(ci+1).padStart(2,'0')}</span><h2 id={'continent-'+key}>{label.toUpperCase()}</h2><small>{countries.length} {countries.length===1?'LÄNDERGUIDE':'LÄNDERGUIDES'}</small></div>
+        {featured?<Link className="th-country-feature" href={'/laender/'+featured.slug}>
+          <div className="th-country-feature-photo">{featured.tile&&<img src={imageUrl(featured.tile,1200,84)} alt={featured.title+' – Groundhopping'} loading="eager"/>}</div>
+          <div className="th-country-feature-copy"><span>LÄNDERGUIDE · {featured.region?.toUpperCase()||label.toUpperCase()}</span><h3>{featured.title.toUpperCase()}</h3><p>{featured.teaser||'Stadien, Fußball & Reiseplanung'}</p><strong>GUIDE ANSEHEN ↗</strong></div>
+        </Link>:<div className="th-country-list">{countries.map(country=><Link href={'/laender/'+country.slug} key={country._id}>
+          <div className="th-country-list-photo">{country.tile&&<img src={imageUrl(country.tile,850,82)} alt={country.title+' – Groundhopping'} loading="lazy"/>}</div>
+          <strong>{country.title.toUpperCase()}</strong><p>{country.teaser}</p>
+        </Link>)}</div>}
       </section>
     })}
-    {!guides.length&&<div className="country-empty"><h2>DER LÄNDERKOMPASS ENTSTEHT.</h2><p>Die ersten Guides sind in Vorbereitung. Hier findest du bald praktische Informationen für deinen nächsten Länderpunkt.</p><Link href="/geschichten">Bis dahin: unsere Geschichten entdecken →</Link></div>}
+    {!guides.length&&<div className="th-upcoming"><strong>DIE ERSTEN GUIDES ENTSTEHEN.</strong><p>Hier findest du demnächst praktische Informationen für deine nächsten Länderpunkte.</p></div>}
+    {guides.length>0&&<aside className="th-upcoming"><strong>WEITERE LÄNDER FOLGEN.</strong><p>Als Nächstes geplant: Hongkong und China. Die Guides wachsen mit den Reisen und den Rückmeldungen aus der Szene.</p></aside>}
   </main><Footer/></>
 }

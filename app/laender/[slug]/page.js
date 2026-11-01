@@ -6,6 +6,8 @@ import Footer from '../../../components/Footer'
 import {getCountryGuide} from '../../../lib/countryGuides'
 import {getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
+import MacauEditorialPage from '../../../components/MacauEditorialPage'
+import '../../macau-editorial.css'
 import '../../laenderkompass.css'
 
 export const revalidate = 300
@@ -23,6 +25,7 @@ export default async function CountryPage({params}) {
   const {slug}=await params
   const country=await getCountryGuide(slug)
   if(!country) notFound()
+  if(slug === 'macau') return <MacauEditorialPage/>
   const articles=await getArticles()
   const related=articles.filter(a=>a.place?.country?.toLocaleLowerCase('de')===country.title.toLocaleLowerCase('de')).slice(0,6)
   const sections=(country.sections||[]).filter(s=>s.topic&&(s.content?.length||s.tip||s.sources?.length||s.notice?.text))

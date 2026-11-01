@@ -66,3 +66,5 @@
 .th-hero-copy{overflow:hidden}
 .th-hero-photo img{object-position:center center}
 @media (max-width:360px){.th-hero h1{font-size:68px}.th-countries-head h1{font-size:65px}.th-facts strong{font-size:21px}}
+/* Featured country links need white-on-dark text despite the global link reset. */
+.th-countries a.th-country-feature,.th-countries a.th-country-feature:hover,.th-countries .th-country-feature-copy{color:#fff}

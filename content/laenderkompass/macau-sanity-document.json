@@ -1,0 +1,481 @@
+{
+  "_id": "countryGuide-macau",
+  "_type": "countryGuide",
+  "title": "Macau",
+  "slug": {
+    "_type": "slug",
+    "current": "macau"
+  },
+  "continent": "asien",
+  "region": "Ostasien",
+  "flag": "🇲🇴",
+  "teaser": "Zwei außergewöhnliche Stadien, Casinowelten und praktische Tipps für deinen Länderpunkt.",
+  "intro": [
+    {
+      "_type": "block",
+      "_key": "intro1",
+      "style": "normal",
+      "markDefs": [],
+      "children": [
+        {
+          "_type": "span",
+          "_key": "intros",
+          "text": "Macau ist eine chinesische Sonderverwaltungszone mit eigenem Fußballverband. Zwischen den riesigen Casinos und dicht bebauten Wohnvierteln warten einige der ungewöhnlichsten Fußballorte Ostasiens.",
+          "marks": []
+        }
+      ]
+    }
+  ],
+  "essentials": [
+    "Eigenständiger Fußballverband und Nationalmannschaft",
+    "Bester Spieltipp: Heimländerspiel",
+    "Unbedingt Bargeld und Kleingeld mitnehmen",
+    "Canidrome: Umbau und aktuelle Spielorte prüfen"
+  ],
+  "sections": [
+    {
+      "_key": "section0",
+      "_type": "guideSection",
+      "topic": "tipps",
+      "heading": "Einleitung",
+      "presentation": "standard",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p0_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Macau ist eine Sonderverwaltungszone Chinas mit eigenem Fußballverband und einer eigenen Nationalmannschaft. Das winzige Gebiet an der Perlflussmündung ist berühmt für seine Casinos – und für Groundhopper interessanter, als die Zuschauerzahlen vermuten lassen. Besonders das ehemalige Hunderennstadion Canidrome und das Olympic Sports Centre auf Taipa gehören zu den ungewöhnlicheren Fußballorten in Ostasien.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p0_1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "FIFA-Weltrangliste Männer: [Aktuelle Platzierung vor Veröffentlichung bei FIFA eintragen, mit Standdatum.]",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section1",
+      "_type": "guideSection",
+      "topic": "tipps",
+      "heading": "Auf einen Blick",
+      "presentation": "standard",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p1_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "- Fußballverband: Macau Football Association (AFM) - Wettbewerb: lokale Macau Football League; Termine saisonabhängig, aktuellen Spielplan prüfen - Beste Spieloption: Heimländerspiel im Olympic Sports Centre - Kuriose Alternative: Benfica de Macau gegen Sporting de Macau – das kleine „Lissabon-Derby“ - Hauptwährung: Macau-Pataca (MOP); Hongkong-Dollar (HKD) werden vielerorts akzeptiert - Wichtigster Reisetipp: ausreichend Bargeld und kleine Scheine mitnehmen",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section2",
+      "_type": "guideSection",
+      "topic": "tipps",
+      "heading": "Bezahlen: das größte Problem für Besucher",
+      "presentation": "standard",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p2_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Wer in Festlandchina problemlos mit Alipay oder WeChat bezahlt, sollte sich in Macau nicht darauf verlassen. Die für ausländische Touristen eingerichteten Zahlfunktionen funktionierten bei zwei eigenen Besuchen vielerorts nicht – auch nicht im Bus. Visa und Mastercard wurden ebenfalls nicht überall angenommen, insbesondere in kleineren Restaurants und Geschäften. Bargeld war häufig die einzige zuverlässige Lösung.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p2_1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "Für die Linienbusse sollte man Kleingeld bereithalten: Die Fahrpreise werden beim Einstieg in eine Kasse eingeworfen, Rückgeld gibt es normalerweise nicht. Für längere Aufenthalte kann eine Macau Pass-Karte sinnvoll sein. Tageskarten oder touristische Tickets sollten nur genannt werden, wenn die aktuelle Verfügbarkeit und Verkaufsstelle überprüft wurden.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p2_2",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s2",
+              "text": "Tipp: Macau-Pataca nicht in großen Mengen übrig behalten. Hongkong-Dollar sind für eine kombinierte Reise oft praktischer; Wechselkurs und Wechselgeld können je nach Geschäft abweichen.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section3",
+      "_type": "guideSection",
+      "topic": "tickets",
+      "heading": "Stadion 1: Olympic Sports Centre / Estádio Campo Desportivo",
+      "presentation": "standard",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p3_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Das größere Stadion auf Taipa ist schon wegen seiner Kulisse interessant: Hinter einer Torseite ragen die beleuchteten Casinokomplexe auf. Besonders das Galaxy Macau liefert vom Stadion aus ein ungewöhnliches Fotomotiv. Die Anlage hat eine Laufbahn und überdachte Tribünen und wird unter anderem für internationale Spiele genutzt; zeitweise finden dort auch Ligapartien statt.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p3_1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "Fototipp: Von der Tribüne aus das Spielfeld mit dem beleuchteten Galaxy-Komplex im Hintergrund aufnehmen, idealerweise in der Dämmerung.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section4",
+      "_type": "guideSection",
+      "topic": "tickets",
+      "heading": "Stadion 2: Lin Fong / ehemaliges Canidrome",
+      "presentation": "standard",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p4_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Hier wurden früher Windhundrennen ausgetragen. Bei meinem Fußballbesuch Anfang 2025 waren die alte Rennbahn, Tribünen, Kassenbereiche und weitere Relikte noch erkennbar. Dazu kommt die dichte Hochhauskulisse. Das war der ungewöhnlichste Ground der Reise.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p4_1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "Wichtiger Aktualitätshinweis: Das ehemalige Canidrome wird zum Sportkomplex umgestaltet. Die historischen Fotos dokumentieren den Zustand vor beziehungsweise während des Umbaus und sind keine Garantie dafür, welche Teile heute noch erhalten sind. Spielorte und Zugänglichkeit unbedingt aktuell überprüfen.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p4_2",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s2",
+              "text": "Fotostrecke (historisch): Spielszene mit Wohnhochhäusern; ehemalige Hundebahn; alte Anzeigetafel; Eingangsbogen mit Windhundmotiven.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section5",
+      "_type": "guideSection",
+      "topic": "tickets",
+      "heading": "Weitere Grounds",
+      "presentation": "accordion",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p5_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "In Grenznähe gibt es kleinere Spielfelder und ungewöhnliche Sportanlagen. Das Stadion der Macau University of Science and Technology (MUST) beziehungsweise andere Universitätsplätze können eine Alternative sein, wenn keine regulären Ligaspiele angesetzt sind. Universitäts- und Nachwuchsspiele sind jedoch keine garantierte Option; Termine und Zutritt vorab klären.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section6",
+      "_type": "guideSection",
+      "topic": "tickets",
+      "heading": "Welches Spiel lohnt sich?",
+      "presentation": "card",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p6_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Erste Wahl: Länderspiel. Macau gegen Hongkong wäre sportlich und geografisch besonders interessant, wird aber nicht garantiert jährlich in Macau ausgetragen. Auch Spiele der Frauen- und Nachwuchsnationalmannschaften können lohnen.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p6_1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "Charmante Alternative: Benfica – Sporting. Portugiesische Vereinsnamen gehören zur Fußballgeschichte Macaus. Das „Lissabon-Derby“ ist vor allem eine kuriose Paarung, keine Garantie für Derbyatmosphäre. Bei vielen Ligaspielen sitzen nur wenige Dutzend Menschen auf den Rängen.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p6_2",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s2",
+              "text": "Eigene Erfahrung: Bei Must Ipo gegen Benfica Macau im Februar/März 2025 waren schätzungsweise 20 bis 30 Zuschauer anwesend. Spielort vorab beim Platzpersonal erfragt und bestätigt.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section7",
+      "_type": "guideSection",
+      "topic": "tickets",
+      "heading": "Spielplanung und Tickets",
+      "presentation": "standard",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p7_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Spielpläne zunächst beim Fußballverband prüfen und anschließend beim Verein oder vor Ort gegenchecken. Anstoßzeiten und Austragungsorte können sich ändern; auch Doppelspieltage auf demselben Platz sind möglich. Der Eintritt zu kleinen Ligaspielen ist häufig unkompliziert, sollte aber nicht grundsätzlich als kostenlos versprochen werden.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p7_1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "Vor Veröffentlichung prüfen: aktuelle Ligamonate, Spielplanlink der AFM, laufende Umbauten, aktuelle AFC-Klubwettbewerbsplätze.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section8",
+      "_type": "guideSection",
+      "topic": "einreise",
+      "heading": "Anreise",
+      "presentation": "standard",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p8_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Aus Hongkong: Fähre oder Bus über die Hongkong–Zhuhai–Macau-Brücke. Eine Tagestour ist möglich, sofern die Spielzeiten und Rückverbindungen passen. Aktuelle Fahrpläne und offizielle Buchungsseiten verlinken.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p8_1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "Aus Festlandchina: Zhuhai ist der naheliegende Ausgangspunkt. Über den Grenzübergang Gongbei lässt sich Macau zu Fuß erreichen. Auch andere Grenzübergänge sind möglich; Öffnungszeiten unterscheiden sich. Wer spätabends Fußball schaut und in Zhuhai übernachten will, muss den richtigen Grenzübergang und dessen Öffnungszeit beachten.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p8_2",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s2",
+              "text": "Einreise: Macau hat eigene Einreisebestimmungen. Für deutsche Staatsangehörige sind kurze touristische Aufenthalte in der Regel visumfrei; aktuelle Bestimmungen und Passgültigkeit vor der Reise prüfen. Bei der Einreise wird oft ein separater Einreisebeleg ausgestellt.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section9",
+      "_type": "guideSection",
+      "topic": "verkehr",
+      "heading": "Unterwegs in Macau",
+      "presentation": "standard",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p9_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Zu Fuß lassen sich viele Ziele gut verbinden. Für längere Strecken können kostenlose Casino-Shuttles sehr praktisch sein – etwa von Grenzterminals zu den großen Resorts. Routen und Nutzungsbedingungen sind nicht überall gleich und können sich ändern.",
+              "marks": []
+            }
+          ]
+        },
+        {
+          "_type": "block",
+          "_key": "p9_1",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s1",
+              "text": "Die oberirdische Light Rapid Transit (LRT) auf Taipa ist eine gute Ergänzung und führt nahe am Olympic Sports Centre vorbei. An den Stationen gibt es Ticketautomaten beziehungsweise Verkaufsstellen; aktuelle Zahlungsmöglichkeiten prüfen. Öffentliche Linienbusse sind mit Bargeld oder einer lokalen Karte einfacher als mit ausländischen Apps.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section10",
+      "_type": "guideSection",
+      "topic": "verkehr",
+      "heading": "Internet und Verständigung",
+      "presentation": "accordion",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p10_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Macau hat eigene Mobilfunknetze und Tarifbedingungen. Eine Mainland-China-SIM umfasst Macau nicht automatisch; passende Roamingpakete oder eine eSIM für China, Hongkong und Macau prüfen. Internetdienste sind in Macau grundsätzlich anders zugänglich als im Festland. Im Alltag wird vor allem Kantonesisch gesprochen; mit Englisch kommt man nicht überall weit.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_key": "section11",
+      "_type": "guideSection",
+      "topic": "tipps",
+      "heading": "Macau abseits des Fußballs",
+      "presentation": "card",
+      "content": [
+        {
+          "_type": "block",
+          "_key": "p11_0",
+          "style": "normal",
+          "markDefs": [],
+          "children": [
+            {
+              "_type": "span",
+              "_key": "s0",
+              "text": "Macau ist eine Mischung aus eng bebauten Wohnvierteln, portugiesisch geprägter Altstadt und künstlichen Casinowelten. Die Ruinen von St. Paul, die Altstadt und die Festungsanlagen lassen sich gut mit einem Stadionbesuch kombinieren. Auf Cotai stehen Nachbauten europäischer Wahrzeichen neben gewaltigen Resorts. Auch ohne zu spielen lohnt es sich, einige Casinos von innen anzusehen; kostenlose Attraktionen und Shuttleangebote können sich ändern.",
+              "marks": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

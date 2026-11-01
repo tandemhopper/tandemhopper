@@ -33,6 +33,7 @@ export default async function CountryPage({params}) {
       <div className="country-hero-content"><Link href="/laender">← ALLE LÄNDER</Link><p className="eyebrow">TANDEMHOPPER LÄNDERKOMPASS</p><h1>{country.flag&&<span aria-hidden="true">{country.flag} </span>}{country.title}</h1><p>{country.teaser}</p></div>
     </div>
     <div className="country-guide-inner">
+      {country.fifaRanking&&<div className="country-fifa-strip"><div><span>FIFA-WELTRANGLISTE · MÄNNER</span><strong>#{country.fifaRanking}</strong></div><p>Stand: {country.fifaRankingDate ? new Intl.DateTimeFormat('de-DE').format(new Date(country.fifaRankingDate)) : 'siehe FIFA'}</p><a href="https://inside.fifa.com/fifa-rankings/world-ranking/MAC" target="_blank" rel="noopener noreferrer">Offizielle Rangliste ↗</a></div>}
       {country.intro?.length>0&&<div className="country-guide-intro"><PortableText value={country.intro} components={portableComponents}/></div>}
       {country.essentials?.length>0&&<section className="country-essentials"><h2>AUF EINEN BLICK</h2><ul>{country.essentials.map((item,i)=><li key={i}>{item}</li>)}</ul></section>}
       {sections.length>0&&<nav className="country-topic-nav" aria-label="Themen"><strong>DIREKT ZUM THEMA</strong><div>{sections.map((s,i)=><a href={'#thema-'+i} key={i}>{topics[s.topic]?.[0]||'•'} {s.heading||topics[s.topic]?.[1]||'Mehr erfahren'} ↓</a>)}</div></nav>}

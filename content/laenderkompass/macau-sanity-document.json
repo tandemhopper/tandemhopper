@@ -53,20 +53,6 @@
               "marks": []
             }
           ]
-        },
-        {
-          "_type": "block",
-          "_key": "p0_1",
-          "style": "normal",
-          "markDefs": [],
-          "children": [
-            {
-              "_type": "span",
-              "_key": "s1",
-              "text": "FIFA-Weltrangliste Männer: [Aktuelle Platzierung vor Veröffentlichung bei FIFA eintragen, mit Standdatum.]",
-              "marks": []
-            }
-          ]
         }
       ]
     },
@@ -123,7 +109,7 @@
             {
               "_type": "span",
               "_key": "s1",
-              "text": "Für die Linienbusse sollte man Kleingeld bereithalten: Die Fahrpreise werden beim Einstieg in eine Kasse eingeworfen, Rückgeld gibt es normalerweise nicht. Für längere Aufenthalte kann eine Macau Pass-Karte sinnvoll sein. Tageskarten oder touristische Tickets sollten nur genannt werden, wenn die aktuelle Verfügbarkeit und Verkaufsstelle überprüft wurden.",
+              "text": "Für die Linienbusse sollte man Kleingeld bereithalten: Die Fahrpreise werden beim Einstieg in eine Kasse eingeworfen, Rückgeld gibt es normalerweise nicht. Für längere Aufenthalte kann eine Macau Pass-Karte sinnvoll sein. Ein vor Ort erwähntes Tagesticket konnten wir nicht ausfindig machen. Verlass dich deshalb nicht darauf und plane lieber mit Kleingeld oder Macau Pass.",
               "marks": []
             }
           ]

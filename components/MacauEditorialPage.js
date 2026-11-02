@@ -94,7 +94,7 @@ export default function MacauEditorialPage({settings,communityEnabled=false}) {
           <p>{t("copy-012")}</p>
           <p>{t("copy-013")}</p>
           <div className="th-photo-pair">
-            <Photo name="linfong-v2" alt="Ligaspiel im Lin Fong Stadium mit Wohnhochhäusern und Flutlicht" caption="Lin Fong Stadium – Ligaspiel 2025, vor Beginn der Bauarbeiten."/>
+            <Photo name="linfong-v2" alt="Fußballspiel in der früheren Hunderennbahn Canidrome, umgeben von Wohnhochhäusern" caption="Fußball im ehemaligen Canidrome (Lin Fong Stadium), Aufnahme von 2025."/>
             <Photo name="canidrome-gate" alt="Historischer Eingangsbogen zum ehemaligen Macau Canidrome" caption="Der alte Canidrome-Eingang, aufgenommen 2025."/>
           </div>
           <div className="th-photo-pair th-photo-pair-small">

@@ -7,6 +7,7 @@ import {getCountryGuide} from '../../../lib/countryGuides'
 import {getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
 import MacauEditorialPage from '../../../components/MacauEditorialPage'
+import {getMacauEditorialSettings} from '../../../lib/macauEditorialSettings'
 import '../../macau-editorial.css'
 import '../../laenderkompass.css'
 
@@ -25,7 +26,10 @@ export default async function CountryPage({params}) {
   const {slug}=await params
   const country=await getCountryGuide(slug)
   if(!country) notFound()
-  if(slug === 'macau') return <MacauEditorialPage/>
+  if(slug === 'macau') {
+    const settings = await getMacauEditorialSettings()
+    return <MacauEditorialPage settings={settings}/>
+  }
   const articles=await getArticles()
   const related=articles.filter(a=>a.place?.country?.toLocaleLowerCase('de')===country.title.toLocaleLowerCase('de')).slice(0,6)
   const sections=(country.sections||[]).filter(s=>s.topic&&(s.content?.length||s.tip||s.sources?.length||s.notice?.text))

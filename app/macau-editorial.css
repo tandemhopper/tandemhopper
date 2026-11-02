@@ -116,3 +116,53 @@
   /* Keep the approved edge-to-edge hero/photo and fact ribbon on phones. */
   .th-country :is(.th-hero,.th-facts){margin-inline:0}
 }
+
+
+/* Reusable season module for small leagues. It follows existing editorial colours,
+   typefaces and spacing; the data is sourced from historic kickoff dates. */
+.th-season-panel{background:#f7f6f2;border-top:3px solid var(--red,#b02a20);padding:26px 28px 27px;margin:28px 0 36px;color:var(--ink,#101314)}
+.th-season-top{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;margin-bottom:13px}
+.th-season-eyebrow{display:block;font:700 11px/1.35 var(--body);letter-spacing:.1em;color:var(--red,#b02a20);margin-bottom:9px}
+.th-season-top h3{font:800 clamp(29px,3.4vw,41px)/1.05 var(--cond);letter-spacing:0;text-transform:uppercase;margin:0!important}
+.th-season-checked{font:600 10px/1.4 var(--body);letter-spacing:.06em;color:#757b77;white-space:nowrap;padding-top:4px}
+.th-season-panel .th-season-lead{font:400 15px/1.7 var(--body);color:#38413d;max-width:860px;margin:0 0 22px}
+.th-season-month-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px}
+.th-season-month{height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#e9e8e3;color:#747a75;font:700 11px/1 var(--cond)}
+.th-season-month i{height:4px;width:72%;background:#c1c4bd;display:block}
+.th-season-month-main{background:rgba(176,42,32,.115);color:#672b27}
+.th-season-month-main i{background:var(--red,#b02a20)}
+.th-season-month-edge{background:#e5dfd7;color:#564b44}
+.th-season-month-edge i{background:#a28d7e}
+.th-season-key{display:flex;flex-wrap:wrap;gap:8px 23px;margin:12px 0 22px;font:500 11px/1.4 var(--body);color:#626863}
+.th-season-key>span{display:flex;gap:8px;align-items:center}
+.th-season-key i{width:11px;height:5px;display:inline-block;background:#c1c4bd}
+.th-season-key .th-season-key-main{background:var(--red,#b02a20)}
+.th-season-key .th-season-key-edge{background:#a28d7e}
+.th-season-panel :is(.th-season-warning,.th-season-alternatives){font:400 14px/1.7 var(--body);max-width:860px;color:#343d38;margin:0 0 14px}
+.th-season-warning strong,.th-season-alternatives strong{font:800 13px/1.35 var(--cond);color:var(--red,#b02a20);letter-spacing:.035em;margin-right:5px}
+.th-season-alternatives{margin-top:18px!important}
+.th-season-history{border-top:1px solid #d8d5ce;border-bottom:1px solid #d8d5ce;margin:18px 0;padding:0}
+.th-season-history summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;padding:15px 0;font:800 16px/1.3 var(--cond);letter-spacing:.025em}
+.th-season-history summary::-webkit-details-marker{display:none}
+.th-season-history summary span{color:var(--red,#b02a20);font:500 25px/1 var(--body)}
+.th-season-history[open] summary span{transform:rotate(45deg)}
+.th-season-history-inner{overflow-x:auto;padding-bottom:15px}
+.th-season-history table{border-collapse:collapse;width:100%;min-width:400px;text-align:left;font:500 13px/1.45 var(--body)}
+.th-season-history :is(td,th){border-bottom:1px solid #dedbd5;padding:9px 9px 9px 0;vertical-align:top}
+.th-season-history thead th{font:700 10px/1.3 var(--body);letter-spacing:.07em;color:#656d66}
+.th-season-history tbody th{font-weight:700}
+.th-season-history td small{display:block;font-size:11px;color:#777;margin-top:4px}
+.th-season-panel .th-season-source{display:inline-block;color:var(--red,#b02a20);text-decoration:underline;text-underline-offset:3px;font:700 12px/1.5 var(--body)}
+.th-season-panel .th-season-source:focus-visible,.th-season-history summary:focus-visible{outline:2px solid var(--red,#b02a20);outline-offset:3px}
+@media(max-width:570px){
+ .th-season-panel{padding:21px 17px 23px;margin:25px 0 32px}
+ .th-season-top{display:block}
+ .th-season-top h3{font-size:31px;margin-bottom:9px!important}
+ .th-season-checked{display:block}
+ .th-season-panel .th-season-lead{font-size:14px;line-height:1.7}
+ .th-season-month-grid{gap:2px}
+ .th-season-month{height:44px;font-size:10px;gap:9px}
+ .th-season-month i{height:3px}
+ .th-season-key{font-size:10px;gap:8px 12px}
+ .th-season-panel :is(.th-season-warning,.th-season-alternatives){font-size:13px}
+}

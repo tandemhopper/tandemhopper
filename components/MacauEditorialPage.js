@@ -2,6 +2,8 @@ import {defaultMacauTips,defaultMacauTextMap,defaultMacauSources} from '../lib/m
 import Link from 'next/link'
 import Header from './Header'
 import Footer from './Footer'
+import LeagueSeasonCalendar from './LeagueSeasonCalendar'
+import {defaultMacauLeagueSeason} from '../lib/leagueSeasonData'
 
 const base = '/assets/laender/macau-'
 
@@ -41,6 +43,7 @@ export default function MacauEditorialPage({settings}) {
   const heroPhoto=photos.get('hero');
 
   const tips = Array.isArray(settings?.tips)?settings.tips:defaultMacauTips
+  const leagueSeason = {...defaultMacauLeagueSeason,...(settings?.leagueSeason||{})}
   return <><Header/><main className="th-country">
     <nav className="th-breadcrumb" aria-label="Brotkrumennavigation"><Link href="/laender">LÄNDERKOMPASS</Link><span>/</span><span>ASIEN</span><span>/</span><strong>MACAU</strong><i/><span>GUIDE 01</span></nav>
     <header className="th-hero">
@@ -56,7 +59,7 @@ export default function MacauEditorialPage({settings}) {
       <div><span>FIFA-RANGLISTE · MÄNNER</span><strong>193. Platz</strong><small>Stand: 20.07.2026</small></div>
       <div><span>FUSSBALLVERBAND</span><strong>Macau FA</strong><small>Eigenständiges FIFA-Mitglied</small></div>
       <div><span>WÄHRUNG</span><strong>Macau-Pataca</strong><small>MOP · oft auch HKD</small></div>
-      <div><span>BUS · BARZAHLUNG</span><strong>6 MOP</strong><small>Passend bezahlen, kein Rückgeld</small></div>
+      <div><span>LIGA · SPIELMONATE</span><strong><a href="#spiele">{leagueSeason.factWindow||"Jan–Aug"}</a></strong><small>{leagueSeason.factNote||"Meist Februar bis Juli, Spielplan prüfen"}</small></div>
     </div>
 
     <section className="th-intro">
@@ -101,6 +104,7 @@ export default function MacauEditorialPage({settings}) {
 
         <Chapter id="spiele" number="02" label="SPIELPLANUNG" title={t("chapter-spiele-title")}>
           <p>{t("copy-014")}</p>
+          <LeagueSeasonCalendar data={leagueSeason}/>
           <div className="th-option"><span>01</span><div><h3>{t("copy-015")}</h3><p>{t("copy-016")}</p></div></div>
           <div className="th-option"><span>02</span><div><h3>{t("copy-017")}</h3><p>{t("copy-018")}</p></div></div>
           <div className="th-option"><span>03</span><div><h3>{t("copy-019")}</h3><p>{t("copy-020")}</p></div></div>

@@ -30,6 +30,7 @@ export const countryGuide = defineType({
     ]}),
     defineField({name: 'tileImage', title: 'Optional: separates Kachelbild', type: 'image', options: {hotspot: true}}),
     defineField({name: 'intro', title: 'Einleitung', type: 'array', of: richText}),
+    defineField({name:'leagueSeason',title:'PFLICHT: Wann läuft die Liga? / Spielmonate',type:'leagueSeason',description:'Für jeden neuen Länderführer die höchste Liga recherchieren: typische Saisonmonate, letzte Spielzeiten und verlässlicher Spielplanlink. Nicht mit Pokal- oder Jugendwettbewerben verwechseln.',validation:r=>r.required()}),
     defineField({name: 'essentials', title: 'Das Wichtigste auf einen Blick', type: 'array', of: [{type:'string'}]}),
     defineField({name: 'sections', title: 'Themenbereiche', type: 'array', of: [
       defineArrayMember({type:'object', name:'guideSection', fields: [

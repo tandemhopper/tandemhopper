@@ -14,7 +14,7 @@ Der veröffentlichte Guide behält immer das aktuelle Design. Die Redaktionsdate
 ## Reiter
 
 - **01 · Einstieg:** Überschriften, Einleitung und Bargeldhinweis.
-- **02 · Stadien & Spiele:** Texte zu Olympic Sports Centre, Lin Fong, Canidrome und Spielplan.
+- **02 · Stadien & Spiele:** Texte zu Olympic Sports Centre, Lin Fong, Canidrome und Spielplan. Direkt daneben findest du **WANN WIRD GESPIELT? · Liga & Saisonkalender**. Hier lassen sich die üblichen Spielmonate, die Vorjahrestermine, der Spielplanlink und der Hinweis zur kommenden Saison aktualisieren.
 - **03 · Anreise & Stadt:** Hongkong, Zhuhai, Verkehr und weitere Grounds.
 - **04 · Tipps & Tricks:** einzelne Tipps umformulieren, sortieren, entfernen und neue ergänzen. Unter 'Einleitung und Hintergrundtipps' lassen sich auch die vertieften Erklärungen verändern.
 - **05 · Bilder:** An der gewünschten Bildstelle ein neues Foto hochladen; der bisherige lokale Bildplatz bleibt erhalten, solange kein neues Foto hochgeladen wird. Bildunterschrift und Alt-Text können unabhängig vom Foto angepasst werden. Die Position **Länderübersicht** steuert das Foto auf der Kachel.

@@ -26,6 +26,7 @@ export default function MacauEditorialPage({settings}) {
   const copyItems = [...(settings?.introTexts||[]), ...(settings?.stadiumTexts||[]), ...(settings?.matchTexts||[]), ...(settings?.travelTexts||[]), ...(settings?.cityTexts||[]), ...(settings?.budgetTexts||[]), ...(settings?.sourceTexts||[])];
   const copyOverrides = new Map(copyItems.map(item=>[item.key,item.value]));
   const t = key => copyOverrides.has(key) ? copyOverrides.get(key) : (defaultMacauTextMap[key]||'');
+  const rich = key => t(key).split(/(\\*\\*[^*]+\\*\\*)/g).map((part,i)=>part.startsWith('**')&&part.endsWith('**')?<strong key={i}>{part.slice(2,-2)}</strong>:part);
   const photos = new Map((settings?.images||[]).map(item=>[item.slot,item]));
   const Photo = ({name,...props})=>{const edited=photos.get(name);return <BasePhoto name={name} {...props} src={edited?.url} alt={edited?.alt||props.alt} caption={edited?.caption||props.caption}/>};
   const sourceLinks = Array.isArray(settings?.sourceLinks)?settings.sourceLinks:defaultMacauSources;
@@ -65,7 +66,7 @@ export default function MacauEditorialPage({settings}) {
 
     <aside className="th-critical">
       <div><p className="th-eyebrow">{t("copy-005")}</p><h2>{t("copy-006")}</h2></div>
-      <div><p>{t("copy-007")}</p><p>Gerade im Linienbus braucht man Münzen: <strong>6 MOP pro Fahrt, kein Wechselgeld.</strong> Hongkong-Dollar werden vielerorts akzeptiert, der Wechselkurs ist aber nicht unbedingt günstig.</p></div>
+      <div><p>{t("copy-007")}</p><p>{rich("rich-cash")}</p></div>
     </aside>
 
     <div className="th-content-layout">
@@ -83,7 +84,7 @@ export default function MacauEditorialPage({settings}) {
           <h3>{t("copy-009")}</h3>
           <p>{t("copy-010")}</p>
           <Photo name="olympic-v2" alt="Laufbahn und Fußballfeld im Olympic Sports Centre vor dem beleuchteten Galaxy Casino" caption="Olympic Sports Centre mit Galaxy Macau im Hintergrund. Der Blick von der Tribüne lohnt sich besonders am Abend." wide/>
-          <p className="th-inline-tip"><strong>FOTOTIPP</strong> Das Spielfeld so fotografieren, dass das Galaxy Macau hinter dem Stadion zu sehen ist. Die LRT hält in der Nähe.</p>
+          <p className="th-inline-tip">{rich("rich-phototip")}</p>
           <h3>{t("copy-011")}</h3>
           <p>{t("copy-012")}</p>
           <p>{t("copy-013")}</p>
@@ -95,7 +96,7 @@ export default function MacauEditorialPage({settings}) {
             <Photo name="canidrome-stands" alt="Alte Tribünen und Laufbahn des ehemaligen Canidrome" caption="Historische Tribünen und ehemalige Anlagen, Aufnahme von 2025."/>
             <Photo name="canidrome-structure" alt="Historische Strukturen am ehemaligen Canidrome" caption="Anlagen rund um den damaligen Platz, aufgenommen 2025."/>
           </div>
-          <aside className="th-update"><strong>WICHTIG: UMBAU SEIT 2026</strong><p>Auf dem ehemaligen Canidrome-Gelände haben im Januar 2026 die Bauarbeiten für einen Sportpark begonnen. Die Bilder zeigen deshalb <b>ausdrücklich den Zustand von 2025</b>. Das angrenzende Lin Fong Sports Centre soll laut Bauplanung während der ersten Phase weiter in Betrieb bleiben und erst später umgebaut werden. Trotzdem vor der Anreise prüfen, ob dort gespielt wird und welcher Zugang möglich ist.</p><TextLink href="https://www.gcs.gov.mo/news/detail/pt/N26AWONP9G">Offizielle Mitteilung zum Baubeginn</TextLink></aside>
+          <aside className="th-update"><strong>WICHTIG: UMBAU SEIT 2026</strong><p>{rich("rich-construction")}</p><TextLink href="https://www.gcs.gov.mo/news/detail/pt/N26AWONP9G">Offizielle Mitteilung zum Baubeginn</TextLink></aside>
         </Chapter>
 
         <Chapter id="spiele" number="02" label="SPIELPLANUNG" title={t("chapter-spiele-title")}>
@@ -110,7 +111,7 @@ export default function MacauEditorialPage({settings}) {
           <p className="th-lead">{t("copy-022")}</p>
           <div className="th-trip-grid">
             <section><h3>{t("copy-023")}</h3><p>{t("copy-024")}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/travelling-to-macao">Offizielle Anreiseinformationen</TextLink></section>
-            <section><h3>{t("copy-025")}</h3><p>Zhuhai bietet oft günstigere Unterkünfte. Der Grenzübergang Gongbei / Portas do Cerco ist täglich <b>06:00–01:00 Uhr</b> geöffnet – nicht rund um die Uhr. Bei späten Spielen alternative Übergänge und die Einreisebestimmungen für Festlandchina prüfen.</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/ports-of-entry">Grenzübergänge & Öffnungszeiten</TextLink></section>
+            <section><h3>{t("copy-025")}</h3><p>{rich("rich-zhuhai")}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/ports-of-entry">Grenzübergänge & Öffnungszeiten</TextLink></section>
           </div>
           <div className="th-photo-pair">
             <Photo name="gongbei" alt="Grenzgebäude Gongbei an der Grenze zwischen Macau und Zhuhai" caption="Gongbei / Portas do Cerco: praktisch, aber nicht 24 Stunden geöffnet."/>

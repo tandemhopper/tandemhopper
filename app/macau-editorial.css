@@ -99,6 +99,7 @@
    header, home cards and editorial sections. Only nested reading columns and
    purposefully full-bleed mobile media may sit inside the outer rails. */
 .th-country,.th-countries{--th-page-gutter:var(--site-page-gutter,48px);max-width:var(--site-page-max,1536px)}
+.th-countries{padding-left:var(--th-page-gutter);padding-right:var(--th-page-gutter)}
 .th-country :is(.th-breadcrumb,.th-hero,.th-facts,.th-intro,.th-critical,.th-content-layout,.th-endbar){
   max-width:none;
   margin-left:var(--th-page-gutter);

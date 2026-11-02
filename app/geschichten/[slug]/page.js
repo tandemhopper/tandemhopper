@@ -9,7 +9,7 @@ import {getArticleBySlug, getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
 import {absoluteUrl, siteUrl} from '../../../lib/site'
 
-export const revalidate = 60
+export const revalidate = 300
 
 function relatedScore(article, current) {
   let score = 0

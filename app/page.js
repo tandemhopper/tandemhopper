@@ -6,7 +6,7 @@ import {getArticles} from '../lib/sanity'
 import {imageUrl} from '../lib/imageUrl'
 import {absoluteUrl} from '../lib/site'
 
-export const revalidate = 60
+export const revalidate = 300
 
 function selectHeroArticles(articles){
   const featured=articles

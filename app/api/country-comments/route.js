@@ -46,13 +46,18 @@ export async function GET(request){
   const offset=Math.min(100000,Math.max(0,Number.parseInt(params.get('offset')||'0',10)||0))
   const end=offset+PAGE_SIZE
   try{
-    // No draft documents are queried. Public readers only see published comments.
+    const secret=process.env.SANITY_COMMENT_WRITE_TOKEN||''
+    // Comments can be private to anonymous Sanity API consumers even after
+    // publication. Read with the server-only token, but force the published
+    // perspective AND exclude draft IDs so moderation cannot be bypassed.
+    const reader=secret
+      ? createClient({projectId:PROJECT_ID,dataset:DATASET,apiVersion:API_VERSION,useCdn:false,token:secret,perspective:'published'})
+      : sanityClient
     const filter='*[_type == "countryComment" && countrySlug == $slug && !(_id in path("drafts.**"))]'
     const [comments,total]=await Promise.all([
-      sanityClient.fetch(`${filter} | order(submittedAt desc) [${offset}...${end}]{_id,author,category,message,submittedAt,editorReply,editorReplyUpdatedAt}`,{slug},{cache:'no-store'}),
-      sanityClient.fetch(`count(${filter})`,{slug},{cache:'no-store'}),
+      reader.fetch(`${filter} | order(submittedAt desc) [${offset}...${end}]{_id,author,category,message,submittedAt,editorReply,editorReplyUpdatedAt}`,{slug},{cache:'no-store'}),
+      reader.fetch(`count(${filter})`,{slug},{cache:'no-store'}),
     ])
-    const secret=process.env.SANITY_COMMENT_WRITE_TOKEN||''
     return respond({
       comments:comments||[],
       total:total||0,

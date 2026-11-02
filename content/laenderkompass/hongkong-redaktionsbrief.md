@@ -126,3 +126,54 @@ Der Länderführer Hongkong wird wesentlich größer und tiefer als Macau. Das *
 - Welche Grenzübergänge genau wurden genutzt; gab es besondere Verspätungen oder Erfahrungen mit 22:30-Uhr-Schluss?
 - Bei Nationalmannschaft / Fankultur: Selbst erlebtes oder nur beobachtet in Medien? Unbedingt unterscheiden.
 - Welche persönlichen Restaurant-, Restaurantpreis- und Hotelbeispiele sind belastbar genug für Tipps?
+
+
+## Zusätzliche Vor-Ort-Erfahrungen und Recherche (02.11.2026, nach weiterer Nutzererzählung)
+
+### Nationalmannschaft & Fankultur – persönlicher Eindruck vom 03.10.2026
+- Beim **Hongkong–Kambodscha 2:0** vor **31.374 Fans** im Kai Tak Stadium (FIFA ASEAN Challenge Cup **Division 2**, ausdrücklich nicht Finale der Division 1) gab es einen aktiven Fanbereich mit Vorsängern, Trommeln, vielen Fahnen und großer Choreografie.
+- Nutzer hat **bei diesem Spiel ausschließlich englischsprachige Gesänge** wahrgenommen, häufig Melodien/Gesänge aus englischen Stadien. Es wurde auch über längere Passagen laut, vor allem nach den Toren. **Nicht** als Aussage über alle Hongkonger Länderspiele darstellen und keinen erfundenen 90-Minuten-Dauersupport behaupten.
+- Zuschauerzusammensetzung sehr international, auch viele Menschen unterschiedlicher Herkunft in der Kurve. Als Stadt mit internationalem Vereins- und Amateurfußball charakterisieren, nicht nach Hautfarben kategorisieren. Bekannte englischsprachige und weitere Communities können gezielt recherchiert werden.
+- Autor unterscheidet klar zwischen der nationalen Fanszene und vereinzelten Fans mit Fahnen in der Premier League. Keine Standardpassagen à la „Ultras waren nicht zu erkennen“.
+- Amtlich belegt: https://inside.fifa.com/organisation/news/asean-challenge-cup-hong-kong-china-eric-fok (31.374 Zuschauer), https://www.info.gov.hk/gia/general/202610/03/P2026100300843p.htm .
+
+### Kleingrounds und Tickets – persönliche Erfahrungen
+- Autor konnte am 23.02.2025 **alle fünf dokumentierten Grounds einschließlich La Salle College ohne komplizierte Kontrollen besuchen**. Kein genereller Anspruch auf freien Zugang zu Schul-/Privatanlagen ableiten; bei Spielen des Ligabetriebs jeweils Bedingungen prüfen.
+- Premier-League-Eintritt nach eigenen Erfahrungen meist **rund 9–11 EUR**, gegen Zahlung am Stadion gibt es oft eine gedruckte Eintrittskarte. Keine Festpreise behaupten; HKFA Spielplan zeigt bei manchen Spielen den Eintritt.
+- Fußball im Sportparks oft im engen Takt bis spät abends. Insgesamt sieben dokumentierte Besuche; die fünf Sonntagsgrounds sind ein starkes Beispiel für effizientes Groundhopping.
+- Verbandsübergreifender Amateurfußball: Nutzer erwähnt zusätzliche Verbände/Privatligen und internationale Teams, auch deutschsprachige. Konkrete Namen und Mitgliedschaften vor Veröffentlichung recherchieren.
+
+### Futian, Grenzkontrollen und Einreise – persönliche Erfahrungen & Einordnung
+- Nutzer hat selbst in **Shenzhen bei Futian Checkpoint**, etwa **2–3 Metrostationen** vom Übergang entfernt, gewohnt und auch während der **Golden Week Anfang Oktober 2026** mehrfach über Futian/Lok Ma Chau gependelt.
+- Vormittags war seine Erfahrung entspannt, kürzere Schlangen für ausländische Reisende; abends nahe Grenzschluss stärkere Zugauslastung. **Individuelle Erfahrung**, kein Versprechen kurzer Wartezeiten für alle Tage.
+- Mainland-Einreisekioske konnten Daten aus vorangegangenen Passagen bei wiederholter Einreise teilweise vorausfüllen. **Keine garantierte Befreiung von erneuter Arrival Card** – Hongkong und Festlandchina haben getrennte Einreisekontrollen.
+- Offizielle HK-Öffnungszeiten: Lok Ma Chau Spur Line (Futian) **06:30–22:30**, Lo Wu **06:30–24:00**, Huanggang **24 Stunden**. https://www.immd.gov.hk/eng/contactus/control_points.html
+- China Arrival Card kann seit 20.11.2025 kostenlos digital oder an Kiosken vor Ort ausgefüllt werden: https://hk.ocmfa.gov.cn/eng/fwxx/wgrqz/202512/t20251203_11765781.htm
+- Deutsche Touristinnen/Touristen mit regulärem Pass: Mainland-Visumbefreiung 30 Tage **bis 31.12.2026**, mehrfache Einreisen derzeit erlaubt; Verlängerung nach 2026 prüfen: https://de.china-embassy.gov.cn/det/lsfw/visa/202511/t20251114_11753639.htm . Hongkong separat bis 90 Tage visumfrei laut https://www.hketoberlin.gov.hk/de/travel/ .
+- September-2026-Redditberichte zeigen beide Seiten des Hotelpendelns: teils entspannt, teils beschwerlich, Zeitaufwand/S-Bahn-Kosten können Ersparnis auffressen. Empfehlung immer **Kostenvergleich mit Hotel am Rand von HK plus Pendelzeit**: https://www.reddit.com/r/travelchina/comments/1wjpytp/daily_commuting_from_shenzhen_to_hong_kong_to/ .
+
+### Hongkong abseits des Fußballs – persönliche Highlights
+- **Happy Valley Racecourse**, **Victoria Peak / Peak Tram**, **Uferpromenade mit Skyline**, **Doppeldecker-Tram**, **Kowloon und Restaurants**, **Shoppingmalls**, **Hongkong–Zhuhai–Macau-Brücke**. Entscheidender Vor-Ort-Tipp: die Sportparks als Blick ins alltägliche Hongkong erkunden.
+- Peak Tram nach Nutzererfahrung recht teuer, mit Warteschlangen. Alternative Bus 15 + **kostenloser Peak Circle Walk** (3,5 km) https://www.discoverhongkong.com/eng/place-to-go/travel.guide-peak-circle-walk.html .
+- **Sonntage in Central:** Gruppen philippinischer und indonesischer Hausangestellter verbringen ihren freien Tag gemeinsam in öffentlichen Bereichen. Sie haben gesetzlich Anspruch auf einen Ruhetag wöchentlich; da die meisten im Haushalt der Arbeitgeber wohnen, sind diese Orte wichtige Begegnungs- und Erholungsräume. Nicht schreiben, dass Menschen „keinen öffentlichen Ort haben“, sondern differenziert erklären; keine voyeuristische Touristendarstellung. https://www.fdh.labour.gov.hk/en/fdh_corner.html ; https://research.polyu.edu.hk/en/publications/a-room-of-ones-own-transnational-leisure-in-public-spacesthe-case/ .
+
+### KONKRETE Spartipps aus lokalen Quellen, Stand 02.11.2026
+- **Zwei-Beilagen-Reisboxen (兩餸飯 / leung sung faan):** in Seitenstraßen und in der Nähe von Märkten oft um **28–45 HKD** (Beispielpreise aus Reddit, kein Garantiebetrag); bei Google Maps/OpenRice chinesischen Begriff suchen. https://www.reddit.com/r/HongKong/comments/1vjkyb2/is_this_the_cheapest_2_dishes_in_hong_kong_28/ , https://www.reddit.com/r/HongKong/comments/1j7av7z/
+- **Tram 3,30 HKD je Fahrt** auf Hongkong Island, Octopus oder Visa/Mastercard möglich: https://www.hktramways.com/en/schedules-fares .
+- **Star Ferry** Central–Tsim Sha Tsui: werktags Unterdeck HK$4, Oberdeck HK$5 (Stand November 2026); Preisanpassung Januar 2027 prüfen https://www.starferry.com.hk/en/service .
+- **Happy Valley Horse Racing** (meist mittwochabends September–Juli) regulär 10 HKD, Touristen ab 18 mit gültigen Reisedokumenten **kostenloser Zugang zum Public Enclosure** laut Veranstalter: https://happywednesday.hkjc.com/en-US/plan-your-visit/ . Ticket für den Mitgliederbereich getrennt; keine Garantie einzelner Termine.
+- **Reddit 2026** empfiehlt zusätzlich genügend Bargeld für Marktstände/kleinere Läden, Octopus-Karte, kostenlose Spaziergänge und pragmatische Mahlzeiten. https://www.reddit.com/r/HongKong/comments/1u17s6v/just_returned_from_hong_kong_my_honest_tips/
+- Übernachtung in Shenzhen Futian nach eigener Erfahrung lohnend, aber Grenzschluss, Metrozeiten, MTR-Fahrt und Rückreisen bewusst gegen die Übernachtungsersparnis rechnen.
+- Relativ günstige Übernachtungen innerhalb Hongkongs z.B. in weniger zentralen Quartieren prüfen; keine Pauschale „Hotels auf HK-Seite unbezahlbar“.
+
+### WICHTIGE Terminpräzisierung
+Der Nutzer vermutet **09.05.2027** als Saisonende. Das ist **nicht** als letztes Erstligaspiel gesichert: Die offizielle/Club-Terminseite für HKFC weist **22.05.2027** noch ein Premier-League-Spiel *Wofoo Kowloon City – HKFC* aus. Möglich sind Verschiebungen; verlässlich nur bestätigte Spielplanangaben, keinen fiktiven finalen Ligatag publizieren. Quelle: https://hkfcsoccer.hk/fixtures-results/ (am 02.11.2026 eingesehen).
+
+### Gestaltungsschwerpunkte (keine Platzhalterpassagen!)
+- Farbiger HKPL-Kalender (normalerweise August–Mai), getrennt vom Kalender zu anderen Spielklassen – dort ist **Juni/Juli nicht als pauschal sichere Spielzeit** belegt.
+- HKFA-**Gesamtspielplan prominent und groß**: https://www.hkfa.com/en/competitions/fixtures . Für Reisende wichtigste Verknüpfung.
+- Fankultur anhand **eigener Fotos** (Kai-Tak-Kurve) und konkreter Beobachtungen.
+- Happy Valley Foto und HKFC-Geschichte, fünf Groundbesuche an einem einzigen Sonntag.
+- Spartipps erhalten genauso viel Aufmerksamkeit wie Stadioninformationen, relevante Links und Preise als zeitabhängig kennzeichnen.
+- Alle Bilder und Textstellen für den User in Sanity einfach bearbeitbar, Community wiederverwenden. Kein fragwürdiger Umbau des gut funktionierenden Macau-Layouts.
+

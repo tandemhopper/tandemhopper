@@ -7,10 +7,13 @@ import {getCountryGuide} from '../../../lib/countryGuides'
 import {getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
 import MacauEditorialPage from '../../../components/MacauEditorialPage'
+import HongkongEditorialPage from '../../../components/HongkongEditorialPage'
+import {getHongkongEditorialSettings} from '../../../lib/hongkongEditorialSettings'
 import LeagueSeasonCalendar from '../../../components/LeagueSeasonCalendar'
 import CountryCommunity from '../../../components/CountryCommunity'
 import {getMacauEditorialSettings} from '../../../lib/macauEditorialSettings'
 import '../../macau-editorial.css'
+import '../../hongkong-editorial.css'
 import '../../country-community.css'
 import '../../laenderkompass.css'
 
@@ -22,7 +25,7 @@ export async function generateMetadata({params}) {
   const {slug}=await params
   const country=await getCountryGuide(slug)
   if(!country) return {title:'Land nicht gefunden'}
-  const settings = slug==='macau' ? await getMacauEditorialSettings() : null
+  const settings = slug==='macau' ? await getMacauEditorialSettings() : slug==='hongkong' ? await getHongkongEditorialSettings() : null
   const photo = settings?.images?.find(image=>image.slot==='hero'&&image.url)
   const hero = photo?.url||country.hero
   return {title:country.title+' – Länderkompass',description:country.teaser||'Groundhopping-Guide für '+country.title,alternates:{canonical:'/laender/'+slug},openGraph:{images:hero?[{url:imageUrl(hero,1200,80),alt:photo?.alt||country.heroAlt||country.title}]:undefined}}
@@ -36,6 +39,10 @@ export default async function CountryPage({params}) {
   if(slug === 'macau') {
     const settings = await getMacauEditorialSettings()
     return <MacauEditorialPage settings={settings} communityEnabled={communityEnabled}/>
+  }
+  if(slug === 'hongkong') {
+    const settings=await getHongkongEditorialSettings()
+    return <HongkongEditorialPage settings={settings} communityEnabled={communityEnabled}/>
   }
   const articles=await getArticles()
   const related=articles.filter(a=>a.place?.country?.toLocaleLowerCase('de')===country.title.toLocaleLowerCase('de')).slice(0,6)

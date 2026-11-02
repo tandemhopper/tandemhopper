@@ -43,7 +43,7 @@ export async function GET(request){
   const params=new URL(request.url).searchParams
   const slug=params.get('country')||''
   if(!validSlug(slug))return respond({error:'Ungültiges Land.'},400)
-  const offset=Math.min(3000,Math.max(0,Number.parseInt(params.get('offset')||'0',10)||0))
+  const offset=Math.min(100000,Math.max(0,Number.parseInt(params.get('offset')||'0',10)||0))
   const end=offset+PAGE_SIZE
   try{
     // No draft documents are queried. Public readers only see published comments.
@@ -69,9 +69,10 @@ export async function GET(request){
 export async function POST(request){
   const secret=process.env.SANITY_COMMENT_WRITE_TOKEN
   if(!secret)return respond({error:'Die Kommentarfunktion ist derzeit noch nicht freigeschaltet.'},503)
-  const expectedOrigin=new URL(request.url).origin
   const origin=request.headers.get('origin')
-  if(origin && origin!==expectedOrigin)return respond({error:'Anfrage nicht erlaubt.'},403)
+  const acceptedOrigins=new Set([new URL(request.url).origin,'https://tandemhopper.de','https://www.tandemhopper.de'])
+  if(process.env.VERCEL_URL)acceptedOrigins.add('https://'+process.env.VERCEL_URL)
+  if(origin && !acceptedOrigins.has(origin))return respond({error:'Anfrage nicht erlaubt.'},403)
   const size=Number(request.headers.get('content-length')||0)
   if(size>15000)return respond({error:'Der Beitrag ist zu lang.'},413)
 

@@ -47,7 +47,7 @@ export default function HongkongEditorialPage({settings,communityEnabled=false})
  const TLink=({href,children,className})=>{
   const override=changedLinks.get(href)
   const orig=defaultHongkongSources.find(item=>item.originalUrl===href)
-  const label=orig&&override?.label!==orig.label?override.label:children
+  const label=override&&orig&&override.label!==orig.label?override.label:children
   return <External href={override?.url||href} className={className}>{label}</External>
  }
  const season={...defaultHongkongLeagueSeason,...(settings?.leagueSeason||{})}

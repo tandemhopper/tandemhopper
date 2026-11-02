@@ -1,5 +1,6 @@
 import {defineArrayMember,defineField,defineType} from 'sanity'
 import {defaultMacauTexts,defaultMacauTips,defaultMacauImageSlots,defaultMacauSources} from '../../lib/macauEditableDefaults'
+import {defaultMacauLeagueSeason} from '../../lib/leagueSeasonData'
 
 // All fields preserve the current design: only their editorial content changes.
 const copyItem = defineArrayMember({
@@ -32,6 +33,7 @@ export const macauEditorialSettings = defineType({
     copyField('introTexts','Titel, Einleitung und Bargeld-Hinweis','intro'),
     copyField('stadiumTexts','Stadien und Canidrome','football'),
     copyField('matchTexts','Spielplanung','football'),
+    defineField({name:'leagueSeason',title:'WANN WIRD GESPIELT? · Liga & Saisonkalender',type:'leagueSeason',group:'football',initialValue:()=>defaultMacauLeagueSeason,description:'Hier stehen Spielmonate, Saisontermine, Ausnahmen und die Links. Einmal im Jahr anhand des Spielplans aktualisieren.'}),
     copyField('travelTexts','Anreise und Verkehr','travel'),
     copyField('cityTexts','Stadt und weitere Grounds','travel'),
     copyField('budgetTexts','Einleitung und Hintergrundtipps','budget'),
@@ -69,6 +71,7 @@ export const macauEditorialSettings = defineType({
     introTexts:defaultMacauTexts.filter(x=>x.group==='intro'),
     stadiumTexts:defaultMacauTexts.filter(x=>x.group==='stadien'),
     matchTexts:defaultMacauTexts.filter(x=>x.group==='spiele'),
+    leagueSeason:defaultMacauLeagueSeason,
     travelTexts:defaultMacauTexts.filter(x=>x.group==='anreise'),
     cityTexts:defaultMacauTexts.filter(x=>x.group==='stadt'),
     budgetTexts:defaultMacauTexts.filter(x=>x.group==='spartipps'),

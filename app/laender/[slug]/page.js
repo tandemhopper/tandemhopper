@@ -8,8 +8,10 @@ import {getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
 import MacauEditorialPage from '../../../components/MacauEditorialPage'
 import LeagueSeasonCalendar from '../../../components/LeagueSeasonCalendar'
+import CountryCommunity from '../../../components/CountryCommunity'
 import {getMacauEditorialSettings} from '../../../lib/macauEditorialSettings'
 import '../../macau-editorial.css'
+import '../../country-community.css'
 import '../../laenderkompass.css'
 
 export const revalidate = 60
@@ -60,6 +62,7 @@ export default async function CountryPage({params}) {
         const heading=<><span aria-hidden="true">{topics[section.topic]?.[0]||'📌'}</span><h2>{section.heading||topics[section.topic]?.[1]||'Wissenswertes'}</h2></>
         return accordion?<details id={'thema-'+i} className="country-topic country-topic-accordion" key={section._key||i}><summary className="country-topic-title">{heading}<span className="country-expand" aria-hidden="true">+</span></summary>{inner}</details>:<section id={'thema-'+i} className={'country-topic '+(section.presentation==='card'?'country-topic-card':'')} key={section._key||i}><div className="country-topic-title">{heading}</div>{inner}</section>
       })}</div>
+      <CountryCommunity country={slug}/>
       {country.checkedAt&&<p className="country-updated">Zuletzt überprüft: {new Intl.DateTimeFormat('de-DE').format(new Date(country.checkedAt))}. Bitte aktuelle Ticket- und Einreiseregeln vor der Reise nochmals prüfen.</p>}
       {related.length>0&&<section className="country-related"><h2>UNSERE GESCHICHTEN AUS {country.title.toLocaleUpperCase('de')}</h2><div>{related.map(a=><Link key={a.slug} href={'/geschichten/'+a.slug}>{a.hero&&<img src={imageUrl(a.hero,600,78)} alt="" loading="lazy"/>}<strong>{a.title}</strong><span>WEITERLESEN →</span></Link>)}</div></section>}
     </div>

@@ -1,4 +1,4 @@
-import {defaultMacauTips,defaultMacauTextMap,defaultMacauSources} from '../lib/macauEditableDefaults'
+import {defaultMacauTips,defaultMacauTextMap,defaultMacauSources,defaultMacauMapNavigationTip} from '../lib/macauEditableDefaults'
 import Link from 'next/link'
 import Header from './Header'
 import Footer from './Footer'
@@ -124,7 +124,7 @@ export default function MacauEditorialPage({settings,communityEnabled=false}) {
             <Photo name="lrt" alt="Aufgeständerte Macau Light Rapid Transit bei Nacht" caption="Die aufgeständerte LRT auf Taipa."/>
           </div>
           <div className="th-trip-grid">
-            <section><h3>{t("copy-026")}</h3><p>{t("copy-027")}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/local-transportation">Öffentlicher Verkehr</TextLink></section>
+            <section><h3>{t("copy-026")}</h3><p>{t("copy-027")}</p><p className="th-inline-tip">{settings?.mapNavigationTip??defaultMacauMapNavigationTip}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/local-transportation">Öffentlicher Verkehr</TextLink><TextLink href="https://www.dsat.gov.mo/dsat/news_detail.aspx?a_id=874D0B368F182B1988F7BC4B4CDC4FDB">Macau Smart Go – offizielle App</TextLink></section>
             <section><h3>{t("copy-028")}</h3><p>{t("copy-029")}</p><TextLink href="https://www.gov.mo/en/services/ps-1474/ps-1474b/">Offizielle Einreiseinformationen</TextLink></section>
           </div>
         </Chapter>

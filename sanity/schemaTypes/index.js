@@ -1,6 +1,7 @@
 import {article} from './article'
 import {countryGuide} from './countryGuide'
+import {macauEditorialSettings} from './macauEditorialSettings'
 import {calendarCompetition} from './calendarCompetition'
 import {calendarMatch} from './calendarMatch'
 
-export const schemaTypes = [article, calendarMatch, calendarCompetition, countryGuide]
+export const schemaTypes = [article, calendarMatch, calendarCompetition, countryGuide, macauEditorialSettings]

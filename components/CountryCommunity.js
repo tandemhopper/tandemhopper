@@ -88,7 +88,7 @@ export default function CountryCommunity({country,asChapter=false}){
         <p className="th-community-eyebrow">DEIN BEITRAG</p>
         <h3>KOMMENTIERE SELBST.</h3>
         <p className="th-community-form-intro">Tipps, Korrekturen, Fragen oder konkrete Ergänzungen – alles willkommen. Beiträge werden vor der Veröffentlichung geprüft.</p>
-        {!enabled?
+        {loading?<p className="th-community-empty" role="status">Formular wird geladen …</p>:!enabled?
           <div className="th-community-unavailable" role="status">
             <strong>Kommentarfunktion in Vorbereitung</strong>
             <p>Lesen ist bereits möglich. Das Absenden wird freigeschaltet, sobald die sichere Verbindung zum Redaktionsstudio eingerichtet ist.</p>

@@ -23,6 +23,7 @@ Im Standardraster liegen **Navigationsleiste / Kopfbereich, Überschriften, Bild
 
 - `app/globals.css` stellt das globale Raster bereit.
 - `app/macau-editorial.css` orientiert den Länderkompass an diesem Raster, ohne seine etablierte Schriftwelt oder Gestaltungslogik zu verändern.
+- `app/site-grid.css` gibt Startseite, Archiv, Bildrastern und Footer dieselben Sicherheitsabstände.
 - Neue Seiten verwenden zunächst `.site-page-rail` für die äußere Struktur und setzen Lesespalten bewusst **innen**.
 - Bestehende fremde Seitentypen werden bei ihren nächsten Designänderungen auf dieses Raster migriert, nicht blind mit einer globalen Überschreibung verändert.
 

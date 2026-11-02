@@ -28,13 +28,18 @@ export default function MacauEditorialPage({settings}) {
   const t = key => copyOverrides.has(key) ? copyOverrides.get(key) : (defaultMacauTextMap[key]||'');
   const photos = new Map((settings?.images||[]).map(item=>[item.slot,item]));
   const Photo = ({name,...props})=>{const edited=photos.get(name);return <BasePhoto name={name} {...props} src={edited?.url} alt={edited?.alt||props.alt} caption={edited?.caption||props.caption}/>};
-  const sourceLinks = settings?.sourceLinks?.length?settings.sourceLinks:defaultMacauSources;
+  const sourceLinks = Array.isArray(settings?.sourceLinks)?settings.sourceLinks:defaultMacauSources;
   const sourceMap = new Map(sourceLinks.map(item=>[item.originalUrl,item]));
-  const TextLink = ({href,children})=><BaseTextLink href={sourceMap.get(href)?.url||href}>{children}</BaseTextLink>;
+  const TextLink = ({href,children})=>{
+    const changed = sourceMap.get(href);
+    const original = defaultMacauSources.find(item=>item.originalUrl===href);
+    const label = changed && original && changed.label!==original.label ? changed.label : children;
+    return <BaseTextLink href={changed?.url||href}>{label}</BaseTextLink>;
+  };
   const links = sourceLinks.map(item=>[item.label,item.url]);
   const heroPhoto=photos.get('hero');
 
-  const tips = settings?.tips?.length?settings.tips:defaultMacauTips
+  const tips = Array.isArray(settings?.tips)?settings.tips:defaultMacauTips
   return <><Header/><main className="th-country">
     <nav className="th-breadcrumb" aria-label="Brotkrumennavigation"><Link href="/laender">LÄNDERKOMPASS</Link><span>/</span><span>ASIEN</span><span>/</span><strong>MACAU</strong><i/><span>GUIDE 01</span></nav>
     <header className="th-hero">
@@ -42,7 +47,7 @@ export default function MacauEditorialPage({settings}) {
         <p className="th-eyebrow">{t("copy-001")}</p>
         <h1>MACAU<span>.</span></h1>
         <p className="th-hero-deck">{t("copy-002")}</p>
-        <div className="th-hero-meta"><span>GROUNDHOPPING-GUIDE</span><span>STAND 02.11.2026</span></div>
+        <div className="th-hero-meta"><span>GROUNDHOPPING-GUIDE</span><span>STAND {settings?.lastReviewed?new Intl.DateTimeFormat('de-DE').format(new Date(settings.lastReviewed)): '02.11.2026'}</span></div>
       </div>
       <figure className="th-hero-photo"><img src={heroPhoto?.url||base+'olympic-v2.webp'} alt={heroPhoto?.alt||'Olympic Sports Centre am Abend mit leuchtendem Galaxy Macau im Hintergrund'} fetchPriority="high"/><figcaption>{heroPhoto?.caption||'Olympic Sports Centre · Taipa'}</figcaption></figure>
     </header>
@@ -157,7 +162,7 @@ export default function MacauEditorialPage({settings}) {
             <div>
               <p>{t("copy-037")}</p>
               <p>{t("copy-038")}</p>
-              <TextLink href="https://www.reddit.com/r/Macau/comments/1o4muln/removed/">Erfahrungsberichte: Casino-Snacks und Kostproben</TextLink>
+              <TextLink href="https://www.reddit.com/r/Macau/comments/1thtue5/solo_trip_in_macau_help/">Erfahrungsberichte: Casino-Snacks und Kostproben</TextLink>
             </div>
           </details>
           <div className="th-detail-note">

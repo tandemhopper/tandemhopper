@@ -66,6 +66,48 @@ Der Länderführer Hongkong wird wesentlich größer und tiefer als Macau. Das *
 - **WLAN & Internet:** HK gewöhnlich mit westlichen Webseiten/Google/Facebook ohne Mainlandsperre; Mainland-SIM/eSIM mit Roamingbedingungen prüfen. Google Maps in HK gut, anders als Macau; keine pauschalen Aussagen zu allen Dienstleistern.
 - Hongkong bietet zwar teure Hotels, aber auch einfache; Angaben zu Zustand und „Slum“ nur anhand konkreter persönlicher Eindrücke, nicht über ganze Bevölkerungsgruppen oder Stadtteile pauschalisieren.
 
+## Zweite Foto-Lieferung und Ground-Liste (02.11.2026)
+
+**Hinweis zur Ablage:** 17 Originalfotos bzw. Screenshots wurden im laufenden Projektchat hochgeladen. Dies ist zunächst ein internes Inventar **zur späteren Fotoauswahl**. Die Bilddateien selbst wurden noch **nicht** in Sanity, GitHub oder auf der öffentlichen Seite veröffentlicht. Weitere Nutzerbilder folgen.
+
+### Bestätigte persönliche Spiele anhand des Nutzer-Screenshots
+
+| Datum | Ground | Partie | Ergebnis | Einordnung |
+|---|---|---|---|---|
+| 23.02.2025 | Kowloon Tsai Sports Ground | Kwok Keung A.A. – Kui Tan Sports Club Association Ltd | 1:2 | Screenshot aus eigener Groundliste |
+| 23.02.2025 | La Salle College | La Salle College U19 – Unknown U19 | 0:0 | Gegner in der Liste unbekannt; **keine erfundene Identität** |
+| 23.02.2025 | Kowloon Tsai Park Side Pitches | Kowloon Cricket Club – Wanchai Sports Federation | 3:1 | Screenshot aus eigener Groundliste |
+| 23.02.2025 | Sham Shui Po Sports Ground | Kowloon City – Eastern SC | 1:5 | Screenshot aus eigener Groundliste |
+| 23.02.2025 | Tsing Yi Sports Ground | Hong Kong Rangers FC – North District | 3:1 | Screenshot aus eigener Groundliste |
+| 03.10.2026 | Kai Tak Stadium (Hauptstadion, **nicht Youth Sports Ground**) | Hongkong – Kambodscha | **2:0** | **Finale FIFA ASEAN Challenge Cup 2026**, Hongkong siegt; offizielle Berichte nennen knapp 32.000 Zuschauer |
+| 04.10.2026 | Hong Kong Football Club Stadium | Lucky Mile – Kui Tan SC (im eigenen Bericht: New Fair Kui Tan FC) | 3:3 | Bereits im eigenen Artikel ausführlich beschrieben, 114 Zuschauer |
+
+**Offizielle Quellen zum Finalspiel:** [AFC](https://www.the-afc.com/en/more/fifa_asean_cup.html/news/hong-kong-china-lift-fifa-asean-challenge-cup), [FIFA: Spiel und Highlights](https://www.fifa.com/en/watch/3M1st1GWvlDREDwXSdNGOG), [Hongkonger Regierungsmitteilung](https://www.news.gov.hk/eng/2026/10/20261003/20261003_223032_458.html?type=ticker) sowie [AFF](https://www.aseanfootball.org/v3/cambodia-finish-as-runners-up-division-2-fifa-asean-cup-2026/). Der Challenge Cup war die zweite Division des neuen Wettbewerbs, **nicht das Finale des höchsten FIFA ASEAN Cup-Turnierzweigs**.
+
+### Fotoinventar (Upload-Namen aus dem Projektchat)
+
+| Datei-Endung / Uhrzeit | Motiv | Mögliche Verwendung |
+|---|---|---|
+| 17.55.36.jpeg | Screenshot mit fünf Grounds/Spielen vom 23.02.2025 | Interne Recherche, nicht als hero |
+| 17.55.44.jpeg | Screenshot mit beiden Grounds/Spielen vom 03./04.10.2026 | Interne Recherche, nicht als hero |
+| 17.57.06.jpeg | **Tsing Yi Sports Ground**, Tribüne und Hafenkräne | Grounds-Galerie |
+| 17.57.42.jpeg | **Sham Shui Po Sports Ground**, gut besetzte überdachte Tribüne | Grounds-Galerie |
+| 17.58.01.jpeg | **La Salle College**, Fußballfeld zwischen Schulgebäuden und Hochhäusern | Außenseiter-/Schulground, Hinweis auf Zugang |
+| 17.58.24.jpeg | **Kowloon Tsai Sports Ground**, rote Laufbahn, rosa/blaues Match | Grounds-Galerie |
+| 18.00.33 (1).jpeg | Historische doppelstöckige Straßenbahn | ÖPNV/Spartipps |
+| 18.00.33.jpeg | Fußball im Bereich Happy Valley / HKFC vor großem Clubgebäude | Ground-Galerie |
+| 18.01.38 (1).jpeg | **HKFC Stadium**, Spielsituation bei Flutlicht, bunte Tribünen | Eigener Matchbericht |
+| 18.01.38 (2).jpeg | Victoria Harbour / Skyline und beleuchtete Fähren | Sehenswürdigkeiten |
+| 18.01.38 (3).jpeg | Aufsicht über Happy Valley Racecourse und die Fußballanlagen | Starke Panoramaaufnahme zur Rennbahn |
+| 18.01.38.jpeg | Fußballfeld in Happy Valley vor abendlicher Hochhausskyline | Sehr starkes Stadion-/Stadtfoto |
+| 18.01.40.jpeg | Peak Tram durch dicht bewachsenen Hang | The Peak |
+| 18.01.42 (1).jpeg | Clock Tower in Tsim Sha Tsui | Stadtgeschichte/Sehenswürdigkeiten |
+| 18.01.42.jpeg | Peak Tram mit Skyline im Hintergrund | The Peak |
+| 18.01.48.jpeg | **Hongkong-Nationalmannschaftsfans** beim Finale: Fahnenschwenker, Choreo, rote Kurve | Nationalmannschaft & Fankultur, mögliches Hero |
+| 18.02.03.jpeg | **Kai Tak Stadium**, Großaufnahme des Hauptstadions während Hongkong–Kambodscha | Stadion-/Finalkapitel, mögliches Hero |
+
+**Bildstrategie:** Später nach vollständigem Upload eine gezielte Auswahl treffen: großes Kai-Tak-Fanmotiv als möglicher Einstieg; eigener HKFC-Ground mit Skyline als eigenständiges Highlight; kleine Grounds als kompakte Fotostrecke statt unstrukturierter Fotowand; touristische Motive dosiert zwischen den Informationen. Screenshots nur für die redaktionelle Zuordnung. Originalfotos nicht per Code ohne Freigabe öffentlich stellen. Keine automatisch erfundenen Captions zu Gegnern, Bildern oder Zugang.
+
 ## Ausblick: Artikelaufbau
 1. Titel/Hero: Hongkong als Fußballhochburg mit extrem vielen Grounds; Bild z.B. Happy Valley oder Kai Tak.
 2. Faktenband + **Premier-League-Saisonkalender mit 5 historischen Saisons** + **Wie man auch außerhalb der Erstligasaison Spiele findet**.
@@ -79,7 +121,7 @@ Der Länderführer Hongkong wird wesentlich größer und tiefer als Macau. Das *
 10. Alle Inhalte wie Macau im Sanity-Studio editierbar.
 
 ## Offene Fragen an Nutzer
-- Welche **weiteren** Spiele waren es genau (Gegner, Datum / ungefähres Jahr, Wettbewerbe)? HKFC ist bereits eindeutig dokumentiert (Lucky Mile – New Fair Kui Tan FC 3:3 vom 04.10.2026); vor allem La Salle und Kai Tak nachfragen.
+- Sieben Groundbesuche sind jetzt anhand der Nutzer-Screenshots zugeordnet, darunter **Hongkong – Kambodscha 2:0 im FIFA ASEAN Challenge Cup Finale vom 03.10.2026** und HKFC Lucky Mile 3:3 am 04.10.2026. Bei La Salle ist lediglich der Gegner unbekannt; nicht erfinden.
 - Welche Fußballplätze und Stadtmotive zeigen die zusätzlichen Fotos? Fotoimport vor Artikelbau.
 - Welche Grenzübergänge genau wurden genutzt; gab es besondere Verspätungen oder Erfahrungen mit 22:30-Uhr-Schluss?
 - Bei Nationalmannschaft / Fankultur: Selbst erlebtes oder nur beobachtet in Medien? Unbedingt unterscheiden.

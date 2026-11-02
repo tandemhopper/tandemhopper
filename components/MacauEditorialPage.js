@@ -1,13 +1,13 @@
-import {defaultMacauTips} from '../lib/macauEditableDefaults'
+import {defaultMacauTips,defaultMacauTextMap,defaultMacauSources} from '../lib/macauEditableDefaults'
 import Link from 'next/link'
 import Header from './Header'
 import Footer from './Footer'
 
 const base = '/assets/laender/macau-'
 
-function Photo({name,alt,caption,wide=false}) {
+function BasePhoto({name,src,alt,caption,wide=false}) {
   return <figure className={'th-photo'+(wide?' th-photo-wide':'')}>
-    <img src={base+name+'.webp'} alt={alt} loading="lazy" decoding="async"/>
+    <img src={src||base+name+'.webp'} alt={alt} loading="lazy" decoding="async"/>
     {caption&&<figcaption>{caption}</figcaption>}
   </figure>
 }
@@ -20,29 +20,31 @@ function Chapter({id,number,label,title,children}) {
   </section>
 }
 
-function TextLink({href,children}) {return <a className="th-source-link" href={href} target="_blank" rel="noopener noreferrer">{children}<span aria-hidden="true"> ↗</span></a>}
+function BaseTextLink({href,children}) {return <a className="th-source-link" href={href} target="_blank" rel="noopener noreferrer">{children}<span aria-hidden="true"> ↗</span></a>}
 
-const links = [
-  ['FIFA-Weltrangliste (20.07.2026)','https://inside.fifa.com/fifa-rankings/world-ranking/MAC'],
-  ['Liga und Spielpläne (Macau Football)','https://www.macaufootball.com/eng/league-d1/2026'],
-  ['Macau Tourism – Bus (6 MOP) & LRT','https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/local-transportation'],
-  ['Macau Tourism – Grenzübergänge','https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/ports-of-entry'],
-  ['Macau Government – Canidrome-Umbau (2026)','https://www.gcs.gov.mo/news/detail/pt/N26AWONP9G'],
-  ['Macao News – Bauphasen Lin Fong / Canidrome','https://macaonews.org/news/city/macau-sports-complex-former-canidrome-redevelopment-macao/'],
-]
+export default function MacauEditorialPage({settings}) {
+  const copyItems = [...(settings?.introTexts||[]), ...(settings?.stadiumTexts||[]), ...(settings?.matchTexts||[]), ...(settings?.travelTexts||[]), ...(settings?.cityTexts||[]), ...(settings?.budgetTexts||[]), ...(settings?.sourceTexts||[])];
+  const copyOverrides = new Map(copyItems.map(item=>[item.key,item.value]));
+  const t = key => copyOverrides.has(key) ? copyOverrides.get(key) : (defaultMacauTextMap[key]||'');
+  const photos = new Map((settings?.images||[]).map(item=>[item.slot,item]));
+  const Photo = ({name,...props})=>{const edited=photos.get(name);return <BasePhoto name={name} {...props} src={edited?.url} alt={edited?.alt||props.alt} caption={edited?.caption||props.caption}/>};
+  const sourceLinks = settings?.sourceLinks?.length?settings.sourceLinks:defaultMacauSources;
+  const sourceMap = new Map(sourceLinks.map(item=>[item.originalUrl,item]));
+  const TextLink = ({href,children})=><BaseTextLink href={sourceMap.get(href)?.url||href}>{children}</BaseTextLink>;
+  const links = sourceLinks.map(item=>[item.label,item.url]);
+  const heroPhoto=photos.get('hero');
 
-export default function MacauEditorialPage() {
-  const tips = defaultMacauTips
+  const tips = settings?.tips?.length?settings.tips:defaultMacauTips
   return <><Header/><main className="th-country">
     <nav className="th-breadcrumb" aria-label="Brotkrumennavigation"><Link href="/laender">LÄNDERKOMPASS</Link><span>/</span><span>ASIEN</span><span>/</span><strong>MACAU</strong><i/><span>GUIDE 01</span></nav>
     <header className="th-hero">
       <div className="th-hero-copy">
-        <p className="th-eyebrow">OSTASIEN · LÄNDERKOMPASS</p>
+        <p className="th-eyebrow">{t("copy-001")}</p>
         <h1>MACAU<span>.</span></h1>
-        <p className="th-hero-deck">Fußball zwischen Hochhäusern und Casinowelten.</p>
+        <p className="th-hero-deck">{t("copy-002")}</p>
         <div className="th-hero-meta"><span>GROUNDHOPPING-GUIDE</span><span>STAND 02.11.2026</span></div>
       </div>
-      <figure className="th-hero-photo"><img src={base+'olympic-v2.webp'} alt="Olympic Sports Centre am Abend mit leuchtendem Galaxy Macau im Hintergrund" fetchPriority="high"/><figcaption>Olympic Sports Centre · Taipa</figcaption></figure>
+      <figure className="th-hero-photo"><img src={heroPhoto?.url||base+'olympic-v2.webp'} alt={heroPhoto?.alt||'Olympic Sports Centre am Abend mit leuchtendem Galaxy Macau im Hintergrund'} fetchPriority="high"/><figcaption>{heroPhoto?.caption||'Olympic Sports Centre · Taipa'}</figcaption></figure>
     </header>
     <div className="th-facts" aria-label="Macau auf einen Blick">
       <div><span>FIFA-RANGLISTE · MÄNNER</span><strong>193. Platz</strong><small>Stand: 20.07.2026</small></div>
@@ -53,12 +55,12 @@ export default function MacauEditorialPage() {
 
     <section className="th-intro">
       <h2>CASINOS, GRENZEN UND <em>ZWEI BESONDERE GROUNDS.</em></h2>
-      <div><p>Macau ist eine Sonderverwaltungszone Chinas – mit eigenem Fußballverband, eigener Nationalmannschaft und einem Ligaalltag vor meist ziemlich überschaubaren Kulissen.</p><p>Zwischen den gigantischen Casinoresorts und den dicht bebauten Wohnvierteln liegen zwei bemerkenswerte Fußballorte: das Olympic Sports Centre auf Taipa und das Lin Fong Stadium neben der ehemaligen Hunderennbahn Canidrome.</p></div>
+      <div><p>{t("copy-003")}</p><p>{t("copy-004")}</p></div>
     </section>
 
     <aside className="th-critical">
-      <div><p className="th-eyebrow">DER WICHTIGSTE REISETIPP</p><h2>BARGELD MITNEHMEN. WIRKLICH.</h2></div>
-      <div><p>Alipay und WeChat funktionierten bei beiden Reisen mit den für ausländische Touristen eingerichteten Zugängen vielerorts nicht – obwohl das Bezahlen damit in Festlandchina problemlos möglich war. Auch Visa und Mastercard wurden in kleineren Geschäften nicht immer akzeptiert.</p><p>Gerade im Linienbus braucht man Münzen: <strong>6 MOP pro Fahrt, kein Wechselgeld.</strong> Hongkong-Dollar werden vielerorts akzeptiert, der Wechselkurs ist aber nicht unbedingt günstig.</p></div>
+      <div><p className="th-eyebrow">{t("copy-005")}</p><h2>{t("copy-006")}</h2></div>
+      <div><p>{t("copy-007")}</p><p>Gerade im Linienbus braucht man Münzen: <strong>6 MOP pro Fahrt, kein Wechselgeld.</strong> Hongkong-Dollar werden vielerorts akzeptiert, der Wechselkurs ist aber nicht unbedingt günstig.</p></div>
     </aside>
 
     <div className="th-content-layout">
@@ -71,15 +73,15 @@ export default function MacauEditorialPage() {
         <a href="#quellen"><span>06</span> Quellen & Stand</a>
       </nav>
       <div className="th-chapters">
-        <Chapter id="stadien" number="01" label="STADIEN & GROUNDS" title="ZWEI PLÄTZE, DIE ES SO NICHT OFT GIBT.">
-          <p className="th-lead">Das große Stadion hat die Casinos im Hintergrund. Beim kleineren Platz steht ein ehemaliges Hunderennstadion daneben. Macau bietet ungewöhnliche Kulissen – aber nicht automatisch interessante Spiele.</p>
-          <h3>Olympic Sports Centre · Taipa</h3>
-          <p>Das Olympic Sports Centre ist schon wegen seiner Umgebung interessant: Hinter den Tribünen ragt das beleuchtete Galaxy Macau auf. Besonders in der Dämmerung ist die Kombination aus Laufbahn, Fußballfeld und Casinohochhäusern ziemlich speziell. Dort werden unter anderem internationale Spiele ausgetragen, gelegentlich auch Ligapartien.</p>
+        <Chapter id="stadien" number="01" label="STADIEN & GROUNDS" title={t("chapter-stadien-title")}>
+          <p className="th-lead">{t("copy-008")}</p>
+          <h3>{t("copy-009")}</h3>
+          <p>{t("copy-010")}</p>
           <Photo name="olympic-v2" alt="Laufbahn und Fußballfeld im Olympic Sports Centre vor dem beleuchteten Galaxy Casino" caption="Olympic Sports Centre mit Galaxy Macau im Hintergrund. Der Blick von der Tribüne lohnt sich besonders am Abend." wide/>
           <p className="th-inline-tip"><strong>FOTOTIPP</strong> Das Spielfeld so fotografieren, dass das Galaxy Macau hinter dem Stadion zu sehen ist. Die LRT hält in der Nähe.</p>
-          <h3>Lin Fong Stadium & das ehemalige Canidrome</h3>
-          <p>Hier spielt Fußball in einer ganz anderen Größenordnung. Beim Ligaspiel MUST IPO gegen Benfica Macau Anfang 2025 waren ungefähr 20 bis 30 Menschen auf den Rängen. Von einer organisierten Fanszene war wenig zu sehen – dafür gab es alte Tribünen und die Kulisse der Wohnhochhäuser.</p>
-          <p>Direkt neben dem Lin Fong Sports Centre liegt das Areal des früheren Canidrome. Bis 2018 wurden dort Windhundrennen ausgetragen. Anfang 2025 waren noch Überreste der Rennbahn, alte Anlagen und der markante Eingangsbereich zu sehen.</p>
+          <h3>{t("copy-011")}</h3>
+          <p>{t("copy-012")}</p>
+          <p>{t("copy-013")}</p>
           <div className="th-photo-pair">
             <Photo name="linfong-v2" alt="Ligaspiel im Lin Fong Stadium mit Wohnhochhäusern und Flutlicht" caption="Lin Fong Stadium – Ligaspiel 2025, vor Beginn der Bauarbeiten."/>
             <Photo name="canidrome-gate" alt="Historischer Eingangsbogen zum ehemaligen Macau Canidrome" caption="Der alte Canidrome-Eingang, aufgenommen 2025."/>
@@ -91,32 +93,32 @@ export default function MacauEditorialPage() {
           <aside className="th-update"><strong>WICHTIG: UMBAU SEIT 2026</strong><p>Auf dem ehemaligen Canidrome-Gelände haben im Januar 2026 die Bauarbeiten für einen Sportpark begonnen. Die Bilder zeigen deshalb <b>ausdrücklich den Zustand von 2025</b>. Das angrenzende Lin Fong Sports Centre soll laut Bauplanung während der ersten Phase weiter in Betrieb bleiben und erst später umgebaut werden. Trotzdem vor der Anreise prüfen, ob dort gespielt wird und welcher Zugang möglich ist.</p><TextLink href="https://www.gcs.gov.mo/news/detail/pt/N26AWONP9G">Offizielle Mitteilung zum Baubeginn</TextLink></aside>
         </Chapter>
 
-        <Chapter id="spiele" number="02" label="SPIELPLANUNG" title="WAS SICH LOHNT – UND WAS NICHT.">
-          <p>Macau ist kein Reiseziel für große Ligachoreografien oder volle Gästeblöcke. Wer einen Länderpunkt machen möchte, sollte zuerst auf den tatsächlichen Austragungsort achten und erst danach auf die Paarung.</p>
-          <div className="th-option"><span>01</span><div><h3>Ein Heimländerspiel</h3><p>Die reizvollste Option, besonders wenn Hongkong der Gegner wäre. Ein solches Spiel ist aber nicht jährlich garantiert. Termin und Stadion müssen bestätigt sein.</p></div></div>
-          <div className="th-option"><span>02</span><div><h3>Eine Partie der Macau League</h3><p>Ein Spiel mit bestätigtem Austragungsort reicht für einen Länderpunkt. Doppelspieltage sind möglich, kurzfristige Verlegungen ebenso. Die erste Liga 2026 war Ende Juli bereits abgeschlossen. Im Herbst laufen auch andere Wettbewerbe, etwa Siebenerfußball. Wer im November anreist, sollte also nicht automatisch mit einem Erstligaspiel rechnen.</p></div></div>
-          <div className="th-option"><span>03</span><div><h3>Benfica oder ein ungewöhnliches Vereinsduell</h3><p>Benfica Macau spielt in der höchsten Liga. Die portugiesischen Vereinsnamen sorgen zwar für einen kuriosen Fußballbezug. Ein vermeintliches „Lissabon-Derby“ gegen Sporting sollte man aber nicht auf Verdacht planen: Sporting gehörte 2026 nicht zur ersten Liga. Entscheidend ist eine tatsächlich angesetzte Partie.</p></div></div>
-          <div className="th-detail-note"><strong>SPIELPLAN CHECKEN</strong><p>Spielplanseiten und Vereinskanäle gegenprüfen – gerade chinesischsprachige Meldungen können aktueller sein. Kostenfreier Einlass ist bei kleinen Spielen möglich, aber nicht grundsätzlich garantiert.</p><TextLink href="https://www.macaufootball.com/eng/league-d1/2026">Macau League 2026 · Spielplan und Tabelle</TextLink></div>
+        <Chapter id="spiele" number="02" label="SPIELPLANUNG" title={t("chapter-spiele-title")}>
+          <p>{t("copy-014")}</p>
+          <div className="th-option"><span>01</span><div><h3>{t("copy-015")}</h3><p>{t("copy-016")}</p></div></div>
+          <div className="th-option"><span>02</span><div><h3>{t("copy-017")}</h3><p>{t("copy-018")}</p></div></div>
+          <div className="th-option"><span>03</span><div><h3>{t("copy-019")}</h3><p>{t("copy-020")}</p></div></div>
+          <div className="th-detail-note"><strong>SPIELPLAN CHECKEN</strong><p>{t("copy-021")}</p><TextLink href="https://www.macaufootball.com/eng/league-d1/2026">Macau League 2026 · Spielplan und Tabelle</TextLink></div>
         </Chapter>
 
-        <Chapter id="anreise" number="03" label="REISEPLANUNG" title="ANREISE, GRENZEN UND VERKEHR.">
-          <p className="th-lead">Macau lässt sich gut mit Hongkong oder Zhuhai verbinden. Bei einem späten Anstoß kann allerdings der Rückweg die eigentliche Herausforderung sein.</p>
+        <Chapter id="anreise" number="03" label="REISEPLANUNG" title={t("chapter-anreise-title")}>
+          <p className="th-lead">{t("copy-022")}</p>
           <div className="th-trip-grid">
-            <section><h3>Aus Hongkong</h3><p>Per Fähre oder über die Hongkong–Zhuhai–Macau-Brücke mit dem Bus. Für einen Tagesausflug reichen die Entfernungen aus, wenn die Rückfahrt zeitlich zum Spiel passt. Bei der Route unbedingt die konkreten Abfahrts- und Ankunftsterminals beachten.</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/travelling-to-macao">Offizielle Anreiseinformationen</TextLink></section>
-            <section><h3>Aus Zhuhai</h3><p>Zhuhai bietet oft günstigere Unterkünfte. Der Grenzübergang Gongbei / Portas do Cerco ist täglich <b>06:00–01:00 Uhr</b> geöffnet – nicht rund um die Uhr. Bei späten Spielen alternative Übergänge und die Einreisebestimmungen für Festlandchina prüfen.</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/ports-of-entry">Grenzübergänge & Öffnungszeiten</TextLink></section>
+            <section><h3>{t("copy-023")}</h3><p>{t("copy-024")}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/travelling-to-macao">Offizielle Anreiseinformationen</TextLink></section>
+            <section><h3>{t("copy-025")}</h3><p>Zhuhai bietet oft günstigere Unterkünfte. Der Grenzübergang Gongbei / Portas do Cerco ist täglich <b>06:00–01:00 Uhr</b> geöffnet – nicht rund um die Uhr. Bei späten Spielen alternative Übergänge und die Einreisebestimmungen für Festlandchina prüfen.</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/ports-of-entry">Grenzübergänge & Öffnungszeiten</TextLink></section>
           </div>
           <div className="th-photo-pair">
             <Photo name="gongbei" alt="Grenzgebäude Gongbei an der Grenze zwischen Macau und Zhuhai" caption="Gongbei / Portas do Cerco: praktisch, aber nicht 24 Stunden geöffnet."/>
             <Photo name="lrt" alt="Aufgeständerte Macau Light Rapid Transit bei Nacht" caption="Die aufgeständerte LRT auf Taipa."/>
           </div>
           <div className="th-trip-grid">
-            <section><h3>Bus, LRT & Casino-Shuttles</h3><p>Der Linienbus kostet bei Barzahlung 6 MOP ohne Wechselgeld. Die Macau Pass-Karte kann bei längeren Aufenthalten sinnvoll sein. Die LRT erschließt Teile von Taipa und Cotai. Viele Casinoresorts betreiben kostenlose Shuttlebusse zu wichtigen Ankunftspunkten; Fahrwege können sich ändern.</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/local-transportation">Öffentlicher Verkehr</TextLink></section>
-            <section><h3>SIM, Internet & Einreise</h3><p>Ein Festlandchina-Tarif gilt nicht automatisch in Macau. Roaming oder eine passende regionale eSIM sind die verlässlichere Planung. Macau hat eigene Einreisebestimmungen und Grenzkontrollen; deutsche Reisende sollten aktuelle Vorgaben vorab prüfen.</p><TextLink href="https://www.gov.mo/en/services/ps-1474/ps-1474b/">Offizielle Einreiseinformationen</TextLink></section>
+            <section><h3>{t("copy-026")}</h3><p>{t("copy-027")}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/local-transportation">Öffentlicher Verkehr</TextLink></section>
+            <section><h3>{t("copy-028")}</h3><p>{t("copy-029")}</p><TextLink href="https://www.gov.mo/en/services/ps-1474/ps-1474b/">Offizielle Einreiseinformationen</TextLink></section>
           </div>
         </Chapter>
 
-        <Chapter id="stadt" number="04" label="ABSEITS DES SPIELFELDS" title="ZWISCHEN CASINORESORTS UND ALTER STADT.">
-          <p>Die schmalen Straßen der Altstadt, die Ruinen von St. Paul und die dicht gedrängten Wohnviertel liegen nicht weit von Casinowelten entfernt, in denen man sich plötzlich zwischen künstlichen Kanälen, Gondeln und Nachbauten europäischer Wahrzeichen bewegt.</p>
+        <Chapter id="stadt" number="04" label="ABSEITS DES SPIELFELDS" title={t("chapter-stadt-title")}>
+          <p>{t("copy-030")}</p>
           <div className="th-photo-pair th-photo-pair-city">
             <Photo name="wynn" alt="Wasserspiele und Gondel am Wynn Palace in Macau bei Nacht" caption="Wynn Palace: Gondel und Wasserfontänen in Cotai."/>
             <Photo name="skyline" alt="Dichte Wohnbebauung mit Hochhäusern in Macau" caption="Die Wohnviertel Macaus wirken deutlich weniger glattpoliert."/>
@@ -125,15 +127,15 @@ export default function MacauEditorialPage() {
             <Photo name="grandlisboa" alt="Grand Lisboa Casino zwischen Wohnhäusern in Macau" caption="Grand Lisboa zwischen den Häusern der Altstadt."/>
             <Photo name="lotus" alt="Lotuskunstwerk und historische Stadtbebauung in Macau" caption="Eine andere Seite Macaus abseits der Stadien."/>
           </div>
-          <h3>Weitere Grounds</h3><p>An Universitäten und in Wohnvierteln gibt es kleinere Sportplätze, darunter Anlagen der Macau University of Science and Technology. Solche Grounds kommen nur infrage, wenn dort tatsächlich ein Spiel bestätigt ist. Auch das ehemalige Hippodrom des Macau Jockey Club gehört zur ungewöhnlichen, inzwischen verschwundenen Sportgeschichte der Stadt.</p>
+          <h3>{t("copy-031")}</h3><p>{t("copy-032")}</p>
         </Chapter>
 
 
-        <Chapter id="spartipps" number="05" label="TIPPS & TRICKS" title="MACAU FÜR 0 EURO? FAST.">
-          <p className="th-lead">In Macau lässt sich erstaunlich viel erleben, ohne einen Pataca auszugeben: kostenlose Casino-Shuttles, Altstadt, Lichtshows und mit etwas Glück sogar ein Ligaspiel. Die Anreise, eine Übernachtung und ein richtiges Abendessen bezahlt allerdings weiterhin jemand – in der Regel du.</p>
+        <Chapter id="spartipps" number="05" label="TIPPS & TRICKS" title={t("chapter-spartipps-title")}>
+          <p className="th-lead">{t("copy-033")}</p>
           <div className="th-budget-headline">
             <div><span>DER 0-MOP-SELBSTVERSUCH</span><strong>Ein Tag. Null Eintritt. Viel Macau.</strong></div>
-            <p>Zu Fuß durch die Altstadt und zu den Ruinen von St. Paul, anschließend mit passenden Resort-Shuttles nach Cotai und dort kostenlose Licht- und Wasserinszenierungen ansehen. Ein bestätigtes Ligaspiel ohne Eintritt wäre der Bonus. Transferzeiten, Spielorte und das letzte Shuttle vorher checken.</p>
+            <p>{t("copy-034")}</p>
           </div>
           <div className="th-budget-list">
             {tips.map((item,i)=><article className="th-budget-tip" key={item._key||i}>
@@ -144,8 +146,8 @@ export default function MacauEditorialPage() {
           <details className="th-deep-dive">
             <summary>MEHR ZUR GRENZE: ZHUHAI ALS BASIS <span aria-hidden="true">+</span></summary>
             <div>
-              <p>Für Deutsche mit regulärem Reisepass ist die touristische Einreise ins chinesische Festland derzeit für bis zu 30 Tage visumfrei (Regelung nach gegenwärtigem Stand bis 31.12.2026). Mehrfache visumfreie Einreisen sind grundsätzlich möglich, solange die jeweiligen Voraussetzungen erfüllt werden. Macau zählt dabei als separate Ein- und Ausreise – zurück nach Zhuhai geht es also durch eine neue chinesische Grenzkontrolle.</p>
-              <p>Seit November 2025 lässt sich die chinesische Arrival Card kostenlos vorab online ausfüllen; alternativ gibt es die Möglichkeit an der Grenze. Bei wiederholter Einreise ist die Registrierung für jede erforderliche Einreise erneut zu erledigen. Ausreichend freie Passseiten einplanen und für spätere Reisen die aktuell gültige Regelung nachschlagen.</p>
+              <p>{t("copy-035")}</p>
+              <p>{t("copy-036")}</p>
               <TextLink href="https://s.nia.gov.cn/ArrivalCardFillingPC/">Offizielle chinesische Arrival Card – kostenlos</TextLink>
               <TextLink href="https://china.diplo.de/cn-de/willkommen-in-china/reise-und-sicherheitshinweise">Auswärtiges Amt: Einreise nach China</TextLink>
             </div>
@@ -153,18 +155,18 @@ export default function MacauEditorialPage() {
           <details className="th-deep-dive">
             <summary>GRATIS-ESSEN IM CASINO – WAS STIMMT? <span aria-hidden="true">+</span></summary>
             <div>
-              <p>Auf manchen Spielflächen gibt es kostenlose Getränke, vereinzelt auch kleine Snacks. Das hängt vom Casino, der Situation und gegebenenfalls davon ab, ob man spielt. Reddit-Berichte widersprechen sich hier ausdrücklich, und 2024 gab es Berichte über behördlichen Druck, kostenlose Snacks einzuschränken. Wer nicht spielt, sollte weder Essen noch Getränke einplanen oder bei Angestellten einfordern.</p>
-              <p>Verlässlicher sind die kleinen Kostproben in Souvenirshops der Rua do Cunha oder auf dem Weg zu St. Paul – zum Probieren gedacht, nicht als Ersatz fürs Mittagessen. Die Spielbereiche der Casinos sind erst ab 21 Jahren zugänglich.</p>
+              <p>{t("copy-037")}</p>
+              <p>{t("copy-038")}</p>
               <TextLink href="https://www.reddit.com/r/Macau/comments/1o4muln/removed/">Erfahrungsberichte: Casino-Snacks und Kostproben</TextLink>
             </div>
           </details>
           <div className="th-detail-note">
             <strong>WAS „0 EURO“ HIER NICHT BEDEUTET</strong>
-            <p>Die großen Highlights und manche Wege innerhalb Macaus sind gratis. Kosten für Anreise, Übernachtung, Mahlzeiten und gegebenenfalls ein Spielticket bleiben außen vor. Auch nicht jeder Shuttle fährt zu jeder Uhrzeit oder ohne besondere Bedingungen.</p>
+            <p>{t("copy-039")}</p>
           </div>
         </Chapter>
 
-        <section className="th-sources" id="quellen"><h2>QUELLEN & AKTUALITÄT</h2><p>Letzte inhaltliche Prüfung: 2. November 2026. Bei Grenzzeiten, Spielorten, Spielplänen, Eintrittsregeln und Umbauarbeiten gilt stets der neueste Stand der jeweiligen Veranstalter und Behörden. Die historischen Canidrome-Fotos stammen aus 2025.</p><div>{links.map(([label,url])=><TextLink key={url} href={url}>{label}</TextLink>)}</div></section>
+        <section className="th-sources" id="quellen"><h2>{t("copy-040")}</h2><p>{t("copy-041")}</p><div>{links.map(([label,url])=><TextLink key={url} href={url}>{label}</TextLink>)}</div></section>
       </div>
     </div>
     <div className="th-endbar"><Link href="/laender">← ZUR LÄNDERÜBERSICHT</Link><span>MACAU · LÄNDERKOMPASS</span></div>

@@ -1,0 +1,143 @@
+/* Hong Kong stays in the established Macau Länderkompass visual system.
+   Every large section obeys the shared site page rails; only editorial content widens. */
+.hk-country{--th-paper:#fbfaf7}
+.hk-hero{grid-template-columns:39% 61%;height:575px}
+.hk-hero .th-hero-copy{padding:49px 36px 32px}
+.hk-hero h1{font-size:clamp(66px,6.65vw,101px);letter-spacing:-.036em;margin:76px 0 24px;white-space:nowrap}
+.hk-hero .th-hero-deck{font-size:clamp(23px,2.45vw,32px);line-height:1.13;max-width:350px}
+.hk-hero-photo img{object-position:center 39%}
+.hk-hero-photo figcaption{max-width:90%;text-align:right}
+.hk-country .th-facts strong{font-size:clamp(23px,2.25vw,30px)}
+.hk-country .th-facts>div:nth-child(2) strong{font-size:clamp(22px,1.95vw,28px)}
+.hk-country .th-intro{margin-top:94px;margin-bottom:88px}
+.hk-country .th-intro h2{max-width:460px}
+.hk-country .th-critical{margin-bottom:88px}
+.hk-country .th-critical h2{max-width:430px}
+.hk-country .th-critical>div:last-child p{max-width:690px}
+.hk-priority-link,.hk-country a.hk-priority-link{display:inline-block!important;color:#fff!important;background:var(--th-red);font:800 20px/1.16 var(--cond);letter-spacing:.02em;text-transform:uppercase;padding:17px 24px;margin:18px 0 0;max-width:100%;text-decoration:none}
+.hk-priority-link:hover{background:#8d241c}
+.hk-country .th-chapter{padding-bottom:85px}
+.hk-country .th-chapter h2{max-width:870px}
+.hk-country .th-source-link{display:inline-block;margin:5px 24px 7px 0}
+.hk-country .th-photo-wide img{height:470px;object-fit:cover}
+.hk-country .th-photo-pair .th-photo img{height:310px}
+.hk-country .th-photo-pair-small .th-photo img{height:240px}
+.hk-fan-photo img{height:560px!important;object-fit:cover;object-position:center 47%}
+.hk-portrait-photo{max-width:440px}
+.hk-portrait-photo img{height:480px!important;object-fit:cover;object-position:50% 44%}
+.hk-country .th-photo img{background:#e9e9e3}
+.hk-country .th-photo figcaption{max-width:100%}
+.hk-fixtures-box{background:#19201e;color:#fff;padding:32px 38px 39px;margin:32px 0 40px;position:relative;overflow:hidden}
+.hk-fixtures-box:before{content:'';position:absolute;top:0;left:0;width:90px;height:4px;background:#c33a30}
+.hk-fixtures-box>span{display:block;font:700 11px/1.4 var(--body);letter-spacing:.12em;color:#eda59d;margin-bottom:18px}
+.hk-fixtures-box h3{font:800 clamp(32px,3.4vw,48px)/1 var(--cond);letter-spacing:-.02em;text-transform:uppercase;color:#fff;margin:0 0 16px}
+.hk-chapter .hk-fixtures-box p{font:400 15px/1.65 var(--body);color:#e7e8e3;max-width:700px;margin:0 0 21px}
+.hk-country a.hk-fixtures-button{display:inline-flex;align-items:center;gap:10px;padding:15px 17px;background:#c33229;color:#fff;font:800 19px/1.1 var(--cond);letter-spacing:.015em;text-transform:uppercase;text-decoration:none;max-width:100%}
+.hk-country a.hk-fixtures-button:hover{background:#a82a24}
+.hk-country .hk-fixtures-button span{color:inherit}
+.hk-article-link{display:grid;grid-template-columns:1fr auto;align-items:end;gap:9px 20px;border-block:1px solid #c6c9c5;padding:19px 2px 22px;margin:30px 0 39px;text-decoration:none;max-width:780px!important}
+.hk-article-link>span:first-child{font:700 10px/1.3 var(--body);letter-spacing:.1em;color:var(--th-red);grid-column:1/-1}
+.hk-article-link strong{font:800 clamp(23px,3.1vw,35px)/1.1 var(--cond);text-transform:uppercase}
+.hk-article-link>span:last-child{font:800 12px/1.3 var(--cond);color:var(--th-red);text-align:right;white-space:nowrap}
+.hk-article-link:hover strong{color:var(--th-red)}
+.hk-result-bar{border-top:3px solid var(--th-red);border-bottom:1px solid var(--th-line);padding:23px 24px;margin:31px 0}
+.hk-result-bar>span{font:700 11px/1.5 var(--body);letter-spacing:.065em;color:var(--th-red)}
+.hk-result-bar>div{display:flex;gap:20px;align-items:center;justify-content:space-between;margin:15px 0 9px}
+.hk-result-bar>div strong{font:800 clamp(22px,3vw,39px)/1 var(--cond)}
+.hk-result-bar>div b{font:800 clamp(39px,5vw,59px)/1 var(--cond);white-space:nowrap}
+.hk-result-bar>small{font:500 12px/1.5 var(--body);color:#606962}
+.hk-matches{border-top:3px solid #212a25;margin:28px 0 34px}
+.hk-matches-head{display:flex;gap:20px;justify-content:space-between;align-items:center;padding:18px 0 20px;border-bottom:1px solid var(--th-line)}
+.hk-matches-head>span{font:700 11px/1.4 var(--body);letter-spacing:.1em;color:var(--th-red)}
+.hk-matches-head>strong{font:800 17px/1.3 var(--cond)}
+.hk-matches article{display:grid;grid-template-columns:130px minmax(0,1fr);gap:26px;border-bottom:1px solid var(--th-line);padding:20px 0 22px}
+.hk-match-meta{display:flex;flex-direction:column;gap:7px}
+.hk-match-meta time{font:800 18px/1.1 var(--cond);white-space:nowrap}
+.hk-match-meta span{font:500 11px/1.4 var(--body);color:#747d76}
+.hk-match-line{display:grid;grid-template-columns:minmax(0,1fr) 65px;align-items:start;gap:10px}
+.hk-match-line strong{font:800 clamp(19px,2.15vw,27px)/1.1 var(--cond);text-transform:uppercase}
+.hk-chapter .hk-match-line p{font:400 14px/1.55 var(--body);color:#535d55;margin:8px 0 0;overflow-wrap:anywhere}
+.hk-match-line b{font:800 27px/1 var(--cond);color:var(--th-red);text-align:right;white-space:nowrap}
+.hk-border-times{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:31px 0;background:#f5f3ed;border-top:3px solid var(--th-red)}
+.hk-border-times>div{min-width:0;padding:21px 18px;border-right:1px solid #dcd9d2}
+.hk-border-times>div:last-child{border-right:none}
+.hk-border-times span{display:block;font:700 10px/1.4 var(--body);letter-spacing:.07em;color:#6a6f6b;margin-bottom:13px}
+.hk-border-times strong{display:block;font:800 clamp(21px,2.6vw,35px)/1 var(--cond);white-space:nowrap}
+.hk-country .th-travel-grid{margin-block:18px}
+.hk-country .th-trip-grid{margin-bottom:22px}
+.hk-country .hk-travel-subgrid{margin:27px 0 10px}
+.hk-country .th-budget-headline strong{font-size:clamp(30px,3.25vw,42px)}
+.hk-country .th-budget-tip h3{font-size:clamp(23px,2.3vw,30px)!important}
+.hk-country .th-budget-tip p{font-size:14px;line-height:1.7}
+.hk-country .th-sticky-nav a{letter-spacing:-.01em}
+.hk-country .th-sticky-nav a span{flex:0 0 auto}
+.hk-country .th-season-panel{margin-top:27px}
+@media(max-width:1130px){
+ .hk-hero h1{font-size:clamp(61px,6.3vw,83px);margin-top:69px}
+ .hk-hero .th-hero-copy{padding:36px 25px 29px}
+ .hk-hero .th-hero-deck{font-size:26px}
+ .hk-country .th-content-layout{grid-template-columns:165px minmax(0,1fr);gap:43px}
+ .hk-border-times{grid-template-columns:1fr 1fr 1fr}
+ .hk-border-times>div{padding:19px 12px}
+ .hk-border-times strong{font-size:24px}
+}
+@media(max-width:900px){
+ .hk-hero h1{font-size:clamp(49px,6.9vw,68px)}
+ .hk-hero .th-hero-deck{font-size:23px}
+ .hk-country .th-content-layout{gap:25px;grid-template-columns:155px minmax(0,1fr)}
+ .hk-country .th-photo-wide img{height:365px}
+ .hk-country .th-photo-pair .th-photo img{height:250px}
+ .hk-country .th-photo-pair-small .th-photo img{height:210px}
+ .hk-fan-photo img{height:470px!important}
+}
+@media(max-width:780px){
+ .hk-country .th-content-layout{display:block}
+ .hk-country .th-sticky-nav{position:static}
+ .hk-country .th-chapter{padding-bottom:72px}
+ .hk-hero h1{font-size:clamp(49px,7.2vw,60px)}
+ .hk-hero .th-hero-deck{font-size:21px}
+ .hk-country .th-photo-wide img{height:370px}
+ .hk-country .th-photo-pair .th-photo img{height:300px}
+}
+@media(max-width:570px){
+ .hk-country .th-breadcrumb{padding-inline:0}
+ .hk-hero{height:auto}
+ .hk-hero .th-hero-copy{padding:32px 24px 23px;min-height:310px}
+ .hk-hero h1{font-size:clamp(61px,15.5vw,82px);margin:39px 0 18px}
+ .hk-hero .th-hero-deck{font-size:25px}
+ .hk-hero .th-hero-photo{height:320px;flex-basis:320px}
+ .hk-hero-photo img{object-position:53% 43%}
+ .hk-country .th-facts strong,.hk-country .th-facts>div:nth-child(2) strong{font-size:22px}
+ .hk-country .th-intro{margin-top:58px;margin-bottom:49px}
+ .hk-country .th-intro h2{font-size:44px}
+ .hk-country .th-critical{padding:25px 23px}
+ .hk-country .th-critical h2{font-size:36px}
+ .hk-priority-link{font-size:18px;padding:16px 18px;display:block!important}
+ .hk-country .th-photo-wide img{height:280px}
+ .hk-country .th-photo-pair .th-photo img{height:265px}
+ .hk-country .th-photo-pair-small .th-photo img{height:220px}
+ .hk-fan-photo img{height:455px!important;object-position:center}
+ .hk-portrait-photo{max-width:100%}
+ .hk-portrait-photo img{height:365px!important}
+ .hk-fixtures-box{padding:27px 19px 32px;margin:26px 0 34px}
+ .hk-fixtures-box h3{font-size:37px}
+ .hk-fixtures-box .hk-fixtures-button{font-size:18px}
+ .hk-article-link{grid-template-columns:1fr}
+ .hk-article-link>span:last-child{text-align:left}
+ .hk-result-bar{padding:21px 14px}
+ .hk-result-bar>div{gap:10px}
+ .hk-result-bar>div strong{font-size:23px}
+ .hk-result-bar>div b{font-size:39px}
+ .hk-matches article{grid-template-columns:1fr;gap:9px;padding:18px 0}
+ .hk-match-meta{flex-direction:row;align-items:center;gap:13px}
+ .hk-match-line{grid-template-columns:minmax(0,1fr) 48px}
+ .hk-match-line strong{font-size:25px}
+ .hk-match-line b{font-size:25px}
+ .hk-border-times{grid-template-columns:1fr}
+ .hk-border-times>div{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:17px 15px;border-right:none;border-bottom:1px solid #dcd9d2}
+ .hk-border-times>div:last-child{border-bottom:none}
+ .hk-border-times span{margin:0}
+ .hk-border-times strong{font-size:27px}
+ .hk-country .th-trip-grid{gap:4px}
+ .hk-country .th-budget-tip h3{font-size:26px!important}
+}

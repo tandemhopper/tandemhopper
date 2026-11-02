@@ -3,6 +3,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import {getCountryGuides} from '../../lib/countryGuides'
 import {getMacauEditorialSettings} from '../../lib/macauEditorialSettings'
+import {getHongkongEditorialSettings} from '../../lib/hongkongEditorialSettings'
 import {imageUrl} from '../../lib/imageUrl'
 import '../macau-editorial.css'
 
@@ -16,8 +17,11 @@ export const metadata = {
 const continents=[['europa','Europa'],['asien','Asien'],['afrika','Afrika'],['nordamerika','Nordamerika'],['suedamerika','Südamerika'],['ozeanien','Ozeanien']]
 
 export default async function CountriesPage(){
-  const [guides,macauSettings]=await Promise.all([getCountryGuides(),getMacauEditorialSettings()])
+  const [sanityGuides,macauSettings,hongkongSettings]=await Promise.all([getCountryGuides(),getMacauEditorialSettings(),getHongkongEditorialSettings()])
   const imageOverride=macauSettings?.images?.find(image=>image.slot==='tile'&&image.url)?.url
+  const hkTile=hongkongSettings?.images?.find(image=>image.slot==='tile'&&image.url)?.url
+  const hongkong={_id:'static-hongkong-guide',slug:'hongkong',title:'Hongkong',continent:'asien',region:'Ostasien',flag:'🇭🇰',teaser:'Ein Wochenende, viele Grounds: Nationalmannschaft, Rennbahn, Hongkongs Ligakalender und günstige Reisetipps.',tile:hkTile||'/assets/laender/hongkong/kai-tak-hong-kong-fans.webp'}
+  const guides=[...sanityGuides.filter(c=>c.slug!=='hongkong'),hongkong]
   const countryTile=country=>country.slug==='macau'&&imageOverride?imageOverride:country.tile
   return <><Header/><main className="th-countries">
     <header className="th-countries-head">
@@ -40,6 +44,6 @@ export default async function CountriesPage(){
       </section>
     })}
     {!guides.length&&<div className="th-upcoming"><strong>DIE ERSTEN GUIDES ENTSTEHEN.</strong><p>Hier findest du demnächst praktische Informationen für deine nächsten Länderpunkte.</p></div>}
-    {guides.length>0&&<aside className="th-upcoming"><strong>WEITERE LÄNDER FOLGEN.</strong><p>Als Nächstes geplant: Hongkong und China. Die Guides wachsen mit den Reisen und den Rückmeldungen aus der Szene.</p></aside>}
+    {guides.length>0&&<aside className="th-upcoming"><strong>WEITERE LÄNDER FOLGEN.</strong><p>Als Nächstes geplant: China. Die Guides wachsen mit den Reisen und den Rückmeldungen aus der Szene.</p></aside>}
   </main><Footer/></>
 }

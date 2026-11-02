@@ -7,10 +7,13 @@ import {getCountryGuide} from '../../../lib/countryGuides'
 import {getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
 import MacauEditorialPage from '../../../components/MacauEditorialPage'
+import HongkongEditorialPage from '../../../components/HongkongEditorialPage'
 import LeagueSeasonCalendar from '../../../components/LeagueSeasonCalendar'
 import CountryCommunity from '../../../components/CountryCommunity'
 import {getMacauEditorialSettings} from '../../../lib/macauEditorialSettings'
+import {getHongkongEditorialSettings} from '../../../lib/hongkongEditorialSettings'
 import '../../macau-editorial.css'
+import '../../hongkong-editorial.css'
 import '../../country-community.css'
 import '../../laenderkompass.css'
 
@@ -20,6 +23,11 @@ const portableComponents = {types:{image:({value})=>value?.src?<figure className
 
 export async function generateMetadata({params}) {
   const {slug}=await params
+  if(slug==='hongkong'){
+    const settings=await getHongkongEditorialSettings()
+    const hero=settings?.images?.find(image=>image.slot==='hero')
+    return {title:'Hongkong – Länderkompass | Tandemhopper',description:'Hongkong für Groundhopper: Saisonkalender, 7 besuchte Spiele, Stadien, Nationalmannschaft, HKFA-Spielplan, Shenzhen-Pendeln und Spartipps.',alternates:{canonical:'/laender/hongkong'},openGraph:{images:[{url:hero?.url||'/assets/laender/hongkong/kai-tak-hong-kong-fans.webp',alt:hero?.alt||'Hongkonger Fans im Kai Tak Stadium'}]}}
+  }
   const country=await getCountryGuide(slug)
   if(!country) return {title:'Land nicht gefunden'}
   const settings = slug==='macau' ? await getMacauEditorialSettings() : null
@@ -30,9 +38,13 @@ export async function generateMetadata({params}) {
 
 export default async function CountryPage({params}) {
   const {slug}=await params
+  const communityEnabled=Boolean(process.env.SANITY_COMMENT_WRITE_TOKEN)
+  if(slug==='hongkong'){
+    const settings=await getHongkongEditorialSettings()
+    return <HongkongEditorialPage settings={settings} communityEnabled={communityEnabled}/>
+  }
   const country=await getCountryGuide(slug)
   if(!country) notFound()
-  const communityEnabled=Boolean(process.env.SANITY_COMMENT_WRITE_TOKEN)
   if(slug === 'macau') {
     const settings = await getMacauEditorialSettings()
     return <MacauEditorialPage settings={settings} communityEnabled={communityEnabled}/>

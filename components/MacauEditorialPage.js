@@ -26,7 +26,7 @@ export default function MacauEditorialPage({settings}) {
   const copyItems = [...(settings?.introTexts||[]), ...(settings?.stadiumTexts||[]), ...(settings?.matchTexts||[]), ...(settings?.travelTexts||[]), ...(settings?.cityTexts||[]), ...(settings?.budgetTexts||[]), ...(settings?.sourceTexts||[])];
   const copyOverrides = new Map(copyItems.map(item=>[item.key,item.value]));
   const t = key => copyOverrides.has(key) ? copyOverrides.get(key) : (defaultMacauTextMap[key]||'');
-  const rich = key => t(key).split(/(\\*\\*[^*]+\\*\\*)/g).map((part,i)=>part.startsWith('**')&&part.endsWith('**')?<strong key={i}>{part.slice(2,-2)}</strong>:part);
+  const rich = key => t(key).split(/(\*\*[^*]+\*\*)/g).map((part,i)=>part.startsWith('**')&&part.endsWith('**')?<strong key={i}>{part.slice(2,-2)}</strong>:part);
   const photos = new Map((settings?.images||[]).map(item=>[item.slot,item]));
   const Photo = ({name,...props})=>{const edited=photos.get(name);return <BasePhoto name={name} {...props} src={edited?.url} alt={edited?.alt||props.alt} caption={edited?.caption||props.caption}/>};
   const sourceLinks = Array.isArray(settings?.sourceLinks)?settings.sourceLinks:defaultMacauSources;

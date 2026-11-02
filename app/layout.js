@@ -5,6 +5,7 @@ import './editorial.css';
 import './launch.css';
 import './calendar.css';
 import './club-marks.css';
+import './site-grid.css';
 import SiteAnalytics from '../components/SiteAnalytics';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tandemhopper.de';
 

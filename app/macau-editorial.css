@@ -94,3 +94,25 @@
 .th-deep-dive summary:focus-visible{outline:3px solid var(--th-red);outline-offset:3px}
 @media(max-width:780px){.th-budget-list{grid-template-columns:1fr 1fr;gap:0 20px}.th-budget-headline{gap:19px;padding:25px}}
 @media(max-width:570px){.th-chapter h2{font-size:clamp(45px,11.4vw,58px)}.th-budget-headline{grid-template-columns:1fr;gap:15px;padding:24px 21px;margin:24px 0 30px}.th-budget-headline strong{font-size:32px}.th-budget-headline>p{font-size:14px}.th-budget-list{grid-template-columns:1fr}.th-budget-tip{padding:23px 0}.th-budget-tip h3{font-size:25px!important}.th-deep-dive summary{font-size:20px}.th-deep-dive p{font-size:14px}}
+
+/* Country guides follow the same 1536px shell and page rails as Tandemhopper's
+   header, home cards and editorial sections. Only nested reading columns and
+   purposefully full-bleed mobile media may sit inside the outer rails. */
+.th-country,.th-countries{--th-page-gutter:var(--site-page-gutter,48px);max-width:var(--site-page-max,1536px)}
+.th-countries{padding-left:var(--th-page-gutter);padding-right:var(--th-page-gutter)}
+.th-country :is(.th-breadcrumb,.th-hero,.th-facts,.th-intro,.th-critical,.th-content-layout,.th-endbar){
+  max-width:none;
+  margin-left:var(--th-page-gutter);
+  margin-right:var(--th-page-gutter);
+}
+.th-country .th-breadcrumb{padding-inline:0}
+.th-country .th-intro{padding-inline:0}
+.th-country .th-content-layout{padding-inline:0}
+.th-country .th-endbar{padding-inline:0}
+/* The index already uses a shared page gutter; remove its nested, arbitrary
+   1300px caps so headings, image tiles and bottom notes share the same edges. */
+.th-countries :is(.th-countries-head,.th-continent,.th-upcoming){max-width:none}
+@media(max-width:570px){
+  /* Keep the approved edge-to-edge hero/photo and fact ribbon on phones. */
+  .th-country :is(.th-hero,.th-facts){margin-inline:0}
+}

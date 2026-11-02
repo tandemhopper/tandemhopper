@@ -1,0 +1,30 @@
+/* Shared outer rails for Tandemhopper's existing templates.
+   Keep article reading columns narrower on purpose; align main section edges. */
+.site-header,.category-grid,.latest,.archive-grid,.archive-empty,.gallery,.site-footer,.site-footer.simple-footer{
+  padding-left:var(--site-page-gutter);
+  padding-right:var(--site-page-gutter);
+}
+.hero{
+  width:calc(100% - var(--site-page-gutter) - var(--site-page-gutter));
+  max-width:calc(var(--site-page-max) - var(--site-page-gutter) - var(--site-page-gutter));
+  margin-left:auto;
+  margin-right:auto;
+}
+.archive-head{
+  max-width:var(--site-page-max);
+  padding-left:var(--site-page-gutter);
+  padding-right:var(--site-page-gutter);
+}
+@media(max-width:760px){
+  .article-head,.article-layout{padding-left:var(--site-page-gutter);padding-right:var(--site-page-gutter)}
+}
+
+/* Keep labels inside their tiles when the screen still shows three columns. */
+@media(min-width:761px) and (max-width:1100px){
+ .category-card h2{font-size:clamp(24px,3vw,34px)}
+}
+/* Large editorial headlines should not spill past the mobile safety margin. */
+@media(max-width:760px){
+ .archive-head h1{font-size:clamp(52px,13vw,72px)}
+ .hero h1{font-size:clamp(37px,11vw,47px)}
+}

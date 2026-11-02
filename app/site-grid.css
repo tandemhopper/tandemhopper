@@ -1,0 +1,20 @@
+/* Shared outer rails for Tandemhopper's existing templates.
+   Keep article reading columns narrower on purpose; align main section edges. */
+.site-header,.category-grid,.latest,.archive-grid,.gallery,.site-footer{
+  padding-left:var(--site-page-gutter);
+  padding-right:var(--site-page-gutter);
+}
+.hero{
+  width:calc(100% - var(--site-page-gutter) - var(--site-page-gutter));
+  max-width:calc(var(--site-page-max) - var(--site-page-gutter) - var(--site-page-gutter));
+  margin-left:auto;
+  margin-right:auto;
+}
+.archive-head{
+  max-width:var(--site-page-max);
+  padding-left:var(--site-page-gutter);
+  padding-right:var(--site-page-gutter);
+}
+@media(max-width:760px){
+  .article-head,.article-layout{padding-left:var(--site-page-gutter);padding-right:var(--site-page-gutter)}
+}

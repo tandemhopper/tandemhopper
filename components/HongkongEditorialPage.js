@@ -3,7 +3,8 @@ import Header from './Header'
 import Footer from './Footer'
 import LeagueSeasonCalendar from './LeagueSeasonCalendar'
 import CountryCommunity from './CountryCommunity'
-import {defaultHongkongTexts,defaultHongkongTextMap,defaultHongkongImages,defaultHongkongMatches,defaultHongkongTips,defaultHongkongSources,defaultHongkongLeagueSeason} from '../lib/hongkongEditableDefaults'
+import {defaultHongkongTextMap,defaultHongkongImages,defaultHongkongTips,defaultHongkongSources,defaultHongkongLeagueSeason} from '../lib/hongkongEditableDefaults'
+import {imageUrl} from '../lib/imageUrl'
 
 const imagePath='/assets/laender/hongkong/'
 const photoFiles={
@@ -19,12 +20,6 @@ function Chapter({id,number,label,title,children}){
 function External({href,children,className='th-source-link'}){
  return <a className={className} href={href} target="_blank" rel="noopener noreferrer">{children}<span aria-hidden="true"> ↗</span></a>
 }
-function DateText({value}){
- if(!value)return null
- const [y,m,d]=value.split('-')
- return <>{d}.{m}.{y}</>
-}
-
 export default function HongkongEditorialPage({settings,communityEnabled=false}){
  const copy=[...(settings?.introTexts||[]),...(settings?.footballTexts||[]),...(settings?.groundsTexts||[]),...(settings?.fansTexts||[]),...(settings?.travelTexts||[]),...(settings?.cityTexts||[]),...(settings?.tipsTexts||[]),...(settings?.sourcesTexts||[])]
  const changedCopy=new Map(copy.map(item=>[item.key,item.value]))
@@ -39,7 +34,7 @@ export default function HongkongEditorialPage({settings,communityEnabled=false})
   const alt=edited?.alt||photo?.alt||''
   const caption=edited?.caption??photo?.caption
   return <figure className={'th-photo'+(wide?' th-photo-wide':'')+(extraClass?' '+extraClass:'')}>
-    <img src={url} alt={alt} loading={priority?'eager':'lazy'} decoding="async" fetchPriority={priority?'high':undefined}/>
+    <img src={imageUrl(url,wide?1800:1100,85)} alt={alt} loading={priority?'eager':'lazy'} decoding="async" fetchPriority={priority?'high':undefined}/>
     {caption&&<figcaption>{caption}</figcaption>}
   </figure>
  }
@@ -52,7 +47,6 @@ export default function HongkongEditorialPage({settings,communityEnabled=false})
  }
  const season={...defaultHongkongLeagueSeason,...(settings?.leagueSeason||{})}
  const tips=Array.isArray(settings?.tips)?settings.tips:defaultHongkongTips
- const matches=Array.isArray(settings?.matches)?settings.matches:defaultHongkongMatches
  const links=Array.isArray(settings?.sourceLinks)?settings.sourceLinks:defaultHongkongSources
  const hero=images.get('hero')
  const updated=settings?.lastReviewed?new Intl.DateTimeFormat('de-DE').format(new Date(settings.lastReviewed)):'02.11.2026'
@@ -66,7 +60,7 @@ export default function HongkongEditorialPage({settings,communityEnabled=false})
     <div className="th-hero-meta"><span>GROUNDHOPPING-GUIDE</span><span>STAND {updated}</span></div>
    </div>
    <figure className="th-hero-photo hk-hero-photo">
-    <img src={hero?.url||imagePath+'kai-tak-hong-kong-fans.webp'} alt={hero?.alt||defaultImages.get('hero')?.alt} fetchPriority="high" decoding="async"/>
+    <img src={imageUrl(hero?.url||imagePath+'kai-tak-hong-kong-fans.webp',1800,87)} alt={hero?.alt||defaultImages.get('hero')?.alt} fetchPriority="high" decoding="async"/>
     <figcaption>{hero?.caption??defaultImages.get('hero')?.caption}</figcaption>
    </figure>
   </header>
@@ -110,6 +104,9 @@ export default function HongkongEditorialPage({settings,communityEnabled=false})
       </div>
       <h3>{t('season-more-title')}</h3>
       <p>{t('season-more')}</p>
+      <h3>{t('season-summer-title')}</h3>
+      <p>{t('season-summer')}</p>
+      <TLink href="https://www.kaitaksportspark.com.hk/">Kai Tak Sports Park · aktuelle Veranstaltungen</TLink>
       <p className="th-inline-tip">{t('season-tip')}</p>
     </Chapter>
 
@@ -158,14 +155,25 @@ export default function HongkongEditorialPage({settings,communityEnabled=false})
     <Chapter id="wochenende" number="04" label="MEHRERE GROUNDS PRO TAG" title={t('weekend-title')}>
       <p className="th-lead">{t('weekend-a')}</p>
       <p>{t('weekend-b')}</p>
-      <div className="hk-matches">
-       <div className="hk-matches-head"><span>GROUNDS AUS EIGENEN BESUCHEN</span><strong>{matches.length} SPIELE</strong></div>
-       {matches.map((match,i)=><article key={match._key||i}>
-        <div className="hk-match-meta"><time dateTime={match.date}><DateText value={match.date}/></time><span>{match.kind}</span></div>
-        <div className="hk-match-line"><div><strong>{match.ground}</strong><p>{match.home} – {match.away}</p></div><b>{match.score||'–'}</b></div>
-       </article>)}
+      <div className="hk-groundhop-plan">
+       <h3>{t('weekend-steps-title')}</h3>
+       <div className="hk-groundhop-steps">
+        {[1,2,3,4].map(n=><div key={n} className="hk-groundhop-step">
+         <span>{String(n).padStart(2,'0')}</span>
+         <div><h4>{t('weekend-step-'+n+'-title')}</h4><p>{t('weekend-step-'+n)}</p></div>
+        </div>)}
+       </div>
       </div>
-      <div className="th-detail-note"><strong>AUCH JENSEITS DER HKFA</strong><p>In Hongkong gibt es unabhängige Freizeitligen und internationale Vereine. Die Yau Yee Football League gehört zu den traditionsreicheren Beispielen; ihre Spielpläne können eine zusätzliche Quelle für Fußball am Wochenende sein.</p><TLink href="https://www.yauyeeleague.com/">Yau Yee Football League</TLink></div>
+      <div className="th-detail-note hk-alt-leagues">
+       <strong>{t('weekend-alternatives-title')}</strong>
+       <p>{t('weekend-alternatives')}</p>
+       <TLink href="https://www.yauyeeleague.com/">Yau Yee Football League</TLink>
+       <TLink href="https://www.yauyeeleague.com/en/useful-info/calendar">Yau Yee · Saisonkalender</TLink>
+       <TLink href="https://www.usfhk.org/en/competition_information/31/">Hochschulfußball · USFHK</TLink>
+       <TLink href="https://www.hkssf-ext.org.hk/">Schulsport · HKSSF</TLink>
+      </div>
+      <h3>{t('weekend-combination-title')}</h3>
+      <p>{t('weekend-combination')}</p>
     </Chapter>
 
     <Chapter id="anreise" number="05" label="SHENZHEN, GRENZE & NAHVERKEHR" title={t('travel-title')}>

@@ -3,7 +3,7 @@
 .hk-country{--th-paper:#fbfaf7}
 .hk-hero{grid-template-columns:39% 61%;height:575px}
 .hk-hero .th-hero-copy{padding:49px 36px 32px}
-.hk-hero h1{font-size:clamp(66px,6.65vw,101px);letter-spacing:-.036em;margin:76px 0 24px;white-space:nowrap}
+.hk-hero h1{font-size:clamp(64px,6.1vw,96px);letter-spacing:-.036em;margin:76px 0 24px;white-space:nowrap}
 .hk-hero .th-hero-deck{font-size:clamp(23px,2.45vw,32px);line-height:1.13;max-width:350px}
 .hk-hero-photo img{object-position:center 39%}
 .hk-hero-photo figcaption{max-width:90%;text-align:right}
@@ -141,3 +141,5 @@
  .hk-country .th-trip-grid{gap:4px}
  .hk-country .th-budget-tip h3{font-size:26px!important}
 }
+
+@media(max-width:360px){.hk-hero h1{font-size:54px;letter-spacing:-.04em}.hk-country .th-facts strong{font-size:20px}}

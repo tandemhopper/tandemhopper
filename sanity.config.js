@@ -21,6 +21,7 @@ export default defineConfig({
             S.listItem().title('Länderkompass').child(S.list().title('Länderkompass').items([
               S.listItem().title('🇲🇴 Macau bearbeiten').child(S.document().schemaType('macauEditorialSettings').documentId('macauEditorialSettings')),
               S.documentTypeListItem('countryGuide').title('Weitere Länder'),
+              S.documentTypeListItem('countryComment').title('Community · Kommentare & Antworten'),
             ])),
             S.divider(),
             S.listItem()

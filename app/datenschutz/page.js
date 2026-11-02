@@ -12,7 +12,7 @@ export default function Datenschutz(){
   return <><Header/><main className="legal-page">
     <p className="eyebrow">RECHTLICHES</p>
     <h1>DATENSCHUTZ</h1>
-    <p className="legal-intro">Hier erklären wir möglichst verständlich, welche technischen Daten beim Besuch von Tandemhopper anfallen und wofür sie genutzt werden. Stand: 2. September 2026.</p>
+    <p className="legal-intro">Hier erklären wir möglichst verständlich, welche technischen Daten beim Besuch von Tandemhopper anfallen und wofür sie genutzt werden. Stand: 2. November 2026.</p>
 
     <section>
       <h2>1. Verantwortlicher</h2>
@@ -43,6 +43,15 @@ export default function Datenschutz(){
       <p>Dabei können technisch notwendige Daten wie IP-Adresse, Zeitpunkt des Abrufs, Browserinformationen und die angeforderte Datei verarbeitet werden. Sanity gibt an, Ursprungs-IP-Adressen unter anderem zur Missbrauchs- und Angriffserkennung zu protokollieren.</p>
       <p>Sanity kann Daten auch außerhalb des Europäischen Wirtschaftsraums verarbeiten. Das Data Processing Addendum von Sanity sieht hierfür – soweit erforderlich – Angemessenheitsbeschlüsse, anerkannte Zertifizierungs- oder Transfermechanismen sowie die EU-Standardvertragsklauseln vor.</p>
       <p>Anbieter: Sanity AS, Norwegen, und Sanity US Inc., USA. Weitere Informationen finden sich in der <a href="https://www.sanity.io/legal/privacy" target="_blank" rel="noreferrer">Datenschutzerklärung von Sanity</a> und im <a href="https://www.sanity.io/legal/dpa" target="_blank" rel="noreferrer">Data Processing Addendum</a>.</p>
+    </section>
+
+
+    <section>
+      <h2>4a. Kommentare im Länderkompass</h2>
+      <p>Wenn du im Länderkompass einen Kommentar einsendest, verarbeiten wir das angegebene Pseudonym bzw. den Namen, die gewählte Themenkategorie, den Kommentartext und den Zeitpunkt der Einsendung. Eine Registrierung oder E-Mail-Adresse ist dafür nicht erforderlich. Bitte veröffentliche keine privaten Kontaktdaten und keine personenbezogenen Informationen über unbeteiligte Dritte.</p>
+      <p>Kommentare werden zunächst als nicht öffentliche Entwürfe im Sanity-Redaktionssystem gespeichert und vor der Veröffentlichung geprüft. Erst nach einer Freigabe sind dein Pseudonym, dein Kommentar, das Veröffentlichungsdatum und gegebenenfalls eine redaktionelle Antwort für andere Besucher sichtbar. Nicht veröffentlichte Entwürfe sind nur für die Redaktion zugänglich.</p>
+      <p>Rechtsgrundlage für die freiwillige Veröffentlichung ist deine Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Du kannst eine Entfernung oder Korrektur des veröffentlichten Beitrags und die Löschung eines noch nicht freigegebenen Kommentars über <a href="mailto:datenschutz@tandemhopper.de">datenschutz@tandemhopper.de</a> anfragen; dabei sollte der Kommentar eindeutig zugeordnet werden können. Eine Einwilligung kannst du mit Wirkung für die Zukunft widerrufen.</p>
+      <p>Zur Spam-Abwehr werden technische Angaben aus dem Seitenaufruf vorübergehend verarbeitet. IP-Adressen werden nicht in den Kommentar-Dokumenten gespeichert. Allgemeine Hosting- und Sicherheitsprotokolle des Dienstleisters können unabhängig davon anfallen, wie unter Punkt 2 erläutert. Kommentare bleiben gespeichert, bis sie gelöscht werden oder für den Community-Zweck nicht mehr benötigt werden.</p>
     </section>
 
     <section>

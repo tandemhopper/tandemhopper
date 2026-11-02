@@ -1,5 +1,5 @@
 import {defineArrayMember,defineField,defineType} from 'sanity'
-import {defaultHongkongTexts,defaultHongkongImages,defaultHongkongMatches,defaultHongkongTips,defaultHongkongSources,defaultHongkongLeagueSeason} from '../../lib/hongkongEditableDefaults'
+import {defaultHongkongTexts,defaultHongkongImages,defaultHongkongTips,defaultHongkongSources,defaultHongkongLeagueSeason} from '../../lib/hongkongEditableDefaults'
 
 const textEntry=defineArrayMember({
  name:'hongkongCopyEntry',type:'object',title:'Textblock',fields:[
@@ -25,18 +25,8 @@ export const hongkongEditorialSettings=defineType({
  ],
  fields:[
   copyField('introTexts','Einleitung & wichtigste Hinweise','intro'),
-  copyField('footballTexts','Saison, Spielplanung, Wochenendspiele','football'),
+  copyField('footballTexts','Saison, Spielplanung, Vier-Spiele-Tag & Amateurfußball','football'),
   defineField({name:'leagueSeason',title:'Wann läuft die Liga? · Saisonkalender',type:'leagueSeason',group:'football',initialValue:()=>defaultHongkongLeagueSeason,description:'Spielmonate und historische Daten jedes Jahr mit offizieller HKFA-Spielplanquelle prüfen.'}),
-  defineField({name:'matches',title:'Eigene Groundbesuche und Ergebnisse',type:'array',group:'football',of:[
-    defineArrayMember({type:'object',name:'hongkongMatch',fields:[
-      defineField({name:'date',title:'Datum (JJJJ-MM-TT)',type:'date',validation:r=>r.required()}),
-      defineField({name:'ground',title:'Ground',type:'string',validation:r=>r.required()}),
-      defineField({name:'home',title:'Heim',type:'string',validation:r=>r.required()}),
-      defineField({name:'away',title:'Gast',type:'string',validation:r=>r.required()}),
-      defineField({name:'score',title:'Ergebnis',type:'string'}),
-      defineField({name:'kind',title:'Wettbewerb / Spielart',type:'string'}),
-    ],preview:{select:{title:'ground',subtitle:'date'}}}),
-  ]}),
   copyField('groundsTexts','Stadien, Rennbahn & kleinere Grounds','grounds'),
   copyField('fansTexts','Nationalmannschaft und Fankultur','fans'),
   copyField('travelTexts','Shenzhen, Grenzkontrollen, ÖPNV, SIM','travel'),
@@ -51,11 +41,11 @@ export const hongkongEditorialSettings=defineType({
     ],preview:{select:{title:'title',subtitle:'text'}}})],
   }),
   defineField({name:'images',title:'Originalfotos austauschen & Bildunterschriften ändern',type:'array',group:'images',
-    description:'Bildstelle öffnen: optional neues Bild hochladen oder nur den Text ändern. Ohne Upload bleibt das aktuelle Tandemhopper-Foto sichtbar.',
+    description:'Hier kannst du deine hochauflösenden Originalfotos direkt hochladen. Bildstelle öffnen, Bild ersetzen und Dokument veröffentlichen. Auf der Website wird automatisch eine optimierte Web-Version gezeigt; ohne Upload bleibt das bisherige Foto. Austausch gilt nur für diese konkrete Bildstelle.',
     of:[defineArrayMember({type:'object',name:'hongkongImageSlot',fields:[
       defineField({name:'slot',title:'Bildposition (nicht ändern)',type:'string',readOnly:true}),
       defineField({name:'title',title:'Position im Artikel',type:'string',readOnly:true}),
-      defineField({name:'image',title:'Bild ersetzen (optional)',type:'image',options:{hotspot:true}}),
+      defineField({name:'image',title:'Hochauflösendes Originalfoto hochladen (optional)',type:'image',options:{hotspot:true}}),
       defineField({name:'alt',title:'Bildbeschreibung',type:'string'}),
       defineField({name:'caption',title:'Bildunterschrift',type:'string'}),
     ],preview:{select:{title:'title',subtitle:'caption',media:'image'}}})],
@@ -74,7 +64,6 @@ export const hongkongEditorialSettings=defineType({
   introTexts:defaultHongkongTexts.filter(x=>x.group==='intro'),
   footballTexts:defaultHongkongTexts.filter(x=>x.group==='football'),
   leagueSeason:defaultHongkongLeagueSeason,
-  matches:defaultHongkongMatches,
   groundsTexts:defaultHongkongTexts.filter(x=>x.group==='grounds'),
   fansTexts:defaultHongkongTexts.filter(x=>x.group==='fans'),
   travelTexts:defaultHongkongTexts.filter(x=>x.group==='travel'),

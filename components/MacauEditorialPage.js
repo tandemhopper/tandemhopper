@@ -1,3 +1,4 @@
+import {defaultMacauTips} from '../lib/macauEditableDefaults'
 import Link from 'next/link'
 import Header from './Header'
 import Footer from './Footer'
@@ -31,6 +32,7 @@ const links = [
 ]
 
 export default function MacauEditorialPage() {
+  const tips = defaultMacauTips
   return <><Header/><main className="th-country">
     <nav className="th-breadcrumb" aria-label="Brotkrumennavigation"><Link href="/laender">LÄNDERKOMPASS</Link><span>/</span><span>ASIEN</span><span>/</span><strong>MACAU</strong><i/><span>GUIDE 01</span></nav>
     <header className="th-hero">
@@ -65,7 +67,8 @@ export default function MacauEditorialPage() {
         <a href="#spiele"><span>02</span> Spielplanung</a>
         <a href="#anreise"><span>03</span> Anreise & Verkehr</a>
         <a href="#stadt"><span>04</span> Stadt & weitere Grounds</a>
-        <a href="#quellen"><span>05</span> Quellen & Stand</a>
+        <a href="#spartipps"><span>05</span> Tipps & Tricks</a>
+        <a href="#quellen"><span>06</span> Quellen & Stand</a>
       </nav>
       <div className="th-chapters">
         <Chapter id="stadien" number="01" label="STADIEN & GROUNDS" title="ZWEI PLÄTZE, DIE ES SO NICHT OFT GIBT.">
@@ -123,6 +126,42 @@ export default function MacauEditorialPage() {
             <Photo name="lotus" alt="Lotuskunstwerk und historische Stadtbebauung in Macau" caption="Eine andere Seite Macaus abseits der Stadien."/>
           </div>
           <h3>Weitere Grounds</h3><p>An Universitäten und in Wohnvierteln gibt es kleinere Sportplätze, darunter Anlagen der Macau University of Science and Technology. Solche Grounds kommen nur infrage, wenn dort tatsächlich ein Spiel bestätigt ist. Auch das ehemalige Hippodrom des Macau Jockey Club gehört zur ungewöhnlichen, inzwischen verschwundenen Sportgeschichte der Stadt.</p>
+        </Chapter>
+
+
+        <Chapter id="spartipps" number="05" label="TIPPS & TRICKS" title="MACAU FÜR 0 EURO? FAST.">
+          <p className="th-lead">In Macau lässt sich erstaunlich viel erleben, ohne einen Pataca auszugeben: kostenlose Casino-Shuttles, Altstadt, Lichtshows und mit etwas Glück sogar ein Ligaspiel. Die Anreise, eine Übernachtung und ein richtiges Abendessen bezahlt allerdings weiterhin jemand – in der Regel du.</p>
+          <div className="th-budget-headline">
+            <div><span>DER 0-MOP-SELBSTVERSUCH</span><strong>Ein Tag. Null Eintritt. Viel Macau.</strong></div>
+            <p>Zu Fuß durch die Altstadt und zu den Ruinen von St. Paul, anschließend mit passenden Resort-Shuttles nach Cotai und dort kostenlose Licht- und Wasserinszenierungen ansehen. Ein bestätigtes Ligaspiel ohne Eintritt wäre der Bonus. Transferzeiten, Spielorte und das letzte Shuttle vorher checken.</p>
+          </div>
+          <div className="th-budget-list">
+            {tips.map((item,i)=><article className="th-budget-tip" key={item._key||i}>
+              <span>{String(i+1).padStart(2,'0')}</span>
+              <div><h3>{item.title}</h3><p>{item.text}</p>{item.sourceUrl&&<TextLink href={item.sourceUrl}>{item.sourceLabel||'Quelle und aktuelle Infos'}</TextLink>}</div>
+            </article>)}
+          </div>
+          <details className="th-deep-dive">
+            <summary>MEHR ZUR GRENZE: ZHUHAI ALS BASIS <span aria-hidden="true">+</span></summary>
+            <div>
+              <p>Für Deutsche mit regulärem Reisepass ist die touristische Einreise ins chinesische Festland derzeit für bis zu 30 Tage visumfrei (Regelung nach gegenwärtigem Stand bis 31.12.2026). Mehrfache visumfreie Einreisen sind grundsätzlich möglich, solange die jeweiligen Voraussetzungen erfüllt werden. Macau zählt dabei als separate Ein- und Ausreise – zurück nach Zhuhai geht es also durch eine neue chinesische Grenzkontrolle.</p>
+              <p>Seit November 2025 lässt sich die chinesische Arrival Card kostenlos vorab online ausfüllen; alternativ gibt es die Möglichkeit an der Grenze. Bei wiederholter Einreise ist die Registrierung für jede erforderliche Einreise erneut zu erledigen. Ausreichend freie Passseiten einplanen und für spätere Reisen die aktuell gültige Regelung nachschlagen.</p>
+              <TextLink href="https://s.nia.gov.cn/ArrivalCardFillingPC/">Offizielle chinesische Arrival Card – kostenlos</TextLink>
+              <TextLink href="https://china.diplo.de/cn-de/willkommen-in-china/reise-und-sicherheitshinweise">Auswärtiges Amt: Einreise nach China</TextLink>
+            </div>
+          </details>
+          <details className="th-deep-dive">
+            <summary>GRATIS-ESSEN IM CASINO – WAS STIMMT? <span aria-hidden="true">+</span></summary>
+            <div>
+              <p>Auf manchen Spielflächen gibt es kostenlose Getränke, vereinzelt auch kleine Snacks. Das hängt vom Casino, der Situation und gegebenenfalls davon ab, ob man spielt. Reddit-Berichte widersprechen sich hier ausdrücklich, und 2024 gab es Berichte über behördlichen Druck, kostenlose Snacks einzuschränken. Wer nicht spielt, sollte weder Essen noch Getränke einplanen oder bei Angestellten einfordern.</p>
+              <p>Verlässlicher sind die kleinen Kostproben in Souvenirshops der Rua do Cunha oder auf dem Weg zu St. Paul – zum Probieren gedacht, nicht als Ersatz fürs Mittagessen. Die Spielbereiche der Casinos sind erst ab 21 Jahren zugänglich.</p>
+              <TextLink href="https://www.reddit.com/r/Macau/comments/1o4muln/removed/">Erfahrungsberichte: Casino-Snacks und Kostproben</TextLink>
+            </div>
+          </details>
+          <div className="th-detail-note">
+            <strong>WAS „0 EURO“ HIER NICHT BEDEUTET</strong>
+            <p>Die großen Highlights und manche Wege innerhalb Macaus sind gratis. Kosten für Anreise, Übernachtung, Mahlzeiten und gegebenenfalls ein Spielticket bleiben außen vor. Auch nicht jeder Shuttle fährt zu jeder Uhrzeit oder ohne besondere Bedingungen.</p>
+          </div>
         </Chapter>
 
         <section className="th-sources" id="quellen"><h2>QUELLEN & AKTUALITÄT</h2><p>Letzte inhaltliche Prüfung: 2. November 2026. Bei Grenzzeiten, Spielorten, Spielplänen, Eintrittsregeln und Umbauarbeiten gilt stets der neueste Stand der jeweiligen Veranstalter und Behörden. Die historischen Canidrome-Fotos stammen aus 2025.</p><div>{links.map(([label,url])=><TextLink key={url} href={url}>{label}</TextLink>)}</div></section>

@@ -111,7 +111,9 @@ export async function POST(request){
   }
   try{
     const country=await getCountryGuide(slug)
-    if(!country)return respond({error:'Dieser Länderführer existiert nicht.'},404)
+    // Hong Kong has a public editorial guide with Sanity-overridable content,
+    // even before a generic countryGuide document exists in Sanity.
+    if(!country&&slug!=='hongkong')return respond({error:'Dieser Länderführer existiert nicht.'},404)
     const client=createClient({projectId:PROJECT_ID,dataset:DATASET,apiVersion:API_VERSION,useCdn:false,token:secret})
     const id='drafts.countryComment.'+randomUUID()
     await client.create({

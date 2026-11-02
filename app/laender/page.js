@@ -6,7 +6,7 @@ import {getMacauEditorialSettings} from '../../lib/macauEditorialSettings'
 import {imageUrl} from '../../lib/imageUrl'
 import '../macau-editorial.css'
 
-export const revalidate = 300
+export const revalidate = 60
 export const metadata = {
   title:'Länderkompass – Fußballreisen & Groundhopping',
   description:'Groundhopping weltweit: Stadien, Fußballspiele, Einreise, Tickets und Tipps aus eigener Erfahrung. Der Tandemhopper Länderkompass.',

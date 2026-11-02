@@ -71,8 +71,8 @@ export default function HongkongEditorialPage({settings,communityEnabled=false})
    </figure>
   </header>
   <div className="th-facts" aria-label="Hongkong auf einen Blick">
+   <div><span>FIFA-RANGLISTE · MÄNNER</span><strong>153. Platz</strong><small>Stand: 07.10.2026</small></div>
    <div><span>FUSSBALLVERBAND</span><strong>HKFA</strong><small>Eigenständiges FIFA-Mitglied</small></div>
-   <div><span>HÖCHSTE LIGA</span><strong>HK Premier League</strong><small>Spielplan und Tickets: HKFA</small></div>
    <div><span>WÄHRUNG</span><strong>Hongkong-Dollar</strong><small>HKD · Octopus hilft im Alltag</small></div>
    <div><span>LIGA · SPIELMONATE</span><strong><a href="#saison">{season.factWindow||'Aug–Mai'}</a></strong><small>{season.factNote||'Erstliga · alle Grounds separat prüfen'}</small></div>
   </div>
@@ -224,6 +224,7 @@ export default function HongkongEditorialPage({settings,communityEnabled=false})
       <h3>PFERDERENNEN STATT SHOPPINGMALL?</h3>
       <p>{t('city-racing')}</p>
       <TLink href="https://happywednesday.hkjc.com/en-US/plan-your-visit/">Happy Valley Racecourse · Besucherinformationen</TLink>
+      <h3>DIE BRÜCKE NACH ZHUHAI & MACAU</h3><p>{t('city-bridge')}</p>
       <h3>SONNTAGS TRIFFT MAN SICH IN DER STADT</h3>
       <p>{t('city-sunday')}</p>
     </Chapter>

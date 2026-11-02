@@ -11,6 +11,8 @@ export const leagueSeason = defineType({
     defineField({name:'eyebrow',title:'Kleine Überschrift',type:'string',initialValue:'SAISONKALENDER · ERSTE LIGA'}),
     defineField({name:'title',title:'Große Überschrift: typische Saison',type:'string',
       description:'Zum Beispiel: Januar bis August. Keine feste Vorhersage für die nächste Saison.'}),
+    defineField({name:'factWindow',title:'Kurzangabe im Faktenband',type:'string',description:'Zum Beispiel: Jan–Aug.'}),
+    defineField({name:'factNote',title:'Zusatz im Faktenband',type:'string',description:'Zum Beispiel: Meist Februar bis Juli, Spielplan prüfen.'}),
     defineField({name:'lead',title:'Erklärung für Groundhopper',type:'text',rows:5,
       description:'Wann startet und endet die höchste Liga üblicherweise? Besondere Ausnahmen benennen.'}),
     defineField({name:'peakMonths',title:'Reguläre Spielmonate',type:'array',

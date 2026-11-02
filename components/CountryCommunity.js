@@ -104,7 +104,7 @@ export default function CountryCommunity({country,asChapter=false}){
             <textarea id={'community-message-'+country} rows={6} maxLength={1800} minLength={10} value={message} onChange={e=>setMessage(e.target.value)} placeholder="Was sollten andere Groundhopper wissen?" required/>
             <div className="th-community-counter">{message.length} / 1800 Zeichen</div>
             <div className="th-community-honeypot" aria-hidden="true"><label htmlFor={'community-website-'+country}>Website (leer lassen)</label><input id={'community-website-'+country} type="text" value={website} onChange={e=>setWebsite(e.target.value)} tabIndex={-1} autoComplete="off"/></div>
-            <label className="th-community-consent"><input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)} required/><span>Ich bin damit einverstanden, dass mein Name/Pseudonym und Kommentar nach redaktioneller Freigabe öffentlich erscheinen. Keine E-Mail-Adresse erforderlich.</span></label>
+            <label className="th-community-consent"><input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)} required/><span>Ich bin damit einverstanden, dass mein Name/Pseudonym und Kommentar nach redaktioneller Freigabe öffentlich erscheinen. Keine E-Mail-Adresse erforderlich. <a href="/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzhinweise</a></span></label>
             <button type="submit" disabled={sending||!message.trim()||!name.trim()||!consent}>{sending?'WIRD GESENDET …':'KOMMENTAR EINREICHEN ↗'}</button>
             <p className="th-community-privacy">Dein Beitrag erscheint erst nach Prüfung. Persönliche Kontaktdaten bitte nicht im Text veröffentlichen.</p>
           </form>}

@@ -9,7 +9,7 @@ Der Länderführer Hongkong wird wesentlich größer und tiefer als Macau. Das *
 ## Originale Vor-Ort-Informationen (Quelle: Tandemhopper, noch nicht extern überprüft)
 
 - Hongkong wirkt im Vergleich zu Macau und Festlandchina deutlich internationaler, Englisch weit verbreitet; Visa und Mastercard in den besuchten Situationen problemlos; Google Maps funktionierte gut. **Keine pauschale Behauptung „überall“**, besonders nicht für Märkte und ÖPNV.
-- ÖPNV dicht und praktisch; die vielen Fußballplätze und Mehrzweckanlagen sind bis spät abends belegt. Eigene Erfahrung: Sonntags nach Abpfiff eines Spiels beim Hong Kong Football Club gegen circa 21:30 Uhr wärmten sich noch weitere Spieler auf. Wettbewerb und genaue Partie **noch beim Nutzer erfragen**.
+- ÖPNV dicht und praktisch; die vielen Fußballplätze und Mehrzweckanlagen sind bis spät abends belegt. Eigene Erfahrung: Am **Sonntag, 04.10.2026**, **Lucky Mile – New Fair Kui Tan FC 3:3** im Hong Kong Football Club Stadium (Hong Kong First Division, Anstoß 18:30 Uhr, eigener Bericht: **114 Zuschauer**). Nach Abpfiff gegen circa 21:30 Uhr wärmten sich weitere Spieler auf. Belegt über den veröffentlichten eigenen Artikel und den offiziellen Spielplan https://hkfcsoccer.hk/fixtures-results/ . Nicht noch einmal nach Gegner und Datum dieses Matches fragen.
 - Fotos vorhanden: Kai Tak Sports Ground, HKFC-Stadion im Happy Valley, La Salle College, mehrere kleinere Plätze, viele Stadt- und Tourismusaufnahmen. Fotos/Spielnamen müssen noch hochgeladen bzw. bestätigt werden.
 - Hong Kong Football Club: schöner Ground mit repräsentativem Vereinsgebäude, relativ teuren Clubpreisen, mitten in der Skyline und im Kontext der Happy-Valley-Pferderennbahn. Unbedingt genaue Lage in/nahe Rennbahn und separaten öffentlichen Eintritt unterscheiden. Bestehender eigener Artikel „Glücksfund in Hongkong“: https://tandemhopper.de/geschichten/gluecksfund-in-hongkong (öffentlich HTTP 200, Sanity-Slug bestätigt).
 - Premier League: nach eigenen Erfahrungen häufig Tickets und bedruckte Karten; im besuchten Umfeld oft 300–400 Zuschauer; gelegentlich aktive Fahnenschwenker und Gesänge. **Keine pauschale Zuschauerbehauptung**.
@@ -79,7 +79,7 @@ Der Länderführer Hongkong wird wesentlich größer und tiefer als Macau. Das *
 10. Alle Inhalte wie Macau im Sanity-Studio editierbar.
 
 ## Offene Fragen an Nutzer
-- Welche Spiele waren es genau (Gegner, Datum / ungefähres Jahr, Wettbewerbe)? Besonders HKFC und La Salle.
+- Welche **weiteren** Spiele waren es genau (Gegner, Datum / ungefähres Jahr, Wettbewerbe)? HKFC ist bereits eindeutig dokumentiert (Lucky Mile – New Fair Kui Tan FC 3:3 vom 04.10.2026); vor allem La Salle und Kai Tak nachfragen.
 - Welche Fußballplätze und Stadtmotive zeigen die zusätzlichen Fotos? Fotoimport vor Artikelbau.
 - Welche Grenzübergänge genau wurden genutzt; gab es besondere Verspätungen oder Erfahrungen mit 22:30-Uhr-Schluss?
 - Bei Nationalmannschaft / Fankultur: Selbst erlebtes oder nur beobachtet in Medien? Unbedingt unterscheiden.

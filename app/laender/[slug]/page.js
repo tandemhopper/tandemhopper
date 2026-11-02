@@ -7,10 +7,11 @@ import {getCountryGuide} from '../../../lib/countryGuides'
 import {getArticles} from '../../../lib/sanity'
 import {imageUrl} from '../../../lib/imageUrl'
 import MacauEditorialPage from '../../../components/MacauEditorialPage'
+import {getMacauEditorialSettings} from '../../../lib/macauEditorialSettings'
 import '../../macau-editorial.css'
 import '../../laenderkompass.css'
 
-export const revalidate = 300
+export const revalidate = 60
 const topics = {tickets:['🎟️','Fußball & Tickets'],fanszenen:['🔥','Fanszenen & Spiele'],einreise:['✈️','Anreise & Einreise'],verkehr:['🚆','Verkehr vor Ort'],tipps:['💡','Tipps & Tricks'],weiteres:['📌','Weitere Informationen']}
 const portableComponents = {types:{image:({value})=>value?.src?<figure className="country-inline-image"><img src={imageUrl(value.src,1400,82)} alt={value.alt||''} loading="lazy"/>{value.caption&&<figcaption>{value.caption}</figcaption>}</figure>:null}}
 
@@ -18,14 +19,20 @@ export async function generateMetadata({params}) {
   const {slug}=await params
   const country=await getCountryGuide(slug)
   if(!country) return {title:'Land nicht gefunden'}
-  return {title:country.title+' – Länderkompass',description:country.teaser||'Groundhopping-Guide für '+country.title,alternates:{canonical:'/laender/'+slug},openGraph:{images:country.hero?[{url:imageUrl(country.hero,1200,80)}]:undefined}}
+  const settings = slug==='macau' ? await getMacauEditorialSettings() : null
+  const photo = settings?.images?.find(image=>image.slot==='hero'&&image.url)
+  const hero = photo?.url||country.hero
+  return {title:country.title+' – Länderkompass',description:country.teaser||'Groundhopping-Guide für '+country.title,alternates:{canonical:'/laender/'+slug},openGraph:{images:hero?[{url:imageUrl(hero,1200,80),alt:photo?.alt||country.heroAlt||country.title}]:undefined}}
 }
 
 export default async function CountryPage({params}) {
   const {slug}=await params
   const country=await getCountryGuide(slug)
   if(!country) notFound()
-  if(slug === 'macau') return <MacauEditorialPage/>
+  if(slug === 'macau') {
+    const settings = await getMacauEditorialSettings()
+    return <MacauEditorialPage settings={settings}/>
+  }
   const articles=await getArticles()
   const related=articles.filter(a=>a.place?.country?.toLocaleLowerCase('de')===country.title.toLocaleLowerCase('de')).slice(0,6)
   const sections=(country.sections||[]).filter(s=>s.topic&&(s.content?.length||s.tip||s.sources?.length||s.notice?.text))

@@ -68,3 +68,29 @@
 @media (max-width:360px){.th-hero h1{font-size:68px}.th-countries-head h1{font-size:65px}.th-facts strong{font-size:21px}}
 /* Featured country links need white-on-dark text despite the global link reset. */
 .th-countries a.th-country-feature,.th-countries a.th-country-feature:hover,.th-countries .th-country-feature-copy{color:#fff}
+
+
+/* Länderkompass: Tipps & Tricks – same editorial grammar, no decorative cards. */
+.th-chapter h2{font-size:clamp(48px,4.7vw,69px)}
+.th-budget-headline{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:35px;align-items:center;background:#f6f4ef;border-top:3px solid var(--th-red);padding:30px 34px;margin:26px 0 31px}
+.th-budget-headline>div>span{display:block;font:700 11px/1.45 var(--body);color:var(--th-red);letter-spacing:.12em;margin-bottom:12px}
+.th-budget-headline strong{display:block;font:800 35px/1.03 var(--cond);text-transform:uppercase}
+.th-budget-headline>p{font:400 15px/1.8 var(--body);margin:0;color:#363b38}
+.th-budget-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px;row-gap:0;border-bottom:1px solid var(--th-line);margin-bottom:29px}
+.th-budget-tip{display:grid;grid-template-columns:30px minmax(0,1fr);gap:15px;padding:23px 0 28px;border-top:1px solid var(--th-line)}
+.th-budget-tip>span{color:var(--th-red);font:700 21px/1.2 var(--cond)}
+.th-budget-tip h3{font:800 27px/1.08 var(--cond)!important;text-transform:uppercase;margin:0 0 12px!important}
+.th-budget-tip p{font:400 14px/1.75 var(--body);color:#383f3c;margin:0 0 12px}
+.th-budget-tip a{font-size:12px!important}
+.th-deep-dive{border-top:1px solid var(--th-line);margin:0;padding:0}
+.th-deep-dive:last-of-type{border-bottom:1px solid var(--th-line)}
+.th-deep-dive summary{display:flex;align-items:center;justify-content:space-between;gap:14px;list-style:none;cursor:pointer;padding:23px 3px;font:800 22px/1.16 var(--cond);text-transform:uppercase}
+.th-deep-dive summary::-webkit-details-marker{display:none}
+.th-deep-dive summary span{font:400 30px/1 var(--body);color:var(--th-red);transition:transform .2s}
+.th-deep-dive[open] summary span{transform:rotate(45deg)}
+.th-deep-dive>div{padding:0 3px 28px;max-width:780px}
+.th-deep-dive p{font:400 15px/1.85 var(--body);color:#363e3a;margin:0 0 16px}
+.th-deep-dive .th-source-link{display:inline-block;margin:4px 22px 4px 0;font-size:12px}
+.th-deep-dive summary:focus-visible{outline:3px solid var(--th-red);outline-offset:3px}
+@media(max-width:780px){.th-budget-list{grid-template-columns:1fr 1fr;gap:0 20px}.th-budget-headline{gap:19px;padding:25px}}
+@media(max-width:570px){.th-chapter h2{font-size:clamp(45px,11.4vw,58px)}.th-budget-headline{grid-template-columns:1fr;gap:15px;padding:24px 21px;margin:24px 0 30px}.th-budget-headline strong{font-size:32px}.th-budget-headline>p{font-size:14px}.th-budget-list{grid-template-columns:1fr}.th-budget-tip{padding:23px 0}.th-budget-tip h3{font-size:25px!important}.th-deep-dive summary{font-size:20px}.th-deep-dive p{font-size:14px}}

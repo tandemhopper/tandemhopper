@@ -18,6 +18,11 @@ export default defineConfig({
           .items([
             S.documentTypeListItem('article').title('Geschichten'),
             S.divider(),
+            S.listItem().title('Länderkompass').child(S.list().title('Länderkompass').items([
+              S.listItem().title('🇲🇴 Macau bearbeiten').child(S.document().schemaType('macauEditorialSettings').documentId('macauEditorialSettings')),
+              S.documentTypeListItem('countryGuide').title('Weitere Länder'),
+            ])),
+            S.divider(),
             S.listItem()
               .title('Kalender')
               .child(

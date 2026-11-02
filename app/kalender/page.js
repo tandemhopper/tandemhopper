@@ -3,6 +3,9 @@ import Footer from '../../components/Footer'
 import CalendarExplorer from '../../components/calendar/CalendarExplorer'
 import {getCalendarData} from '../../lib/calendar'
 
+// Keep the full calendar response cached between periodic refreshes.
+export const revalidate = 300
+
 export const metadata = {
   title: 'Groundhopping-Spieltipps',
   description: 'Ausgewählte Derbys, Fanszenen, besondere Stadien und seltene Spiele: Tandemhoppers Spieltipps in einer chronologischen Übersicht.',

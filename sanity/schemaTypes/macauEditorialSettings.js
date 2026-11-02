@@ -1,5 +1,5 @@
 import {defineArrayMember,defineField,defineType} from 'sanity'
-import {defaultMacauTexts,defaultMacauTips,defaultMacauImageSlots,defaultMacauSources} from '../../lib/macauEditableDefaults'
+import {defaultMacauTexts,defaultMacauTips,defaultMacauImageSlots,defaultMacauSources,defaultMacauMapNavigationTip} from '../../lib/macauEditableDefaults'
 import {defaultMacauLeagueSeason} from '../../lib/leagueSeasonData'
 
 // All fields preserve the current design: only their editorial content changes.
@@ -35,6 +35,7 @@ export const macauEditorialSettings = defineType({
     copyField('matchTexts','Spielplanung','football'),
     defineField({name:'leagueSeason',title:'WANN WIRD GESPIELT? · Liga & Saisonkalender',type:'leagueSeason',group:'football',initialValue:()=>defaultMacauLeagueSeason,description:'Hier stehen Spielmonate, Saisontermine, Ausnahmen und die Links. Einmal im Jahr anhand des Spielplans aktualisieren.'}),
     copyField('travelTexts','Anreise und Verkehr','travel'),
+    defineField({name:'mapNavigationTip',title:'Karten-Apps & ÖPNV-Navigation (Macau)',type:'text',rows:4,group:'travel',description:'ÖPNV-App-Tipp direkt im Abschnitt Anreise und Verkehr. Nicht alle Google-Maps-Linien gelten als zuverlässig.',initialValue:defaultMacauMapNavigationTip}),
     copyField('cityTexts','Stadt und weitere Grounds','travel'),
     copyField('budgetTexts','Einleitung und Hintergrundtipps','budget'),
     defineField({name:'tips',title:'Tipps & Tricks – einzeln bearbeiten oder ergänzen',type:'array',group:'budget',
@@ -73,6 +74,7 @@ export const macauEditorialSettings = defineType({
     matchTexts:defaultMacauTexts.filter(x=>x.group==='spiele'),
     leagueSeason:defaultMacauLeagueSeason,
     travelTexts:defaultMacauTexts.filter(x=>x.group==='anreise'),
+    mapNavigationTip:defaultMacauMapNavigationTip,
     cityTexts:defaultMacauTexts.filter(x=>x.group==='stadt'),
     budgetTexts:defaultMacauTexts.filter(x=>x.group==='spartipps'),
     sourceTexts:defaultMacauTexts.filter(x=>x.group==='quellen'),

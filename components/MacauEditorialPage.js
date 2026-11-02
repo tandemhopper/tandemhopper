@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Header from './Header'
 import Footer from './Footer'
 import LeagueSeasonCalendar from './LeagueSeasonCalendar'
+import CountryCommunity from './CountryCommunity'
 import {defaultMacauLeagueSeason} from '../lib/leagueSeasonData'
 
 const base = '/assets/laender/macau-'
@@ -79,7 +80,8 @@ export default function MacauEditorialPage({settings}) {
         <a href="#anreise"><span>03</span> Anreise & Verkehr</a>
         <a href="#stadt"><span>04</span> Stadt & weitere Grounds</a>
         <a href="#spartipps"><span>05</span> Tipps & Tricks</a>
-        <a href="#quellen"><span>06</span> Quellen & Stand</a>
+        <a href="#community"><span>06</span> Community</a>
+        <a href="#quellen"><span>07</span> Quellen & Stand</a>
       </nav>
       <div className="th-chapters">
         <Chapter id="stadien" number="01" label="STADIEN & GROUNDS" title={t("chapter-stadien-title")}>
@@ -175,6 +177,8 @@ export default function MacauEditorialPage({settings}) {
             <p>{t("copy-039")}</p>
           </div>
         </Chapter>
+
+        <CountryCommunity country="macau" asChapter/>
 
         <section className="th-sources" id="quellen"><h2>{t("copy-040")}</h2><p>{t("copy-041")}</p><div>{links.map(([label,url])=><TextLink key={url} href={url}>{label}</TextLink>)}</div></section>
       </div>

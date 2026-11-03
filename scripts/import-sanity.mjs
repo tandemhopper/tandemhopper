@@ -126,7 +126,15 @@ async function convertBody(nodes=[], slug) {
 
 async function importFile(filePath) {
   const raw=fs.readFileSync(filePath,'utf8')
-  const payload=JSON.parse(raw), article=payload.article||payload
+  const payload=JSON.parse(raw)
+  if(payload.deleteArticleSlug){
+    const slug=String(payload.deleteArticleSlug)
+    const baseId=safeId(slug), draftId=`drafts.${baseId}`, markerId=`import-marker-${baseId}`
+    await client.transaction().delete(baseId).delete(draftId).delete(markerId).commit()
+    console.log(`⌫ ${slug}: aus Sanity entfernt.`)
+    return
+  }
+  const article=payload.article||payload
   if(!article.title||!article.slug||!article.category||!article.teaser) throw new Error(`${path.basename(filePath)}: title, slug, category und teaser sind Pflicht.`)
   const assetFingerprint=collectImageSpecs(article).map(({spec,seed})=>sourceFingerprint(spec,seed)).join('\n')
   const importHash=hash(`${raw}\n${assetFingerprint}`)

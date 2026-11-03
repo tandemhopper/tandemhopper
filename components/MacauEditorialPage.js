@@ -101,7 +101,7 @@ export default function MacauEditorialPage({settings,communityEnabled=false}) {
             <Photo name="canidrome-stands" alt="Alte Tribünen und Laufbahn des ehemaligen Canidrome" caption="Historische Tribünen und ehemalige Anlagen, Aufnahme von 2025."/>
             <Photo name="canidrome-structure" alt="Historische Strukturen am ehemaligen Canidrome" caption="Anlagen rund um den damaligen Platz, aufgenommen 2025."/>
           </div>
-          <aside className="th-update"><strong>WICHTIG: UMBAU SEIT 2026</strong><p>{rich("rich-construction")}</p><TextLink href="https://www.gcs.gov.mo/news/detail/pt/N26AWONP9G">Offizielle Mitteilung zum Baubeginn</TextLink></aside>
+          <aside className="th-update"><strong>WICHTIG: UMBAU SEIT 2026</strong><p>{rich("rich-construction")}</p><p>{rich("rich-current-2026")}</p><TextLink href="https://www.gcs.gov.mo/news/detail/pt/N26AWONP9G">Offizielle Mitteilung zum Baubeginn</TextLink><TextLink href="https://appimg.modaily.cn/app/szb/pc/content/202603/11/content_467577.html">Macau Daily · Spiele und Tribünen während der Bauarbeiten (März 2026)</TextLink></aside>
         </Chapter>
 
         <Chapter id="spiele" number="02" label="SPIELPLANUNG" title={t("chapter-spiele-title")}>

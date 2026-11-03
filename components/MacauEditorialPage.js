@@ -1,4 +1,4 @@
-import {defaultMacauTips,defaultMacauTextMap,defaultMacauSources,defaultMacauMapNavigationTip} from '../lib/macauEditableDefaults'
+import {defaultMacauTips,defaultMacauTextMap,defaultMacauSources,defaultMacauMapNavigationTip,defaultMacauLrtHighlight} from '../lib/macauEditableDefaults'
 import Link from 'next/link'
 import Header from './Header'
 import Footer from './Footer'
@@ -64,7 +64,7 @@ export default function MacauEditorialPage({settings,communityEnabled=false}) {
     </div>
 
     <section className="th-intro">
-      <h2>CASINOS, GRENZEN UND <em>ZWEI BESONDERE GROUNDS.</em></h2>
+      <h2>ZWEI WELTEN. <em>ZWEI BESONDERE GROUNDS.</em></h2>
       <div><p>{t("copy-003")}</p><p>{t("copy-004")}</p></div>
     </section>
 
@@ -110,13 +110,13 @@ export default function MacauEditorialPage({settings,communityEnabled=false}) {
           <div className="th-option"><span>01</span><div><h3>{t("copy-015")}</h3><p>{t("copy-016")}</p></div></div>
           <div className="th-option"><span>02</span><div><h3>{t("copy-017")}</h3><p>{t("copy-018")}</p></div></div>
           <div className="th-option"><span>03</span><div><h3>{t("copy-019")}</h3><p>{t("copy-020")}</p></div></div>
-          <div className="th-detail-note"><strong>SPIELPLAN CHECKEN</strong><p>{t("copy-021")}</p><TextLink href="https://www.macaufootball.com/eng/league-d1/2026">Macau League 2026 · Spielplan und Tabelle</TextLink></div>
+          <div className="th-detail-note"><strong>SPIELPLAN CHECKEN</strong><p>{t("copy-021")}</p><TextLink href="https://www.macaufootball.com/eng/">Macau Football · aktuelle Spieltermine und Ergebnisse</TextLink><TextLink href="https://www.macaufa.com">Macau FA · offizielle Verbandswebsite</TextLink><TextLink href="https://www.macaufootball.com/eng/league-d1/2026">Macau League 2026 · Spielplan und Tabelle</TextLink></div>
         </Chapter>
 
         <Chapter id="anreise" number="03" label="REISEPLANUNG" title={t("chapter-anreise-title")}>
           <p className="th-lead">{t("copy-022")}</p>
           <div className="th-trip-grid">
-            <section><h3>{t("copy-023")}</h3><p>{t("copy-024")}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/travelling-to-macao">Offizielle Anreiseinformationen</TextLink></section>
+            <section><h3>{t("copy-023")}</h3><p>{t("copy-024")}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/travelling-to-macao">Offizielle Anreiseinformationen</TextLink><TextLink href="https://www.galaxymacau.com/shuttle-bus/">Galaxy · kostenlose Shuttles nach Cotai</TextLink></section>
             <section><h3>{t("copy-025")}</h3><p>{rich("rich-zhuhai")}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/ports-of-entry">Grenzübergänge & Öffnungszeiten</TextLink></section>
           </div>
           <div className="th-photo-pair">
@@ -124,9 +124,10 @@ export default function MacauEditorialPage({settings,communityEnabled=false}) {
             <Photo name="lrt" alt="Aufgeständerte Macau Light Rapid Transit bei Nacht" caption="Die aufgeständerte LRT auf Taipa."/>
           </div>
           <div className="th-trip-grid">
-            <section><h3>{t("copy-026")}</h3><p>{t("copy-027")}</p><p className="th-inline-tip">{settings?.mapNavigationTip??defaultMacauMapNavigationTip}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/local-transportation">Öffentlicher Verkehr</TextLink><TextLink href="https://www.dsat.gov.mo/dsat/news_detail.aspx?a_id=874D0B368F182B1988F7BC4B4CDC4FDB">Macau Smart Go – offizielle App</TextLink></section>
+            <section><h3>{t("copy-026")}</h3><p>{t("copy-027")}</p><p className="th-inline-tip">{settings?.mapNavigationTip??defaultMacauMapNavigationTip}</p><TextLink href="https://www.macaotourism.gov.mo/en/travelessential/before-you-travel/local-transportation">Öffentlicher Verkehr</TextLink><TextLink href="https://www.mlm.com.mo/en/route.html">Macau LRT · Linien & Betriebszeiten</TextLink><TextLink href="https://www.dsat.gov.mo/dsat/news_detail.aspx?a_id=874D0B368F182B1988F7BC4B4CDC4FDB">Macau Smart Go – offizielle App</TextLink></section>
             <section><h3>{t("copy-028")}</h3><p>{t("copy-029")}</p><TextLink href="https://www.gov.mo/en/services/ps-1474/ps-1474b/">Offizielle Einreiseinformationen</TextLink></section>
           </div>
+          <div className="th-detail-note"><strong>UNSER GEHEIMTIPP: LRT DURCH TAIPA</strong><p>{settings?.lrtHighlight??defaultMacauLrtHighlight}</p><TextLink href="https://www.mlm.com.mo/en/route.html">Taipa Line · Stationen und Fahrtzeiten</TextLink><TextLink href="https://www.mlm.com.mo/en/general_ticket.html">LRT · aktuelle Ticketpreise</TextLink></div>
         </Chapter>
 
         <Chapter id="stadt" number="04" label="ABSEITS DES SPIELFELDS" title={t("chapter-stadt-title")}>

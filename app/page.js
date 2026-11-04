@@ -76,6 +76,14 @@ export default async function Home(){
 
   return <><Header/><main>
     <HeroRotator items={heroItems}/>
+    <Link href="/flugrouten" aria-label="Neue Ryanair- und easyJet-Flugrouten für Groundhopper entdecken" style={{display:'grid',gridTemplateColumns:'minmax(0,1.5fr) minmax(190px,1fr)',background:'#161616',color:'#fff',maxWidth:'1440px',margin:'28px auto 0',minHeight:'180px',overflow:'hidden'}}>
+      <span style={{padding:'26px 32px',display:'flex',flexDirection:'column',justifyContent:'center'}}>
+        <span style={{color:'#f5a29a',fontFamily:'Inter,Arial,sans-serif',fontSize:'12px',fontWeight:700,letterSpacing:'0.09em'}}>NEUES INTERAKTIVES SPECIAL · FLUGROUTEN 2026/27</span>
+        <strong style={{fontFamily:"'Barlow Condensed',Impact,sans-serif",fontSize:'clamp(34px,5vw,66px)',lineHeight:0.94,margin:'12px 0'}}>RYANAIR SCHIMPFT. UND FLIEGT TROTZDEM.</strong>
+        <span style={{fontFamily:'Inter,Arial,sans-serif',fontSize:'14px',fontWeight:600}}>Neue Direktflüge, neue Grounds – alle Routen auf einer Karte ansehen →</span>
+      </span>
+      <img src="/assets/flugrouten-airplane-start.svg" alt="Flugzeug beim Start" style={{display:'block',width:'100%',height:'100%',minHeight:'180px',objectFit:'cover'}}/>
+    </Link>
 
     <section className="category-grid">
       <Link className="category-card" href="/geschichten?filter=fankultur"><img src="/assets/fankultur-pyro.jpg" alt="Kurzmeldungen aus Fankultur und Groundhopping" loading="lazy" decoding="async"/><span className="shade"></span><div><h2>KURZMELDUNGEN</h2><p>Fanszenen, Groundhopping<br/>&amp; aktuelle Entwicklungen.</p><strong>→</strong></div></Link>

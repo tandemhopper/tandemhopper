@@ -17,6 +17,7 @@ export default defineConfig({
           .title('Tandemhopper Redaktion')
           .items([
             S.documentTypeListItem('article').title('Geschichten'),
+            S.listItem().title('✈️ Flugrouten – Titelbild').child(S.document().schemaType('flightRoutesSettings').documentId('flightRoutesSettings')),
             S.divider(),
             S.listItem().title('Länderkompass').child(S.list().title('Länderkompass').items([
               S.listItem().title('🇲🇴 Macau bearbeiten').child(S.document().schemaType('macauEditorialSettings').documentId('macauEditorialSettings')),

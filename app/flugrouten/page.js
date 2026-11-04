@@ -79,7 +79,7 @@ function RouteMap({selected,visible,onChoose}){
      });
      ROUTES.forEach(route=>{
        const a=AIRPORTS[route.from],b=AIRPORTS[route.to];
-       const line=L.polyline([[a[0],a[1]],[b[0],b[1]]],{color:'#c1beba',weight:1.6,opacity:.45}).addTo(map);
+       const on=route.from==='NUE'; const line=L.polyline([[a[0],a[1]],[b[0],b[1]]],{color:on?(route.airline==='Ryanair'?red:orange):'#b8b8b8',weight:on?3.8:1.5,opacity:on?.92:.17}).addTo(map);
        line.bindTooltip(a[2]+' → '+b[2]+' · '+route.airline);
        line.on('click',()=>callback.current(route.from));
        layers.current.push({route,line});
@@ -116,7 +116,7 @@ export default function FlightRoutes(){
  function toggleAirline(name){setAirlines(old=>old.includes(name)?old.length===1?old:old.filter(v=>v!==name):[...old,name])}
  return <><Header/><main className="fr">
  <div className="fr-hero"><div className="fr-kicker">TANDEMHOPPER / GROUNDHOPPING & REISEN / 04.11.2026</div><h1>RYANAIR SCHIMPFT.<br/><span>UND FLIEGT TROTZDEM.</span></h1><p className="fr-intro">Ständig klagt Ryanair über zu hohe Kosten an deutschen Flughäfen und droht mit Einschnitten. Gleichzeitig tauchen immer neue Strecken auf dem Flugplan auf. Neben den obligatorischen Sonnenzielen sind darunter auch einige ziemlich spannende Verbindungen für Fußballreisende. Wir haben sie auf die Karte gepackt.</p><div className="fr-meta">RYANAIR & EASYJET <span>·</span> WINTER 2026/27 UND SOMMER 2027 <span>·</span> 4. NOVEMBER 2026</div></div>
- <figure className="fr-photo-hero"><img src="/assets/flugrouten-airplane-start.jpg" alt="Passagierflugzeug hebt vor dem Abendhimmel ab" /><figcaption>Neue Flugverbindungen bedeuten für Groundhopper auch neue Möglichkeiten, Stadien und Fanszenen zu besuchen. Foto: Tandemhopper</figcaption></figure>
+ <figure className="fr-photo-hero"><img src="/assets/flugrouten-airplane-start.svg" alt="Passagierflugzeug hebt vor dem Abendhimmel ab" /><figcaption>Neue Flugverbindungen bedeuten für Groundhopper auch neue Möglichkeiten, Stadien und Fanszenen zu besuchen. Foto: Tandemhopper</figcaption></figure>
  <section className="fr-explainer"><p><strong>Welche neue Strecke führt zum nächsten Ground?</strong> Ein Klick auf den Abflughafen oder ein Scroll durch die Liste zeigt seine Ziele. Die übrigen Routen treten in den Hintergrund. Rot steht für Ryanair, Orange für easyJet – und bei jeder Strecke gibt es die wichtigsten Infos sowie einen Link zur Quelle.</p></section>
  <section className="fr-experience" aria-label="Flugrouten-Karte">
  <div className="fr-map-column"><div className="fr-toolbar"><span>FLUGROUTEN ENTDECKEN</span><div><button onClick={()=>toggleAirline('Ryanair')} className={airlines.includes('Ryanair')?'active':''} aria-pressed={airlines.includes('Ryanair')}><i style={{background:red}}/>Ryanair</button><button onClick={()=>toggleAirline('easyJet')} className={airlines.includes('easyJet')?'active':''} aria-pressed={airlines.includes('easyJet')}><i style={{background:orange}}/>easyJet</button></div></div><RouteMap selected={selected} visible={airlines} onChoose={pick}/><small>Flughäfen sind anhand ihrer geografischen Koordinaten verortet. Die geraden Linien symbolisieren Direktverbindungen, nicht den tatsächlichen Flugweg. Kartendaten: © OpenStreetMap-Mitwirkende.</small></div>

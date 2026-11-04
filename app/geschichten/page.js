@@ -70,7 +70,7 @@ export default async function Stories({searchParams}){
           ? <img src={flightRoutesImage.url} alt={flightRoutesImage.alt||'Flugzeug'} loading="lazy" decoding="async"/>
           : <div style={{height:300,background:'#1b1d20',color:'#fff',display:'flex',alignItems:'flex-end',padding:24,marginBottom:15}}><strong style={{fontFamily:'Barlow Condensed,Arial,sans-serif',fontSize:54,lineHeight:.9}}>NEUE FLÜGE.<br/>NEUE GROUNDS.</strong></div>}
         <span className="tag">KURZMELDUNGEN</span>
-        <h2>Ryanair schimpft. Und fliegt trotzdem.</h2>
+        <h2>Neue Flugrouten für Groundhopper</h2>
         <p>Neue Direktverbindungen nach England, Marokko und Italien: Welche Strecken sich für Groundhopper lohnen, zeigt unsere interaktive Karte.</p>
         <time>04.11.2026</time>
       </Link>}

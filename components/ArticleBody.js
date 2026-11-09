@@ -5,7 +5,7 @@ import ClubMarks from './ClubMarks'
 import SocialEmbed from './SocialEmbed'
 import {imageUrl} from '../lib/imageUrl'
 
-function renderMarkedSpan(span, index) {
+function renderMarkedSpan(span, index, markDefs = []) {
   let node = span.text
   const marks = span.marks || []
   if (marks.includes('strong')) node = <strong>{node}</strong>
@@ -13,6 +13,14 @@ function renderMarkedSpan(span, index) {
   if (marks.includes('underline')) node = <u>{node}</u>
   if (marks.includes('strike-through')) node = <s>{node}</s>
   if (marks.includes('code')) node = <code>{node}</code>
+
+  for (const mark of marks) {
+    const annotation = markDefs.find(def => def?._key === mark)
+    if (annotation?._type !== 'link' || !annotation.href) continue
+    const newTab = annotation.openInNewTab === true
+    node = <a href={annotation.href} target={newTab ? '_blank' : undefined} rel={newTab ? 'noopener noreferrer' : undefined}>{node}</a>
+  }
+
   return <React.Fragment key={span._key || index}>{node}</React.Fragment>
 }
 
@@ -33,7 +41,7 @@ function rankedMatch(block) {
 }
 
 function TextBlock({block}) {
-  const children = (block.children || []).map(renderMarkedSpan)
+  const children = (block.children || []).map((span, index) => renderMarkedSpan(span, index, block.markDefs || []))
   if (block.listItem === 'bullet') return <ul><li>{children}</li></ul>
   if (block.listItem === 'number') return <ol><li>{children}</li></ol>
   if (block.style === 'h2') {
@@ -123,6 +131,20 @@ export default function ArticleBody({blocks = [], slug}) {
       if (block._type === 'gallery') {
         const images = (block.images || []).filter(image => image.src).map(image => ({src: image.src, alt: image.alt || ''}))
         return <div key={key} className="cms-gallery"><Gallery images={images}/></div>
+      }
+      if (block._type === 'linkTeaser' && block.url && block.title) {
+        const newTab = block.openInNewTab === true
+        return <a
+          key={key}
+          className="cms-link-teaser"
+          href={block.url}
+          target={newTab ? '_blank' : undefined}
+          rel={newTab ? 'noopener noreferrer' : undefined}
+        >
+          <span>{block.eyebrow || 'WEITERLESEN'}</span>
+          <strong>{block.title}</strong>
+          <span>{block.cta || 'WEITERLESEN ↗'}</span>
+        </a>
       }
       if (block._type === 'fixtureList') {
         return <div key={key} className="cms-fixture-list">

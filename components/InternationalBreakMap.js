@@ -64,7 +64,7 @@ export default function InternationalBreakMap(){
           fillColor:day?.color || '#111',
           fillOpacity:1,
         }).addTo(map)
-        marker.bindPopup(`<strong>${fixture.game}</strong><br><span>${fixture.day.} · ${fixture.time} Uhr · ${fixture.place}</span><br><small>${fixture.note}</small>`)
+        marker.bindPopup(`<strong>${fixture.game}</strong><br><span>${fixture.day} · ${fixture.time} Uhr · ${fixture.place}</span><br><small>${fixture.note}</small>`)
         marker.bindTooltip(fixture.place,{direction:'top'})
         return {fixture,marker}
       })

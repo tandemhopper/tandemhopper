@@ -144,6 +144,45 @@ export const article = defineType({
             {title: 'Aufzählung', value: 'bullet'},
             {title: 'Nummeriert', value: 'number'},
           ],
+          marks: {
+            decorators: [
+              {title: 'Fett', value: 'strong'},
+              {title: 'Kursiv', value: 'em'},
+              {title: 'Unterstrichen', value: 'underline'},
+              {title: 'Durchgestrichen', value: 'strike-through'},
+              {title: 'Code', value: 'code'},
+            ],
+            annotations: [
+              {
+                name: 'link',
+                title: 'Link',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'href',
+                    title: 'Ziel',
+                    description: 'Interne Seite als /pfad oder vollständige https://-Adresse.',
+                    type: 'string',
+                    validation: (rule) => rule.required().custom((value) => {
+                      if (!value) return true
+                      if (value.startsWith('/') && !value.startsWith('//')) return true
+                      try {
+                        const url = new URL(value)
+                        if (url.protocol === 'http:' || url.protocol === 'https:') return true
+                      } catch {}
+                      return 'Bitte /pfad oder eine vollständige http(s)-Adresse eingeben.'
+                    }),
+                  }),
+                  defineField({
+                    name: 'openInNewTab',
+                    title: 'In neuem Tab öffnen',
+                    type: 'boolean',
+                    initialValue: false,
+                  }),
+                ],
+              },
+            ],
+          },
         }),
         defineArrayMember({
           type: 'image',
@@ -192,6 +231,59 @@ export const article = defineType({
           preview: {
             select: {title:'title',subtitle:'url'},
             prepare({title,subtitle}) {return {title:title || 'Social-Media-Beitrag',subtitle:subtitle || 'Noch keine URL'}}
+          },
+        }),
+        defineArrayMember({
+          type: 'object',
+          name: 'linkTeaser',
+          title: 'Link-Kasten / Weiterlesen',
+          fields: [
+            defineField({
+              name: 'eyebrow',
+              title: 'Kleine Zeile oben',
+              description: 'Zum Beispiel „SPIELBERICHT · 04.10.2026“ oder „GROUNDHOPPING-KALENDER“.',
+              type: 'string',
+              initialValue: 'WEITERLESEN',
+            }),
+            defineField({
+              name: 'title',
+              title: 'Große Überschrift',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'url',
+              title: 'Ziel',
+              description: 'Interne Seite als /pfad oder vollständige https://-Adresse.',
+              type: 'string',
+              validation: (rule) => rule.required().custom((value) => {
+                if (!value) return true
+                if (value.startsWith('/') && !value.startsWith('//')) return true
+                try {
+                  const url = new URL(value)
+                  if (url.protocol === 'http:' || url.protocol === 'https:') return true
+                } catch {}
+                return 'Bitte /pfad oder eine vollständige http(s)-Adresse eingeben.'
+              }),
+            }),
+            defineField({
+              name: 'cta',
+              title: 'Text rechts',
+              type: 'string',
+              initialValue: 'WEITERLESEN ↗',
+            }),
+            defineField({
+              name: 'openInNewTab',
+              title: 'In neuem Tab öffnen',
+              type: 'boolean',
+              initialValue: false,
+            }),
+          ],
+          preview: {
+            select: {title: 'title', subtitle: 'url'},
+            prepare({title, subtitle}) {
+              return {title: title || 'Link-Kasten', subtitle: subtitle || 'Noch kein Ziel'}
+            },
           },
         }),
         defineArrayMember({

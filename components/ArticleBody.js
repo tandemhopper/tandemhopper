@@ -3,6 +3,7 @@ import Gallery from './Gallery'
 import ZoomImage from './ZoomImage'
 import ClubMarks from './ClubMarks'
 import SocialEmbed from './SocialEmbed'
+import InternationalBreakMap from './InternationalBreakMap'
 import {imageUrl} from '../lib/imageUrl'
 
 function renderMarkedSpan(span, index, markDefs = []) {
@@ -107,7 +108,12 @@ export default function ArticleBody({blocks = [], slug}) {
       return matched ? [block, {...matched, _type:'socialEmbed', _key:`social-${index}`}] : [block]
     }).map((block, index) => {
       const key = block._key || index
-      if (block._type === 'block') return <TextBlock key={key} block={block}/>
+      if (block._type === 'block') {
+        if (slug === 'laenderspielpause-groundhopping-tipps-november-2026' && index === 1) {
+          return <React.Fragment key={key}><TextBlock block={block}/><InternationalBreakMap/></React.Fragment>
+        }
+        return <TextBlock key={key} block={block}/>
+      }
       if (block._type === 'socialEmbed') {
         const details = block.provider ? {provider:block.provider,id:block.id,start:block.start} : extractSocialMedia(block.url)
         return details ? <SocialEmbed key={key} {...block} {...details} title={block.title || 'Social-Media-Beitrag'}/> : null

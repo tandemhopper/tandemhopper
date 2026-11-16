@@ -1,0 +1,28 @@
+name: CAF-Novembertermine gezielt in Sanity aktualisieren
+
+on:
+  push:
+    paths:
+      - 'scripts/update-caf-november-2026.mjs'
+      - '.github/workflows/update-caf-november-2026.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SANITY_PROJECT_ID: 90kx3kio
+      SANITY_DATASET: production
+      SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - name: Bestehenden CAF-Artikel und vorhandene Spieltipps gezielt aktualisieren
+        run: node scripts/update-caf-november-2026.mjs

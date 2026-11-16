@@ -127,6 +127,77 @@ async function updateExistingCalendar() {
   console.log('Kalender: ' + count + ' bestehende Treffer aktualisiert; keine neuen Spiele ohne Redaktionseintrag erfunden.')
 }
 
+
+async function addCuratedCafCalendarTips() {
+  // Only genuinely interesting, verifiably dated fixtures, not the whole CAF schedule.
+  // Never overwrite an entry created/edited in the Studio.
+  const tips = [
+    {
+      slug: 'zamalek-club-africain-2026-11-28',
+      homeTeam: 'Zamalek SC', awayTeam: 'Club Africain', country: 'Ägypten',
+      city: 'Kairo', stadium: 'Cairo International Stadium',
+      matchDate: '2026-11-28', kickoffTime: '18:00', priority: 3,
+      categories: ['fanszene', 'auswaertsfahrt'],
+      shortDescription: 'Zwei der größten nordafrikanischen Fanszenen treffen in Kairo aufeinander. Anstoß am Samstag um 18 Uhr Ortszeit.',
+      background: 'Gruppenspiel der CAF Champions League. Ein tunesisches Auswärtskontingent ist noch nicht bestätigt; vor einer Reise bitte Zugangsregeln überprüfen.',
+      confirmedInfo: '28.11.2026, 18:00 Uhr Ortszeit, Cairo International Stadium. Quellen: La Presse de Tunisie und El Botola, 15.11.2026.',
+      sourceUrl: 'https://www.lapresse.tn/2026/11/15/arbitrage-trois-arbitres-internationaux-designes-pour-les-prochaines-affiches-des-clubs-tunisiens/',
+    },
+    {
+      slug: 'raja-asko-2026-11-28',
+      homeTeam: 'Raja Casablanca', awayTeam: 'ASKO Kara', country: 'Marokko',
+      city: 'Casablanca', stadium: 'Stade Mohammed V',
+      matchDate: '2026-11-28', kickoffTime: '19:00', priority: 2,
+      categories: ['fanszene'],
+      shortDescription: 'Raja in der CAF-Gruppenphase im Mohammed V – eine der interessanten nordafrikanischen Kurven, allerdings mit offenen Fanfragen.',
+      background: 'CAF Confederation Cup. Der Termin ist über die Schiedsrichteransetzungen bekannt. Ob die aktive Raja-Szene anwesend sein wird, muss noch geklärt werden.',
+      confirmedInfo: '28.11.2026, 19:00 Uhr Ortszeit, Stade Mohammed V. Quelle: El Botola vom 15.11.2026. Gästefanregelung und Ticketverkauf noch offen.',
+      sourceUrl: 'https://m.elbotola.com/fr/article/2026-11-15-13-51-39.html',
+    },
+    {
+      slug: 'mc-alger-zamalek-2026-12-04',
+      homeTeam: 'MC Alger', awayTeam: 'Zamalek SC', country: 'Algerien',
+      city: 'Algier', stadium: 'Stade Ali Ammar (Ali La Pointe)',
+      matchDate: '2026-12-04', kickoffTime: '21:00', priority: 3,
+      categories: ['fanszene', 'auswaertsfahrt'],
+      shortDescription: 'Eines der stärksten CAF-Duelle für Fanszenen: Mouloudia Algier empfängt Zamalek, jetzt Freitag um 21 Uhr terminiert.',
+      background: 'CAF Champions League, zweiter Gruppenspieltag. Die Anstoßzeit stammt aus einer offiziellen Spielbenachrichtigung an Zamalek. Ticket- und Gästefaninfos stehen noch aus.',
+      confirmedInfo: '04.12.2026, 21:00 Uhr algerische Ortszeit, Stade Ali Ammar. Quellen: Al-Ahram und Al-Watan Sport vom 15.11.2026.',
+      sourceUrl: 'https://gate.ahram.org.eg/News/5985107.aspx',
+    },
+  ]
+
+  let created = 0
+  for (const tip of tips) {
+    const id = 'calendar-caf-' + tip.slug
+    const existing = await client.getDocument(id)
+    if (existing) {
+      console.log('↷ Vorhandenen kuratierten CAF-Tipp nicht überschrieben: ' + tip.slug)
+      continue
+    }
+    const {slug: ignored, sourceUrl, ...fields} = tip
+    const doc = {
+      _id: id,
+      _type: 'calendarMatch',
+      ...fields,
+      dateStatus: 'confirmed',
+      internationalCompetition: true,
+      regions: ['nordafrika'],
+      sport: 'football',
+      awayFans: 'unclear',
+      ticketSituation: 'unknown',
+      editorialAssessment: 'Besonders interessant für Groundhopper, aber keine Garantie für Gästefans. Kurzfristige Stadion- und Ticketänderungen beachten.',
+      lastChecked: '2026-11-16',
+      sources: [{_type: 'object', _key: hashKey(id + ':source'), type: 'local_media', url: sourceUrl, note: 'Anstoßzeit und Stadion, Stand 16.11.2026'}],
+    }
+    await client.createIfNotExists(doc)
+    created++
+    console.log('✓ CAF-Kalendertipp neu angelegt: ' + fields.homeTeam + ' – ' + fields.awayTeam)
+  }
+  console.log('Kalender: ' + created + ' zusätzliche, geprüfte CAF-Highlights angelegt.')
+}
+
 await updateArticle()
 await updateExistingCalendar()
+await addCuratedCafCalendarTips()
 console.log('CAF-Abgleich beendet.')
